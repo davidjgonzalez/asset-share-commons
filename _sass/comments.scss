@@ -1,0 +1,32 @@
+.fyre-modal,
+.fyre-cp-modal-content {
+
+  .fyre-cp-modal-headers,
+  .fyre-cp-modal-headers-wrap,
+  .fyre-cp-divider {
+    display: none;
+  }
+
+  .fyre-lfep2 .fyre-cp-modal-headers .fyre-cp-modal-headers-wrap {
+    display: none;
+  }
+
+  a {
+    color: #3ACB9D !important;
+  }
+
+  .fyre-cp-form-btns .fyre-cp-form-back-btn {
+    margin-right: 2rem !important;
+  }
+
+  .fyre-cp-form-btn-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .fyre-cp-form-btns .fyre-cp-form-back-btn,
+  .fyre-cp-form-btns .fyre-cp-form-submit-btn,
+  .fyre-lfep2 .fyre-cp-form-btns .fyre-cp-form-submit-btn {
+    background-color: #3ACB9D !important;
+    color: white !important;
+  }
+}
