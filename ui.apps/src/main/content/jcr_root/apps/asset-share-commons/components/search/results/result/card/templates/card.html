@@ -86,8 +86,48 @@
     </article>
 </template>
 
+
+<template data-sly-template.folderCard="${@ folder = result, config = config }">
+
+    <article class="ui card cmp-card">
+        <div class="image cmp-image__wrapper--card">
+            <img src="${folder.path}.folderthumbnail.jpg?width=237&height=175"
+                 class="cmp-image--card"
+                 alt="${folder.title}"
+                 data-asset-share-search-on="click"
+                 data-asset-share-form-name="path"
+                 data-asset-share-form-value="${folder.path}"/>
+        </div>
+
+        <div class="content">
+            <h3 class="header">
+                <a href="#browse-to-folder"
+                   data-asset-share-search-on="click"
+                   data-asset-share-form-name="path"
+                   data-asset-share-form-value="${folder.path}">${folder.title}</a>
+            </h3>
+            <div class="meta">
+                <div class="property three">
+                    ${'TYPE' @ i18n}
+                    <span class="value">${folder.type}</span>
+                </div>
+                <div class="property three">
+                    ${'NAME' @ i18n}
+                    <span class="value">${folder.name}</span>
+                </div>
+                <div class="property three">
+                    ${'SIZE' @ i18n}
+                    <span class="value">${folder.size.count}${folder.size.more ? '+' : ''}</span>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</template>
+
+
 <template data-sly-template.noResults="${@ search = search, config = config }">
-    <h1 class="ui center aligned header">
+    <h1 class="ui center aligned header cmp-search-results__no-results--card">
         ${properties['noResultsText']}
     </h1>
 </template>

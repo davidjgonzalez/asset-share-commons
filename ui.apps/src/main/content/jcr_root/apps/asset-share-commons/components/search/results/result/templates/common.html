@@ -19,8 +19,8 @@
 <template data-sly-template.data="${@ search, pagePredicate}">
     <span data-asset-share-id="results-data"
           data-asset-share-update-method="replace">
-        <!--/* layout */-->
 
+        <!--/* layout */-->
         <input type="hidden"
                 data-asset-share-id="layout"
                 name="layout"
@@ -28,7 +28,6 @@
                 data-asset-share-search-actions="all"/>
 
         <!--/* p.offset */-->
-
         <input type="hidden"
                name="p.offset"
                value="0"
@@ -40,11 +39,17 @@
                data-asset-share-search-actions="load-more"/>
 
         <!--/* p.limit */-->
-
         <input type="hidden"
                name="p.limit"
                value="${search.results.runningTotal}"
                data-asset-share-search-actions="switch-layout,deep-link,sort"/>
+
+        <!--/* Browse path */-->
+        <input type="hidden"
+               name="path"
+               value="${search.results.additionalData['browsePath']}"
+               data-asset-share-search-actions="all"
+               data-sly-test="${search.results.additionalData['browsePath']}"/>
     </span>
 </template>
 

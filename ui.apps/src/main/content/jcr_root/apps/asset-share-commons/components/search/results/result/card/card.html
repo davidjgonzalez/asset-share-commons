@@ -42,11 +42,15 @@
          data-asset-share-update-when="load-more"
          data-sly-list.result="${search.results.results}">
 
-        <sly data-sly-call="${cardTemplate.card @ asset = result, config = config}"></sly>
+        <sly data-sly-test="${result.type == 'asset'}"
+             data-sly-call="${cardTemplate.card @ asset = result, config = config}"></sly>
+
+        <sly  data-sly-test="${result.type == 'folder'}"
+              data-sly-call="${cardTemplate.folderCard @ folder = result, config = config}"></sly>
 
     </div>
 
-    <div data-sly-test="${search.results.runningTotal == 0}"
+    <div data-sly-test="${search.results.noResults}"
          data-sly-call="${cardTemplate.noResults @ search = search, config = config}">
     </div>
 </div>

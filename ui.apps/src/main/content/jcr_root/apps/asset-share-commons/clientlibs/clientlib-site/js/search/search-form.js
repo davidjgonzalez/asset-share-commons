@@ -119,11 +119,25 @@ AssetShare.Search.Form = function (ns) {
         return clone;
     }
 
-    function serializeFor(event, resetForm) {
+    function serializeFor(event, resetForm, triggerEl) {
+        var serializableFormData,
+            triggerFormName,
+            triggerFormValue;
+
         if (resetForm) {
             reset();
         }
-        return buildFormData(formData, event).serialize();
+
+        serializableFormData = buildFormData(formData, event);
+
+        if (triggerEl && ns.Data.attr(triggerEl, "form-name")) {
+            triggerFormName = ns.Data.attr(triggerEl, "form-name");
+            triggerFormValue = ns.Data.attr(triggerEl, "form-value");
+
+            serializableFormData.set(triggerFormName, triggerFormValue);
+        }
+
+        return serializableFormData.serialize();
     }
 
     function init() {

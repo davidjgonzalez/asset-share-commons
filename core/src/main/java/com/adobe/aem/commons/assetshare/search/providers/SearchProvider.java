@@ -28,9 +28,28 @@ import javax.jcr.RepositoryException;
 
 @ConsumerType
 public interface SearchProvider {
-    String MODE = "mode";
+    String SEARCH_PROVIDER_ID = "spid";
 
+    /**
+     * @return the Id for this search provider. This should be unique across all search providers.
+     */
+    String getId();
+
+    /**
+     * Method used to determine if the SearchProvider should handle the request.
+     *
+     * @param request the Request object for the search request.
+     * @return true if this SearchProvider should service the request.
+     */
     boolean accepts(SlingHttpServletRequest request);
 
+    /**
+     * Method responsible for returning search results.
+     *
+     * @param request the Request object for the search request.
+     * @return the results from the search.
+     * @throws UnsafeSearchException is thrown when a search is considered unsafe and may adversely impact AEMs performance.
+     * @throws RepositoryException is thrown when there is an issue collecting search results from the AEM repository.
+     */
     Results getResults(SlingHttpServletRequest request) throws UnsafeSearchException, RepositoryException;
 }

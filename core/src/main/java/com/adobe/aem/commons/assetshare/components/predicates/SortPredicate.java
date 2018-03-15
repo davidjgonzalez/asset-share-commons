@@ -27,8 +27,21 @@ import java.util.List;
 @ProviderType
 public interface SortPredicate extends Predicate {
     /**
+     * Use getSortByItems() instead.
+     *
      * @return the option items for this predicate.
      */
+    @Deprecated
     List<OptionItem> getItems();
+
+    /**
+     * @return the Sort By options.
+     */
+    List<OptionItem> getSortByItems();
+
+    /**
+     * @return the Sort By direction options.
+     */
+    List<OptionItem> getSortByDirectionItems();
 }
 

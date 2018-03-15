@@ -73,7 +73,7 @@ AssetShare.Search = (function (window, $, ns, ajax) {
         if (!running) {
             running = true;
             trigger(ns.Events.SEARCH_BEGIN, [EVENT_SEARCH_TYPE_FULL]);
-            $.when($.get(form.url(), form.serializeFor(ACTION_SEARCH, true))).then(processSearch);
+            $.when($.get(form.url(), form.serializeFor(ACTION_SEARCH, true, $(e.target)))).then(processSearch);
         }
     }
 

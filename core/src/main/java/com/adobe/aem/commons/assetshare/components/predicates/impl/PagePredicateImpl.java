@@ -22,17 +22,16 @@ package com.adobe.aem.commons.assetshare.components.predicates.impl;
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.HiddenPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.PagePredicate;
+import com.adobe.aem.commons.assetshare.components.search.SearchConfig;
 import com.adobe.aem.commons.assetshare.util.ComponentModelVisitor;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.day.cq.dam.api.DamConstants;
-import com.day.cq.search.eval.PathPredicateEvaluator;
 import com.day.cq.wcm.api.Page;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
@@ -40,8 +39,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.factory.ModelFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -63,16 +60,14 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
     private static final String DEFAULT_GUESS_TOTAL = "250";
     private static final String DEFAULT_ORDER_BY = "@jcr:score";
     private static final String DEFAULT_ORDER_BY_SORT = "desc";
-    private final String[] DEFAULT_PATHS = {"/content/dam"};
-
-    private String PN_ORDERBY = "orderBy";
-    private String PN_ORDERBY_SORT = "orderBySort";
-    private String PN_LIMIT = "limit";
-    private String PN_PATHS = "paths";
 
     @Self
     @Required
     SlingHttpServletRequest request;
+
+    @Self
+    @Required
+    private SearchConfig searchConfig;
 
     @Inject
     @Required
@@ -83,14 +78,14 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
     private Resource resource;
 
     @OSGiService
+    @Required
     private ModelFactory modelFactory;
 
-    private ValueMap properties;
+    private Collection<HiddenPredicate> hiddenPredicates;
 
     @PostConstruct
     protected void init() {
         initPredicate(request, null);
-        properties = resource.getValueMap();
     }
 
     @Override
@@ -103,15 +98,14 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
         return true;
     }
 
-
     public String getOrderBy() {
         final String value = PredicateUtil.getParamFromQueryParams(request, "orderby");
-        return StringUtils.defaultIfBlank(value, properties.get(PN_ORDERBY, DEFAULT_ORDER_BY));
+        return StringUtils.defaultIfBlank(value, searchConfig.getOrderBy());
     }
 
     public String getOrderBySort() {
         final String value = PredicateUtil.getParamFromQueryParams(request, "orderby.sort");
-        return StringUtils.defaultIfBlank(value, properties.get(PN_ORDERBY_SORT, DEFAULT_ORDER_BY_SORT));
+        return StringUtils.defaultIfBlank(value, searchConfig.getOrderBySort());
     }
 
     public int getLimit() {
@@ -122,10 +116,10 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
             try {
                 limit = Integer.parseInt(requestParameter.getString());
             } catch (NumberFormatException e) {
-                limit = properties.get(PN_LIMIT, DEFAULT_LIMIT);
+                limit = searchConfig.getLimit();
             }
         } else {
-            limit = properties.get(PN_LIMIT, DEFAULT_LIMIT);
+            limit = searchConfig.getLimit();
         }
 
         if (limit > MAX_LIMIT) {
@@ -138,40 +132,11 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
     }
 
     public String getGuessTotal() {
-        final String guessTotal = properties.get("guessTotal", DEFAULT_GUESS_TOTAL);
-
-        if ("true".equalsIgnoreCase(guessTotal)) {
-            return guessTotal;
-        } else {
-            try {
-                int tmp = Integer.parseInt(guessTotal);
-
-                if (tmp < 1 || tmp > MAX_GUESS_TOTAL) {
-                    return DEFAULT_GUESS_TOTAL;
-                } else {
-                    return String.valueOf(tmp);
-                }
-            } catch (NumberFormatException e) {
-                return DEFAULT_GUESS_TOTAL;
-            }
-        }
+        return searchConfig.getGuessTotal();
     }
 
     public List<String> getPaths() {
-        final String[] uncheckedPaths = properties.get(PN_PATHS, DEFAULT_PATHS);
-        final List<String> paths = new ArrayList<>();
-
-        for (final String path : uncheckedPaths) {
-            if (StringUtils.equals(path, DamConstants.MOUNTPOINT_ASSETS) || StringUtils.startsWith(path, DamConstants.MOUNTPOINT_ASSETS)) {
-                paths.add(path);
-            }
-        }
-
-        if (paths.size() < 1) {
-            return Arrays.asList(DEFAULT_PATHS);
-        } else {
-            return paths;
-        }
+       return searchConfig.getPaths();
     }
 
     @Override
@@ -216,13 +181,21 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
         return params;
     }
 
-    private Collection<HiddenPredicate> getHiddenPredicates(final Page page) {
-        final ComponentModelVisitor<HiddenPredicate> visitor = new ComponentModelVisitor<HiddenPredicate>(request,
-                modelFactory,
-                new String[]{HiddenPredicateImpl.RESOURCE_TYPE},
-                HiddenPredicate.class);
+    protected Page getCurrentPage() {
+        return currentPage;
+    }
 
-        visitor.accept(page.getContentResource());
-        return visitor.getModels();
+    protected Collection<HiddenPredicate> getHiddenPredicates(final Page page) {
+        if (hiddenPredicates == null) {
+            final ComponentModelVisitor<HiddenPredicate> visitor = new ComponentModelVisitor<HiddenPredicate>(request,
+                    modelFactory,
+                    new String[]{HiddenPredicateImpl.RESOURCE_TYPE},
+                    HiddenPredicate.class);
+
+            visitor.accept(page.getContentResource());
+            hiddenPredicates = visitor.getModels();
+        }
+
+        return hiddenPredicates;
     }
 }

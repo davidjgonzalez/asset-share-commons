@@ -23,27 +23,55 @@ import com.adobe.aem.commons.assetshare.content.AssetModel;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.osgi.annotation.versioning.ProviderType;
 
 import java.util.Locale;
 
+/**
+ * The Asset Share configuration for this content tree.
+ *
+ * The Config resolves to the first ancestor (or self) that is an Asset Share Commons search page.
+ */
+@ProviderType
 public interface Config {
 
+    /**
+     * @return the Sling Http Servlet request object. This is the context that resolves to the Config.
+     */
     SlingHttpServletRequest getRequest();
 
+    /**
+     * @return the Resource Resolver associated with the getRequest() request.
+     */
     ResourceResolver getResourceResolver();
 
     ValueMap getProperties();
 
+    /**
+     * @return the locale of the Request.
+     */
     Locale getLocale();
 
+    /**
+     * @return the absolute path to the search page this Config resolves to.
+     */
     String getRootPath();
 
+    /**
+     * @return the absolute path to the asset details page.
+     */
     AssetModel getPlaceholderAsset();
 
     String getAssetDetailsSelector();
 
+    /**
+     * @return the absolute path to the asset details page.
+     */
     String getAssetDetailsPath();
 
+    /**
+     * @return the URL to the asset details page.
+     */
     String getAssetDetailsUrl();
 
     String getCartActionUrl();

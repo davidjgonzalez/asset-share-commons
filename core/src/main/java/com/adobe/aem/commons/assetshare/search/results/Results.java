@@ -79,6 +79,11 @@ public interface Results {
     Status getStatus();
 
     /**
+     * @return true if this object has ANY results (assets, folders, or anything to display).
+     */
+    default boolean hasNoResults() { return false; }
+
+    /**
      * This method acts as a flexible extension point to expose additional data.
      *
      * Note: the returning ValueMap supports modifying operations (ie. put, putAll).

@@ -81,4 +81,9 @@ public abstract class AbstractResultsImpl implements Results {
     public ValueMap getAdditionalData() {
         return additionalData;
     }
+
+    @Override
+    public boolean hasNoResults() {
+        return runningTotal == 0;
+    }
 }

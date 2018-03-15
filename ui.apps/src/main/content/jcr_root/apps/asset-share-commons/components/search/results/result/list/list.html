@@ -48,9 +48,13 @@
             <tr   data-sly-unwrap
                   data-sly-test="${result.type == 'asset'}"
 				  data-sly-call="${listTemplate.row @ asset = result, config = config}"></tr>
+
+			<tr   data-sly-unwrap
+				  data-sly-test="${result.type == 'folder'}"
+				  data-sly-call="${listTemplate.folderRow @ folder = result, config = config}"></tr>
 		</tbody>
 
-		<tbody data-sly-test="${search.results.runningTotal == 0}"
+		<tbody data-sly-test="${search.results.noResults == 0}"
 			 data-sly-call="${listTemplate.noResults @ search = search, config = config}">
 		</tbody>
 	</table>

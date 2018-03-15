@@ -81,14 +81,33 @@
 			</div>
 		</td>
 	</tr>
-
 </template>
+
+
+
+<template data-sly-template.folderRow="${@ folder = result, config = config }">
+
+	<tr data-asset-share-search-on="click"
+		data-asset-share-form-name="path"
+		data-asset-share-form-value="${folder.path}">
+		<td class="image"><img src="${folder.path}.folderthumbnail.jpg?width=100&height=75" alt="${result.title}"/>
+		</td>
+		<td class="header">${folder.title}</td>
+		<td>${'yyyy-MM-dd' @ format=folder.lastModified, locale=config.locale}</td>
+		<td>${'FOLDER' @ i18n}</td>
+		<td>${folder.size.count}${folder.size.more ? '+' : ''}</td>
+		<td></td>
+	</tr>
+
+	</article>
+</template>
+
 
 
 <template data-sly-template.noResults="${@ search = search, config = config }">
 	<tr>
 		<td colspan="7">
-			<h1 class="ui center aligned header">
+			<h1 class="ui center aligned header cmp-search-results__no-results--list">
 				${properties['noResultsText'] || 'No results could be found' @ i18n}
 			</h1>
 		</td>

@@ -47,17 +47,11 @@ public class TagOptionItem implements OptionItem {
 
     @Override
     public String getValue() {
-        if (tag != null) {
-            return tag.getTagID();
-        }
-        return "";
+        return tag == null ? "" : tag.getTagID();
     }
 
     @Override
     public String getText() {
-        if (tag != null) {
-            return tag.getTitle(locale);
-        }
-        return "";
+        return tag == null ? "" : tag.getTitle(locale);
     }
 }

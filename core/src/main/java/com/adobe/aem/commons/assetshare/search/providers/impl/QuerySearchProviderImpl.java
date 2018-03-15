@@ -20,6 +20,7 @@
 package com.adobe.aem.commons.assetshare.search.providers.impl;
 
 import com.adobe.aem.commons.assetshare.components.predicates.PagePredicate;
+import com.adobe.aem.commons.assetshare.components.search.SearchConfig;
 import com.adobe.aem.commons.assetshare.search.QueryParameterPostProcessor;
 import com.adobe.aem.commons.assetshare.search.SearchSafety;
 import com.adobe.aem.commons.assetshare.search.UnsafeSearchException;
@@ -30,6 +31,7 @@ import com.adobe.aem.commons.assetshare.search.results.AssetResult;
 import com.adobe.aem.commons.assetshare.search.results.Result;
 import com.adobe.aem.commons.assetshare.search.results.Results;
 import com.adobe.aem.commons.assetshare.search.results.impl.results.QueryBuilderResultsImpl;
+import com.adobe.aem.commons.assetshare.util.ModelCache;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.commerce.common.ValueMapDecorator;
 import com.day.cq.search.Predicate;
@@ -70,6 +72,8 @@ import static org.osgi.framework.Constants.SERVICE_RANKING;
 public class QuerySearchProviderImpl implements SearchProvider {
     private static final Logger log = LoggerFactory.getLogger(QuerySearchProviderImpl.class);
 
+    public static final String ID = "search";
+
     @Reference
     private SearchSafety searchSafety;
 
@@ -88,9 +92,21 @@ public class QuerySearchProviderImpl implements SearchProvider {
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     private QueryParameterPostProcessor queryParametersPostProcessor;
 
-    public boolean accepts(SlingHttpServletRequest request) {
-        // This is the default with the lowest service ranking
-        return true;
+    @Override
+    public String getId() {
+        return ID;
+    }
+
+    @Override
+    public boolean accepts(final SlingHttpServletRequest request) {
+        final String spid = org.apache.commons.lang.StringUtils.stripToNull(request.getParameter(SearchProvider.SEARCH_PROVIDER_ID));
+        if (spid != null) {
+            return getId().equals(spid);
+        } else {
+            final ModelCache modelCache = request.adaptTo(ModelCache.class);
+            final SearchConfig searchConfig = modelCache.get(SearchConfig.class);
+            return getId().equals(searchConfig.getSearchProviderId());
+        }
     }
 
     public Results getResults(final SlingHttpServletRequest request) throws UnsafeSearchException, RepositoryException {
@@ -203,7 +219,7 @@ public class QuerySearchProviderImpl implements SearchProvider {
 
 
     private void cleanParams(Map<String, String> params) {
-        params.remove("mode");
+        params.remove("spid");
         params.remove("layout");
         params.remove("wcmmode");
     }
