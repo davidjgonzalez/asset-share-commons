@@ -144,7 +144,7 @@ public class SearchConfigImpl implements SearchConfig {
     public List<String> getPaths() {
         if (paths == null) {
             final List<String> acceptedPaths = Arrays.stream(properties.get(PN_PATHS, DEFAULT_PATHS))
-                    // Text.fullPath(..) canonicalizes the path preventing trickery with ./ and ../
+                    // Text.fullPath(..) canonical-izes the path preventing trickery with ./ and ../
                     .map(uncheckedPath -> Text.fullPath("", uncheckedPath))
                     .filter(uncheckedPath ->  StringUtils.equals(uncheckedPath, DamConstants.MOUNTPOINT_ASSETS) ||
                             StringUtils.startsWith(uncheckedPath, DamConstants.MOUNTPOINT_ASSETS + "/"))

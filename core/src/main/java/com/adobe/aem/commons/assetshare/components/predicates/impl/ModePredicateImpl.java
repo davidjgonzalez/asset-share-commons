@@ -83,7 +83,9 @@ public class ModePredicateImpl extends AbstractPredicate implements ModePredicat
     @Override
     public String getInitialValue() {
         if (valueFromRequest == null) {
-            valueFromRequest = StringUtils.defaultIfEmpty(request.getParameter(SearchProvider.SEARCH_PROVIDER_ID), searchConfig.getSearchProviderId());
+            valueFromRequest = StringUtils.defaultIfEmpty(request.getParameter(SearchProvider.SEARCH_PROVIDER_ID),
+                                            StringUtils.defaultIfEmpty(searchConfig.getSearchProviderId(),
+                                                    QuerySearchProviderImpl.ID));
         }
 
         return valueFromRequest;

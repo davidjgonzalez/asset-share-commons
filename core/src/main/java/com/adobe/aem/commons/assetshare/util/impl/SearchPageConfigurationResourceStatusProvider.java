@@ -8,23 +8,37 @@ import com.adobe.granite.resourcestatus.ResourceStatusProvider;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.commons.status.EditorResourceStatus;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @Component(service = {ResourceStatusProvider.class})
+@Designate(ocd = SearchPageConfigurationResourceStatusProvider.Cfg.class)
 public class SearchPageConfigurationResourceStatusProvider implements ResourceStatusProvider {
     private static final Logger log = LoggerFactory.getLogger(SearchPageConfigurationResourceStatusProvider.class);
 
-    /**
-     * This provider type value is mapped to the Status resource @statusTypes (editor, template-editor) via the
-     */
-    private static final String STATUS_PROVIDER_TYPE = "asset-share-commmons__search-page-configuration-resource-status";
+    private static final String STATUS_PROVIDER_TYPE = "asset-share-commons__search-page-configuration";
+
+    private static final String KEY_SHORT_MESSAGE = "shortMessage";
+
+    private static final String VALUE_ICON = "beaker";
+    private static final int VALUE_PRIORITY = 200000;
+
+    private static final String DEFAULT_PAGE_RESOURCE_TYPE = "asset-share-commons/components/structure/search-page";
+    private static final String DEFAULT_COMPONENT_RESOURCE_TYPE = "asset-share-commons/components/search/results";
+
+    private Cfg cfg;
 
     public String getType() {
         return STATUS_PROVIDER_TYPE;
@@ -41,14 +55,14 @@ public class SearchPageConfigurationResourceStatusProvider implements ResourceSt
         EditorResourceStatus.Builder builder = new EditorResourceStatus.Builder(
                 getType(),
                 "Missing Search Results Component",
-                "A Search Results component is required on this page.");
+                "A 'Search Results' component is required on this page.");
 
         builder.setVariant(EditorResourceStatus.Variant.WARNING);
-        builder.setIcon("beaker");
+        builder.setIcon(VALUE_ICON);
         // warning -> 200000
-        builder.setPriority(200000);
+        builder.setPriority(VALUE_PRIORITY);
+        builder.addData(KEY_SHORT_MESSAGE, "Missing Search Results component");
 
-        builder.addData("shortMessage", "Missing Search Results component");
         resourceStatuses.add(builder.build());
 
         return resourceStatuses;
@@ -64,13 +78,37 @@ public class SearchPageConfigurationResourceStatusProvider implements ResourceSt
         final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         final Page page = pageManager.getContainingPage(resource);
 
-        if (!page.getContentResource().isResourceType("asset-share-commons/components/structure/search-page")) {
+        if (page == null ||
+                !StringUtils.startsWith(page.getPath(), "/content") ||
+                Arrays.stream(cfg.pageResourceTypes()).noneMatch(resourceType -> page.getContentResource().isResourceType(resourceType))) {
+            // Must be a Page, under /content that is of a sling:resourceType in cfg.getResourceTypes()
             return false;
         }
 
-        final ResourceTypeVisitor visitor = new ResourceTypeVisitor(new String[]{SearchConfigImpl.RESOURCE_TYPE});
+        final ResourceTypeVisitor visitor = new ResourceTypeVisitor(cfg.componentResourceTypes());
         visitor.accept(page.getContentResource());
 
         return visitor.getResources().size() == 0;
+    }
+
+
+    @Activate
+    protected void activate(Cfg cfg) {
+        this.cfg = cfg;
+    }
+
+    @ObjectClassDefinition(name = "Asset Share Commons - Search Page Configuration Status")
+    public @interface Cfg {
+        @AttributeDefinition(
+                name = "Search Page sling:resourceTypes",
+                description = "A list of sling:resourceTypes that identify the Search Pages."
+        )
+        String[] pageResourceTypes() default {DEFAULT_PAGE_RESOURCE_TYPE};
+
+        @AttributeDefinition(
+                name = "Search Results component sling:resourceTypes",
+                description = "A list of sling:resourceTypes that identify the Search Results components."
+        )
+        String[] componentResourceTypes() default {DEFAULT_COMPONENT_RESOURCE_TYPE};
     }
 }

@@ -40,6 +40,7 @@
 				<label for="${predicate.id}__options--${option.value}"
 					   class="ui icon button plain cmp-search-mode-toggle__label">
 					<i class="big search icon cmp-search-mode-toggle__label-button"></i>
+					${option.selected}
 					<span class="cmp-search-mode-toggle__label-button"
 						  data-sly-test="${properties['showLabels']}">${option.text}</span></label>
 			</li>
@@ -60,6 +61,7 @@
 				<label for="${predicate.id}__options--${option.value}"
 					   class="ui icon button plain cmp-search-mode-toggle__label">
 					<i class="big folder open icon cmp-search-mode-toggle__label-button"></i>
+					${option.selected}
 					<span class="cmp-search-mode-toggle__label-text"
 						  data-sly-test="${properties['showLabels']}">${option.text}</span></label>
 			</li>
