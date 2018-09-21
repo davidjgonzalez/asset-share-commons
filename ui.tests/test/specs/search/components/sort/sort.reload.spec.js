@@ -1,5 +1,5 @@
-import Page from '../page/Page.component'
 import Sort from './Sort.component';
+import Page from '../../page/Page.component'
 
 let assert = require('assert');
 
