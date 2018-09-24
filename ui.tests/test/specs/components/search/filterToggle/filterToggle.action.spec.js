@@ -1,10 +1,10 @@
 import FilterToggle from './FilterToggle.component';
-import Page from '../../page/Page.component';
+import SearchPage from '../../structure/searchPage/SearchPage.component';
 
-var assert = require('assert');
+let assert = require('assert');
 
 describe('upon interacting with the filter toggle component', () => {
-    let page = new Page(),
+    let page = new SearchPage(),
         filterToggle = new FilterToggle();
 
     it('should search the page with the selected presets when apply is clicked', function () {

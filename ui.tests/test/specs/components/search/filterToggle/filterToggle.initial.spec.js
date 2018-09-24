@@ -1,10 +1,10 @@
 import FilterToggle from './FilterToggle.component';
-import Page from '../../page/Page.component';
+import SearchPage from '../../structure/searchPage/SearchPage.component';
 
-var assert = require('assert');
+let assert = require('assert');
 
 describe('the initial load of the filter toggle component', () => {
-    let page = new Page(),
+    let page = new SearchPage(),
         filterToggle = new FilterToggle();
 
     it('should have the apply and reset button with labels', function () {

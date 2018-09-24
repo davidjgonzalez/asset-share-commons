@@ -14,14 +14,14 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+         './test/specs/example/**/*.spec.js'
     ],
     suites: {
         search: [
-            './test/specs/search/**/*.spec.js',
+            './test/specs/components/search/**/*.spec.js',
         ],
         assetDetails: [
-            './test/specs/asset_details/**/*.spec.js',
+            './test/specs/components/assetDetails/**/*.spec.js',
         ]
     },
     //
@@ -57,11 +57,7 @@ exports.config = {
         {
             // Chrome as Headless
             maxInstances: 2,
-            browserName: 'chrome',
-            chromeOptions: {
-                args: ['--headless', '--disable-gpu', '--window-size=1280,800'],
-                binary: '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-            }
+            browserName: 'chrome'
         }
     ],
     //

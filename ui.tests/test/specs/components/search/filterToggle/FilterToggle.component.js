@@ -10,35 +10,35 @@ export default class FilterToggle {
         return $(this.bem.selector());
     }
 
-    get applyElement() {
+    get _applySection() {
         return this.component.element(this.bem.scope('toggle', 'apply').selector());
     }
 
-    get resetElement() {
+    get _resetSection() {
         return this.component.element(this.bem.scope('toggle', 'reset').selector());
     }
 
     get applyButton() {
-        return this.applyElement.element(this.bem.element('button'));
+        return this._applySection.element(this.bem.element('button'));
     }
 
     get applyIcon() {
-        return this.applyElement.element(this.bem.element('icon'));
+        return this._applySection.element(this.bem.element('icon'));
     }
 
     get applyLabel() {
-        return this.applyElement.element(this.bem.element('text'));
+        return this._applySection.element(this.bem.element('text'));
     }
 
     get resetButton() {
-        return this.resetElement.element(this.bem.element('button'));
+        return this._resetSection.element(this.bem.element('button'));
     }
 
     get resetIcon() {
-        return this.resetElement.element(this.bem.element('icon'));
+        return this._resetSection.element(this.bem.element('icon'));
     }
 
     get resetLabel() {
-        return this.resetElement.element(this.bem.element('text'));
+        return this._resetSection.element(this.bem.element('text'));
     }
 }

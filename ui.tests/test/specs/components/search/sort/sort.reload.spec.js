@@ -1,10 +1,10 @@
 import Sort from './Sort.component';
-import Page from '../../page/Page.component'
+import SearchPage from '../../structure/searchPage/SearchPage.component'
 
 let assert = require('assert');
 
 describe('on reload of search page, with sort related query params, the search sort component', () => {
-    let page = new Page(),
+    let page = new SearchPage(),
         sort = new Sort();
 
     it('should set the sort by to the matching request value', function () {

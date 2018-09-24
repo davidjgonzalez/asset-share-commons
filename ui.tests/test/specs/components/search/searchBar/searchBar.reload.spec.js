@@ -1,10 +1,10 @@
 import SearchBar from './SearchBar.component';
-import Page from '../../page/Page.component';
+import SearchPage from '../../structure/searchPage/SearchPage.component';
 
 var assert = require('assert');
 
 describe('on reload of search page, with fulltext query params', () => {
-    let page = new Page(),
+    let page = new SearchPage(),
         searchBar = new SearchBar();
 
     it('the search bar component input filed should reflect the fulltext query parameter', function () {
