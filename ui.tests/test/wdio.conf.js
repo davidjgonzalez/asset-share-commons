@@ -17,8 +17,8 @@ exports.config = {
          './test/specs/example/**/*.spec.js'
     ],
     suites: {
-        assetDetails: [
-            './test/specs/components/assetDetails/**/*.spec.js',
+        details: [
+            './test/specs/components/details/**/*.spec.js',
         ],
         modals: [
             './test/specs/components/modals/**/*.spec.js',
