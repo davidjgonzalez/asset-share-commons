@@ -17,11 +17,17 @@ exports.config = {
          './test/specs/example/**/*.spec.js'
     ],
     suites: {
+        assetDetails: [
+            './test/specs/components/assetDetails/**/*.spec.js',
+        ],
+        modals: [
+            './test/specs/components/modals/**/*.spec.js',
+        ],
         search: [
             './test/specs/components/search/**/*.spec.js',
         ],
-        assetDetails: [
-            './test/specs/components/assetDetails/**/*.spec.js',
+        structure: [
+            './test/specs/components/structure/**/*.spec.js',
         ]
     },
     //
@@ -46,20 +52,20 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [/*{
+    /*capabilities: [{
             // maxInstances can get overwritten per capability. So if you have an in-house Selenium
             // grid with only 5 firefox instances available you can make sure that not more than
             // 5 instances get started at a time.
             maxInstances: 3,
             //
             browserName: 'firefox'
-        },*/
+        },
         {
             // Chrome as Headless
             maxInstances: 2,
             browserName: 'chrome'
         }
-    ],
+    ],*/
     //
     // ===================
     // Test Configurations

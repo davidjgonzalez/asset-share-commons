@@ -11,14 +11,14 @@ export default class SearchBar {
     }
 
     get input() {
-        return this.component.element(this.bem.element('input'));
+        return this.component.element(this.bem.selector('input'));
     }
 
     get icon() {
-        return this.component.element(this.bem.element('icon'));
+        return this.component.element(this.bem.selector('icon'));
     }
 
     get button() {
-        return this.component.element(this.bem.element('button'));
+        return this.component.element(this.bem.selector('button'));
     }
 }

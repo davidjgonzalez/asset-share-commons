@@ -13,6 +13,8 @@ export default class Bem {
         }
     };
 
+    /*
+
     scope(arg1, arg2) {
         var tmp = [];
 
@@ -41,6 +43,7 @@ export default class Bem {
         result = '.' + fullElementName;
         return result;
     }
+*/
 
     selector(elementName, modifierName) {
         let result;
@@ -52,14 +55,14 @@ export default class Bem {
                 fullName = this.bemScope[0] + "__" + elementName;
 
             if (modifierName) {
-                fullName = blockElement + '--' + modifierName;
+                fullName = fullName + '--' + modifierName;
             }
 
             this.bemScope.forEach((item) => {
                 cssClasses.push(item);
             });
 
-            cssClasses.push(tmp);
+            cssClasses.push(fullName);
 
             result = '.' + cssClasses.join(' .');
         }

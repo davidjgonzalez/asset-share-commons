@@ -11,26 +11,26 @@ export default class Sort {
     }
 
     get _sortBySection() {
-        return this.component.element(this.bem.scope('selection', 'sort-by').selector());
+        return this.component.element(this.bem.selector('selection', 'sort-by'));
     }
 
     get _sortDirectionSection() {
-        return this.component.element(this.bem.scope('selection', 'sort-direction').selector());
+        return this.component.element(this.bem.selector('selection', 'sort-direction'));
     }
 
     get sortByLabel() {
-        return this._sortBySection.element(this.bem.element('selection-text'));
+        return this._sortBySection.element(this.bem.selector('selection-text'));
     }
 
     get sortByOptions() {
-        return this._sortBySection.elements(this.bem.element('selection-item'));
+        return this._sortBySection.elements(this.bem.selector('selection-item'));
     }
 
     get sortDirectionLabel() {
-        return this._sortDirectionSection.element(this.bem.element('selection-text'));
+        return this._sortDirectionSection.element(this.bem.selector('selection-text'));
     }
 
     get sortDirectionOptions() {
-        return this._sortDirectionSection.elements(this.bem.element('selection-item'));
+        return this._sortDirectionSection.elements(this.bem.selector('selection-item'));
     }
 }

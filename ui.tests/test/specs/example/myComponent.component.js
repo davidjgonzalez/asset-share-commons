@@ -48,7 +48,7 @@ export default class MyComponent {
      * @returns {*}
      */
     get title() {
-        return this.component.element(this.bem.element('title'));
+        return this.component.element(this.bem.selector('title'));
     }
 
     /**
@@ -61,7 +61,7 @@ export default class MyComponent {
      * @private
      */
     get _halloweenSection() {
-        return this.component.element(this.bem.scope('holiday', 'halloween').selector());
+        return this.component.element(this.bem.selector('holiday', 'halloween'));
     }
 
     /**
@@ -74,7 +74,7 @@ export default class MyComponent {
      * @private
      */
     get _thanksgivingSection() {
-        return this.component.element(this.bem.scope('holiday', 'thanksgiving').selector());
+        return this.component.element(this.bem.selector('holiday', 'thanksgiving'));
     }
 
     /**
@@ -82,7 +82,7 @@ export default class MyComponent {
      * @returns {*}
      */
     get halloweenButton() {
-        return this._halloweenSection.element(this.bem.element('button'));
+        return this._halloweenSection.element(this.bem.selector('button'));
     }
 
     /**
@@ -91,6 +91,6 @@ export default class MyComponent {
      * @returns {*}
      */
     get thanksgivingElement() {
-        return this._thanksgivingSection.element(this.bem.element('button'));
+        return this._thanksgivingSection.element(this.bem.selector('button'));
     }
 }
