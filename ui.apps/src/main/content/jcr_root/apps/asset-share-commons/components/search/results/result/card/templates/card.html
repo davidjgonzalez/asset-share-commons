@@ -24,39 +24,40 @@
             data-asset-share-id="asset"
             data-asset-share-asset="${asset.path}"
             id="${asset.path}"
-            class="ui card cmp-card">
+            class="ui card cmp-card cmp-search-results__result cmp-search-results__result--card">
 
-        <a class="image cmp-image__wrapper--card" href="${assetDetails.fullUrl}">
+        <a class="image cmp-search-results__result-link"
+                    href="${assetDetails.fullUrl}">
             <img src="${asset.properties['thumbnail'] || properties['missingImage'] @ context = 'attribute'}"
-                 class="cmp-image--card"
+                 class="cmp-image--card cmp-search-results__result-image"
                  alt="${asset.properties['title']}"/>
         </a>
 
-        <div class="content">
-            <h3 class="header">
+        <div class="content cmp-search-results__result-content">
+            <h3 class="header cmp-search-results__result-title">
                 <a href="${assetDetails.fullUrl}">
                     ${asset.properties['title']}
                 </a>
             </h3>
-            <div class="meta">
-				<div class="property three">
+            <div class="meta cmp-search-results__metadata">
+				<div class="property three cmp-search-results__metadata-item">
 					${'SIZE' @ i18n}
-					<span class="value">${asset.properties['fileSize']}</span>
+					<span class="value cmp-search-results__metadata-value">${asset.properties['fileSize']}</span>
 				</div>
-				<div class="property three">
+				<div class="property three cmp-search-results__metadata-item">
 					${'TYPE' @ i18n}
-					<span class="value">${asset.properties['type']}</span>
+					<span class="value cmp-search-results__metadata-value">${asset.properties['type']}</span>
 				</div>
-				<div class="property three">
+				<div class="property three cmp-search-results__metadata-item">
 					${'RES.' @ i18n}
-					<span class="value">${asset.properties['resolution']}</span>
+					<span class="value cmp-search-results__metadata-value">${asset.properties['resolution']}</span>
 				</div>
             </div>
         </div>
 
         <div class="extra content">
          <div class="ui divider"></div>
-            <ul class="cmp_card__action-buttons">
+            <ul class="cmp_card__action-buttons cmp-search-results__actions">
                 <li data-sly-test="${config.downloadEnabled}">
                     <button class="ui link button"
                             data-asset-share-id="download-asset"
@@ -70,7 +71,6 @@
                             data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}">${'Share' @ i18n}</button>
                 </li>
                 <li data-sly-test="${config.cartEnabled}">
-
                     <button class="ui link button"
                             data-asset-share-id="add-to-cart"
                             data-asset-share-asset="${asset.path}"

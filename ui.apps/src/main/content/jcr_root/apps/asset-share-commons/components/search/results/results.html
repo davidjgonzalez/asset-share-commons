@@ -22,13 +22,14 @@
         data-sly-test.pagePredicate="${modelCache['com.adobe.aem.commons.assetshare.components.predicates.PagePredicate']}"></sly>
 
 <form   role="search"
-        class="ui form"
+        class="ui form cmp-search-results__form"
         id="${pagePredicate.formId}"
         action="${currentPage.path @ extension = 'html'}"
         data-asset-share-action="${currentPage.path @ selectors = 'results', extension = 'html'}"
         data-asset-share-id="form">
     <div class="ui one column grid">
-        <div class="column" data-asset-share-id="layout-container">
+        <div class="column"
+             data-asset-share-id="layout-container">
             <!--/* Include this resource w/ default selectors to get the proper initial view */-->
 
             <sly data-sly-test="${search.layout == 'card'}"

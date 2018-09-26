@@ -30,10 +30,12 @@
 <sly data-sly-call="${commonTemplate.fragments @ search = search}"></sly>
 
 <!--/* List Content */-->
-<div data-asset-share-id="results-content"
-	 data-asset-share-missing-image="${properties['missingImage']}"
-	 data-asset-share-update-method="replace"
-	 data-asset-share-update-when="search">
+<div class="cmp-search-results__results-wrapper"
+		data-asset-share-id="results-content"
+		data-asset-share-missing-image="${properties['missingImage']}"
+		data-asset-share-update-method="replace"
+		data-asset-share-update-when="search">
+
 	<table class="ui left aligned selectable table">
 
 		<thead data-sly-unwrap

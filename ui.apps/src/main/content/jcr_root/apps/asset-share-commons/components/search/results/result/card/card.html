@@ -30,12 +30,13 @@
 <sly data-sly-call="${commonTemplate.fragments @ search = search}"></sly>
 
 <!--/* Card Content */-->
-<div data-asset-share-id="results-content"
-     data-asset-share-missing-image="${properties['missingImage']}"
-     data-asset-share-update-method="replace"
-     data-asset-share-update-when="search">
+<div class="cmp-search-results__results-wrapper"
+        data-asset-share-id="results-content"
+        data-asset-share-missing-image="${properties['missingImage']}"
+        data-asset-share-update-method="replace"
+        data-asset-share-update-when="search">
 
-    <div class="ui special cards cmp-cards"
+    <div class="ui special cards cmp-cards cmp-search-results__results cmp-search-results__results--cards"
          data-sly-test="${search.results.size > 0}"
          data-asset-share-id="results-load-more"
          data-asset-share-update-method="append"
