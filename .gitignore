@@ -30,3 +30,4 @@ content/src/main/content/jcr_root/etc/clientlibs/.content.x
 /ui.tests/node_modules/
 /ui.tests/mochawesome-report/
 /ui.tests/test/results/*
+ui.tests/npm-debug.log
