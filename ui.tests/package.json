@@ -2,10 +2,10 @@
   "name": "ui.tests",
   "version": "1.6.7-SNAPSHOT",
   "scripts": {
-    "selenium-postinstall": "node node_modules/.bin/selenium-standalone install",
-    "selenium-start": "node_modules/.bin/selenium-standalone start",
+    "setup": "npm install && node node_modules/.bin/selenium-standalone install",
+    "selenium:start": "node_modules/.bin/selenium-standalone start",
     "test:localhost:publish": "node node_modules/webdriverio/bin/wdio ./test/config/wdio.localhost.macos.publish.conf.js",
-    "mochawesome-report": "marge ./test/results/wdiomochawesome.json --reportTitle 'Asset Share Commons ui.tests Results' && open mochawesome-report/wdiomochawesome.html"
+    "report:mochawesome": "marge ./test/results/wdiomochawesome.json --reportTitle 'Asset Share Commons ui.tests Results' && open mochawesome-report/wdiomochawesome.html"
   },
   "dependencies": {
     "assert": "^1.4.1",
