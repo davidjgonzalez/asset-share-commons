@@ -15,16 +15,16 @@ export default class Results {
     }
 
     get results() {
-        return this.component.elements(this.bem.selector('result')).value.map((webJsonObject )=> {
-           return new Results(webJsonObject);
+        return this.component.elements(this.bem.selector('result')).value.map((webJsonObject) => {
+            return new Result(this.bem, webJsonObject);
         });
     }
 }
 
 class Result {
-    constructor(webJsonObject) {
+    constructor(bem, webJsonObject) {
+        this.bem = bem;
         this.result = webJsonObject;
-        console.log(this.result);
     }
 
     get title() {
@@ -47,11 +47,11 @@ class Result {
 
 class ExpectedResults {
     get initialFirstResult() {
-        return AssetsData.imageA();
+        return AssetsData.imageA;
     }
 
     get initialLastResult() {
-        return AssetsData.imageB();
+        return AssetsData.imageB;
     }
 }
 export let Expected = new ExpectedResults();

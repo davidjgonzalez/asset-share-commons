@@ -14,7 +14,7 @@ describe('the initial load of the Results component', () => {
         let actualResults = results.results;
         assert.equal(actualResults.length, expectedSize);
         assert.equal(actualResults[0].title.getText(), Expected.initialFirstResult.title);
-        //assert.equal(actualResults[expectedSize - 1].title.getText(), Expected.initialLastResult.title);
+        assert.equal(actualResults[expectedSize - 1].title.getText(), Expected.initialLastResult.title);
 
     });
 });

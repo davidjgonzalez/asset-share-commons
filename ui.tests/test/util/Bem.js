@@ -52,19 +52,21 @@ export default class Bem {
             result = '.' + this.bemScope.join(' .');
         } else {
             let cssClasses = [],
-                fullName = this.bemScope[0] + "__" + elementName;
+                elementClass = this.bemScope[0] + "__" + elementName,
+                modifierClass;
+
+            cssClasses.push(elementClass);
 
             if (modifierName) {
-                fullName = fullName + '--' + modifierName;
+                modifierClass = elementClass + '--' + modifierName;
+                cssClasses.push(modifierClass);
             }
 
-            this.bemScope.forEach((item) => {
-                cssClasses.push(item);
-            });
+//            this.bemScope.forEach((item) => {
+//                cssClasses.push(item);
+//            });
 
-            cssClasses.push(fullName);
-
-            result = '.' + cssClasses.join(' .');
+            result = '.' + cssClasses.join('.');
         }
 
         return result;
