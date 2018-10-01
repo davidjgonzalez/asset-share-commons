@@ -39,11 +39,10 @@ class Result {
         return this.result.element(this.bem.selector('result-link'));
     }
 
-    get metadata() {
-        return this.result.element(this.bem.selector('result-metadata'));
+    get metadataValues() {
+        return this.result.elements(this.bem.selector('result-metadata-value')).value;
     }
 }
-
 
 class ExpectedResults {
     get initialFirstResult() {

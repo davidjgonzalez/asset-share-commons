@@ -39,25 +39,25 @@
                     ${asset.properties['title']}
                 </a>
             </h3>
-            <div class="meta cmp-search-results__metadata">
-				<div class="property three cmp-search-results__metadata-item">
+            <div class="meta cmp-search-results__result-metadata">
+				<div class="property three cmp-search-results__result-metadata-item">
 					${'SIZE' @ i18n}
-					<span class="value cmp-search-results__metadata-value">${asset.properties['fileSize']}</span>
+					<span class="value cmp-search-results__result-metadata-value">${asset.properties['fileSize']}</span>
 				</div>
-				<div class="property three cmp-search-results__metadata-item">
+				<div class="property three cmp-search-results__result-metadata-item">
 					${'TYPE' @ i18n}
-					<span class="value cmp-search-results__metadata-value">${asset.properties['type']}</span>
+					<span class="value cmp-search-results__result-metadata-value">${asset.properties['type']}</span>
 				</div>
-				<div class="property three cmp-search-results__metadata-item">
+				<div class="property three cmp-search-results__result-metadata-item">
 					${'RES.' @ i18n}
-					<span class="value cmp-search-results__metadata-value">${asset.properties['resolution']}</span>
+					<span class="value cmp-search-results__result-metadata-value">${asset.properties['resolution']}</span>
 				</div>
             </div>
         </div>
 
         <div class="extra content">
          <div class="ui divider"></div>
-            <ul class="cmp_card__action-buttons cmp-search-results__actions">
+            <ul class="cmp_card__action-buttons cmp-search-results__result-actions">
                 <li data-sly-test="${config.downloadEnabled}">
                     <button class="ui link button"
                             data-asset-share-id="download-asset"
