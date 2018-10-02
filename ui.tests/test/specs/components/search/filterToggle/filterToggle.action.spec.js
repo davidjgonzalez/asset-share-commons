@@ -8,14 +8,14 @@ describe('upon interacting with the filter toggle component', () => {
         filterToggle = new FilterToggle();
 
     it('should search the page with the selected presets when apply is clicked', function () {
-        //browser.url(page.path);
+        //browser.url(page.url);
     });
 
     it('should reset the search state when apply is clicked', function () {
-        browser.url(page.path);
+        browser.url(page.url);
         filterToggle.resetButton.click();
 
-        assert.equal(browser.getUrl().endsWith(page.path), true,
+        assert.equal(browser.getUrl().endsWith(page.url), true,
             "Upon reset, the browser location should be reset to the default state without any query parameters.");
     });
 });

@@ -90,9 +90,6 @@ exports.config = {
     // bail (default is 0 - don't bail, run all tests).
     bail: 0,
     //
-    // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './test/results/errorShots/',
-    //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
@@ -136,6 +133,9 @@ exports.config = {
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
     //
+    // Saves a screenshot to a given path if a command fails.
+    screenshotPath: './report/errorShots/',
+
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
@@ -145,11 +145,11 @@ exports.config = {
     // see also: http://webdriver.io/guide/reporters/dot.html
     reporters: ['spec', 'mochawesome'],
     reporterOptions: {
-        outputDir: './test/results'
+        outputDir: './report'
     },
     mochawesomeOpts: {
-        includeScreenshots:true,
-        screenshotUseRelativePath:true
+        includeScreenshots: true,
+        screenshotUseRelativePath: true
     },
     //
     // Options to be passed to Mocha.

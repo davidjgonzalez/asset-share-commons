@@ -7,7 +7,7 @@ describe('the initial load of the search sort component', () => {
     let page = new SearchPage(),
         sort = new Sort();
 
-    it('should have the correct default sort by settings', function () {
+    it('should have the correct default Sort By settings', function () {
             let expected = [{
                 text: "Last Modified",
                 value: "@jcr:content/jcr:lastModified"
@@ -23,19 +23,20 @@ describe('the initial load of the search sort component', () => {
             },
             ];
 
-        browser.url(page.path);
+        browser.url(page.url);
 
+        // Last Modified the default sort
         assert.equal(sort.sortByLabel.getText(), expected[0].text);
-        assert.equal(sort.sortByOptions.value.length, 4);
+        assert.equal(sort.sortByOptions.length, 4);
 
-        sort.sortByOptions.value.forEach((actual, index) => {
+        sort.sortByOptions.forEach((actual, index) => {
             assert.equal(actual.getHTML(false), expected[index].text);
             assert.equal(actual.getAttribute('data-value'), expected[index].value);
         });
     });
 
 
-    it('should have the correct default sort direction settings', function () {
+    it('should have the correct default Sort Direction settings', function () {
         let expected = [{
                 text: "ASC",
                 value: "asc"
@@ -44,14 +45,15 @@ describe('the initial load of the search sort component', () => {
                 value: "desc"
             }];
 
-        browser.url(page.path);
+        browser.url(page.url);
 
         assert.equal(sort.sortDirectionLabel.getText(), expected[1].text);
-        assert.equal(sort.sortDirectionOptions.value.length, 2);
+        assert.equal(sort.sortDirectionOptions.length, 2);
 
-        sort.sortDirectionOptions.value.forEach((actual, index) => {
+        sort.sortDirectionOptions.forEach((actual, index) => {
             assert.equal(actual.getHTML(false), expected[index].text);
             assert.equal(actual.getAttribute('data-value'), expected[index].value);
         });
+
     });
 });

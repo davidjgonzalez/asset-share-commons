@@ -8,7 +8,7 @@ describe('the initial load of the filter toggle component', () => {
         filterToggle = new FilterToggle();
 
     it('should have the apply and reset button with labels', function () {
-        browser.url(page.path);
+        browser.url(page.url);
 
         assert.equal(filterToggle.applyLabel.getText(), 'Apply');
         assert.equal(filterToggle.resetLabel.getText(), 'Reset');

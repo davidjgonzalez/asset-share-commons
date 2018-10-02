@@ -1,5 +1,5 @@
 import Bem from '../../../../util/Bem';
-import AssetsData from '../../../data/Assets.data'
+import Assets from '../../../data/Assets.data'
 
 export default class Results {
     constructor() {
@@ -16,7 +16,7 @@ export default class Results {
 
     get results() {
         return this.component.elements(this.bem.selector('result')).value.map((webJsonObject) => {
-            return new Result(this.bem, webJsonObject);
+            return new _Result(this.bem, webJsonObject);
         });
     }
 
@@ -25,7 +25,7 @@ export default class Results {
     }
 }
 
-class Result {
+class _Result {
     constructor(bem, webJsonObject) {
         this.bem = bem;
         this.result = webJsonObject;
@@ -48,21 +48,13 @@ class Result {
     }
 }
 
-class ExpectedResults {
-    get initialFirstResult() {
-        return AssetsData.images.a;
+class _Expected {
+    get lastModifiedDescending() {
+        return [ Assets.images['5'],  Assets.images['4'], Assets.images['3'], Assets.images['2'], Assets.images['1'] ];
     }
 
-    get initialLastResult() {
-        return AssetsData.images.c;
-    }
-
-    get loadMoreFirstResult() {
-        return AssetsData.images.c;
-    }
-
-    get loadMoreLastResult() {
-        return AssetsData.videos.a;
+    get sizeAscending() {
+        return [ Assets.images['3'],  Assets.images['2'], Assets.images['4'], Assets.images['5'], Assets.images['1'] ];
     }
 }
-export let Expected = new ExpectedResults();
+export let Expected = new _Expected();

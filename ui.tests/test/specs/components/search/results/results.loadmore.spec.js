@@ -7,19 +7,23 @@ describe('after loading more results in the Results component', () => {
     let page = new SearchPage(),
         results = new Results();
 
-    it('should have 48 results, with the first and last of the last 24 being well known', function () {
-        browser.url(page.path);
+    it('should have 4 results, with the 3rd and th being well known', function () {
+        browser.url(page.url);
         results.loadMore.click();
 
-        let expectedSize = 24 * 2;
+        browser.waitUntil(function () {
+            return results.results.length > 2;
+        }, 5000, 'expected to load new results within 5s');
+
+        let expectedSize = 4;
         let actualResults = results.results;
 
         assert.equal(actualResults.length, expectedSize);
-        // Double-check the very first asset for sanity
-        assert.equal(actualResults[0].title.getText(), Expected.initialFirstResult.title);
+
         // Check the 1st load more asset
-        assert.equal(actualResults[(expectedSize / 2) - 1].title.getText(), Expected.loadMoreFirstResult.title);
+        assert.equal(actualResults[2].title.getText(), Expected.lastModifiedDescending[2].title);
+
         // Check the last load more asset
-        assert.equal(actualResults[expectedSize - 1].title.getText(), Expected.loadMoreLastResult.title);
+        assert.equal(actualResults[3].title.getText(), Expected.lastModifiedDescending[3].title);
     });
 });

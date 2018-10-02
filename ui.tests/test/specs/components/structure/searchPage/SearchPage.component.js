@@ -4,11 +4,15 @@ export default class SearchPage {
     }
 
     get path() {
-        return "light.html";
+        return '/content/asset-share-commons/en/test';
+    }
+
+    get url() {
+        return this.path + '.html';
     }
 
     withQueryString(params) {
-        return this.path +
+        return this.url +
             "?" +
             Object.keys(params).map(key => {
                 return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);

@@ -23,7 +23,7 @@ export default class Sort {
     }
 
     get sortByOptions() {
-        return this._sortBySection.elements(this.bem.selector('selection-item'));
+        return this._sortBySection.elements(this.bem.selector('selection-item')).value;
     }
 
     get sortDirectionLabel() {
@@ -31,6 +31,6 @@ export default class Sort {
     }
 
     get sortDirectionOptions() {
-        return this._sortDirectionSection.elements(this.bem.selector('selection-item'));
+        return this._sortDirectionSection.elements(this.bem.selector('selection-item')).value;
     }
 }

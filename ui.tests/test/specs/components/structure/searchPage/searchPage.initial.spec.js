@@ -5,8 +5,8 @@ describe('the initial load of the search page', () => {
     let page = new SearchPage();
 
     it('should have the right browser title', function () {
-        browser.url(page.path);
+        browser.url(page.url);
 
-        assert.equal(browser.getTitle(), 'Home');
+        assert.equal(browser.getTitle(), 'Testing');
     });
 });

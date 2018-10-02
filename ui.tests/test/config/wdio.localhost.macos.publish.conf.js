@@ -12,7 +12,8 @@ exports.config = merge(wdioConf.config, {
         }
     }],
 
-    baseUrl: 'http://localhost:4503/content/asset-share-commons/en/',
+    waitforTimeout: 20000,
+    baseUrl: 'http://localhost:4503/',
 
     services: ['selenium-standalone']
 }, { clone: false });

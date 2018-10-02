@@ -8,29 +8,48 @@ describe('the initial load of the Results component', () => {
     let page = new SearchPage(),
         results = new Results();
 
-    it('should have 24 results, with the first and last being well known', () => {
-        browser.url(page.path);
+    it('should have 2 results, with the first and last being well known', () => {
+        browser.url(page.url);
 
-        let expectedSize = 24;
+        let expectedSize = 2;
         let actualResults = results.results;
+
+        // Ensure the number of results are expected
         assert.equal(actualResults.length, expectedSize);
-        assert.equal(actualResults[0].title.getText(), Expected.initialFirstResult.title);
-        assert.equal(actualResults[expectedSize - 1].title.getText(), Expected.initialLastResult.title);
+
+        // Ensure the first result is expected
+        assert.equal(actualResults[0].title.getText(), Expected.lastModifiedDescending[0].title);
+
+        // Ensure the last result is expected
+        assert.equal(actualResults[expectedSize - 1].title.getText(), Expected.lastModifiedDescending[1].title);
     });
 
     it('the first result should have verified display attributes', () => {
-        browser.url(page.path);
+        browser.url(page.url);
 
-        let actualResult = results.results[0];
+        let actual = results.results[0];
+        let expected = Expected.lastModifiedDescending[0];
 
-        assert.equal(actualResult.title.getText(), Expected.initialFirstResult.title);
-        assert.equal(Urls.path(actualResult.image.getAttribute('src')), Expected.initialFirstResult.image);
-        assert.equal(Urls.path(actualResult.link.getAttribute('href')), Expected.initialFirstResult.detailsPath);
+        // Title
+        assert.equal(actual.title.getText(), expected.title);
 
-        let metadata = actualResult.metadataValues;
+        // Thumbnail image
+        assert.equal(Urls.path(actual.image.getAttribute('src')), expected.image);
 
-        assert.equal(metadata[0].getText(), Expected.initialFirstResult.size);
-        assert.equal(metadata[1].getText(), Expected.initialFirstResult.type);
-        assert.equal(metadata[2].getText(), Expected.initialFirstResult.resolution);
+        // Asset Details path (link)
+        assert.equal(Urls.path(actual.link.getAttribute('href')), expected.detailsPath);
+
+        /** Result metadata **/
+
+        let metadata = actual.metadataValues;
+
+        // Size
+        assert.equal(metadata[0].getText(), expected.size);
+
+        // Asset Type
+        assert.equal(metadata[1].getText().toLowerCase(), expected.type);
+
+        // Resolution
+        assert.equal(metadata[2].getText().toLowerCase(), expected.resolution);
     });
 });

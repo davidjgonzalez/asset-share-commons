@@ -5,7 +5,7 @@
     "setup": "npm install && node node_modules/.bin/selenium-standalone install",
     "selenium:start": "node_modules/.bin/selenium-standalone start",
     "test:localhost:publish": "node node_modules/webdriverio/bin/wdio ./test/config/wdio.localhost.macos.publish.conf.js",
-    "report:mochawesome": "marge ./test/results/wdiomochawesome.json --reportTitle 'Asset Share Commons ui.tests Results' && open mochawesome-report/wdiomochawesome.html"
+    "report:mochawesome": "marge ./report/wdiomochawesome.json --inline --reportTitle 'Asset Share Commons ui.tests Results' --reportFilename 'asset-share-commons-results.html' --reportDir './report' && open report/asset-share-commons-results.html"
   },
   "dependencies": {
     "assert": "^1.4.1",
