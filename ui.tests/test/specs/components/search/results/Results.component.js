@@ -19,6 +19,10 @@ export default class Results {
             return new Result(this.bem, webJsonObject);
         });
     }
+
+    get loadMore() {
+        return this.component.element(this.bem.selector('load-more'));
+    }
 }
 
 class Result {
@@ -46,11 +50,19 @@ class Result {
 
 class ExpectedResults {
     get initialFirstResult() {
-        return AssetsData.imageA;
+        return AssetsData.images.a;
     }
 
     get initialLastResult() {
-        return AssetsData.imageB;
+        return AssetsData.images.c;
+    }
+
+    get loadMoreFirstResult() {
+        return AssetsData.images.c;
+    }
+
+    get loadMoreLastResult() {
+        return AssetsData.videos.a;
     }
 }
 export let Expected = new ExpectedResults();

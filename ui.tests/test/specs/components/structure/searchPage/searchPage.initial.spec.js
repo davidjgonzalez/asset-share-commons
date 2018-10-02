@@ -9,5 +9,4 @@ describe('the initial load of the search page', () => {
 
         assert.equal(browser.getTitle(), 'Home');
     });
-
 });

@@ -8,7 +8,7 @@ describe('the initial load of the Results component', () => {
     let page = new SearchPage(),
         results = new Results();
 
-    it('should have 24 results, with the first and last being well known', function () {
+    it('should have 24 results, with the first and last being well known', () => {
         browser.url(page.path);
 
         let expectedSize = 24;
@@ -18,7 +18,7 @@ describe('the initial load of the Results component', () => {
         assert.equal(actualResults[expectedSize - 1].title.getText(), Expected.initialLastResult.title);
     });
 
-    it('the first result should have verified display attributes', function () {
+    it('the first result should have verified display attributes', () => {
         browser.url(page.path);
 
         let actualResult = results.results[0];
