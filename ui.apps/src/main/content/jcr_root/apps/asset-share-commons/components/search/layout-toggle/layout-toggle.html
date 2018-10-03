@@ -17,22 +17,26 @@
   ~ limitations under the License.
  */-->
 
-<button class="ui icon button plain cmp-button ${properties['showLabels'] ? 'cmp-button--labeled' : ''}"
+<button class="ui icon button plain cmp-button
+		cmp-search-layout-toggle__toggle cmp-search-layout-toggle__toggle--card
+		${properties['showLabels'] ? 'cmp-button--labeled' : ''}"
 		value="card"
 		data-asset-share-id="switch-layout">
-	<i class="big grid layout icon cmp-button__icon"
+	<i class="big grid layout icon cmp-button__icon cmp-search-layout-toggle__toggle-icon"
 	   title="${properties['cardLabel']}"></i>
-	<span 	class="cmp-button__label"
+	<span 	class="cmp-button__label cmp-search-layout-toggle__toggle-text"
 			data-sly-test.showLabels="${properties['showLabels']}"
 	      	data-sly-text="${properties['cardLabel']}"></span>
 </button>
 
-<button class="ui icon button plain cmp-button ${properties['showLabels'] ? 'cmp-button--labeled' : ''}"
+<button class="ui icon button plain cmp-button
+		cmp-search-layout-toggle__toggle cmp-search-layout-toggle__toggle--list
+		${properties['showLabels'] ? 'cmp-button--labeled' : ''}"
 		value="list"
 		data-asset-share-id="switch-layout">
-	<i class="big list layout icon cmp-button__icon"
+	<i class="big list layout icon cmp-button__icon cmp-search-layout-toggle__toggle-icon"
 	   title="${properties['listLabel']}"></i>
-	<span 	class="cmp-button__label"
+	<span 	class="cmp-button__label cmp-search-layout-toggle__toggle-text"
 			data-sly-test="${showLabels}"
 	      	data-sly-text="${properties['listLabel']}"></span>
 </button>

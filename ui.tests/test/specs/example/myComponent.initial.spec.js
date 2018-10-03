@@ -9,7 +9,7 @@ describe('the initial load of the My Component component', () => {
 
     it('should have buttons for liking Halloween and Thankgiving', function () {
         // Navigate to the correct page...
-        browser.url(page.path);
+        browser.url(page.url);
 
         // Make the test assertions...
         assert.equal(myComponent.halloweenButton.getText(), 'I like Halloween!');

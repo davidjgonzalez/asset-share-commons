@@ -8,7 +8,7 @@ describe('upon interacting with the My Component component', () => {
         myComponent = new MyComponent(); // This would instantiate the ComponentModel(s) required for this test.
 
     it('the Halloween button should turn orange when clicked', function () {
-        browser.url(page.path);
+        browser.url(page.url);
 
         myComponent.halloweenButton.click();
 

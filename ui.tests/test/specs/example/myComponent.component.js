@@ -17,16 +17,18 @@ import Bem from '../../../../util/Bem';
  </div>
 
  **/
+
+// Initialize the bem object with the BLOCK selector as const with a global scope in this file, as it helps if you need to use it in deeper abstractions.
+const _bem = new Bem('cmp-my-component');
+
+
+// Declare and export by default the class that represents the component to test
 export default class MyComponent {
 
-    /**
-     * Initialize the bem object with the BLOCK selector.
-     */
     constructor() {
-        this.bem = new Bem('cmp-my-component');
+        // Make sure NOT to get elements in the constructor!
     }
 
-    //
     /**
      * This returns the first component matching its BEM block selector on the page.
      *
@@ -35,7 +37,7 @@ export default class MyComponent {
      * @returns {WebElement JSON object}
      */
     get component() {
-        return $(this.bem.selector());
+        return $(_bem.selector());
     }
 
     /**
@@ -48,7 +50,7 @@ export default class MyComponent {
      * @returns {*}
      */
     get title() {
-        return this.component.element(this.bem.selector('title'));
+        return this.component.element(_bem.selector('title'));
     }
 
     /**
@@ -61,7 +63,7 @@ export default class MyComponent {
      * @private
      */
     get _halloweenSection() {
-        return this.component.element(this.bem.selector('holiday', 'halloween'));
+        return this.component.element(_bem.selector('holiday', 'halloween'));
     }
 
     /**
@@ -74,7 +76,7 @@ export default class MyComponent {
      * @private
      */
     get _thanksgivingSection() {
-        return this.component.element(this.bem.selector('holiday', 'thanksgiving'));
+        return this.component.element(_bem.selector('holiday', 'thanksgiving'));
     }
 
     /**
@@ -82,7 +84,7 @@ export default class MyComponent {
      * @returns {*}
      */
     get halloweenButton() {
-        return this._halloweenSection.element(this.bem.selector('button'));
+        return this._halloweenSection.element(_bem.selector('button'));
     }
 
     /**
@@ -91,6 +93,6 @@ export default class MyComponent {
      * @returns {*}
      */
     get thanksgivingElement() {
-        return this._thanksgivingSection.element(this.bem.selector('button'));
+        return this._thanksgivingSection.element(_bem.selector('button'));
     }
 }

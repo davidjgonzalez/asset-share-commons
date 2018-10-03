@@ -52,4 +52,11 @@ describe('the initial load of the Results component', () => {
         // Resolution
         assert.equal(metadata[2].getText().toLowerCase(), expected.resolution);
     });
+
+    it('the should have a Lore More button', () => {
+        browser.url(page.url);
+
+        // Load more button and title
+        assert.equal(results.loadMore.getText(), "Load more");
+    });
 });
