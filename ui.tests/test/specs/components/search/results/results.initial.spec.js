@@ -53,7 +53,7 @@ describe('the initial load of the Results component', () => {
         assert.equal(metadata[2].getText().toLowerCase(), expected.resolution);
     });
 
-    it('the should have a Lore More button', () => {
+    it('the should have a Load More button', () => {
         browser.url(page.url);
 
         // Load more button and title

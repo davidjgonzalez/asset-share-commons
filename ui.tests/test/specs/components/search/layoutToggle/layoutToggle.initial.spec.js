@@ -3,11 +3,11 @@ import SearchPage from '../../structure/searchPage/SearchPage.component';
 
 let assert = require('assert');
 
-describe('the initial load of the My Component component', () => {
-    let page = SearchPage,
+describe('the initial load of the Layout Toggle component', () => {
+    let page = new SearchPage(),
         layoutToggle = new LayoutToggle();
 
-    it('should have buttons for Card and List views', function () {
+    it('should have toggles for Card and List views', () => {
         browser.url(page.url);
 
         // Check the Card toggle
