@@ -16,34 +16,47 @@
                     sling:resourceType="wcm/foundation/components/responsivegrid">
                 <cq:responsive jcr:primaryType="nt:unstructured"/>
                 <responsivegrid
-                        jcr:created="{Date}2017-09-18T14:59:55.772-04:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2017-09-18T14:59:59.030-04:00"
-                        jcr:lastModifiedBy="admin"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
+
                     <filter_toggle
-                            jcr:created="{Date}2017-10-05T21:32:42.204-04:00"
-                            jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2017-10-05T21:32:42.204-04:00"
-                            jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="asset-share-commons/components/search/filter-toggle"
                             applyFilterLabel="Apply"
                             resetFilterLabel="Reset"/>
-                    <property
-                            jcr:created="{Date}2017-10-05T21:11:52.190-04:00"
-                            jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2017-10-17T11:20:38.767-04:00"
-                            jcr:lastModifiedBy="admin"
+
+                    <property-checkbox
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="TYPE"
                             autoSearch="{Boolean}true"
+                            jcr:title="Property - Checkbox"
                             sling:resourceType="asset-share-commons/components/search/property"
                             operation="equals"
                             property="./jcr:content/metadata/dc:format"
                             source="local"
                             type="checkbox">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0
+                                    jcr:primaryType="nt:unstructured"
+                                    selected="false"
+                                    text="JPEG"
+                                    value="image/jpeg"/>
+                            <item1
+                                    jcr:primaryType="nt:unstructured"
+                                    selected="false"
+                                    text="PNG / GIF"
+                                    value="image/png,image/gif"/>
+                        </items>
+                    </property-checkbox>
+
+                    <property-radio
+                            jcr:primaryType="nt:unstructured"
+                            autoSearch="{Boolean}true"
+                            jcr:title="Property - Radio"
+                            sling:resourceType="asset-share-commons/components/search/property"
+                            operation="equals"
+                            property="./jcr:content/metadata/dc:format"
+                            source="local"
+                            type="radio">
                         <items jcr:primaryType="nt:unstructured">
                             <item0
                                     jcr:primaryType="nt:unstructured"
@@ -55,23 +68,55 @@
                                     selected="false"
                                     text="DOCUMENT"
                                     value="application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain"/>
-                            <item2
-                                    jcr:primaryType="nt:unstructured"
-                                    selected="false"
-                                    text="VIDEO"
-                                    value="video/quicktime,video/mp4"/>
-                            <item3
-                                    jcr:primaryType="nt:unstructured"
-                                    selected="false"
-                                    text="PRESENTATION"
-                                    value="application/vnd.openxmlformats-officedocument.presentationml.presentation"/>
                         </items>
-                    </property>
+                    </property-radio>
+
+                    <property-slider
+                            jcr:primaryType="nt:unstructured"
+                            autoSearch="{Boolean}true"
+                            jcr:title="Property - Slider"
+                            sling:resourceType="asset-share-commons/components/search/property"
+                            operation="equals"
+                            property="./jcr:content/metadata/dc:format"
+                            source="local"
+                            type="slider">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0
+                                    jcr:primaryType="nt:unstructured"
+                                    selected="false"
+                                    text="IMAGE"
+                                    value="image/jpeg,image/gif,image/png,image/tiff,image/vnd.adobe.photoshop,application/postscript"/>
+                            <item1
+                                    jcr:primaryType="nt:unstructured"
+                                    selected="false"
+                                    text="DOCUMENT"
+                                    value="application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain"/>
+                        </items>
+                    </property-slider>
+
+                    <property-toggle
+                            jcr:primaryType="nt:unstructured"
+                            autoSearch="{Boolean}true"
+                            jcr:title="Property - Toggle"
+                            sling:resourceType="asset-share-commons/components/search/property"
+                            operation="equals"
+                            property="./jcr:content/metadata/dc:format"
+                            source="local"
+                            type="toggle">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0
+                                    jcr:primaryType="nt:unstructured"
+                                    selected="false"
+                                    text="IMAGE"
+                                    value="image/jpeg,image/gif,image/png,image/tiff,image/vnd.adobe.photoshop,application/postscript"/>
+                            <item1
+                                    jcr:primaryType="nt:unstructured"
+                                    selected="false"
+                                    text="DOCUMENT"
+                                    value="application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain"/>
+                        </items>
+                    </property-toggle>
                     <date_range
-                            jcr:created="{Date}2017-10-05T21:32:56.641-04:00"
-                            jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2017-10-05T21:33:54.068-04:00"
-                            jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="LAST MODIFIED"
                             autoSearch="{Boolean}true"
@@ -94,11 +139,7 @@
                                     value="-1y"/>
                         </items>
                     </date_range>
-                    <date_range_1739362493
-                            jcr:created="{Date}2017-10-05T21:33:58.571-04:00"
-                            jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2017-10-05T21:34:50.459-04:00"
-                            jcr:lastModifiedBy="admin"
+                    <date_range-date-range
                             jcr:primaryType="nt:unstructured"
                             jcr:title="CREATED"
                             autoSearch="{Boolean}true"
@@ -110,10 +151,6 @@
                             type="radio"/>
                     <tags
                             cq:tags="[properties:style/color,properties:style/monochrome/grayscale,properties:style/monochrome]"
-                            jcr:created="{Date}2017-10-05T21:36:50.505-04:00"
-                            jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2017-10-17T10:54:26.817-04:00"
-                            jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="STYLE"
                             autoSearch="{Boolean}true"
@@ -168,24 +205,6 @@
                                     value="true"/>
                         </predicates>
                     </hidden_945294440>
-                    <hidden
-                            jcr:created="{Date}2017-10-05T21:40:18.818-04:00"
-                            jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2017-10-06T09:52:21.874-04:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/hidden">
-                        <predicates jcr:primaryType="nt:unstructured">
-                            <item0
-                                    jcr:primaryType="nt:unstructured"
-                                    predicate="property"
-                                    value="jcr:content/contentFragment"/>
-                            <item1
-                                    jcr:primaryType="nt:unstructured"
-                                    predicate="property.operation"
-                                    value="not"/>
-                        </predicates>
-                    </hidden>
                     <statistics
                             jcr:created="{Date}2017-10-05T21:45:26.355-04:00"
                             jcr:createdBy="admin"

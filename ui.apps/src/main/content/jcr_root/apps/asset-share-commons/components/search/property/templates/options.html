@@ -18,20 +18,28 @@
 
 <!--/* Checkbox Template also renders Radio, Toggle, and Slide formats */-->
 
-<template data-sly-template.checkbox="${ @ predicate}">
+<template data-sly-template.checkbox="${ @ predicate, block}">
 
-<div class="${predicate.isExpanded ? 'active' : ''} title right">
-	<i class="dropdown icon"></i> ${predicate.title}
+<div class="${predicate.isExpanded ? 'active' : ''} title right
+			${block}__title">
+	<i class="dropdown icon
+			 ${block}__title-icon"></i>
+	<span class="${block}__title-text">${predicate.title}</span>
 </div>
 
-<div class="${predicate.isExpanded ? 'active' : ''} content field"
+<div class="${predicate.isExpanded ? 'active' : ''} content field
+	 ${block}__fields ${block}__fields--${predicate.subType}"
 	 data-asset-share-id="${predicate.id}__fields"
 	 data-asset-share-update-method="${predicate.componentUpdateMethod}">
 
-	<div class="grouped fields"
+	<div class="grouped fields
+				${block}__options
+				${block}__options--${predicate.subType}"
 		 data-sly-list.option="${predicate.items}">
-		<div class="field">
-			<div class="ui ${predicate.subType} checkbox">
+		<div class="field
+					${block}__option">
+			<div class="ui checkbox
+					   ${predicate.subType}">
 				<input for="${predicate.id}"
 					   form="${predicate.formId}"
 					   type="${predicate.subType == 'checkbox' ? 'checkbox' : 'radio'}"
@@ -39,32 +47,41 @@
 					   value="${option.value}"
 					   checked="${option.selected}"
 					   disabled="${option.disabled}"
+					   class="${block}__option-input"
 					   data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
-				<label>${option.text}</label>
+				<label class="${block}__option-text">${option.text}</label>
 			</div>
 		</div>
 	</div>
 </div>
+
 </template>
 
 
 <!--/* Dropdown Template - renders a dropdown */-->
 <template data-sly-template.dropdown="${ @ predicate}">
-    <select class="ui fluid dropdown"
-            name="${predicate.group}.${predicate.name}.${predicate.valuesKey}"
-			value="${predicate.intialValue}"
-			form="${predicate.formId}"
-			for="${predicate.id}"
-			data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"
-			data-asset-share-id="${predicate.id}__fields"
-			data-asset-share-update-method="${predicate.componentUpdateMethod}">
-	<option value="">${predicate.title}</option>
-    	<sly data-sly-list.optionItem="${predicate.items}">
-    		<option value="${optionItem.value}"
-    		        disabled="${optionItem.disabled}"
-    		        selected="${optionItem.selected ? 'selected' : ''}">
-    		        ${optionItem.text}
-    		</option>
-    	</sly>
-    </select>
+	<div class="${block}__fields
+		        ${block}__fields--${predicate.subType}">
+		<select class="ui fluid dropdown
+					   ${block}__option-input"
+				name="${predicate.group}.${predicate.name}.${predicate.valuesKey}"
+				value="${predicate.intialValue}"
+				form="${predicate.formId}"
+				for="${predicate.id}"
+				data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"
+				data-asset-share-id="${predicate.id}__fields"
+				data-asset-share-update-method="${predicate.componentUpdateMethod}">
+		<option value=""
+				class="${block}__option-text
+				       ${block}__option-text--title">${predicate.title}</option>
+			<sly data-sly-list.optionItem="${predicate.items}">
+				<option value="${optionItem.value}"
+						disabled="${optionItem.disabled}"
+						selected="${optionItem.selected ? 'selected' : ''}"
+				 		class="${block}__option-text">
+						${optionItem.text}
+				</option>
+			</sly>
+		</select>
+	</div>
 </template>

@@ -43,18 +43,22 @@
            data-asset-share-predicate-id="${predicate.id}"/>
 
 	<!--/* CHECKBOX and Variations*/-->
-	<div class="ui form">
+	<div class="ui form
+				cmp-search-property__controls
+				cmp-search-property__controls--checkboxes">
 		<div class="ui fluid styled accordion field"
 			 data-sly-test="${predicate.type.value == 'checkbox' || predicate.type.value == 'radio'}">
 		 <sly
-			  data-sly-call="${optionsTemplate.checkbox @ predicate = predicate}"></sly>
+			  data-sly-call="${optionsTemplate.checkbox @ predicate = predicate, block = 'cmp-search-property' }"></sly>
 		</div>
   	</div>
 
     <!--/* DROP-DOWN */-->
-    <div class="form-group ${predicate.type.value} ui form"
+    <div class="form-group ui form
+    			${predicate.type.value}
+    			cmp-search-property__controls
+    			cmp-search-property__controls--{predicate.type.value}"
          data-sly-test="${predicate.type.value == 'drop-down' || predicate.type.value == 'multi-drop-down'}"
-         data-sly-call="${optionsTemplate.dropdown @ predicate = predicate}"></div>
-
+         data-sly-call="${optionsTemplate.dropdown @ predicate = predicate, block = 'cmp-search-property'}"></div>
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>
