@@ -2,7 +2,7 @@ import Bem from '../../../../util/Bem';
 
 const _bem = new Bem('cmp-search-property');
 
-export default class MyComponent {
+export default class Property {
     constructor() {
         // Make sure NOT to get elements in the constructor!
     }
@@ -15,23 +15,34 @@ export default class MyComponent {
         return this.component.element(_bem.selector('title-text'));
     }
 
+    get fields() {
+        return this.component.element(_bem.selector('fields'));
+    }
+
+
     get options() {
-        return this.component.elements(_bem.selector('option')).value.map((o) => new _Option(o));
+        var _options = [];
+
+        this.fields.elements(_bem.selector('option')).value.forEach((option) => {
+            _options.push(new _Option(option));
+        });
+
+        return _options;
+
     }
 }
-
 
 class _Option {
     constructor(webJsonObject) {
         this._option = webJsonObject;
     }
 
-    get text() {
+    get label() {
         return this._option.element(_bem.selector('option-text'));
     }
 
     get value() {
-        return this._option.element(_bem.selector('option-value'));
+        return this._option.element(_bem.selector('option-input'));
     }
 
     get option() {
