@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/" xmlns:tiff="http://ns.adobe.com/tiff/1.0/" xmlns:xmpRights="http://ns.adobe.com/xap/1.0/rights/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dam="http://www.day.com/dam/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:isCheckedOut="{Boolean}true"
     jcr:mixinTypes="[mix:referenceable,mix:versionable]"
-    jcr:primaryType="dam:Asset"
-    jcr:uuid="710843dd-f534-4292-a4c1-bae5bf0e637f">
+    jcr:primaryType="dam:Asset">
     <jcr:content
         cq:name="placeholder.jpeg"
-        cq:parentPath="/content/dam/asset-share-commons/en/site"
+        cq:parentPath="/content/dam/asset-share-commons-test/en/site"
         dam:assetState="processed"
-        dam:copiedAt="{Date}2017-10-17T11:29:34.633-04:00"
         dam:parentAssetID="176f95e4-29d1-4152-bbb0-c8030783ac5f"
-        dam:relativePath="asset-share-commons/en/site/placeholder.jpeg"
-        jcr:lastModified="{Date}2017-10-17T14:11:31.143-04:00"
-        jcr:lastModifiedBy="admin"
+        dam:relativePath="asset-share-commons-test/en/site/placeholder.jpeg"
         jcr:primaryType="dam:AssetContent">
         <metadata
             cq:tags="[properties:orientation/landscape,properties:style/color]"
@@ -43,7 +38,7 @@
             tiff:ImageWidth="{Long}1280"
             xmpRights:UsageTerms="[Can be used for commerical or free use.]"
             xmpRights:UsageTerms_xmpArrayType="rdf:Alt"
-            xmpRights:WebStatement="/content/asset-share-commons/en/light/actions/license/terms-conditions.html">
+            xmpRights:WebStatement="/content/asset-share-commons-test/en/test/actions/license/terms-conditions.html">
             <Iptc4xmpCore:CreatorContactInfo jcr:primaryType="nt:unstructured"/>
         </metadata>
         <related jcr:primaryType="nt:unstructured"/>

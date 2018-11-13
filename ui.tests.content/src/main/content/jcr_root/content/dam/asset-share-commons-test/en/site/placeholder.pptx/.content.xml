@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/" xmlns:Iptc4xmpExt="http://iptc.org/std/Iptc4xmpExt/2008-02-29/" xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:xmpRights="http://ns.adobe.com/xap/1.0/rights/" xmlns:plus="http://ns.useplus.org/ldf/xmp/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dam="http://www.day.com/dam/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:mixinTypes="[mix:referenceable]"
-    jcr:primaryType="dam:Asset"
-    jcr:uuid="4c0a5fe9-1020-42dd-b737-b7b5c7909760">
+    jcr:primaryType="dam:Asset">
     <jcr:content
         dam:assetState="processed"
-        dam:copiedAt="{Date}2017-10-17T11:32:34.733-04:00"
-        dam:parentAssetID="a7d4625c-6734-4658-b839-c0356730a6f8"
-        dam:relativePath="asset-share-commons/en/site/placeholder.pptx"
+        dam:relativePath="asset-share-commons-test/en/site/placeholder.pptx"
         jcr:lastModified="{Date}2017-10-17T11:32:36.034-04:00"
         jcr:lastModifiedBy="admin"
         jcr:primaryType="dam:AssetContent">

@@ -570,11 +570,22 @@
                 <module>ui.content</module>
             </modules>
 		</profile>
+
+        <profile>
+            <id>ui.tests</id>
+            <modules>
+                <module>ui.tests.content</module>
+                <module>ui.tests</module>
+            </modules>
+        </profile>
     </profiles>
     <modules>
         <module>core</module>
         <module>ui.apps</module>
         <module>ui.content</module>
+
+        <module>ui.tests.content</module>
+        <module>ui.tests</module>
     </modules>
     <distributionManagement>
         <repository>

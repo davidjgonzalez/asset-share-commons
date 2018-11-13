@@ -4,8 +4,12 @@
   "scripts": {
     "setup": "npm install && node node_modules/.bin/selenium-standalone install",
     "selenium:start": "node_modules/.bin/selenium-standalone start",
+    "test": "node node_modules/webdriverio/bin/wdio $npm_config_wdio_config",
     "test:localhost:publish": "node node_modules/webdriverio/bin/wdio ./test/config/wdio.localhost.macos.publish.conf.js",
     "report:mochawesome": "marge ./report/wdiomochawesome.json --inline --reportTitle 'Asset Share Commons ui.tests Results' --reportFilename 'asset-share-commons-results.html' --reportDir './report' && open report/asset-share-commons-results.html"
+  },
+  "config": {
+    "wdioConfig": "./test/config/wdio.localhost.macos.publish.conf.js"
   },
   "dependencies": {
     "assert": "^1.4.1",

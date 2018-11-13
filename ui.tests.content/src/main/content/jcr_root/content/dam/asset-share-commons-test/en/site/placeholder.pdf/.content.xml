@@ -6,7 +6,7 @@
     jcr:uuid="d393176b-3251-4a00-bd20-d1da64171192">
     <jcr:content
         cq:name="placeholder.pdf"
-        cq:parentPath="/content/dam/asset-share-commons/en/site"
+        cq:parentPath="/content/dam/asset-share-commons-test/en/site"
         dam:assetState="processed"
         dam:copiedAt="{Date}2017-10-17T11:32:37.322-04:00"
         dam:parentAssetID="6a43ab75-b980-4da8-868d-7456b7d49c58"

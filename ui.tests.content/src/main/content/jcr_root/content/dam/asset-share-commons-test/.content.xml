@@ -3,7 +3,7 @@
     jcr:primaryType="sling:Folder">
     <jcr:content
         jcr:primaryType="nt:unstructured"
-        jcr:title="English">
+        jcr:title="Asset Share Commons (Test)">
         <folderThumbnail/>
     </jcr:content>
 </jcr:root>
