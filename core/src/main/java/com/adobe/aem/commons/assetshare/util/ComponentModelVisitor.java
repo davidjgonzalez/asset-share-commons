@@ -1,10 +1,7 @@
 package com.adobe.aem.commons.assetshare.util;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.AbstractResourceVisitor;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.apache.sling.models.factory.ModelFactory;
 
 import java.util.ArrayList;
@@ -19,7 +16,6 @@ import java.util.Collection;
  */
 public final class ComponentModelVisitor<T> extends ResourceTypeVisitor {
     final Collection<T> models = new ArrayList<>();
-    final Collection<Resource> resources = new ArrayList<>();
 
     private final SlingHttpServletRequest request;
     private final ModelFactory modelFactory;
@@ -36,7 +32,6 @@ public final class ComponentModelVisitor<T> extends ResourceTypeVisitor {
                                  String[] resourceTypes,
                                  Class<T> clazz) {
         super(resourceTypes);
-
         this.request = request;
         this.modelFactory = modelFactory;
         this.clazz = clazz;

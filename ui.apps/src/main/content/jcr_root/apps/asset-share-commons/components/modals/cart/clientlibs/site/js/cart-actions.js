@@ -25,7 +25,6 @@ jQuery((function ($, ns, messages, cart, semanticModal, licenseModal) {
         REMOVE_FROM_CART = "remove-from-cart",
 
         MESSAGE_CART_ADD = "cart-add",
-        MESSAGE_CART_EXISTS = "cart-exists",
         MESSAGE_CART_REMOVE = "cart-remove";
 
     /** Add to Cart **/
@@ -39,7 +38,6 @@ jQuery((function ($, ns, messages, cart, semanticModal, licenseModal) {
         e.stopPropagation();
 
         if (cart.contains(assetPath)) {
-            messages.show(MESSAGE_CART_EXISTS);
             return false;
         } else {
             if (license) {
@@ -95,10 +93,6 @@ jQuery((function ($, ns, messages, cart, semanticModal, licenseModal) {
         });
     }
 
-    $("body").on(ns.Events.PAGE_LOAD,function() {
-        handleCartButtonsUpdate();
-    });
-
     $("body").on(ns.Events.SEARCH_END, function() {
         handleCartButtonsUpdate();
     });
@@ -118,6 +112,9 @@ jQuery((function ($, ns, messages, cart, semanticModal, licenseModal) {
 
         toggleCartButtons(false, paths);
     });
+
+    // Handle DOM Ready AKA Page Load
+    handleCartButtonsUpdate();
 
 }(jQuery,
     AssetShare,

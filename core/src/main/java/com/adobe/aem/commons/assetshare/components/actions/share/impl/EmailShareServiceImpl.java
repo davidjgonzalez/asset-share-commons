@@ -40,15 +40,19 @@ import com.adobe.granite.security.user.UserProperties;
 import com.adobe.granite.security.user.UserPropertiesManager;
 import com.day.cq.commons.Externalizer;
 import com.day.cq.dam.commons.util.DamUtil;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.scripting.SlingBindings;
 import org.apache.sling.models.factory.ModelFactory;
+import org.apache.sling.scripting.core.ScriptHelper;
 import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -57,11 +61,12 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.jcr.RepositoryException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @Component(service = ShareService.class)
 @Designate(ocd = EmailShareServiceImpl.Cfg.class)
@@ -79,6 +84,7 @@ public class EmailShareServiceImpl implements ShareService {
     private static final String EMAIL_ASSET_LINK_LIST_HTML = "assetLinksHTML";
 
     private Cfg cfg;
+    private BundleContext bundleContext;
 
     @Reference
     private EmailService emailService;
@@ -96,7 +102,7 @@ public class EmailShareServiceImpl implements ShareService {
     private ModelFactory modelFactory;
 
     @Reference
-    private XSSAPI xssAPi;
+    private XSSAPI xssAPI;
 
     @Override
     public boolean accepts(final SlingHttpServletRequest request) {
@@ -105,11 +111,18 @@ public class EmailShareServiceImpl implements ShareService {
 
     @Override
     public final void share(final SlingHttpServletRequest request, final SlingHttpServletResponse response, final ValueMap shareParameters) throws ShareException {
+    	
+        /** Work around for regression issue introduced in AEM 6.4 **/
+        SlingBindings bindings = new SlingBindings();
+        //intentionally setting the second argument to 'null' since there is no SlingScript to pass in
+        bindings.setSling( new ScriptHelper(bundleContext, null, request, response));
+        request.setAttribute(SlingBindings.class.getName(), bindings);
+        
         final EmailShare emailShare = request.adaptTo(EmailShare.class);
 
         shareParameters.putAll(xssProtectUserData(emailShare.getUserData()));
 
-        // Configured data supercedes user data
+        // Configured data supersedes user data
         shareParameters.putAll(emailShare.getConfiguredData());
 
         // Except for signature which we may or may  not want to use from configured data, depending on flags in configured data
@@ -124,15 +137,24 @@ public class EmailShareServiceImpl implements ShareService {
 
     private final void share(final Config config, final ValueMap shareParameters, final String emailTemplatePath) throws ShareException {
         final String[] emailAddresses = StringUtils.split(shareParameters.get(EMAIL_ADDRESSES, ""), ",");
-        final String[] assetPaths = shareParameters.get(ASSET_PATHS, String[].class);
+        final String[] assetPaths = Arrays.stream(shareParameters.get(ASSET_PATHS, ArrayUtils.EMPTY_STRING_ARRAY))
+                .map(path -> {
+                    try {
+                        return URLDecoder.decode(path, StandardCharsets.UTF_8.name());
+                    } catch (UnsupportedEncodingException e) {
+                        log.warn("Could not decode path [ {} ] as UTF-8; Using path as is,.", path);
+                        return path;
+                    }
+                }).filter(StringUtils::isNotBlank)
+                .toArray(String[]::new);
 
         // Check to ensure the minimum set of e-mail parameters are provided; Throw exception if not.
         if (emailAddresses == null || emailAddresses.length == 0) {
             throw new ShareException("At least one e-mail address is required to share");
-        } else if (assetPaths == null || assetPaths.length == 0) {
+        } else if (ArrayUtils.isEmpty(assetPaths)) {
             throw new ShareException("At least one asset is required to share");
         }
-
+       
         // Convert provided params to <String, String>; anything that needs to be accessed in its native type should be accessed and manipulated via shareParameters.get(..)
         final Map<String, String> emailParameters = new HashMap<String, String>();
         for (final String key : shareParameters.keySet()) {
@@ -157,19 +179,17 @@ public class EmailShareServiceImpl implements ShareService {
             if (assetResource != null && DamUtil.isAsset(assetResource)) {
                 final AssetModel asset = modelFactory.getModelFromWrappedRequest(config.getRequest(), assetResource, AssetModel.class);
 
-                String url = assetDetailsResolver.getUrl(config, asset);
+                String url = assetDetailsResolver.getFullUrl(config, asset);
 
                 if (StringUtils.isBlank(url)) {
                     log.warn("Could not determine an Asset Details page path for asset at [ {} ]", assetPath);
                     continue;
                 }
 
-                url += asset.getPath();
-
                 if (isAuthor()) {
                     url = externalizer.authorLink(config.getResourceResolver(), url);
                 } else {
-                    url = externalizer.publishLink(config.getResourceResolver(), url);
+                    url = externalizer.externalLink(config.getResourceResolver(), cfg.externalizerDomain(), url);
                 }
 
                 sb.append("<li><a href=\"");
@@ -217,23 +237,39 @@ public class EmailShareServiceImpl implements ShareService {
     /**
      * Since all emails are expected to be HTML emails in this implementation, we must XSS Protect all values that may end up in the HTML email.
      *
-     * @param userData the Map of data provided by the end-user (usually derived from the Request) to use in the email.
+     * @param dirtyUserData the Map of data provided by the end-user (usually derived from the Request) to use in the email.
      * @return the protected Map; all String's are xss protected for HTML.
      */
-    private Map<String, Object> xssProtectUserData(Map<String, Object> userData) {
-        for(final Map.Entry<String, Object> entry : userData.entrySet()) {
-            if (entry.getValue() instanceof String) {
-                userData.put(entry.getKey(), xssAPi.encodeForHTML((String)entry.getValue()));
-            }
+    private Map<String, Object> xssProtectUserData(Map<String, Object> dirtyUserData) {
+        Map<String, Object> cleanUserData = new HashMap<String, Object>();
+        for (final Map.Entry<String, Object> entry : dirtyUserData.entrySet()) {
+
+            if (entry.getValue() instanceof String[]) {
+                cleanUserData.put(entry.getKey(), xssCleanData((String[]) entry.getValue()));
+            } else if (entry.getValue() instanceof String) {
+                cleanUserData.put(entry.getKey(), xssCleanData((String) entry.getValue()));
+            }   
         }
 
-        return userData;
+        return cleanUserData;
     }
 
+    private String[] xssCleanData(String[] dirtyData) {
+        List<String> cleanValues = new ArrayList<String>();
+        for (String val : dirtyData) {
+            cleanValues.add(xssAPI.encodeForHTML(xssAPI.filterHTML(val)));
+        }
+        return cleanValues.toArray(new String[0]);
+    }
+
+    private String xssCleanData(String dirtyData) {
+        return xssAPI.encodeForHTML(xssAPI.filterHTML(dirtyData));
+    }
 
     @Activate
-    protected final void activate(final Cfg config) throws Exception {
+    protected final void activate(final Cfg config, final BundleContext bundleContext) throws Exception {
         this.cfg = config;
+        this.bundleContext = bundleContext;
     }
 
     @ObjectClassDefinition(name = "Asset Share Commons - E-mail Share Service")
@@ -250,5 +286,11 @@ public class EmailShareServiceImpl implements ShareService {
                 description = "The default value to use is no signature can be derived."
         )
         String signature() default "Your Assets Team";
+
+        @AttributeDefinition(
+                name = "Externalizer Domain",
+                description = "The externalizer domain used for creating asset links."
+        )
+        String externalizerDomain() default "publish";
     }
 }

@@ -19,6 +19,7 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
+import com.adobe.aem.commons.assetshare.components.predicates.impl.options.SortOptionItem;
 import com.adobe.cq.wcm.core.components.models.form.OptionItem;
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -27,21 +28,23 @@ import java.util.List;
 @ProviderType
 public interface SortPredicate extends Predicate {
     /**
-     * Use getSortByItems() instead.
-     *
      * @return the option items for this predicate.
      */
-    @Deprecated
-    List<OptionItem> getItems();
+    List<SortOptionItem> getItems();
 
     /**
-     * @return the Sort By options.
+     * @return true if the active sort order is ascending (vs. descending).
      */
-    List<OptionItem> getSortByItems();
+    default boolean isAscending() { return false; }
 
     /**
-     * @return the Sort By direction options.
+     * @return the active label for the Order By (Sort By) field.
      */
-    List<OptionItem> getSortByDirectionItems();
+    default String getOrderByLabel() { return "Sort By"; }
+
+    /**
+     * @return the active label for the Order By Sort (Sort Direction) field.
+     */
+    default String getOrderBySortLabel() { return "DESC"; }
 }
 

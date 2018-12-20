@@ -46,7 +46,8 @@ public class QueryBuilderResultsImpl extends AbstractResultsImpl implements Resu
         this.nextOffset = searchResult.getNextPage() != null ? searchResult.getNextPage().getStart() : -1;
         this.runningTotal = searchResult.getStartIndex() + searchResult.getHits().size();
 
-        this.more = searchResult.hasMore() || this.runningTotal < this.total;
+        this.moreThanTotal = searchResult.hasMore();
+        this.more = searchResult.hasMore() || this.runningTotal < searchResult.getTotalMatches();
         this.status = Status.SUCCESS;
     }
 

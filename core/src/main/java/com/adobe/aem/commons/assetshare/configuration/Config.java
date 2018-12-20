@@ -23,70 +23,105 @@ import com.adobe.aem.commons.assetshare.content.AssetModel;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.osgi.annotation.versioning.ProviderType;
 
 import java.util.Locale;
 
 /**
- * The Asset Share configuration for this content tree.
+ * The model interface that represents the configuration for an Asset Share Commons "site".
  *
- * The Config resolves to the first ancestor (or self) that is an Asset Share Commons search page.
+ * Most of these configurations are derived via the configurations set on the Search Page's Page Properties.
  */
-@ProviderType
 public interface Config {
 
     /**
-     * @return the Sling Http Servlet request object. This is the context that resolves to the Config.
+     * @return the SlingHttpServletRequest that resolves to this Config object.
      */
     SlingHttpServletRequest getRequest();
 
     /**
-     * @return the Resource Resolver associated with the getRequest() request.
+     * @return the ResourceResolver that resolved this Config object.
      */
     ResourceResolver getResourceResolver();
 
     ValueMap getProperties();
 
     /**
-     * @return the locale of the Request.
+     * @return the Locale for the Page that resolves to this Config object.
      */
     Locale getLocale();
 
     /**
-     * @return the absolute path to the search page this Config resolves to.
+     * @return the absolute path Path to the resource resource (cq:Page) that resolves to this Config object.
      */
     String getRootPath();
 
     /**
-     * @return the absolute path to the asset details page.
+     * @return the asset model representing the Placeholder asset for this Config. The Placeholder AssetModel is used for authoring purposes in contexts where there is no natural asset to display.
      */
     AssetModel getPlaceholderAsset();
 
+    /**
+     * @return the ID of the AssetDetailsSelector implementation to use.
+     */
     String getAssetDetailsSelector();
 
     /**
-     * @return the absolute path to the asset details page.
+     * @return the absolute path to the main asset details page; asset-type specific details pages will exist under this.
      */
     String getAssetDetailsPath();
 
     /**
-     * @return the URL to the asset details page.
+     * @return the path segment of the URL to call to render the main asset details page.
      */
     String getAssetDetailsUrl();
 
+    /**
+     * @return true if the asset details pages should reference assets by path (else ID).
+     */
+    default boolean getAssetDetailReferenceById() { return true; }
+
+    /**
+     * @return the path segment of the URL to call to render the Cart.
+     */
     String getCartActionUrl();
 
+    /**
+     * @return the path segment of the URL to call to render the Download action.
+     */
     String getDownloadActionUrl();
 
+    /**
+     * @return the path segment of the URL to call to render the License Agreement action.
+     */
     String getLicenseActionUrl();
 
+    /**
+     * @return the path segment of the URL to call to render the Share action.
+     */
     String getShareActionUrl();
 
+    /**
+     * @return true if the cart is enabled.
+     */
     boolean isCartEnabled();
 
+    /**
+     * @return true if the download action is enabled.
+     */
     boolean isDownloadEnabled();
 
+    /**
+     * @return true if the license action is enabled.
+     */
     boolean isLicenseEnabled();
 
+    /**
+     * @return true if the share action is enabled.
+     */
     boolean isShareEnabled();
+
+    /**
+     * @return true if AEM is enabled with AEM Assets Dynamic Media.
+     */
+    default boolean isDynamicMediaEnabled() { return false; }
 }
