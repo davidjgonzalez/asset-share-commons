@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <wcm jcr:primaryType="nt:unstructured">
+        <foundation jcr:primaryType="nt:unstructured">
+            <components jcr:primaryType="nt:unstructured">
+                <responsivegrid jcr:primaryType="nt:unstructured">
+                    <policy_asset-share-commons-structure
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset Share Commons - Structure"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/wcm/foundation/components/responsivegrid,group:Asset Share Commons - Structure]">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_asset-share-commons-structure>
+                    <policy_asset-share-commons-search
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset Share Commons - Search"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/wcm/foundation/components/responsivegrid,group:Asset Share Commons - Content,group:Asset Share Commons - Search]">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_asset-share-commons-search>
+                    <policy_asset-share-commons-modals
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset Share Commons - Modals"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[group:Asset Share Commons - Modals]">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_asset-share-commons-modals>
+                    <policy_asset-share-commons-details
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset Share Commons - Asset Details"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[group:Asset Share Commons - Content,group:Asset Share Commons - Details]">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_asset-share-commons-details>
+                    <policy_asset-share-commons-content
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset Share Commons - Content"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/wcm/foundation/components/responsivegrid,group:Asset Share Commons - Content]">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                        <cq:authoring jcr:primaryType="nt:unstructured">
+                            <assetToComponentMapping jcr:primaryType="nt:unstructured">
+                                <mapping_image-component
+                                    jcr:primaryType="nt:unstructured"
+                                    assetGroup="media"
+                                    assetMimetype="[image/gif,image/jpeg,image/png,image/webp,image/tiff]"
+                                    droptarget="image"
+                                    resourceType="asset-share-commons/components/content/image"/>
+                            </assetToComponentMapping>
+                        </cq:authoring>
+                    </policy_asset-share-commons-content>
+                </responsivegrid>
+            </components>
+        </foundation>
+    </wcm>
+    <asset-share-commons jcr:primaryType="nt:unstructured">
+        <components jcr:primaryType="nt:unstructured">
+            <structure jcr:primaryType="nt:unstructured">
+                <search-page jcr:primaryType="nt:unstructured">
+                    <policy_light-theme
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Light Theme"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        clientlibs="asset-share-commons.semantic-ui-light">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_light-theme>
+                </search-page>
+                <responsivegrid jcr:primaryType="nt:unstructured">
+                    <policy_rail-content
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Rail Content"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/wcm/foundation/components/responsivegrid,group:Asset Share Commons - Structure]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_rail-content>
+                </responsivegrid>
+                <rail jcr:primaryType="nt:unstructured">
+                    <policy_rail-structure
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Rail Structure"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/wcm/foundation/components/responsivegrid,/apps/asset-share-commons/components/structure/cart]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_rail-structure>
+                </rail>
+                <page jcr:primaryType="nt:unstructured">
+                    <policy_light-theme
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Light Theme"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        clientlibs="asset-share-commons.semantic-ui-light">
+                        <jcr:content
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_light-theme>
+                </page>
+                <header jcr:primaryType="nt:unstructured"/>
+                <user-menu jcr:primaryType="nt:unstructured">
+                    <policy_user-menu
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="User Menu Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        greeting="Hello, "
+                        logInLabel="Log In"
+                        logInLink="#"
+                        logOutLabel="Log Out"
+                        logOutLink="#"
+                        showLabels="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_user-menu>
+                </user-menu>
+                <footer jcr:primaryType="nt:unstructured">
+                    <policy_footer-text
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Footer Text Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        text="&amp;copy; ADOBE 2019">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_footer-text>
+                </footer>
+                <details-page jcr:primaryType="nt:unstructured">
+                    <policy_light-theme
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Light Theme"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        clientlibs="asset-share-commons.semantic-ui-light">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_light-theme>
+                </details-page>
+            </structure>
+        </components>
+    </asset-share-commons>
+    <rep:policy/>
+</jcr:root>

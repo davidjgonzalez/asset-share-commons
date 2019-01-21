@@ -233,6 +233,11 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.servlets.annotations</artifactId>
+                <version>1.2.4</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-email</artifactId>
                 <version>1.2</version>
@@ -588,22 +593,11 @@
                 <module>ui.content</module>
             </modules>
 		</profile>
-
-        <profile>
-            <id>ui.tests</id>
-            <modules>
-                <module>ui.tests.content</module>
-                <module>ui.tests</module>
-            </modules>
-        </profile>
     </profiles>
     <modules>
         <module>core</module>
         <module>ui.apps</module>
         <module>ui.content</module>
-
-        <module>ui.tests.content</module>
-        <module>ui.tests</module>
     </modules>
     <distributionManagement>
         <repository>

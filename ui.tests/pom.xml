@@ -105,7 +105,7 @@
     <profiles>
         <!-- Profile to run locally -->
         <profile>
-            <id>localhost</id>
+            <id>ui.tests-executeLocalPublish</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -134,7 +134,9 @@
                 </plugins>
             </build>
         </profile>
-
-
     </profiles>
+
+    <modules>
+        <module>../ui.tests.content</module>
+    </modules>
 </project>

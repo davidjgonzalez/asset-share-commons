@@ -85,6 +85,7 @@
 					<finalName>asset-share-commons.ui.content.tests-${project.version}</finalName>
 					<filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
 					<properties>
+						<!-- Always overwrite w/ test content -->
 						<acHandling>overwrite</acHandling>
 					</properties>
 					<targetURL>http://${crx.host}:${crx.port}/crx/packmgr/service.jsp</targetURL>
@@ -102,7 +103,7 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>autoInstallPackagePublish</id>
+			<id>ui.tests-autoInstallPackagePublish</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -127,7 +128,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>autoInstallPackage</id>
+			<id>ui.tests-autoInstallPackageAuthor</id>
 			<build>
 				<plugins>
 					<plugin>
