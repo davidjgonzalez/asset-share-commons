@@ -1,22 +1,24 @@
 import Bem from '../../../../util/Bem';
+import Component from "../../../../util/Component";
 
-const _bem = new Bem('cmp-search-layout-toggle');
+const _bem = new Bem();
 
-export default class LayoutToggle {
-    get component() {
-        return $(_bem.selector());
+export default class LayoutToggle extends Component {
+    constructor(testId) {
+        super('cmp-search-layout-toggle', testId);
     }
 
     get cardToggle() {
-        return new _Toggle(this.component.element(_bem.selector('toggle', 'card')));
+        return new _Toggle(this, this.el('toggle', 'card'));
     }
 
     get listToggle() {
-        return new _Toggle(this.component.element(_bem.selector('toggle', 'list')));
+        return new _Toggle(this, this.el('toggle', 'list'));
     }
 }
 class _Toggle {
-    constructor(webJsonObject) {
+    constructor(component, webJsonObject) {
+        this.component = component;
         this.toggle = webJsonObject;
     }
 
@@ -25,10 +27,10 @@ class _Toggle {
     }
 
     get icon() {
-        return this.toggle.element(_bem.selector('toggle-icon'));
+        return this.component.el(this.toggle, 'toggle-icon');
     }
 
     get text() {
-        return this.toggle.element(_bem.selector('toggle-text'));
+        return this.component.el(this.toggle, 'toggle-text');
     }
 }

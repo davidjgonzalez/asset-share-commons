@@ -22,7 +22,7 @@ export default class Bem {
             // this means this is a modifier on the BLOCK --> cmp-search-sort.cmp-search-sort--<arg1>
             tmp.push(this.bemScope[0] + '.' + this.bemScope[0] + '--' + arg1);
         } else {
-            // this means this is an element's modifier on the BLOCK --> cmp-search-sort cmp-search-sort__<arg1>--<arg2>
+            // this means this is an el's modifier on the BLOCK --> cmp-search-sort cmp-search-sort__<arg1>--<arg2>
             this.bemScope.forEach((item) => { tmp.push(item); });
 
             tmp.push(this.bemScope[0] + '__' + arg1 + '--' + arg2);
@@ -32,7 +32,7 @@ export default class Bem {
     }
 
 
-    element(elementName, modifierName) {
+    el(elementName, modifierName) {
         let result = '',
             fullElementName = this.bemScope[0] + "__" + elementName;
 

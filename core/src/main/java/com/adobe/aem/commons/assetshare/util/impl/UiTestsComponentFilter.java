@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
         property = {
                 "filter.order:Integer=-180",
                 "sling.filter.scope=COMPONENT",
-                "sling.filter.pattern=/content/asset-share-commons-test/.*",
+                "sling.filter.pattern=/content/asset-share-commons/test/.*",
                 "sling.filter.methods=GET",
                 "sling.filter.extensions=html"
         }
@@ -52,7 +52,7 @@ import java.util.stream.Collectors;
 public class UiTestsComponentFilter implements Filter {
     private static final Logger log = LoggerFactory.getLogger(UiTestsComponentFilter.class);
 
-    private static final String PN_UI_TESTS_PROPERTY_NAME = "uiTestIds";
+    private static final String PN_UI_TESTS_PROPERTY_NAME = "uiTestId";
     private static final String ATTR_DATA_DASH = "data-asset-share-ui-tests";
 
     @Reference

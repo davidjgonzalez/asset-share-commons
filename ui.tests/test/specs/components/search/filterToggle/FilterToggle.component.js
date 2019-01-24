@@ -1,44 +1,40 @@
-import Bem from '../../../../util/Bem';
+import Component from "../../../../util/Component";
 
-export default class FilterToggle {
+export default class FilterToggle extends Component {
 
-    constructor() {
-        this.bem = new Bem('cmp-search-filter-toggle');
+    constructor(testId) {
+        super('cmp-search-filter-toggle', testId);
     }
 
-    get component() {
-        return $(this.bem.selector());
+    get applySection() {
+        return this.el('toggle', 'apply');
     }
 
-    get _applySection() {
-        return this.component.element(this.bem.selector('toggle', 'apply'));
-    }
-
-    get _resetSection() {
-        return this.component.element(this.bem.selector('toggle', 'reset'));
+    get resetSection() {
+        return this.el('toggle', 'reset');
     }
 
     get applyButton() {
-        return this._applySection.element(this.bem.selector('button'));
+        return this.el(this.applySection, 'button');
     }
 
     get applyIcon() {
-        return this._applySection.element(this.bem.selector('icon'));
+        return this.el(this.applySection, 'icon');
     }
 
     get applyLabel() {
-        return this._applySection.element(this.bem.selector('text'));
+        return this.el(this.applySection, 'text');
     }
 
     get resetButton() {
-        return this._resetSection.element(this.bem.selector('button'));
+        return this.el(this.resetSection, 'button');
     }
 
     get resetIcon() {
-        return this._resetSection.element(this.bem.selector('icon'));
+        return this.el(this.resetSection, 'icon');
     }
 
     get resetLabel() {
-        return this._resetSection.element(this.bem.selector('text'));
+        return this.el(this.resetSection, 'text');
     }
 }

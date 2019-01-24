@@ -4,8 +4,8 @@ import SearchPage from '../../structure/searchPage/SearchPage.component';
 let assert = require('assert');
 
 describe('the initial load of the search bar component', () => {
-    let page = new SearchPage(),
-        searchBar = new SearchBar();
+    let page =new SearchPage(),
+        searchBar = new SearchBar('search-bar');
 
     it('should have a placeholder and no input field value', function () {
         browser.url(page.url);

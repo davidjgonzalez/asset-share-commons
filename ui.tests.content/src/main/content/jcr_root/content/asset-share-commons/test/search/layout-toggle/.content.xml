@@ -23,7 +23,7 @@
     <jcr:content
             cq:template="/conf/asset-share-commons/test/settings/wcm/templates/search-template"
             jcr:primaryType="cq:PageContent"
-            jcr:title="Filter Toggle Component"
+            jcr:title="Layout Toggle Component"
             sling:resourceType="asset-share-commons/components/structure/search-page">
         <root
                 jcr:primaryType="nt:unstructured"
@@ -36,27 +36,24 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
 
-                    <filter_toggle--hide-labels
-                            uiTestId="filter-toggle--hide-labels"
+                    <layout-toggle--with-labels
+                            uiTestId="layout-toggle--with-labels"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/filter-toggle"
-                            hideLabels="{Boolean}true"
-                            applyFilterLabel="No Apply"
-                            resetFilterLabel="No Reset"/>
+                            sling:resourceType="asset-share-commons/components/search/layout-toggle"
+                            showLabels="{Boolean}true"
+                            cardLabel="Card view"
+                            listLabel="List view">
+                    </layout-toggle--with-labels>
 
-                    <filter_toggle--with-labels
-                            uiTestId="filter-toggle--with-labels"
+                    <layout-toggle--without-labels
+                            uiTestId="layout-toggle--without-labels"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/filter-toggle"
-                            applyFilterLabel="Apply"
-                            resetFilterLabel="Reset"/>
+                            sling:resourceType="asset-share-commons/components/search/layout-toggle"
+                            showLabels="{Boolean}false"
+                            cardLabel="Card view"
+                            listLabel="List view">
+                    </layout-toggle--without-labels>
 
-                    <filter_toggle--hide-apply-toggle
-                            uiTestId="filter-toggle--hide-apply-toggle"
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/filter-toggle"
-                            hideApplyFilterToggle="{Boolean}true"
-                            resetFilterLabel="Only Reset"/>
 
                 </responsivegrid>
             </rail>

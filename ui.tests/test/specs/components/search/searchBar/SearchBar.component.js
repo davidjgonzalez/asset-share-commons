@@ -1,24 +1,20 @@
-import Bem from '../../../../util/Bem';
+import Component from "../../../../util/Component";
 
-export default class SearchBar {
+export default class SearchBar extends Component{
 
-    constructor() {
-        this.bem = new Bem('cmp-search-search-bar');
-    }
-
-    get component() {
-        return $(this.bem.selector());
+    constructor(testId) {
+        super('cmp-search-search-bar', testId);
     }
 
     get input() {
-        return this.component.element(this.bem.selector('input'));
+        return this.el('input');
     }
 
     get icon() {
-        return this.component.element(this.bem.selector('icon'));
+        return this.el('icon');
     }
 
     get button() {
-        return this.component.element(this.bem.selector('button'));
+        return this.el('button');
     }
 }

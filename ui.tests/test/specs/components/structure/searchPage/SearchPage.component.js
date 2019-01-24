@@ -1,10 +1,11 @@
 export default class SearchPage {
 
-    constructor() {
+    constructor(relativePath) {
+        this.relativePath = relativePath.indexOf('/') === 0 ? relativePath : '/' + relativePath;
     }
 
     get path() {
-        return '/content/asset-share-commons/en/test';
+        return '/content/asset-share-commons/test' + this.relativePath;
     }
 
     get url() {

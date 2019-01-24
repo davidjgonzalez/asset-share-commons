@@ -32,7 +32,7 @@ export default class MyComponent {
     /**
      * This returns the first component matching its BEM block selector on the page.
      *
-     * This currently supports only 1 matching element on the page, however this could be extended to support multiple.
+     * This currently supports only 1 matching el on the page, however this could be extended to support multiple.
      *
      * @returns {WebElement JSON object}
      */
@@ -41,7 +41,7 @@ export default class MyComponent {
     }
 
     /**
-     * Returns the element `<h1 class="cmp-my-component__title">...</h1>`
+     * Returns the el `<h1 class="cmp-my-component__title">...</h1>`
      *
      * The the single title for the component.
      *
@@ -54,7 +54,7 @@ export default class MyComponent {
     }
 
     /**
-     * Returns the element `<section class="cmp-my-component__holiday cmp-my-component__holiday--halloween">...</section>`
+     * Returns the el `<section class="cmp-my-component__holiday cmp-my-component__holiday--halloween">...</section>`
      *
      * Typically getters returning specific sub-sections are private methods, as the elements of interest are require
      * further selection, and will have their own get methods (as seen below for the buttons);.
@@ -67,7 +67,7 @@ export default class MyComponent {
     }
 
     /**
-     * Returns the element `<section class="cmp-my-component__holiday cmp-my-component__holiday--thanksgiving">...</section>`
+     * Returns the el `<section class="cmp-my-component__holiday cmp-my-component__holiday--thanksgiving">...</section>`
      *
      * Typically getters returning specific sub-sections are private methods, as the elements of interest are require
      * further selection, and will have their own get methods (as seen below for the buttons);.
@@ -80,7 +80,7 @@ export default class MyComponent {
     }
 
     /**
-     * Returns the element `<button class="cmp-my_component__button">I like Halloween!</button>`
+     * Returns the el `<button class="cmp-my_component__button">I like Halloween!</button>`
      * @returns {*}
      */
     get halloweenButton() {
@@ -88,7 +88,7 @@ export default class MyComponent {
     }
 
     /**
-     * Returns the element `<button class="cmp-my_component__button">I like Thanksgiving!</button>`
+     * Returns the el `<button class="cmp-my_component__button">I like Thanksgiving!</button>`
      *
      * @returns {*}
      */

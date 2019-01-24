@@ -25,7 +25,7 @@
     <parent>
         <groupId>com.adobe.aem.commons</groupId>
         <artifactId>assetshare</artifactId>
-        <version>1.6.9-SNAPSHOT</version>
+        <version>1.6.13-SNAPSHOT</version>
     </parent>
 
     <!-- ====================================================================== -->
@@ -34,7 +34,7 @@
 
     <artifactId>assetshare.ui.tests</artifactId>
     <name>Asset Share Commons UI.Tests</name>
-    <description>Asset Share Commons Integrations Testing project.</description>
+    <description>Asset Share Commons UI Integrations Testing project.</description>
 
     <scm>
         <developerConnection>scm:git:git@github.com:Adobe-Marketing-Cloud/asset-share-commons.git</developerConnection>
@@ -42,7 +42,7 @@
     </scm>
 
     <properties>
-        <node.version>v8.10.0</node.version>
+        <node.version>v8.10.0</node.version >
         <npm.version>6.4.0</npm.version>
         <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
         <wdio.config>./test/config/wdio.localhost.macos.publish.conf.js</wdio.config>

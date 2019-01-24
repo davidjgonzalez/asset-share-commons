@@ -23,7 +23,7 @@
     <jcr:content
             cq:template="/conf/asset-share-commons/test/settings/wcm/templates/search-template"
             jcr:primaryType="cq:PageContent"
-            jcr:title="Filter Toggle Component"
+            jcr:title="Layout Toggle Component"
             sling:resourceType="asset-share-commons/components/structure/search-page">
         <root
                 jcr:primaryType="nt:unstructured"
@@ -36,27 +36,38 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
 
-                    <filter_toggle--hide-labels
-                            uiTestId="filter-toggle--hide-labels"
+                    <search-bar--with-placeholder-text
+                            uiTestId="search-bar--with-placeholder-text"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/filter-toggle"
-                            hideLabels="{Boolean}true"
-                            applyFilterLabel="No Apply"
-                            resetFilterLabel="No Reset"/>
+                            sling:resourceType="asset-share-commons/components/search/search-bar"
+                            placeholder="What are you looking for?"
+                            type="text">
+                    </search-bar--with-placeholder-text>
 
-                    <filter_toggle--with-labels
-                            uiTestId="filter-toggle--with-labels"
+                    <search-bar--without-placeholder-text
+                            uiTestId="search-bar--without-placeholder-text"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/filter-toggle"
-                            applyFilterLabel="Apply"
-                            resetFilterLabel="Reset"/>
+                            sling:resourceType="asset-share-commons/components/search/search-bar"
+                            buttonLabel="Search"
+                            type="text">
+                    </search-bar--without-placeholder-text>
 
-                    <filter_toggle--hide-apply-toggle
-                            uiTestId="filter-toggle--hide-apply-toggle"
+
+                    <search-bar--with-button-label
+                            uiTestId="search-bar--with-button-label"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="asset-share-commons/components/search/filter-toggle"
-                            hideApplyFilterToggle="{Boolean}true"
-                            resetFilterLabel="Only Reset"/>
+                            sling:resourceType="asset-share-commons/components/search/search-bar"
+                            buttonLabel="Search"
+                            type="text">
+                    </search-bar--with-button-label>
+
+                    <search-bar--hide-button
+                            uiTestId="search-bar--hide-button"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="asset-share-commons/components/search/search-bar"
+                            hideButton="{Boolean}true"
+                            type="text">
+                    </search-bar--hide-button>
 
                 </responsivegrid>
             </rail>

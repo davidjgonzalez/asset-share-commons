@@ -24,15 +24,16 @@
 <div class="ui basic segment">
     <div class="ui column grid"
          data-sly-test.showApplyFilterToggle="${!properties['hideApplyFilterToggle']}">
-        <div class="eight wide column"
+        <div class="eight wide column cmp-search-filter-toggle__toggle--apply"
              data-sly-call="${togglesTemplate.apply @ label = properties['applyFilterLabel'], hideLabels = hideLabels, pagePredicate = pagePredicate}">
         </div>
 
-        <div class="eight wide column"
+        <div class="eight wide column cmp-search-filter-toggle__toggle--reset"
             data-sly-call="${togglesTemplate.reset @ label = properties['resetFilterLabel'], hideLabels = hideLabels, currentPage = currentPage}">
         </div>
     </div>
-    <div data-sly-test="${!showApplyFilterToggle}"
-         data-sly-call="${togglesTemplate.reset @ label = properties['resetFilterLabel'], hideLabels = hideLabels, currentPage = currentPage}">
+    <div class="cmp-search-filter-toggle__toggle--reset"
+            data-sly-test="${!showApplyFilterToggle}"
+            data-sly-call="${togglesTemplate.reset @ label = properties['resetFilterLabel'], hideLabels = hideLabels, currentPage = currentPage}">
     </div>
 </div>

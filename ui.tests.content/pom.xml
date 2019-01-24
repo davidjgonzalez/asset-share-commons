@@ -82,7 +82,7 @@
 				<configuration>
 					<name>asset-share-commons.ui.content.tests</name>
 					<group>asset-share-commons</group>
-					<finalName>asset-share-commons.ui.content.tests-${project.version}</finalName>
+					<finalName>asset-share-commons.ui.tests.content-${project.version}</finalName>
 					<filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
 					<properties>
 						<!-- Always overwrite w/ test content -->
