@@ -24,9 +24,7 @@ import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditionDispatc
 import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditionParameters;
 import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditions;
 import com.adobe.aem.commons.assetshare.content.renditions.impl.AssetRenditionServlet;
-import com.day.cq.dam.api.Asset;
-import com.day.cq.dam.commons.util.DamUtil;
-import org.apache.commons.httpclient.HttpMethod;
+import com.adobe.aem.commons.assetshare.util.ServletHelper;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,18 +37,13 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.scripting.SlingBindings;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.models.factory.ModelFactory;
-import org.apache.sling.scripting.core.ScriptHelper;
-import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.script.SimpleBindings;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.ByteArrayOutputStream;
@@ -60,8 +53,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import static org.apache.sling.api.scripting.SlingBindings.*;
 
 
 @Component(
@@ -77,6 +68,9 @@ public class DownloadServlet extends SlingSafeMethodsServlet {
     private static final Logger log = LoggerFactory.getLogger(DownloadServlet.class);
 
     @Reference
+    private ServletHelper servletHelper;
+
+    @Reference
     private HttpClientBuilderFactory clientBuilderFactory;
 
     @Reference
@@ -85,11 +79,9 @@ public class DownloadServlet extends SlingSafeMethodsServlet {
     @Reference
     private AssetRenditions assetRenditions;
 
-    private BundleContext bundleContext;
-
     @Override
     protected final void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        addSlingBindings(request, response);
+        servletHelper.addSlingBindings(request, response);
 
         List<String> renditionNames = Arrays.asList("web", "original", "ext");
         List<String> assetPaths = Arrays.asList("/content/dam/asset-share-commons/en/public/pictures/adam-birkett-191377.jpg",
@@ -259,27 +251,5 @@ public class DownloadServlet extends SlingSafeMethodsServlet {
                 .setConnectionRequestTimeout(timeoutInMilliSeconds)
                 .build();
         return clientBuilderFactory.newBuilder().setDefaultRequestConfig(requestConfig).build();
-    }
-
-
-    private void addSlingBindings(final SlingHttpServletRequest request, final SlingHttpServletResponse response) {
-        final SimpleBindings bindings = new SimpleBindings();
-
-        final ScriptHelper scriptHelper = new ScriptHelper(bundleContext, null, request, response);
-        bindings.put(SLING, scriptHelper);
-        bindings.put(RESPONSE, response);
-        bindings.put(REQUEST, request);
-        bindings.put(RESOURCE, request.getResource());
-        bindings.put(RESOLVER, request.getResourceResolver());
-
-        final SlingBindings slingBindings = new SlingBindings();
-        slingBindings.putAll(bindings);
-
-        request.setAttribute(SlingBindings.class.getName(), slingBindings);
-    }
-
-    @Activate
-    protected void activate(final BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
     }
 }

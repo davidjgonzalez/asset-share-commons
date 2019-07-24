@@ -22,6 +22,7 @@ package com.adobe.aem.commons.assetshare.content.renditions.impl;
 import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditionDispatcher;
 import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditionParameters;
 import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditions;
+import com.adobe.aem.commons.assetshare.util.ServletHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -68,12 +69,17 @@ public class AssetRenditionServlet extends SlingSafeMethodsServlet {
     public static final String SERVLET_EXTENSION = "renditions";
 
     @Reference
+    private ServletHelper servletHelper;
+
+    @Reference
     private AssetRenditions assetRenditions;
 
     private Set allowedParameters = new HashSet();
 
     public final void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException, ServletException {
         try {
+            servletHelper.addSlingBindings(request, response);
+
             final AssetRenditionParameters parameters = new AssetRenditionParameters(request);
 
             if (acceptsAssetRenditionParameters(parameters)) {
