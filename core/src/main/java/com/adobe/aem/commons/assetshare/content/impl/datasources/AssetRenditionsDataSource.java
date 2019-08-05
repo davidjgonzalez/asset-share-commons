@@ -148,20 +148,20 @@ public class AssetRenditionsDataSource extends SlingSafeMethodsServlet {
     public @interface Cfg {
 
         @AttributeDefinition(
-                name = "Exclude AssetRenditionDispatchers (by name)",
+                name = "Exclude AssetRenditionDispatchers (by file_name)",
                 description = "Exclude the listed AssetRenditionDispatcher's from populating this data source."
         )
         String[] exclude_assetrenditiondispatcher_names() default {};
 
         @AttributeDefinition(
-                name = "Exclude Asset Renditions (by name)",
+                name = "Exclude Asset Renditions (by file_name)",
                 description = "Exclude the listed Rendition Names's from populating this data source. (This is agnostic to which AssetRenditionDispatcher defined them)."
         )
         String[] exclude_assetrendition_names() default {"card", "list"};
 
         @AttributeDefinition(
                 name = "Display AssetRenditionDispatcher names in labels",
-                description = "Select to include the AssetRenditionDispatcher's name in the DataSource's labels. Adds in formatAssetRendition name (AssetRenditionDispatcher label)"
+                description = "Select to include the AssetRenditionDispatcher's file_name in the DataSource's labels. Adds in formatAssetRendition file_name (AssetRenditionDispatcher label)"
         )
         boolean add_assetrenditiondispatcher_to_label() default false;
     }

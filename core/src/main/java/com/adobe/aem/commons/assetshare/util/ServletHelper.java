@@ -25,5 +25,10 @@ import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
 public interface ServletHelper {
+    /**
+     * Adds SlingBindings to the SlingHttpServletRequest object so it can be used to create Sling Models.
+     * @param request the SlingHttpServletRequest object to add the SlingBindings to
+     * @param response the SlingHttpResponse object to create the SlingScriptHelper
+     */
     void addSlingBindings(final SlingHttpServletRequest request, final SlingHttpServletResponse response);
 }

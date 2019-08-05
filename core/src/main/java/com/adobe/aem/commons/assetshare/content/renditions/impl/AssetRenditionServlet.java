@@ -124,9 +124,9 @@ public class AssetRenditionServlet extends SlingSafeMethodsServlet {
 
     protected void setResponseHeaders(final SlingHttpServletResponse response, final AssetRenditionParameters parameters) {
         if (parameters.isDownload()) {
-            response.setHeader("Content-Disposition", String.format("attachment; filename=%s", parameters.getFileName()));
+            response.setHeader("Content-Disposition", String.format("attachment; file_name=%s", parameters.getFileName()));
         } else {
-            response.setHeader("Content-Disposition", String.format("filename=%s", parameters.getFileName()));
+            response.setHeader("Content-Disposition", String.format("file_name=%s", parameters.getFileName()));
         }
     }
 

@@ -113,7 +113,7 @@ public class AssetRenditionServletTest {
 
         new AssetRenditionServlet().setResponseHeaders(ctx.response(), params);
 
-        assertEquals("filename=test.testing.png", ctx.response().getHeader("Content-Disposition"));
+        assertEquals("file_name=test.testing.png", ctx.response().getHeader("Content-Disposition"));
     }
 
     @Test
@@ -126,6 +126,6 @@ public class AssetRenditionServletTest {
 
         new AssetRenditionServlet().setResponseHeaders(ctx.response(), params);
 
-        assertEquals("attachment; filename=test.testing.png", ctx.response().getHeader("Content-Disposition"));
+        assertEquals("attachment; file_name=test.testing.png", ctx.response().getHeader("Content-Disposition"));
     }
 }

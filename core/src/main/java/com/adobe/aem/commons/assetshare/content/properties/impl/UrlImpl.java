@@ -51,7 +51,7 @@ public class UrlImpl extends AbstractComputedProperty<String> {
     public static final String NAME = "url";
     private Cfg cfg;
 
-    @Reference(target = "(component.name=com.adobe.aem.commons.assetshare.content.properties.impl.PathImpl)")
+    @Reference(target = "(component.file_name=com.adobe.aem.commons.assetshare.content.properties.impl.PathImpl)")
     ComputedProperty<String> pathComputedProperty;
 
     @Override

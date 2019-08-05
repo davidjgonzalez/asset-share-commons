@@ -49,12 +49,12 @@ public interface AssetModel {
     public String getAssetId();
 
     /**
-     * @return the node name of the Asset. This is typically the file name as well.
+     * @return the node file_name of the Asset. This is typically the file file_name as well.
      */
     public String getName();
 
     /**
-     * @return the title of the Asset. This invokes the "title" Computed Property. Default behavior returns the first entry of the dc:title, and if that is null the asset's node name.
+     * @return the title of the Asset. This invokes the "title" Computed Property. Default behavior returns the first entry of the dc:title, and if that is null the asset's node file_name.
      */
     public String getTitle();
 

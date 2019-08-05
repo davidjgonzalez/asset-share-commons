@@ -46,8 +46,8 @@ public final class PredicateUtil {
     /**
      *
      * @param request the request object.
-     * @param parameterName The request query parameter name.
-     * @return a String representation of the query parameter parameterName. If no request parameter can be found with that name, the empty string is returned.
+     * @param parameterName The request query parameter file_name.
+     * @return a String representation of the query parameter parameterName. If no request parameter can be found with that file_name, the empty string is returned.
      */
     public static String getParamFromQueryParams(final SlingHttpServletRequest request, final String parameterName) {
         final RequestParameter requestParameter = request.getRequestParameter(parameterName);
@@ -110,7 +110,7 @@ public final class PredicateUtil {
      *
      * @param request the request.
      * @param predicate the predicate.
-     * @param predicateValueName the predicate value name.
+     * @param predicateValueName the predicate value file_name.
      * @return a map of the initial values.
      */
     public static String getInitialValue(SlingHttpServletRequest request, Predicate predicate, String predicateValueName) {
@@ -132,7 +132,7 @@ public final class PredicateUtil {
      *
      * @param request the request.
      * @param predicate the predicate.
-     * @param predicateValueName the predicate value name.
+     * @param predicateValueName the predicate value file_name.
      * @return a map of the initial values.
      */
     public static ValueMap getInitialValues(SlingHttpServletRequest request, Predicate predicate, String predicateValueName) {
@@ -165,7 +165,7 @@ public final class PredicateUtil {
      * This is helpful to find out what/which parameters are already present in a parameter map.
      *
      * @param queryBuilderParams the params to search through.
-     * @param predicateName the predicate name to find.
+     * @param predicateName the predicate file_name to find.
      * @param predicateValueName the predicateName's predicate value to find. If null, it is set to the predicateName.
      * @return a map that contains the QueryBuilder params (keys and values) that match the predicateName/predicateValueName param pair.
      */

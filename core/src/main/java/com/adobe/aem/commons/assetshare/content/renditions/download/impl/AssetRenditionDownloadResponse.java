@@ -17,10 +17,10 @@
  *
  */
 
-package com.adobe.aem.commons.assetshare.content.download.impl;
+package com.adobe.aem.commons.assetshare.content.renditions.download.impl;
 
 import com.adobe.acs.commons.util.BufferedSlingHttpServletResponse;
-import com.adobe.aem.commons.assetshare.util.UrlUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,12 +30,9 @@ import java.io.StringWriter;
 public class AssetRenditionDownloadResponse extends BufferedSlingHttpServletResponse {
     private String redirectLocation = null;
     private ByteArrayOutputStream baos;
-    private int statusCode;
+    private int statusCode = SC_OK;
     private boolean redirect = false;
-
-    public AssetRenditionDownloadResponse(SlingHttpServletResponse wrappedResponse) {
-        super(wrappedResponse);
-    }
+    private String contentType;
 
     public AssetRenditionDownloadResponse(SlingHttpServletResponse wrappedResponse, StringWriter writer, ByteArrayOutputStream outputStream) {
         super(wrappedResponse, writer, outputStream);
@@ -69,6 +66,8 @@ public class AssetRenditionDownloadResponse extends BufferedSlingHttpServletResp
     public void setHeader(String key, String value) {
         if ("Location".equals(key)) {
             redirectLocation = value;
+        } else if ("Content-Type".equals(key)) {
+            contentType = value;
         }
         // Else ignore
     }
@@ -82,6 +81,14 @@ public class AssetRenditionDownloadResponse extends BufferedSlingHttpServletResp
         return this.baos;
     }
 
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    @Override
+    public String getContentType() {
+        return StringUtils.defaultIfEmpty(contentType, super.getContentType());
+    }
 }
 
 

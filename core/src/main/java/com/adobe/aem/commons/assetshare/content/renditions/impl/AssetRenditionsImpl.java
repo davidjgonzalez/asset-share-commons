@@ -108,7 +108,7 @@ public class AssetRenditionsImpl implements AssetRenditions {
     public String evaluateExpression(final SlingHttpServletRequest request, String expression) {
         final AssetModel assetModel = modelFactory.getModelFromWrappedRequest(request, request.getResource(), AssetModel.class);
 
-        // Even though, the name is .path, we use url since this is the URL escaped version of the path
+        // Even though, the file_name is .path, we use url since this is the URL escaped version of the path
         final String assetPath = assetModel.getPath();
         final String assetUrl = assetModel.getUrl();
         final String assetName = assetModel.getName();

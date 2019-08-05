@@ -17,7 +17,7 @@
  *
  */
 
-package com.adobe.aem.commons.assetshare.content.download.impl;
+package com.adobe.aem.commons.assetshare.content.renditions.download.impl;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;

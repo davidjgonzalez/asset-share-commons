@@ -112,7 +112,7 @@ public class HiddenPredicateImpl extends AbstractPredicate implements HiddenPred
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Hidden predicates have no name");
+        throw new UnsupportedOperationException("Hidden predicates have no file_name");
     }
 
 

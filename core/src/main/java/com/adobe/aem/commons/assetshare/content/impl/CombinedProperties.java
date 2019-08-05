@@ -228,11 +228,11 @@ public final class CombinedProperties implements Map<String, Object> {
     }
 
     /**
-     * Internal class that parses and collects the Computed Property "key" into the ComputedProperty name (used to select the ComputedProperty) and optional Parameters.
+     * Internal class that parses and collects the Computed Property "key" into the ComputedProperty file_name (used to select the ComputedProperty) and optional Parameters.
      * <br>
      * The Key is inspired by query parameter format:
      * <br>
-     * &lt;computed-property-name&gt;?&lt;param1-key&gt;=&lt;param1-value&gt;&&lt;param2-key&gt;=&lt;param2-value&gt;
+     * &lt;computed-property-file_name&gt;?&lt;param1-key&gt;=&lt;param1-value&gt;&&lt;param2-key&gt;=&lt;param2-value&gt;
      */
     protected static class ComputedPropertyParameter {
         private final String name;
@@ -258,7 +258,7 @@ public final class CombinedProperties implements Map<String, Object> {
         /**
          * This is in the following format:
          * <br>
-         * &lt;computed-property-name&gt;?&lt;param1-key&gt;=&lt;param1-value&gt;&&lt;param2-key&gt;=&lt;param2-value&gt;
+         * &lt;computed-property-file_name&gt;?&lt;param1-key&gt;=&lt;param1-value&gt;&&lt;param2-key&gt;=&lt;param2-value&gt;
          * <br>
          * With the parameters alphabetized by key (a-z).. This is used to allow parameterized calls to ComputedProperties to be cached as long as the parameters are the same.
          *

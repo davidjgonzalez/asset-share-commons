@@ -44,7 +44,7 @@ public interface FastProperties {
     /**
      * Checks if the /oak:index/damAssetLucene index (or whatever may be overridden via FastPropertiesImpl OSGi Config) has a indexRule property config with the a property named indexConfigFlagPropertyName set to true.
      * If it does, this propertyName (ie. jcr:content/metadata/dc:title) is added to the return list.
-     * @param indexConfigFlagPropertyName the oak index property name that acts as the true/false flag to check.
+     * @param indexConfigFlagPropertyName the oak index property file_name that acts as the true/false flag to check.
      * @return a list of property paths as who are configured with @{param indexConfigFlagPropertyName} set to `true`
      */
     List<String> getFastProperties(String indexConfigFlagPropertyName);

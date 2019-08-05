@@ -67,12 +67,12 @@ public final class AssetRenditionParameters {
         } else if (segments.length < 2) {
             throw new IllegalArgumentException(String.format("Request must at least 2 suffix segments, found [ %d ]", segments.length));
         } else if (StringUtils.isBlank(renditionName)) {
-            throw new IllegalArgumentException(String.format("Request does not have a rendition name in the first suffix segment"));
+            throw new IllegalArgumentException(String.format("Request does not have a rendition file_name in the first suffix segment"));
         } else if (!CACHE_FILENAME.equals(PathInfoUtil.getLastSuffixSegment(request))) {
             throw new IllegalArgumentException(String.format("Request's last suffix segment must be [ %s ]", CACHE_FILENAME));
         }
 
-        // Build the download filename (for Content-Disposition) from the asset node name and rendition name.
+        // Build the download file_name (for Content-Disposition) from the asset node file_name and rendition file_name.
         this.fileName = buildFileName(asset, renditionName);
 
         // Other parameters are any optional parameters

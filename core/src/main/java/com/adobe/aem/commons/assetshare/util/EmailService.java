@@ -30,7 +30,7 @@ import java.util.Map;
  * A service interface for sending a generic template based Email Notification.
  *
  * The mailType is set to HTMLEmail by default if there are any attachments. Since we are using
- * the template to determine the mailType, the template name has to be *.html.
+ * the template to determine the mailType, the template file_name has to be *.html.
  *
  * Here is an example to send an email with attachments:
  *
@@ -98,7 +98,7 @@ public interface EmailService {
      *
      * @param templatePath Absolute path of the template used to send the email.
      * @param emailParams Replacement variable map to be injected in the template
-     * @param attachments attachments map with file name
+     * @param attachments attachments map with file file_name
      * @param recipients recipient email addresses
      * @return failureList containing list recipient's String addresses for which email sent failed
      */
@@ -110,7 +110,7 @@ public interface EmailService {
      *
      * @param templatePath Absolute path of the template used to send the email.
      * @param emailParams Replacement variable map to be injected in the template
-     * @param attachments attachments map with file name
+     * @param attachments attachments map with file file_name
      * @param recipients recipient email addresses
      * @return failureList containing list recipient's String addresses for which email sent failed
      */

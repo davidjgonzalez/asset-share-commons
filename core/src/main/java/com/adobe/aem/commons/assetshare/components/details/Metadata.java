@@ -54,7 +54,7 @@ public interface Metadata extends EmptyTextComponent {
 
     /***
      *
-     * @return String representing the raw metadata property name.
+     * @return String representing the raw metadata property file_name.
      */
     String getPropertyName();
 

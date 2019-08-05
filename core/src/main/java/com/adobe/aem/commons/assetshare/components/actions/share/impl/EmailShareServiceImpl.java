@@ -226,7 +226,7 @@ public class EmailShareServiceImpl implements ShareService {
               return StringUtils.trimToNull(userProperties.getDisplayName());
             }
             catch (RepositoryException ex) {
-              throw new ShareException("Could not obtain user display name for '" + userProperties.getAuthorizableID() + "'", ex);
+              throw new ShareException("Could not obtain user display file_name for '" + userProperties.getAuthorizableID() + "'", ex);
             }
         }
 

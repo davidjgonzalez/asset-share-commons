@@ -33,11 +33,11 @@ import java.util.Map;
 public interface AssetRenditions {
     String VAR_ASSET_PATH = "${asset.path}";
     String VAR_ASSET_URL = "${asset.url}";
-    String VAR_ASSET_NAME = "${asset.name}";
+    String VAR_ASSET_NAME = "${asset.file_name}";
     String VAR_ASSET_EXTENSION = "${asset.extension}";
-    String VAR_RENDITION_NAME = "${rendition.name}";
+    String VAR_RENDITION_NAME = "${rendition.file_name}";
 
-    String VAR_DM_NAME = "${dm.name}"; // dam:scene7Name
+    String VAR_DM_NAME = "${dm.file_name}"; // dam:scene7Name
     String VAR_DM_ID = "${dm.id}"; // dam:scene7ID
     String VAR_DM_FILE = "${dm.file}"; // dam:scene7File
     String VAR_DM_FOLDER= "${dm.folder}"; // dam:scene7Folder

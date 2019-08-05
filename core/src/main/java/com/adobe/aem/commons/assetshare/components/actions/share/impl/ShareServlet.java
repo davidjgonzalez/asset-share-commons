@@ -52,7 +52,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ShareServlet extends SlingAllMethodsServlet {
     private static final Logger log = LoggerFactory.getLogger(ShareServlet.class);
 
-    @Reference(target = "(component.name=com.adobe.aem.commons.assetshare.components.actions.share.impl.EmailShareServiceImpl)")
+    @Reference(target = "(component.file_name=com.adobe.aem.commons.assetshare.components.actions.share.impl.EmailShareServiceImpl)")
     private ShareService defaultShareService;
 
     @Reference(policyOption = ReferencePolicyOption.GREEDY)

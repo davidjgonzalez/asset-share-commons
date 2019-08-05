@@ -71,7 +71,7 @@ public class ImageImplTest {
     @Test
     public void getSrc_WithFallback() {
         final String expected = "/content/dam/fallback.png";
-        ctx.currentResource("/content/no-rendition-name");
+        ctx.currentResource("/content/no-rendition-file_name");
         final Image image = ctx.request().adaptTo(Image.class);
 
         assertEquals(expected, image.getSrc());
@@ -112,7 +112,7 @@ public class ImageImplTest {
 
     @Test
     public void isEmpty_NoRenditionName() {
-        ctx.currentResource("/content/no-rendition-name");
+        ctx.currentResource("/content/no-rendition-file_name");
         final Image image = ctx.request().adaptTo(Image.class);
         assertFalse(image.isEmpty());
     }
@@ -140,7 +140,7 @@ public class ImageImplTest {
 
     @Test
     public void isReady_NoRenditionName() {
-        ctx.currentResource("/content/no-rendition-name");
+        ctx.currentResource("/content/no-rendition-file_name");
         final Image image = ctx.request().adaptTo(Image.class);
         assertTrue(image.isReady());
     }

@@ -175,7 +175,7 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <!-- This property name is important as it ties into the ACS AEM Commons E-mail Service API -->
+                                    <!-- This property file_name is important as it ties into the ACS AEM Commons E-mail Service API -->
                                     <sender-email-address
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -184,7 +184,7 @@
                                             fieldLabel="From E-mail Address"
                                             name="./data/senderEmailAddress"
                                             required="{Boolean}true"/>
-                                    <!-- This property name is important as it ties into the ACS AEM Commons E-mail Service API -->
+                                    <!-- This property file_name is important as it ties into the ACS AEM Commons E-mail Service API -->
                                     <sender-name
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

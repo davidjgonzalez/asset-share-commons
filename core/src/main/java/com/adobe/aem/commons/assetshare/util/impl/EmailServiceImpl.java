@@ -67,7 +67,7 @@ import java.util.Map;
  * A Generic Email service that sends an email to a given list of recipients.
  *
  * The mailType is set to HTMLEmail by default if there are any attachments. Since we are using
- * the template to determine the mailType, the template name has to be *.html.
+ * the template to determine the mailType, the template file_name has to be *.html.
  *
  * Here is an example to send an email with attachments:
  *
