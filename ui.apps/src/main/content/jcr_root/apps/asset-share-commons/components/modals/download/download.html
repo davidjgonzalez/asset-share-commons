@@ -29,8 +29,8 @@
 </style>
 
 <form data-sly-test="${!legacyMode}"
-          method="post"
-          action="/content/dam.assetdownload.zip/${download.zipFileName}.zip"
+          method="get"
+          action="${resource.path}.download.zip"
           target="download"
           data-asset-share-id="download-modal"
           class="ui modal cmp-modal-download--wrapper cmp-modal">
@@ -78,7 +78,7 @@
 
                 <sly data-sly-list.assetRendition="${assetRenditionsGroup.items}">
                     <div class="ui checkbox">
-                        <input type="checkbox" class="hidden" name="???" value="${assetRendition.value}">
+                        <input type="checkbox" class="hidden" name="renditionName" value="${assetRendition.value}">
                         <label>${assetRendition.text}</label>
                     </div>
                     <br/>

@@ -136,8 +136,8 @@ public class AssetRenditionsImplTest {
 
     @Test
     public void evaluateExpression() {
-        final String expression = "${asset.path}.test-selector.${asset.extension}?filename=${asset.name}&rendition=${rendition.name}";
-        final String expected = "/content/dam/test.png.test-selector.png?filename=test.png&rendition=test-rendition";
+        final String expression = "${asset.path}.test-selector.${asset.extension}?file_name=${asset.file_name}&rendition=${rendition.file_name}";
+        final String expected = "/content/dam/test.png.test-selector.png?file_name=test.png&rendition=test-rendition";
 
         final AssetRenditions assetRenditions = ctx.getService(AssetRenditions.class);
 
@@ -152,7 +152,7 @@ public class AssetRenditionsImplTest {
 
     @Test
     public void evaluateExpression_ForDynamicMediaVariables() {
-        final String expression = "${dm.domain}is/image/${dm.file}?folder=${dm.folder}&name=${dm.name}&id=${dm.id}&api=${dm.api-server}";
+        final String expression = "${dm.domain}is/image/${dm.file}?folder=${dm.folder}&file_name=${dm.file_name}&id=${dm.id}&api=${dm.api-server}";
         final String expected = "http://test.scene7.com/is/image/testing/test_1?folder=testing&name=test_1&id=x|1234&api=https://test.api.scene7.com";
 
         final AssetRenditions assetRenditions = ctx.getService(AssetRenditions.class);

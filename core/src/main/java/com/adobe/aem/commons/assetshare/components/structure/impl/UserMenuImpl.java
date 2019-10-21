@@ -93,7 +93,7 @@ public class UserMenuImpl implements UserMenu {
             try {
                 return currentUser.getDisplayName();
             } catch (RepositoryException e) {
-                log.error("Repository Exception while trying to get display name", e);
+                log.error("Repository Exception while trying to get display file_name", e);
             }
         }
 
@@ -111,7 +111,7 @@ public class UserMenuImpl implements UserMenu {
                     return photos.getPath() + PROFILE_PATH_SUFFIX;
                 }
             } catch (RepositoryException e) {
-                log.error("Repository Exception while trying to get profile picture name", e);
+                log.error("Repository Exception while trying to get profile picture file_name", e);
             }
         }
         return null;

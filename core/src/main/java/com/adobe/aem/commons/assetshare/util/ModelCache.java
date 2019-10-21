@@ -15,7 +15,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * call such as
  *     data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
  *
- * Cache-able models are then gotten using the Sling Model’s adapter class name, by passing it as a String to the modelCache object’s get method via the [..] operator, such as:
+ * Cache-able models are then gotten using the Sling Model’s adapter class file_name, by passing it as a String to the modelCache object’s get method via the [..] operator, such as:
  *     data-sly-test.config="${modelCache['com.adobe.aem.commons.assetshare.configuration.Config']}"
  *
  * If in some circumstance a “fresh” (not from cache) instance of a Sling Model is desired, simply use
@@ -53,7 +53,7 @@ public interface ModelCache {
      *
      * When engaging w/ the ModelCache in HTL, data-sly-test.xxx must be used to set the model object to the HTL variable since it is does not follow the usual adaptation model.
      *
-     * @param className the full class name (as a String) of the Sling Model to get from the cache.
+     * @param className the full class file_name (as a String) of the Sling Model to get from the cache.
      * @return the cached sling model.
      */
     Object get(Object className);

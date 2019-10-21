@@ -117,7 +117,7 @@ public class StaticRenditionDispatcherImpl extends AbstractRenditionDispatcherIm
         final Rendition rendition = asset.getRendition(new PatternRenditionPicker(mappings.get(parameters.getRenditionName())));
 
         if (rendition != null) {
-            log.debug("Streaming rendition [ {} ] for resolved rendition name [ {} ]", rendition.getPath(), parameters.getRenditionName());
+            log.debug("Streaming rendition [ {} ] for resolved rendition file_name [ {} ]", rendition.getPath(), parameters.getRenditionName());
 
             response.setHeader("Content-Type", rendition.getMimeType());
             response.setHeader("Content-Length", String.valueOf(rendition.getSize()));
@@ -140,17 +140,17 @@ public class StaticRenditionDispatcherImpl extends AbstractRenditionDispatcherIm
     @ObjectClassDefinition(name = "Asset Share Commons - Rendition Dispatcher - Static Renditions")
     public @interface Cfg {
         @AttributeDefinition
-        String webconsole_configurationFactory_nameHint() default "{name} [ {label} ] @ {service.ranking}";
+        String webconsole_configurationFactory_nameHint() default "{file_name} [ {label} ] @ {service.ranking}";
 
         @AttributeDefinition(
                 name = "Name",
-                description = "The system name of this Rendition Dispatcher. This should be unique across all AssetRenditionDispatcher instances."
+                description = "The system file_name of this Rendition Dispatcher. This should be unique across all AssetRenditionDispatcher instances."
         )
         String name() default "static";
 
         @AttributeDefinition(
                 name = "Label",
-                description = "The human-friendly name of this AssetRenditionDispatcher and may be displayed to authors."
+                description = "The human-friendly file_name of this AssetRenditionDispatcher and may be displayed to authors."
         )
         String label() default "Static Renditions";
 
@@ -194,7 +194,7 @@ public class StaticRenditionDispatcherImpl extends AbstractRenditionDispatcherIm
         /**
          * @param asset the asset whose renditions should be searched.
          *
-         * @return the rendition whose name matches the provided pattern, or null if non match.
+         * @return the rendition whose file_name matches the provided pattern, or null if non match.
          */
         @Override
         public Rendition getRendition(Asset asset) {

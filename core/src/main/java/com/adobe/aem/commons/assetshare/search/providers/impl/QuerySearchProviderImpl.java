@@ -236,11 +236,11 @@ public class QuerySearchProviderImpl implements SearchProvider {
 
             if (!PredicateConverter.GROUP_PARAMETER_PREFIX.equals(predicate.getName()) &&
                     PredicateGroup.TYPE.equals(predicate.getType())) {
-                // True = resets the predicate name, i.e. the group index.
-                // Merge all other and remove their name's to allow QB to automatically group them
+                // True = resets the predicate file_name, i.e. the group index.
+                // Merge all other and remove their file_name's to allow QB to automatically group them
                 merged.add(predicate.clone(true));
             } else {
-                // If NOT a predicate group, OR is the 'p' predicate group, leave name alone.
+                // If NOT a predicate group, OR is the 'p' predicate group, leave file_name alone.
                 merged.add(predicate.clone(false));
             }
         });

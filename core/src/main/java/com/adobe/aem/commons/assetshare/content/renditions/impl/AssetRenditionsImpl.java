@@ -33,7 +33,12 @@ import org.osgi.service.component.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static com.day.cq.dam.scene7.api.constants.Scene7Constants.*;
 
@@ -117,9 +122,9 @@ public class AssetRenditionsImpl implements AssetRenditions {
 
     @Override
     public String evaluateExpression(final SlingHttpServletRequest request, String expression) {
-        final AssetModel assetModel = request.adaptTo(AssetModel.class);
+        final AssetModel assetModel = modelFactory.getModelFromWrappedRequest(request, request.getResource(), AssetModel.class);
 
-        // Even though, the name is .path, we use url since this is the URL escaped version of the path
+        // Even though, the file_name is .path, we use url since this is the URL escaped version of the path
         final String assetPath = assetModel.getPath();
         final String assetUrl = assetModel.getUrl();
         final String assetName = assetModel.getName();
@@ -127,25 +132,31 @@ public class AssetRenditionsImpl implements AssetRenditions {
         final String renditionName = new AssetRenditionParameters(request).getRenditionName();
 
         // Dynamic Media properties
-        final String dmName = assetModel.getProperties().get(PN_S7_NAME, String.class);
-        final String dmId = assetModel.getProperties().get(PN_S7_ASSET_ID, String.class);
-        final String dmFile = assetModel.getProperties().get(PN_S7_FILE, String.class);
-        final String dmFolder = assetModel.getProperties().get(PN_S7_FOLDER, String.class);
-        final String dmDomain = assetModel.getProperties().get(PN_S7_DOMAIN, String.class);
-        final String dmApiServer = assetModel.getProperties().get(PN_S7_API_SERVER, String.class);
+        final String dmName = assetModel.getProperties().get(PN_S7_NAME, StringUtils.EMPTY);
+        final String dmId = assetModel.getProperties().get(PN_S7_ASSET_ID, StringUtils.EMPTY);
+        final String dmFile = assetModel.getProperties().get(PN_S7_FILE, StringUtils.EMPTY);
+        final String dmFolder = assetModel.getProperties().get(PN_S7_FOLDER, StringUtils.EMPTY);
+        final String dmDomain = assetModel.getProperties().get(PN_S7_DOMAIN, StringUtils.EMPTY);
+        final String dmApiServer = assetModel.getProperties().get(PN_S7_API_SERVER, StringUtils.EMPTY);
 
-        expression = StringUtils.replace(expression, VAR_ASSET_PATH, assetPath);
-        expression = StringUtils.replace(expression, VAR_ASSET_URL, assetUrl);
-        expression = StringUtils.replace(expression, VAR_ASSET_NAME, assetName);
-        expression = StringUtils.replace(expression, VAR_ASSET_EXTENSION, assetExtension);
-        expression = StringUtils.replace(expression, VAR_RENDITION_NAME, renditionName);
+        final Map<String, String> variableMap = new HashMap<>();
 
-        expression = StringUtils.replace(expression, VAR_DM_NAME, dmName);
-        expression = StringUtils.replace(expression, VAR_DM_ID, dmId);
-        expression = StringUtils.replace(expression, VAR_DM_FILE, dmFile);
-        expression = StringUtils.replace(expression, VAR_DM_FOLDER, dmFolder);
-        expression = StringUtils.replace(expression, VAR_DM_DOMAIN, dmDomain);
-        expression = StringUtils.replace(expression, VAR_DM_API_SERVER, dmApiServer);
+        variableMap.put(VAR_ASSET_PATH, assetPath);
+        variableMap.put(VAR_ASSET_URL, assetUrl);
+        variableMap.put(VAR_ASSET_NAME, assetName);
+        variableMap.put(VAR_ASSET_EXTENSION, assetExtension);
+        variableMap.put(VAR_RENDITION_NAME, renditionName);
+
+        variableMap.put(VAR_DM_NAME, dmName);
+        variableMap.put(VAR_DM_ID, dmId);
+        variableMap.put(VAR_DM_FILE, dmFile);
+        variableMap.put(VAR_DM_FOLDER, dmFolder);
+        variableMap.put(VAR_DM_DOMAIN, dmDomain);
+        variableMap.put(VAR_DM_API_SERVER, dmApiServer);
+
+        expression = StringUtils.replaceEachRepeatedly(expression,
+                variableMap.keySet().toArray(new String[variableMap.keySet().size()]),
+                variableMap.values().toArray(new String[variableMap.values().size()]));
 
         return expression;
     }

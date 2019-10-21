@@ -39,7 +39,7 @@ public interface Download {
     Collection<AssetModel> getAssets();
 
     /**
-     * @return the name of the zip file that contains the assets (and their renditions) to download.
+     * @return the file_name of the zip file that contains the assets (and their renditions) to download.
      */
     String getZipFileName();
 

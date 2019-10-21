@@ -128,7 +128,7 @@ public class TagsImpl extends AbstractEmptyTextComponent implements Tags {
      * This is necessary since computed properties can be passed in as the {@tagPropertyName} and can return various values.
      * Only List, Set, String[], and String are supported return types. All other returned types will be skipped.
      *
-     * @param tagPropertyName the property name (may be real or computed) from which to gather the tag values.
+     * @param tagPropertyName the property file_name (may be real or computed) from which to gather the tag values.
      * @return a collection of tag values, or an empty collection if none can be found.
      */
     private Collection<String> getTagValuesAsList(final String tagPropertyName) {

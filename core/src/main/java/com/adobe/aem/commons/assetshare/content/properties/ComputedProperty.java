@@ -35,7 +35,7 @@ public interface ComputedProperty<T> {
     /**
      * This return value may NOT have a ?, &amp; or = in it, as this will conflict with parameters.
      *
-     * @return the computed property's name.
+     * @return the computed property's file_name.
      */
     String getName();
 
@@ -64,14 +64,14 @@ public interface ComputedProperty<T> {
     /**
      * @param asset the asset
      * @param request the request object
-     * @param propertyName the computed property name
+     * @param propertyName the computed property file_name
      * @return true if this ComputedProperty should accept the handling of this invocation.
      */
     boolean accepts(Asset asset, SlingHttpServletRequest request, String propertyName);
 
     /**
      * @param asset the asset
-     * @param propertyName the computed property name
+     * @param propertyName the computed property file_name
      * @return true if this ComputedProperty should accept the handling of this invocation.
      */
     boolean accepts(Asset asset, String propertyName);

@@ -26,13 +26,13 @@ import java.util.List;
 /**
  * This OSGi Service exposes the active list of Computed Properties.
  * <p>
- * This service takes into account the Computed Property's service ranking (OSGi Property) and ensures the Computed Property with the highest service ranking (per name) is used.
+ * This service takes into account the Computed Property's service ranking (OSGi Property) and ensures the Computed Property with the highest service ranking (per file_name) is used.
  * By default, service rankings are 0 if not specified. (All the Asset Share Commons provided service rankings are 0);
  */
 @ProviderType
 public interface ComputedProperties {
     /**
-     * @return a list of the highest ranking (OSGi Service Ranking) Computed Properties by name (ComputedProperty.getName()).
+     * @return a list of the highest ranking (OSGi Service Ranking) Computed Properties by file_name (ComputedProperty.getFileName()).
      */
     List<ComputedProperty> getComputedProperties();
 }

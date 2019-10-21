@@ -46,10 +46,10 @@ public class ResolutionImpl extends AbstractComputedProperty<String> {
     public static final String LABEL = "Resolution";
     public static final String NAME = "resolution";
 
-    @Reference(target = "(component.name=com.adobe.aem.commons.assetshare.content.properties.impl.HeightImpl)")
+    @Reference(target = "(component.file_name=com.adobe.aem.commons.assetshare.content.properties.impl.HeightImpl)")
     ComputedProperty<Long> height;
 
-    @Reference(target = "(component.name=com.adobe.aem.commons.assetshare.content.properties.impl.WidthImpl)")
+    @Reference(target = "(component.file_name=com.adobe.aem.commons.assetshare.content.properties.impl.WidthImpl)")
     ComputedProperty<Long> width;
 
     private Cfg cfg;

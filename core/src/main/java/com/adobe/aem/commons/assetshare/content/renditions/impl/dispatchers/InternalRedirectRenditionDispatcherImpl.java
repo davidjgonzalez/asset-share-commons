@@ -53,7 +53,7 @@ import static org.osgi.framework.Constants.SERVICE_RANKING;
 @Component(
         property = {
                 SERVICE_RANKING + ":Integer=" + -10000,
-                "webconsole.configurationFactory.nameHint={name} [ {label} ] @ {service.ranking}"
+                "webconsole.configurationFactory.nameHint={file_name} [ {label} ] @ {service.ranking}"
         }
 )
 @Designate(
@@ -118,7 +118,7 @@ public class InternalRedirectRenditionDispatcherImpl extends AbstractRenditionDi
             final String evaluatedExpression = assetRenditions.evaluateExpression(request, expression);
             final PathInfo pathInfo = new PathInfo(request.getResourceResolver(), evaluatedExpression);
 
-            log.debug("Serving internal redirect rendition [ {} ] for resolved rendition name [ {} ]",
+            log.debug("Serving internal redirect rendition [ {} ] for resolved rendition file_name [ {} ]",
                     evaluatedExpression,
                     parameters.getRenditionName());
 
@@ -146,17 +146,17 @@ public class InternalRedirectRenditionDispatcherImpl extends AbstractRenditionDi
     @ObjectClassDefinition(name = "Asset Share Commons - Rendition Dispatcher - Internal Redirect Renditions")
     public @interface Cfg {
         @AttributeDefinition
-        String webconsole_configurationFactory_nameHint() default "{name} [ {label} ] @ {service.ranking}";
+        String webconsole_configurationFactory_nameHint() default "{file_name} [ {label} ] @ {service.ranking}";
 
         @AttributeDefinition(
                 name = "Name",
-                description = "The system name of this Rendition Dispatcher. This should be unique across all AssetRenditionDispatcher instances."
+                description = "The system file_name of this Rendition Dispatcher. This should be unique across all AssetRenditionDispatcher instances."
         )
         String name() default "internal-redirect";
 
         @AttributeDefinition(
                 name = "Label",
-                description = "The human-friendly name of this AssetRenditionDispatcher and may be displayed to authors."
+                description = "The human-friendly file_name of this AssetRenditionDispatcher and may be displayed to authors."
         )
         String label() default "Internal Redirect Renditions";
 

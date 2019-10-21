@@ -42,14 +42,14 @@ public interface AssetRenditionDispatcher {
     }
 
     /**
-     * @return the friendly name of this Rendition Resolver displayed to Authors.
+     * @return the friendly file_name of this Rendition Resolver displayed to Authors.
      */
     String getLabel();
 
     /**
      * The return value fo this method is used to select the AssetRenditionDispatcher by the AssetRenditionServlet.
      *
-     * @return the system name of this Rendition Resolver. This should be unique across all AssetRenditionResolvers instances.
+     * @return the system file_name of this Rendition Resolver. This should be unique across all AssetRenditionResolvers instances.
      */
     String getName();
 

@@ -51,7 +51,7 @@ import static org.osgi.framework.Constants.SERVICE_RANKING;
 @Component(
         property = {
                 SERVICE_RANKING + ":Integer=" + -10000,
-                "webconsole.configurationFactory.nameHint={name} [ {label} ] @ {service.ranking}"
+                "webconsole.configurationFactory.nameHint={file_name} [ {label} ] @ {service.ranking}"
         }
 )
 @Designate(
@@ -114,7 +114,7 @@ public class ExternalRedirectRenditionDispatcherImpl extends AbstractRenditionDi
         final String evaluatedExpression = assetRenditions.evaluateExpression(request, expression);
 
         if (StringUtils.isNotBlank(evaluatedExpression)) {
-            log.debug("Serving External redirect rendition [ {} ] for resolved rendition name [ {} ]",
+            log.debug("Serving External redirect rendition [ {} ] for resolved rendition file_name [ {} ]",
                     evaluatedExpression,
                     parameters.getRenditionName());
 
@@ -142,17 +142,17 @@ public class ExternalRedirectRenditionDispatcherImpl extends AbstractRenditionDi
     @ObjectClassDefinition(name = "Asset Share Commons - Rendition Dispatcher - External Redirect Renditions")
     public @interface Cfg {
         @AttributeDefinition
-        String webconsole_configurationFactory_nameHint() default "{name} [ {label} ] @ {service.ranking}";
+        String webconsole_configurationFactory_nameHint() default "{file_name} [ {label} ] @ {service.ranking}";
 
         @AttributeDefinition(
                 name = "Name",
-                description = "The system name of this Rendition Dispatcher. This should be unique across all AssetRenditionDispatcher instances."
+                description = "The system file_name of this Rendition Dispatcher. This should be unique across all AssetRenditionDispatcher instances."
         )
         String name() default "external-redirect";
 
         @AttributeDefinition(
                 name = "Label",
-                description = "The human-friendly name of this AssetRenditionDispatcher and may be displayed to authors."
+                description = "The human-friendly file_name of this AssetRenditionDispatcher and may be displayed to authors."
         )
         String label() default "External Redirect Renditions";
 
@@ -180,7 +180,7 @@ public class ExternalRedirectRenditionDispatcherImpl extends AbstractRenditionDi
 
         @AttributeDefinition(
                 name = "Rendition mappings",
-                description = "In the form: <rendition name>" + OSGI_PROPERTY_VALUE_DELIMITER + "<redirect location>"
+                description = "In the form: <rendition file_name>" + OSGI_PROPERTY_VALUE_DELIMITER + "<redirect location>"
         )
         String[] rendition_mappings() default {};
 

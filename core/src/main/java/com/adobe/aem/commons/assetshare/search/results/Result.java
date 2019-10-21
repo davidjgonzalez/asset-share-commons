@@ -40,7 +40,7 @@ public interface Result {
 
     /***
      *
-     * @return String node name of an Asset,
+     * @return String node file_name of an Asset,
      */
     String getName();
 }

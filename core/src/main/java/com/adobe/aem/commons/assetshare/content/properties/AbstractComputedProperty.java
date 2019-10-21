@@ -65,7 +65,7 @@ public abstract class AbstractComputedProperty<T> implements ComputedProperty<T>
     }
 
     public boolean accepts(Asset asset, String propertyName) {
-        // Default acceptance condition; as long as the ComputedProperty's name matches the parameter propertyName this is sufficient.
+        // Default acceptance condition; as long as the ComputedProperty's file_name matches the parameter propertyName this is sufficient.
         // This can be overridden at the non-abstract ComputedProperty level.
         return StringUtils.equals(getName(), propertyName);
     }
