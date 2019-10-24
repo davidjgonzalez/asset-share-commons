@@ -1,0 +1,6 @@
+{
+  "default": {
+    "jcr:primaryType": "nt:unstructured",
+    "downloadFileName": "Test Assets"
+  }
+}

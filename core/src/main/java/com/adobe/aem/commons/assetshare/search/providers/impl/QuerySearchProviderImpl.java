@@ -79,6 +79,7 @@ public class QuerySearchProviderImpl implements SearchProvider {
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     private QuerySearchPostProcessor querySearchPostProcessor;
 
+    @Deprecated
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     private QueryParameterPostProcessor queryParametersPostProcessor;
 

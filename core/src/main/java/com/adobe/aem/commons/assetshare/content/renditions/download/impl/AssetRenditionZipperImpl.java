@@ -100,6 +100,7 @@ public class AssetRenditionZipperImpl implements AssetRenditionPacker {
             for (final String renditionName : renditionNames) {
 
                 AssetRenditionStreamer.AssetRenditionStream stream = null;
+
                 try {
                     stream = assetRenditionStreamer.getAssetRendition(request, response, asset, renditionName);
 
@@ -111,7 +112,7 @@ public class AssetRenditionZipperImpl implements AssetRenditionPacker {
                     try {
                         addAssetRenditionAsZipEntry(folderName, zipEntryName, zipOutputStream, stream.getOutputStream());
                     } catch (IOException e) {
-                        throw new AssetRenditionException("Could not add asset rendition to zip entry", e);
+                        throw new AssetRenditionException("Could not add asset rendition to Zip Entry", e);
                     }
 
                 } catch (AssetRenditionException ex) {
@@ -132,7 +133,7 @@ public class AssetRenditionZipperImpl implements AssetRenditionPacker {
         try {
             zipOutputStream.close();
         } catch (IOException e) {
-            throw new AssetRenditionException("Unable to close ZIP Output Stream", e);
+            throw new AssetRenditionException("Unable to close ZIP output stream", e);
         }
 
         return zipBaos;
@@ -140,14 +141,12 @@ public class AssetRenditionZipperImpl implements AssetRenditionPacker {
 
     private void checkForMaxSize(long size) throws AssetRenditionException {
         if (cfg.max_size() >= 0 && size > cfg.max_size() * BYTES_IN_MB) {
-            throw new AssetRenditionException("Selected assets exceed maximum allows size.");
+            throw new AssetRenditionException("Selected asset renditions exceed maximum allowed size of [ " + cfg.max_size() + " ] MB");
         }
     }
 
     private String getZipEntryName(final AssetModel asset, final String renditionName, final String responseContentType) {
-        log.error(">>>>> " + responseContentType);
         final String extension = mimeTypeService.getExtension(responseContentType);
-        log.error("!!!!!! " + extension);
 
         final Map<String, String> variables = new HashMap<>();
         variables.put(VAR_ASSET_FILE_NAME, asset.getName());
@@ -165,7 +164,6 @@ public class AssetRenditionZipperImpl implements AssetRenditionPacker {
 
     private void addFolderAsZipEntry(final String folderName,
                                              final ZipOutputStream zipOutputStream) throws IOException {
-
         final ZipEntry zipEntry = new ZipEntry(folderName);
         zipOutputStream.putNextEntry(zipEntry);
     }
@@ -191,7 +189,7 @@ public class AssetRenditionZipperImpl implements AssetRenditionPacker {
     @ObjectClassDefinition(name = "Asset Share Commons - Asset Rendition Zipper")
     public @interface Cfg {
         @AttributeDefinition
-        String webconsole_configurationFactory_nameHint() default "{zip_filename_expression} with max size in MB {max.size}";
+        String webconsole_configurationFactory_nameHint() default "{zip_filename_expression} with max size of MB {max.size}";
 
         @AttributeDefinition(
                 name = "Filename of packed asset renditions",

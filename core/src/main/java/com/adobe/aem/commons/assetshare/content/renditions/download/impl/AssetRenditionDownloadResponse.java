@@ -73,6 +73,11 @@ public class AssetRenditionDownloadResponse extends BufferedSlingHttpServletResp
     }
 
     @Override
+    public void sendError(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    @Override
     public void sendError(int statusCode, String msg) {
         this.statusCode = statusCode;
     }

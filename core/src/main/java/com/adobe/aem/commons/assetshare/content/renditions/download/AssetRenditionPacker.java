@@ -25,7 +25,6 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.annotation.versioning.ProviderType;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 @ProviderType

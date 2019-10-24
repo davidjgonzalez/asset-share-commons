@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.adobe.aem.commons.assetshare.testhelpers.TestOptionsImpl;
+import com.adobe.aem.commons.assetshare.testing.TestOptionsImpl;
 import com.adobe.cq.wcm.core.components.models.form.Options;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;

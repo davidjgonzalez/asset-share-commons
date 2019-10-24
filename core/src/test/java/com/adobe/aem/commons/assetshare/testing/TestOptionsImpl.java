@@ -1,4 +1,4 @@
-package com.adobe.aem.commons.assetshare.testhelpers;
+package com.adobe.aem.commons.assetshare.testing;
 
 import com.adobe.cq.wcm.core.components.models.form.OptionItem;
 import com.adobe.cq.wcm.core.components.models.form.Options;
