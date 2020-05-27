@@ -1,0 +1,33 @@
+<script>
+    // @TODO: Remove this after user agent stylesheet bug is fixed
+    // https://bugs.chromium.org/p/chromium/issues/detail?id=946975
+    delete Document.prototype.adoptedStyleSheets;
+</script>
+
+<!-- For Adobe Clean font support -->
+<link rel="stylesheet" href="https://use.typekit.net/evk7lzt.css" />
+
+<!-- Use this to test Adobe Clean UX support (SpectrumCSS dependency) -->
+<!-- NOTE: you'll need to rebuild storybook to test this locally.
+    <link rel="stylesheet" href="https://use.typekit.net/yfg6hha.css" />
+    -->
+
+<style>
+    body {
+    }
+    
+    /* @TODO: Implement more default storybook styling here using spectrum theme variables */
+    #root-theme {
+        display: block;
+        padding: 8px;
+        box-sizing: border-box;
+        width: 100vw;
+        min-height: 100vh;
+        background-color: var(--spectrum-global-color-gray-100);
+    }
+</style>
+
+<script>
+    document.getElementsByTagName("html")[0].setAttribute("class", "spectrum spectrum--medium spectrum--light");
+</script>
+

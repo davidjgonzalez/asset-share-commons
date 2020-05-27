@@ -1,0 +1,33 @@
+{
+    "version": 2,
+    "tags": [
+      {
+        "name": "details-action-buttons",
+        "description": "test...",
+        "properties": [
+          {
+            "name": "hideLabel",
+            "type": "Boolean",
+            "attribute": "hideLabel",
+            "description": "",
+            "default": true
+          },
+          {
+            "name": "label",
+            "type": "String",
+            "attribute": "label",
+            "description": "",
+            "default": ""
+          },
+          {
+            "name": "backSide",
+            "type": "Boolean",
+            "attribute": "back-side",
+            "reflect": true,
+            "description": "Indicates that the back of the card is shown",
+            "default": false
+          }
+        ]
+      }
+    ]
+  }
