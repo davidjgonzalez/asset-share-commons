@@ -1,26 +1,38 @@
 import { LitElement, html, property, customElement } from 'lit-element';
-import {Atoms} from '../../commons/Atoms';
 
 @customElement('details-action-buttons')
 export class ActionButtons extends LitElement {
-    @property({type : Boolean}) hideLabel = false;
-    @property({type : String}) label = 'Actions';
- 
-    @property({type : Boolean}) hideDownload = false;
-    @property({type : String}) downloadLabel = "";
 
-    @property({type : Boolean}) hideShare = false;
-    @property({type : String}) shareLabel = "";
+    @property({type: String, reflect: true, 
+        converter: { 
+            fromAttribute: (value, type) => { 
+                console.log('fromAttribute');
+                console.log(value);
+                console.log(type);
 
-    @property({type : Boolean}) hideAddToCart = false;
-    @property({type : String}) addToCartLabel = "";
-    
+                return value + '!!!';
+            },
+            toAttribute: (value, type) => { 
+                console.log('toAttribute');
+
+                console.log(value);
+                console.log(type);
+              // `value` is of type `type` 
+              // Convert it to a string and return it
+              return value + '????';
+
+            }
+          }}) myData = '';
+
     render() {
         return html`
-        ${Atoms.renderLabel(this.label, this.hideLabel)}
-        ${this.renderActionButton(this.downloadLabel, this.hideDownload)}
-        ${this.renderActionButton(this.shareLabel, this.hideShare)}
-        ${this.renderActionButton(this.addToCartLabel, this.hideAddToCart)}
+        <div>STR: ${this.myData}</div>
+    `;
+    }
+    
+    _render() {
+        return html`
+      
     `;
     }
 

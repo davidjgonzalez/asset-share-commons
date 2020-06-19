@@ -9,7 +9,7 @@ export const Default = () => `
         label="My Actions"
         downloadLabel="Download"
         shareLabel="Share"
-        addToCartLabel="Add to Cart"/>
+        addToCartLabel="Add to Cart"></details-action-buttons>
 `;
 
 export const NoLabel = () => `
@@ -17,10 +17,14 @@ export const NoLabel = () => `
         hideLabel="false"
         downloadLabel="Download"
         shareLabel="Share"
-        addToCartLabel="Add to Cart"/>
+        addToCartLabel="Add to Cart"></details-action-buttons>
 `;
 
 export const DownloadOnly = () => `
     <details-action-buttons
-        downloadLabel="Download"/>
+        downloadLabel="Download"></details-action-buttons>
 `;
+
+export const Test = () => `
+    <details-action-buttons myData="dooo"></details-action-buttons>
+`;  
