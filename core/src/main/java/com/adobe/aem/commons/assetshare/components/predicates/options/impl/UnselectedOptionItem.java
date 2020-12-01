@@ -17,47 +17,35 @@
  *
  */
 
-package com.adobe.aem.commons.assetshare.components.predicates.impl.options;
+package com.adobe.aem.commons.assetshare.components.predicates.options.impl;
 
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import com.day.cq.tagging.Tag;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
 
-import java.util.Locale;
+public class UnselectedOptionItem implements OptionItem {
 
-public class TagOptionItem implements OptionItem {
-    private Tag tag;
-    private Locale locale;
-    private boolean selected;
+    private OptionItem wrappedOptionItem = null;
 
-    public TagOptionItem(Tag tag, Locale locale, boolean selected) {
-        this.tag = tag;
-        this.locale = locale;
-        this.selected = selected;
+    public UnselectedOptionItem(OptionItem wrappedOptionItem) {
+        this.wrappedOptionItem = wrappedOptionItem;
     }
 
     @Override
     public boolean isSelected() {
-        return selected;
-    }
-
-    @Override
-    public boolean isDisabled() {
         return false;
     }
 
     @Override
+    public boolean isDisabled() {
+        return wrappedOptionItem.isDisabled();
+    }
+
+    @Override
     public String getValue() {
-        if (tag != null) {
-            return tag.getTagID();
-        }
-        return "";
+        return wrappedOptionItem.getValue();
     }
 
     @Override
     public String getText() {
-        if (tag != null) {
-            return tag.getTitle(locale);
-        }
-        return "";
+        return wrappedOptionItem.getText();
     }
 }

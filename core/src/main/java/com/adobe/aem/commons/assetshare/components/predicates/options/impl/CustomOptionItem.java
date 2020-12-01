@@ -17,9 +17,10 @@
  *
  */
 
-package com.adobe.aem.commons.assetshare.components.predicates.impl.options;
+package com.adobe.aem.commons.assetshare.components.predicates.options.impl;
 
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class CustomOptionItem implements OptionItem {
