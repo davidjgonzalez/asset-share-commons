@@ -20,7 +20,8 @@
 package com.adobe.aem.commons.assetshare.util;
 
 import com.adobe.aem.commons.assetshare.components.predicates.Predicate;
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
