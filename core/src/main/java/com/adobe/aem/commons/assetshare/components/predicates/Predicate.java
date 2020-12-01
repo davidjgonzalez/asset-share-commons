@@ -19,13 +19,11 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
-import com.adobe.aem.commons.assetshare.components.Component;
-import com.adobe.cq.wcm.core.components.models.form.Field;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.annotation.versioning.ConsumerType;
 
 @ConsumerType
-public interface Predicate extends Component, Field {
+public interface Predicate {
 
     /**
      * In version 1.x.x of this project, this will always be "asset-share-commons__form-id__1".
