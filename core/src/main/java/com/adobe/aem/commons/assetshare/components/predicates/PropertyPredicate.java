@@ -19,14 +19,16 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import com.adobe.cq.wcm.core.components.models.form.Options;
-import org.osgi.annotation.versioning.ProviderType;
-
 import java.util.List;
 
+import com.adobe.aem.commons.assetshare.components.Component;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
+
+import org.osgi.annotation.versioning.ProviderType;
+
 @ProviderType
-public interface PropertyPredicate extends Predicate {
+public interface PropertyPredicate extends Predicate, Component {
 
     /**
      * @return true of an operation is set.

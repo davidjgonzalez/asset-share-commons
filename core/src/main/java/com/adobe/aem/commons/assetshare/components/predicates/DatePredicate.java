@@ -19,13 +19,17 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import org.osgi.annotation.versioning.ProviderType;
-
 import java.util.List;
 
+import com.adobe.aem.commons.assetshare.components.Component;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+
+import org.osgi.annotation.versioning.ProviderType;
+
 @ProviderType
-public interface DatePredicate extends Predicate {
+public interface DatePredicate extends Predicate, Component {
+
+    String getName();
 
     String getLowerBoundName();
 
@@ -34,6 +38,10 @@ public interface DatePredicate extends Predicate {
     String getInitialLowerBound();
 
     String getInitialUpperBound();
+
+    String getStartPlaceholder();
+
+    String getEndPlaceholder();
 
     List<OptionItem> getItems();
 }

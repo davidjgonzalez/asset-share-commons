@@ -19,9 +19,16 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
-import com.adobe.cq.wcm.core.components.models.form.Text;
+import com.adobe.aem.commons.assetshare.components.Component;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
-public interface FulltextPredicate extends Text {
+public interface FulltextPredicate extends Predicate, Component {
+
+    boolean isHideButton();
+
+    String getPlaceholder();
+
+    String getButtonLabel();
 }

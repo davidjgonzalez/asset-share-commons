@@ -49,8 +49,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.factory.ModelFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -64,7 +62,10 @@ import java.util.Map;
         resourceType = {PagePredicateImpl.RESOURCE_TYPE},
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+)
 public class PagePredicateImpl extends AbstractPredicate implements PagePredicate {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/results";
 
@@ -89,21 +90,10 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
     @OSGiService
     private List<SearchPredicate> searchPredicates;
 
-    @PostConstruct
-    protected void init() {
-        initPredicate(request, null);
-    }
-
     @Override
     public String getName() {
         return PredicateConverter.GROUP_PARAMETER_PREFIX;
     }
-
-    @Override
-    public boolean isReady() {
-        return true;
-    }
-
 
     public String getOrderBy() {
         final String value = PredicateUtil.getParamFromQueryParams(request, Predicate.ORDER_BY);
@@ -336,11 +326,5 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
     @Deprecated
     public Map<String, String> getParams(ParamTypes... excludeParamTypes) {
         return PredicateConverter.createMap(getPredicateGroup(excludeParamTypes));
-    }
-
-    @Nonnull
-    @Override
-    public String getExportedType() {
-        return RESOURCE_TYPE;
     }
 }

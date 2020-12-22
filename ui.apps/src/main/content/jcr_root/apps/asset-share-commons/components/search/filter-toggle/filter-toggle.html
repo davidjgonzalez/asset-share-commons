@@ -18,7 +18,7 @@
 
 <sly data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
      data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
-     data-sly-test.pagePredicate="${modelCache['com.adobe.aem.commons.assetshare.components.predicates.PagePredicate']}"
+     data-sly-set.pagePredicate="${modelCache['com.adobe.aem.commons.assetshare.components.predicates.PagePredicate']}"
      data-sly-use.togglesTemplate="templates/toggles.html"
      data-sly-test.hideLabels="${properties['hideLabels']}"></sly>
 

@@ -19,33 +19,33 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.inject.Named;
+
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.PropertyPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.impl.options.SelectedOptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.impl.options.UnselectedOptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
+import com.adobe.aem.commons.assetshare.components.predicates.options.impl.SelectedOptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.impl.UnselectedOptionItem;
 import com.adobe.aem.commons.assetshare.search.impl.predicateevaluators.PropertyValuesPredicateEvaluator;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
-import org.apache.sling.api.wrappers.ValueMapDecorator;
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import com.adobe.cq.wcm.core.components.models.form.Options;
-import com.day.cq.search.eval.PathPredicateEvaluator;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.*;
+import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Exporter;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Model(
         adaptables = {SlingHttpServletRequest.class},
@@ -54,7 +54,7 @@ import java.util.Map;
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class PropertyPredicateImpl extends AbstractPredicate implements PropertyPredicate, Options {
+public class PropertyPredicateImpl extends AbstractPredicate implements PropertyPredicate {
 
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/property";
     protected static final String PN_TYPE = "type";
@@ -68,7 +68,7 @@ public class PropertyPredicateImpl extends AbstractPredicate implements Property
 
     @Self
     @Required
-    private Options coreOptions;
+    private Options options;
 
     @ValueMapValue
     private String label;
@@ -90,19 +90,12 @@ public class PropertyPredicateImpl extends AbstractPredicate implements Property
     @Default(booleanValues = false)
     private boolean and;
 
-    @PostConstruct
-    protected void init() {
-        initPredicate(request, coreOptions);
-    }
-
-    /* Options - Core Component Delegates */
-
     public List<OptionItem> getItems() {
         final ValueMap initialValues = getInitialValues();
         final List<OptionItem> processedOptionItems = new ArrayList<>();
         final boolean useDefaultSelected = !isParameterizedSearchRequest();
 
-        coreOptions.getItems().stream()
+        options.getItems().stream()
                 .forEach(optionItem -> {
                     if (PredicateUtil.isOptionInInitialValues(optionItem, initialValues)) {
                         processedOptionItems.add(new SelectedOptionItem(optionItem));
@@ -116,8 +109,8 @@ public class PropertyPredicateImpl extends AbstractPredicate implements Property
         return processedOptionItems;
     }
 
-    public Type getType() {
-        return coreOptions.getType();
+    public Options.Type getType() {
+        return options.getType();
     }
 
     /* Property Predicate Specific */
@@ -162,7 +155,7 @@ public class PropertyPredicateImpl extends AbstractPredicate implements Property
 
     @Override
     public boolean isReady() {
-        return coreOptions.getItems().size() > 0;
+        return options.getItems().size() > 0;
     }
 
     @Override

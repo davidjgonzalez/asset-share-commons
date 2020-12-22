@@ -48,7 +48,10 @@ import java.util.*;
         adapters = {HiddenPredicate.class, ComponentExporter.class},
         resourceType = {HiddenPredicateImpl.RESOURCE_TYPE}
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+)
 public class HiddenPredicateImpl extends AbstractPredicate implements HiddenPredicate {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/hidden";
 
@@ -117,41 +120,6 @@ public class HiddenPredicateImpl extends AbstractPredicate implements HiddenPred
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Hidden predicates have no name");
-    }
-
-
-    /** Deprecated Methods **/
-
-    @Override
-    @Deprecated
-    public Map<String, String> getParams(final int groupId) {
-        final Map<String, String> params = new HashMap<>();
-
-        if (resource == null) {
-            return params;
-        }
-
-        final Resource predicates = resource.getChild(NN_PREDICATES);
-
-        if (predicates == null) {
-            return params;
-        }
-
-        final Iterator<Resource> iterator = predicates.listChildren();
-
-        while (iterator.hasNext()) {
-            final Resource predicateResource = iterator.next();
-            final ValueMap predicateProperties = predicateResource.getValueMap();
-
-            final String predicate = predicateProperties.get(PN_PREDICATE, String.class);
-            final String value = predicateProperties.get(PN_VALUE, "");
-
-            if (StringUtils.isNotBlank(predicate)) {
-                params.put(groupId + "_group." + predicate, value);
-            }
-        }
-
-        return params;
     }
 
     @Nonnull

@@ -1,7 +1,7 @@
 /*
  * Asset Share Commons
  *
- * Copyright (C) 2017 Adobe
+ * Copyright (C) 2020 Adobe
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,19 +19,27 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import com.adobe.aem.commons.assetshare.components.Component;
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.DatePredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.impl.options.SelectedOptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
+import com.adobe.aem.commons.assetshare.components.predicates.options.impl.SelectedOptionItem;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
-import org.apache.sling.api.wrappers.ValueMapDecorator;
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import com.adobe.cq.wcm.core.components.models.form.Options;
 import com.day.cq.search.eval.DateRangePredicateEvaluator;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -39,20 +47,17 @@ import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 @Model(
         adaptables = {SlingHttpServletRequest.class},
         adapters = {DatePredicate.class, ComponentExporter.class},
         resourceType = {DatePredicateImpl.RESOURCE_TYPE},
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class DatePredicateImpl extends AbstractPredicate implements DatePredicate {
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, 
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+)
+public class DatePredicateImpl extends AbstractPredicate implements DatePredicate, Component {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/date-range";
 
     private static final String RELATIVE_DATE_RANGE = "relativedaterange";
@@ -64,7 +69,7 @@ public class DatePredicateImpl extends AbstractPredicate implements DatePredicat
 
     @Self
     @Required
-    private Options coreOptions;
+    private Options options;
 
     @ValueMapValue
     private String property;
@@ -75,13 +80,13 @@ public class DatePredicateImpl extends AbstractPredicate implements DatePredicat
     @ValueMapValue(name = PropertyPredicateImpl.PN_TYPE)
     private String typeString;
 
-    private ValueMap valuesFromRequest = null;
+    @ValueMapValue
+    private String startPlaceholder;
 
-    @PostConstruct
-    protected void init() {
-        coreOptions = request.adaptTo(Options.class);
-        initPredicate(request, coreOptions);
-    }
+    @ValueMapValue
+    private String endPlaceholder;
+
+    private ValueMap valuesFromRequest = null;
 
     public String getProperty() {
         return property;
@@ -101,7 +106,7 @@ public class DatePredicateImpl extends AbstractPredicate implements DatePredicat
         final ValueMap initialValues = getInitialValues();
         final List<OptionItem> processedOptionItems = new ArrayList<>();
 
-        for (final OptionItem optionItem : coreOptions.getItems()) {
+        for (final OptionItem optionItem : options.getItems()) {
             if (PredicateUtil.isOptionInInitialValues(optionItem, initialValues)) {
                 processedOptionItems.add(new SelectedOptionItem(optionItem));
             } else {
@@ -140,8 +145,18 @@ public class DatePredicateImpl extends AbstractPredicate implements DatePredicat
     }
 
     @Override
+    public String getStartPlaceholder() {
+        return startPlaceholder;
+    }
+
+    @Override
+    public String getEndPlaceholder() {
+        return endPlaceholder;
+    }
+
+    @Override
     public boolean isReady() {
-        return (RELATIVE_DATE_RANGE.equals(dateType) && coreOptions.getItems().size() > 0) || DATE_RANGE.equals(dateType);
+        return (RELATIVE_DATE_RANGE.equals(dateType) && options.getItems().size() > 0) || DATE_RANGE.equals(dateType);
     }
 
     @Override

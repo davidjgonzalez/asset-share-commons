@@ -19,33 +19,39 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.Nonnull;
+import javax.inject.Named;
+
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.TagsPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.impl.options.TagOptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
+import com.adobe.aem.commons.assetshare.components.predicates.options.Options.Type;
+import com.adobe.aem.commons.assetshare.components.predicates.options.impl.TagOptionItem;
 import com.adobe.aem.commons.assetshare.configuration.Config;
 import com.adobe.aem.commons.assetshare.search.impl.predicateevaluators.PropertyValuesPredicateEvaluator;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
-import org.apache.sling.api.wrappers.ValueMapDecorator;
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import com.adobe.cq.wcm.core.components.models.form.Options;
-import com.adobe.cq.wcm.core.components.models.form.Options.Type;
 import com.day.cq.search.eval.JcrPropertyPredicateEvaluator;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.*;
+import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Exporter;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import java.util.*;
 
 @Model(
         adaptables = {SlingHttpServletRequest.class},
@@ -53,7 +59,10 @@ import java.util.*;
         resourceType = {TagsPredicateImpl.RESOURCE_TYPE},
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+ )
 public class TagsPredicateImpl extends AbstractPredicate implements TagsPredicate {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/tags";
 
@@ -66,7 +75,7 @@ public class TagsPredicateImpl extends AbstractPredicate implements TagsPredicat
 
     @Self
     @Required
-    private Options coreOptions;
+    private Options options;
 
     @ValueMapValue(name = PropertyPredicateImpl.PN_TYPE)
     private String typeString;
@@ -90,13 +99,8 @@ public class TagsPredicateImpl extends AbstractPredicate implements TagsPredicat
     private String valueFromRequest;
     private ValueMap valuesFromRequest;
 
-    @PostConstruct
-    protected void init() {
-        initPredicate(request, coreOptions);
-    }
-
     public Type getType() {
-        return coreOptions.getType();
+        return options.getType();
     }
 
     /* Property Predicate Specific */

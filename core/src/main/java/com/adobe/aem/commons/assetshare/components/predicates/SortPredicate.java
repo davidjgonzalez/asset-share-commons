@@ -19,17 +19,19 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
-import com.adobe.aem.commons.assetshare.components.predicates.impl.options.SortOptionItem;
-import org.osgi.annotation.versioning.ProviderType;
-
 import java.util.List;
 
+import com.adobe.aem.commons.assetshare.components.Component;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+
+import org.osgi.annotation.versioning.ProviderType;
+
 @ProviderType
-public interface SortPredicate extends Predicate {
+public interface SortPredicate extends Predicate, Component {
     /**
      * @return the option items for this predicate.
      */
-    List<SortOptionItem> getItems();
+    List<OptionItem> getItems();
 
     /**
      * @return true if the active sort order is ascending (vs. descending).

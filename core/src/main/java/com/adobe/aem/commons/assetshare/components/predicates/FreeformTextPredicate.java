@@ -4,8 +4,10 @@ import org.osgi.annotation.versioning.ProviderType;
 
 import java.util.List;
 
+import com.adobe.aem.commons.assetshare.components.Component;
+
 @ProviderType
-public interface FreeformTextPredicate extends Predicate {
+public interface FreeformTextPredicate extends Predicate, Component {
     /**
      * @return the predicate title.
      */

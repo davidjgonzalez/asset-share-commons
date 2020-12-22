@@ -20,17 +20,17 @@
 	 data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
 	 data-sly-test.ready="${predicate.isReady}">
 
-	<div class="ui fluid big left icon input ${properties['hideButton'] ? '' : 'action'}">
+	<div class="ui fluid big left icon input ${predicate.hideButton ? '' : 'action'}">
 		<input type="${predicate.type}"
-			   placeholder="${properties['placeholder']}"
+			   placeholder="${predicate.placeholder}"
 			   name="${predicate.name}"
 			   id="${predicate.id}"
 			   value="${predicate.initialValue}"
 			   form="${predicate.formId}"/>
 		<i class="search icon"></i>
-		<button class="ui primary button ${properties['hideButton'] ? 'hidden' : ''}" 
+		<button class="ui primary button ${predicate.hideButton ? 'hidden' : ''}" 
 				form="${predicate.formId}">
-		        ${properties['buttonLabel']}
+		        ${predicate.buttonLabel}
 		</button>
 	</div>
 

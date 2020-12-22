@@ -19,6 +19,8 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
+import com.adobe.aem.commons.assetshare.components.Component;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType

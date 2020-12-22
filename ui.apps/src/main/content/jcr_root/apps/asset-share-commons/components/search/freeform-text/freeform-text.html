@@ -45,8 +45,6 @@
 		   form="${predicate.formId}"
 		   data-asset-share-predicate-id="${predicate.id}"/>
 
-
-
 	<div class="ui form">
 		<div class="ui fluid styled accordion field">
 
@@ -61,7 +59,7 @@
 
 				<div class="field">
                         <textarea type="text"
-                                  placeholder="${properties['placeholder']}"
+                                  placeholder="${predicate.placeholder}"
                                   minlength="${predicate.inputValidationMinLength}"
                                   maxlength="${predicate.inputValidationMaxLength}"
                                   pattern="${predicate.inputValidationPattern}"
@@ -75,7 +73,7 @@
                                   data-sly-test.isTextArea="${predicate.rows > 1}">${predicate.initialValue}</textarea>
 
                         <input type="text"
-                               placeholder="${properties['placeholder']}"
+                               placeholder="${predicate.placeholder}"
                                minlength="${predicate.inputValidationMinLength}"
                                maxlength="${predicate.inputValidationMaxLength}"
                                pattern="${predicate.inputValidationPattern}"

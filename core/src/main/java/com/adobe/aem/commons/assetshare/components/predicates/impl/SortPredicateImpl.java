@@ -19,21 +19,22 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates.impl;
 
-import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.SortPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.impl.options.SortOptionItem;
-import com.adobe.aem.commons.assetshare.components.search.SearchConfig;
-import com.adobe.aem.commons.assetshare.util.PredicateUtil;
-import com.adobe.cq.export.json.ComponentExporter;
-import com.adobe.cq.export.json.ExporterConstants;
-import com.adobe.cq.wcm.core.components.models.form.Options;
-import com.day.cq.search.Predicate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
+
+import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
+import com.adobe.aem.commons.assetshare.components.predicates.SortPredicate;
+import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
+import com.adobe.aem.commons.assetshare.components.predicates.options.impl.SortOptionItem;
+import com.adobe.aem.commons.assetshare.components.search.SearchConfig;
+import com.adobe.aem.commons.assetshare.util.PredicateUtil;
+import com.adobe.cq.export.json.ComponentExporter;
+import com.adobe.cq.export.json.ExporterConstants;
+import com.day.cq.search.Predicate;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -52,20 +53,22 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
         adapters = {SortPredicate.class, ComponentExporter.class},
         resourceType = {SortPredicateImpl.RESOURCE_TYPE}
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+)
 public class SortPredicateImpl extends AbstractPredicate implements SortPredicate {
+    protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/sort";
 
-  protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/sort";
-
-    private static final String NN_ITEMS = "items" ;
+    private static final String NN_ITEMS = "items";
     private static final String PN_TEXT = "text";
     private static final String PN_ORDER_BY_CASE = "orderByCase";
 
-  protected ValueMap valuesFromRequest = null;
+    protected ValueMap valuesFromRequest = null;
 
     private static final String UNKNOWN_SORT_BY = "Default";
 
-    private List<SortOptionItem> items = new ArrayList<>();
+    private List<OptionItem> items;
 
     @Self
     @Required
@@ -73,7 +76,7 @@ public class SortPredicateImpl extends AbstractPredicate implements SortPredicat
 
     @Self
     @Required
-    private Options coreOptions;
+    private Options options;
 
     @Self
     @Optional
@@ -91,32 +94,48 @@ public class SortPredicateImpl extends AbstractPredicate implements SortPredicat
     @Default(values = "DESC")
     private String descendingLabel;
 
-    @PostConstruct
-    protected void init() {
-        initPredicate(request, coreOptions);
-        this.populateOptionItems();
-    }
-
     @Override
-    public List<SortOptionItem> getItems() {
-      final ValueMap initialValues = getInitialValues();
+    public List<OptionItem> getItems() {
 
-      return items.stream().map(optionItem -> {
-          final boolean selected = PredicateUtil.isOptionInInitialValues(optionItem.getValue(), initialValues);
+        if (items == null) {
+            ArrayList<SortOptionItem> sortOptionItems = new ArrayList<>();
 
-          optionItem.setSelected(selected);
+            Resource childItem = request.getResource().getChild(NN_ITEMS);
+            if (childItem != null) {
+                childItem.getChildren().forEach(r -> {
 
-          return optionItem;
-      }).collect(Collectors.toList());
+                    ValueMap properties = r.getValueMap();
+                    SortOptionItem sortOptionItem = new SortOptionItem(properties.get(PN_TEXT, String.class),
+                            properties.get("value", String.class), properties.get(PN_ORDER_BY_CASE, true));
+                    sortOptionItems.add(sortOptionItem);
+
+                });
+            }
+
+            final ValueMap initialValues = getInitialValues();
+
+            this.items = sortOptionItems.stream().map(sortOptionItem -> {
+                final boolean selected = PredicateUtil.isOptionInInitialValues(sortOptionItem.getValue(), initialValues);
+
+                sortOptionItem.setSelected(selected);
+
+                return sortOptionItem;
+            }).collect(Collectors.toList());
+        }
+
+        return items;
     }
 
     @Override
     public String getOrderByLabel() {
         String label = unknownSortBy;
-        for (final SortOptionItem optionItem : getItems()) {
-            if (optionItem.isSelected()) {
-                label = optionItem.getText();
-                break;
+        for (final OptionItem optionItem : getItems()) {
+            if (optionItem instanceof SortOptionItem) {
+                SortOptionItem sortOptionItem = (SortOptionItem) optionItem;
+                if (sortOptionItem.isSelected()) {
+                    label = sortOptionItem.getText();
+                    break;
+                }
             }
         }
 
@@ -134,8 +153,8 @@ public class SortPredicateImpl extends AbstractPredicate implements SortPredicat
 
     @Override
     public boolean isAscending() {
-         final String orderBySort = getInitialValues().get(Predicate.PARAM_SORT, String.class);
-         return Predicate.SORT_ASCENDING.equalsIgnoreCase(orderBySort);
+        final String orderBySort = getInitialValues().get(Predicate.PARAM_SORT, String.class);
+        return Predicate.SORT_ASCENDING.equalsIgnoreCase(orderBySort);
     }
 
     @Override
@@ -161,39 +180,22 @@ public class SortPredicateImpl extends AbstractPredicate implements SortPredicat
 
             calculateOrderParameter(Predicate.PARAM_SORT, searchConfig.getOrderBySort());
 
-            calculateOrderParameter(Predicate.PARAM_CASE,
-              searchConfig.isOrderByCase() ? "" : Predicate.IGNORE_CASE);
+            calculateOrderParameter(Predicate.PARAM_CASE, searchConfig.isOrderByCase() ? "" : Predicate.IGNORE_CASE);
         }
 
         return valuesFromRequest;
     }
 
     private void calculateOrderParameter(String paramCase, String paramValue) {
-        String orderParam = PredicateUtil
-            .getParamFromQueryParams(request, Predicate.ORDER_BY + "." + paramCase);
+        String orderParam = PredicateUtil.getParamFromQueryParams(request, Predicate.ORDER_BY + "." + paramCase);
         if (StringUtils.isBlank(orderParam)) {
-          orderParam = paramValue;
+            orderParam = paramValue;
         }
         valuesFromRequest.put(paramCase, orderParam);
     }
 
-  private void populateOptionItems() {
-       Resource childItem = request.getResource().getChild(NN_ITEMS);
-       if (childItem != null) {
-         childItem.getChildren().forEach(this::addOption);
-       }
-    }
-
-    private void addOption(Resource resource) {
-      ValueMap properties = resource.getValueMap();
-      SortOptionItem sortOptionItem = new SortOptionItem(properties.get(PN_TEXT, String.class),
-          properties.get("value", String.class), properties.get(PN_ORDER_BY_CASE, true));
-      items.add(sortOptionItem);
-    }
-
-    @Nonnull
     @Override
     public String getExportedType() {
-        return RESOURCE_TYPE;
+        return null;
     }
 }

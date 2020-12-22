@@ -25,14 +25,15 @@ import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
-import com.adobe.cq.wcm.core.components.models.form.Text;
 import com.day.cq.search.eval.FulltextPredicateEvaluator;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
@@ -43,68 +44,45 @@ import java.util.HashMap;
         adapters = {FulltextPredicate.class, ComponentExporter.class},
         resourceType = {FulltextPredicateImpl.RESOURCE_TYPE}
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+)
 public class FulltextPredicateImpl extends AbstractPredicate implements FulltextPredicate {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/search-bar";
 
-    private static final String FORM_FIELD_TYPE = "text";
+    @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideButton;
+
+    @ValueMapValue
+    private String placeholder;
+
+    @ValueMapValue
+    private String buttonLabel;
 
     @Self
     @Required
     private SlingHttpServletRequest request;
 
-    @Self
-    @Required
-    private Text coreText;
-
-    @PostConstruct
-    protected void init() {
-        initPredicate(request, coreText);
+    @Override
+    public String getName() {
+        return FulltextPredicateEvaluator.FULLTEXT;
     }
 
     @Override
-    public boolean isRequired() {
-        return coreText.isRequired();
-    }
-
-    @Override
-    public String getRequiredMessage() {
-        return coreText.getRequiredMessage();
+    public boolean isHideButton() {
+        return hideButton;
     }
 
     @Override
     public String getPlaceholder() {
-        return coreText.getPlaceholder();
+        return placeholder;
     }
 
     @Override
-    public boolean isReadOnly() {
-        return coreText.isReadOnly();
-    }
-
-    @Override
-    public String getConstraintMessage() {
-        return coreText.getConstraintMessage();
-    }
-
-    @Override
-    public String getType() {
-        return FORM_FIELD_TYPE;
-    }
-
-    @Override
-    public int getRows() {
-        return 0;
-    }
-
-    @Override
-    public boolean hideTitle() {
-        return coreText.hideTitle();
-    }
-
-    @Override
-    public String getName() {
-        return FulltextPredicateEvaluator.FULLTEXT;
+    public String getButtonLabel() {
+        return buttonLabel;
     }
 
     @Override

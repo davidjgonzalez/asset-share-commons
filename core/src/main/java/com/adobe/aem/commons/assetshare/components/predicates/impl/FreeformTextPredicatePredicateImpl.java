@@ -48,7 +48,10 @@ import static java.util.Collections.EMPTY_LIST;
         resourceType = {FreeformTextPredicatePredicateImpl.RESOURCE_TYPE},
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
-@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Exporter(
+    name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
+    extensions = ExporterConstants.SLING_MODEL_EXTENSION
+)
 public class FreeformTextPredicatePredicateImpl extends AbstractPredicate implements FreeformTextPredicate {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/freeform-text";
     private static final String CUSTOM_DELIMITER = "__CUSTOM_DELIMITER";
@@ -98,11 +101,6 @@ public class FreeformTextPredicatePredicateImpl extends AbstractPredicate implem
     protected List<String> delimiters = null;
     protected String valueFromRequest = null;
     protected ValueMap valuesFromRequest = null;
-
-    @PostConstruct
-    protected void init() {
-        super.initGroup(request);
-    }
 
     @Override
     public String getTitle() {

@@ -17,22 +17,27 @@
   ~ limitations under the License.
  */-->
 
-<button class="ui icon button plain cmp-button ${properties['showLabels'] ? 'cmp-button--labeled' : ''}"
-		value="card"
-		data-asset-share-id="switch-layout">
-	<i class="big grid layout icon cmp-button__icon"
-	   title="${properties['cardLabel']}"></i>
-	<span 	class="cmp-button__label"
-			data-sly-test.showLabels="${properties['showLabels']}"
-	      	data-sly-text="${properties['cardLabel']}"></span>
-</button>
+ <sly data-sly-use.component="com.adobe.aem.commons.assetshare.components.search.LayoutToggle"
+      data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
+      data-sly-test.ready="${component.ready}"></sly>
 
-<button class="ui icon button plain cmp-button ${properties['showLabels'] ? 'cmp-button--labeled' : ''}"
-		value="list"
-		data-asset-share-id="switch-layout">
-	<i class="big list layout icon cmp-button__icon"
-	   title="${properties['listLabel']}"></i>
-	<span 	class="cmp-button__label"
-			data-sly-test="${showLabels}"
-	      	data-sly-text="${properties['listLabel']}"></span>
-</button>
+    <button class="ui icon button plain cmp-button ${component.showLabels ? 'cmp-button--labeled' : ''}"
+            value="card"
+            data-asset-share-id="switch-layout">
+        <i class="big grid layout icon cmp-button__icon"
+        title="${component.cardLabel}"></i>
+        <span 	class="cmp-button__label"
+                data-sly-test.showLabels="${component.showLabels}"
+                data-sly-text="${component.cardLabel}"></span>
+    </button>
+
+    <button class="ui icon button plain cmp-button ${component.showLabels ? 'cmp-button--labeled' : ''}"
+            value="list"
+            data-asset-share-id="switch-layout">
+        <i class="big list layout icon cmp-button__icon"
+        title="${component.listLabel}"></i>
+        <span 	class="cmp-button__label"
+                data-sly-test="${showLabels}"
+                data-sly-text="${component.listLabel}"></span>
+    </button>
+</sly>
