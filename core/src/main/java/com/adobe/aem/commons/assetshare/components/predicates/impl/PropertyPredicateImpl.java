@@ -27,10 +27,10 @@ import javax.inject.Named;
 
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.PropertyPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
-import com.adobe.aem.commons.assetshare.components.predicates.options.impl.SelectedOptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.options.impl.UnselectedOptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.Options;
+import com.adobe.aem.commons.assetshare.components.options.impl.SelectedOptionItem;
+import com.adobe.aem.commons.assetshare.components.options.impl.UnselectedOptionItem;
 import com.adobe.aem.commons.assetshare.search.impl.predicateevaluators.PropertyValuesPredicateEvaluator;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;

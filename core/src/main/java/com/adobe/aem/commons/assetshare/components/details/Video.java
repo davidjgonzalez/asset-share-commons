@@ -19,4 +19,9 @@ public interface Video extends EmptyTextComponent {
      */
     boolean isVideoAsset();
 
+    String getInvalidAssetMessage();
+
+    Integer getHeight();
+
+    String getPosterImage();
 }

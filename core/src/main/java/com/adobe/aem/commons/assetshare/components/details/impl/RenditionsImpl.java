@@ -19,7 +19,18 @@
 
 package com.adobe.aem.commons.assetshare.components.details.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.annotation.Nonnull;
+import javax.annotation.PostConstruct;
+
 import com.adobe.aem.commons.assetshare.components.details.Renditions;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.Options;
 import com.adobe.aem.commons.assetshare.content.AssetModel;
 import com.adobe.aem.commons.assetshare.content.Rendition;
 import com.adobe.aem.commons.assetshare.content.properties.impl.LicenseImpl;
@@ -28,9 +39,8 @@ import com.adobe.aem.commons.assetshare.content.renditions.AssetRenditions;
 import com.adobe.aem.commons.assetshare.util.UrlUtil;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
-import com.adobe.cq.wcm.core.components.models.form.OptionItem;
-import com.adobe.cq.wcm.core.components.models.form.Options;
 import com.day.cq.dam.commons.util.UIHelper;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -46,14 +56,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.models.factory.ModelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Model(
         adaptables = {SlingHttpServletRequest.class},
@@ -96,6 +98,13 @@ public class RenditionsImpl extends AbstractEmptyTextComponent implements Rendit
     private ModelFactory modelFactory;
 
     @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideLabel;
+    
+    @ValueMapValue
+    private String label;
+
+    @ValueMapValue
     @Optional
     private Boolean legacyMode;
 
@@ -114,6 +123,16 @@ public class RenditionsImpl extends AbstractEmptyTextComponent implements Rendit
         if (assetRenditionsOptionsResource != null) {
             renditionOptions = modelFactory.getModelFromWrappedRequest(request, assetRenditionsOptionsResource, Options.class);
         }
+    }
+
+    @Override
+    public boolean isHideLabel() {
+        return hideLabel;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
     }
 
     @Override

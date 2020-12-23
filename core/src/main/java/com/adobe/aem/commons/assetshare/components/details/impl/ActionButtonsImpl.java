@@ -25,6 +25,7 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -49,6 +50,13 @@ public class ActionButtonsImpl extends AbstractEmptyTextComponent implements Act
     private SlingHttpServletRequest request;
 
     @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideLabel;
+    
+    @ValueMapValue
+    private String label;
+
+    @ValueMapValue
     private String downloadLabel;
 
     @ValueMapValue
@@ -59,6 +67,36 @@ public class ActionButtonsImpl extends AbstractEmptyTextComponent implements Act
 
     @ValueMapValue
     private String shareLabel;
+
+    @Override
+    public boolean isHideLabel() {
+        return hideLabel;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
+    }
+
+    @Override
+    public String getDownloadLabel() {
+        return downloadLabel;
+    }
+
+    @Override
+    public String getShareLabel() {
+        return shareLabel;
+    }
+
+    @Override
+    public String getAddToCartLabel() {
+        return addToCartLabel;
+    }
+
+    @Override
+    public String getRemoveFromCartLabel() {
+        return removeFromCartLabel;
+    }
 
     @Override
     public boolean isEmpty() {

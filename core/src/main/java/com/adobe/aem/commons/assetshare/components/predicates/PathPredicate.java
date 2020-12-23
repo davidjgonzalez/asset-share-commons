@@ -22,8 +22,8 @@ package com.adobe.aem.commons.assetshare.components.predicates;
 import java.util.List;
 
 import com.adobe.aem.commons.assetshare.components.Component;
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.Options;
 
 import org.osgi.annotation.versioning.ProviderType;
 

@@ -26,6 +26,10 @@ import java.util.Collection;
 
 @ProviderType
 public interface Renditions extends EmptyTextComponent {
+    boolean isHideLabel();
+
+    String getLabel();
+    
     Collection<Rendition> getRenditions();
 
     boolean isAllowLinks();

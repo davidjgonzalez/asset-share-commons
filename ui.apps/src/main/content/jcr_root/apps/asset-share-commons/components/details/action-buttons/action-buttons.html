@@ -17,40 +17,40 @@
  */-->
 
 <sly data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
-     data-sly-test.config="${modelCache['com.adobe.aem.commons.assetshare.configuration.Config']}"
-     data-sly-test.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
+     data-sly-set.config="${modelCache['com.adobe.aem.commons.assetshare.configuration.Config']}"
+     data-sly-set.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
      data-sly-use.actionButtons="com.adobe.aem.commons.assetshare.components.details.ActionButtons"
      data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
      data-sly-test.ready="${actionButtons.ready}">
 
     <div class="ui basic segment">
-        <h4 class="ui header" data-sly-test="${!properties['hideLabel']}">${properties['label']}</h4>
+        <h4 class="ui header" data-sly-test="${!actionButtons.hideLabel}">${actionButtons.label}</h4>
 		<div class="actions cmp-action-buttons">
             <button class="ui primary button cmp-action-buttons__button"
                     data-asset-share-id="download-asset"
                     data-asset-share-asset="${asset.path}"
                     data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-                    data-sly-test="${properties['downloadLabel'] && config.downloadEnabled}">
-                ${properties['downloadLabel']}
+                    data-sly-test="${actionButtons.downloadLabel && config.downloadEnabled}">
+                ${actionButtons.downloadLabel}
             </button>
             <button class="ui button cmp-action-buttons__button"
                     data-asset-share-id="share-asset"
                     data-asset-share-asset="${asset.path}"
-                    data-sly-test="${properties['shareLabel'] && config.shareEnabled}">
-                ${properties['shareLabel']}
+                    data-sly-test="${actionButtons.shareLabel && config.shareEnabled}">
+                ${actionButtons.shareLabel}
             </button>
             <button class="ui button cmp-action-buttons__button"
                     data-asset-share-id="add-to-cart"
                     data-asset-share-asset="${asset.path}"
                     data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-                    data-sly-test.cartEnabled="${properties['addToCartLabel'] && properties['removeFromCartLabel'] && config.cartEnabled}">
-                ${properties['addToCartLabel']}
+                    data-sly-test.cartEnabled="${actionButtons.addToCartLabel && actionButtons.removeFromCartLabel && config.cartEnabled}">
+                ${actionButtons.addToCartLabel}
             </button>
             <button class="ui button cmp-action-buttons__button hidden"
                     data-asset-share-id="remove-from-cart"
                     data-asset-share-asset="${asset.path}"
                     data-sly-test="${cartEnabled}">
-               ${properties['removeFromCartLabel']}
+               ${actionButtons.removeFromCartLabel}
             </button>
         </div>	
     </div>

@@ -18,7 +18,7 @@
   * COPIED FROM: https://github.com/adobe/aem-core-wcm-components/blob/master/bundles/core/src/main/java/com/adobe/cq/wcm/core/components/models/form/OptionItem.java
   */
   
- package com.adobe.aem.commons.assetshare.components.predicates.options;
+ package com.adobe.aem.commons.assetshare.components.options;
 
  import org.osgi.annotation.versioning.ConsumerType;
  
@@ -34,7 +34,7 @@
       * @return {@code true} if item should be initially selected, otherwise {@code false}
       */
      default boolean isSelected() {
-         throw new UnsupportedOperationException();
+         return false;
      }
  
      /**
@@ -43,7 +43,7 @@
       * @return {@code true} if item should be disabled and therefore not clickable, otherwise {@code false}
       */
      default boolean isDisabled() {
-         throw new UnsupportedOperationException();
+         return false;
      }
  
      /**

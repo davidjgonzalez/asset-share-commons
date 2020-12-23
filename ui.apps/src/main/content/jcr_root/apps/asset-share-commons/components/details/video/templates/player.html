@@ -21,7 +21,7 @@
 	     src="${image.src}"
 	     class="cmp-image--max-height"
 	     style="height:${height @ context = 'styleToken'}px;"
-	     data-sly-test.height="${properties['height']}"/>
+	     data-sly-test.height="${video.height}"/>
          
 	<!--/* Img element without a max height */-->
 	<img class="ui centered image cmp-image"
@@ -33,10 +33,10 @@
 <template data-sly-template.video="${ @ video}">
 	<!--/* Video element with a max height */-->	
         <video class="ui centered image cmp-image" class="cmp-image--max-height" 
-	       poster="${properties['posterImage']}"
+	       poster="${video.posterImage}"
 	       style="height:${height @ context = 'styleToken'}px;"
 	       controls controlsList="nodownload"
-	       data-sly-test.height="${properties['height']}">
+	       data-sly-test.height="${video.height}">
          	<source src="${video.src}" 
           		type="video/webm"/>
   		<source src="${video.src}"
@@ -46,7 +46,7 @@
 
         <!--/* Video element without a max height */-->
         <video class="ui centered image cmp-image"
-               poster="${properties['posterImage']}" controls controlsList="nodownload"
+               poster="${video.posterImage}" controls controlsList="nodownload"
                data-sly-test="${!height}">
         	<source src="${video.src}" 
           		type="video/webm"/>

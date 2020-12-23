@@ -20,6 +20,8 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
+
 import java.util.regex.Pattern;
 
 /**
@@ -45,6 +47,16 @@ public class VideoImpl extends AbstractEmptyTextComponent implements Video {
     @OSGiService
     @Required
     private AssetRenditions assetRenditions;
+
+    @ValueMapValue
+    @Named("invalidFormatMsg")
+    private String invalidAssetMessage;
+
+    @ValueMapValue
+    private Integer height;
+
+    @ValueMapValue
+    private String posterImage;
 
     /**
      * @deprecated replaced by renditionName
@@ -142,6 +154,21 @@ public class VideoImpl extends AbstractEmptyTextComponent implements Video {
         }
 
         return false;
+    }
+
+    @Override
+    public String getInvalidAssetMessage() {
+        return invalidAssetMessage;
+    }
+
+    @Override
+    public Integer getHeight() {
+        return height;
+    }
+
+    @Override
+    public String getPosterImage() {
+        return posterImage;
     }
 
     protected boolean isLegacyMode() {

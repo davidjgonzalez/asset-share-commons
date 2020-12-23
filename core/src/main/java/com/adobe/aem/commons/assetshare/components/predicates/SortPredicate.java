@@ -22,7 +22,7 @@ package com.adobe.aem.commons.assetshare.components.predicates;
 import java.util.List;
 
 import com.adobe.aem.commons.assetshare.components.Component;
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -47,5 +47,10 @@ public interface SortPredicate extends Predicate, Component {
      * @return the active label for the Order By Sort (Sort Direction) field.
      */
     default String getOrderBySortLabel() { return "DESC"; }
+
+
+    String getAscendingLabel();
+
+    String getDescendingLabel();
 }
 

@@ -6,10 +6,12 @@ import com.adobe.aem.commons.assetshare.util.ModelCache;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
@@ -30,6 +32,19 @@ public class StatisticsImpl implements Statistics {
     @Self
     private ModelCache modelCache;
 
+    @ValueMapValue
+    private String runningTotalLabel;
+
+    @ValueMapValue
+    private String totalLabel;
+
+    @ValueMapValue
+    private String timeTakenLabel;
+
+    @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideTimeTaken;
+
     private Search search;
 
     private String id;
@@ -46,6 +61,26 @@ public class StatisticsImpl implements Statistics {
         }
 
         return id;
+    }
+
+    @Override
+    public String getRunningTotalLabel() {
+        return runningTotalLabel;
+    }
+
+    @Override
+    public String getTotalLabel() {
+        return totalLabel;
+    }
+
+    @Override
+    public String getTimeTakenLabel() {
+        return timeTakenLabel;
+    }
+
+    @Override
+    public boolean isHideTimeTaken() {
+        return hideTimeTaken;
     }
 
     @Override

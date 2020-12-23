@@ -183,10 +183,17 @@
 			<plugin>
 				<groupId>org.apache.sling</groupId>
 				<artifactId>htl-maven-plugin</artifactId>
-				<version>1.0.6</version>
+				<version>1.3.4-1.4.0</version>
 				<configuration>
 					<sourceDirectory>${basedir}/src/main/content/jcr_root</sourceDirectory>
 					<failOnWarnings>true</failOnWarnings>
+                    <allowedExpressionOptions>
+                        <!-- AEM-specific HTL expression options -->
+                        <option>wcmmode</option>
+                        <option>decorationTagName</option>
+                        <option>cssClassName</option>
+                        <option>decoration</option>
+                    </allowedExpressionOptions>
 				</configuration>
 				<executions>
 					<execution>

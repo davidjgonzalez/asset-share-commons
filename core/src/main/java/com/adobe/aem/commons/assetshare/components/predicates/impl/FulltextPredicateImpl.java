@@ -36,7 +36,6 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.Nonnull;
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 
 @Model(

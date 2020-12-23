@@ -17,35 +17,47 @@
  *
  */
 
-package com.adobe.aem.commons.assetshare.components.predicates.options.impl;
+package com.adobe.aem.commons.assetshare.components.options.impl;
 
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.day.cq.tagging.Tag;
 
-public class SelectedOptionItem implements OptionItem {
+import java.util.Locale;
 
-    private OptionItem wrappedOptionItem = null;
+public class TagOptionItem implements OptionItem {
+    private Tag tag;
+    private Locale locale;
+    private boolean selected;
 
-    public SelectedOptionItem(OptionItem wrappedOptionItem) {
-        this.wrappedOptionItem = wrappedOptionItem;
+    public TagOptionItem(Tag tag, Locale locale, boolean selected) {
+        this.tag = tag;
+        this.locale = locale;
+        this.selected = selected;
     }
 
     @Override
     public boolean isSelected() {
-        return true;
+        return selected;
     }
 
     @Override
     public boolean isDisabled() {
-        return wrappedOptionItem.isDisabled();
+        return false;
     }
 
     @Override
     public String getValue() {
-        return wrappedOptionItem.getValue();
+        if (tag != null) {
+            return tag.getTagID();
+        }
+        return "";
     }
 
     @Override
     public String getText() {
-        return wrappedOptionItem.getText();
+        if (tag != null) {
+            return tag.getTitle(locale);
+        }
+        return "";
     }
 }

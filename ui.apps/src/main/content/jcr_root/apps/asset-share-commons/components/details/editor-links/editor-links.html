@@ -17,19 +17,19 @@
  */-->
 
 <sly data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
-     data-sly-test.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
+     data-sly-set.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
      data-sly-use.editorLinks="com.adobe.aem.commons.assetshare.components.details.EditorLinks"
      data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
      data-sly-test.ready="${editorLinks.ready}">
 
     <h4 class="ui header"
-        data-sly-test="${!properties['hideLabel']}">${properties['label']}</h4>
+        data-sly-test="${!editorLinks.hideLabel}">${editorLinks.label}</h4>
 
     <ul>
-        <li data-sly-test.assetDetailsLinkLabel="${properties['assetDetailsLinkLabel']}">
+        <li data-sly-test.assetDetailsLinkLabel="${editorLinks.assetDetailsLinkLabel}">
             <a href="${editorLinks.assetDetailsEditorPath}" target="_blank">${assetDetailsLinkLabel}</a>
         </li>
-        <li data-sly-test.assetFolderLinkLabel="${properties['assetFolderLinkLabel']}">
+        <li data-sly-test.assetFolderLinkLabel="${editorLinks.assetFolderLinkLabel}">
             <a href="${editorLinks.assetFolderEditorPath}" target="_blank">${assetFolderLinkLabel}</a>
         </li>
     </ul>

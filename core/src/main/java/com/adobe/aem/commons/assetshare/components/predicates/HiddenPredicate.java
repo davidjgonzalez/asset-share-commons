@@ -21,13 +21,17 @@ package com.adobe.aem.commons.assetshare.components.predicates;
 
 import com.adobe.aem.commons.assetshare.components.Component;
 import com.day.cq.search.PredicateGroup;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
+@JsonIgnoreProperties({"autoSearch", "componentUpdateMethod", "expanded", "formId", "group", "id", "initialValues", "name", "parameterizedSearchRequest", "ready", "value"})
 public interface HiddenPredicate extends Predicate, Component {
     /**
      * @return a PredicateGroup that represents the HiddenPredicate configuration.
      */
+    @JsonIgnore
     PredicateGroup getPredicateGroup();
 }
-

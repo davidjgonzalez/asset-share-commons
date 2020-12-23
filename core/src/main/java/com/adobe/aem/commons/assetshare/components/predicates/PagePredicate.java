@@ -20,6 +20,8 @@
 package com.adobe.aem.commons.assetshare.components.predicates;
 
 import com.day.cq.search.PredicateGroup;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 import java.util.List;
@@ -78,6 +80,7 @@ public interface PagePredicate extends Predicate {
 
      * @return the predicate group that contains the query predicates.
      */
+    @JsonIgnore
     PredicateGroup getPredicateGroup();
 
     /**
@@ -87,23 +90,6 @@ public interface PagePredicate extends Predicate {
      * @param excludeParamTypes the query parameter types to exclude when building this.
      * @return the predicate group that contains the query predicates.
      */
+    @JsonIgnore
     PredicateGroup getPredicateGroup(ParamTypes... excludeParamTypes);
-
-
-    /**
-     * Deprecated. Use getPredicateGroup() instead.
-     *
-     * @return a map of representation of the QueryBuilder predicate params.
-     */
-    @Deprecated
-    Map<String, String> getParams();
-
-    /**
-     * Deprecated. Use getPredicateGroup(ParamTypes... excludeParamTypes) instead.
-     *
-     * @param excludeParamTypes the query parameter types to exclude when building this.
-     * @return the predicate group that contains the query predicates.
-     */
-    @Deprecated
-    Map<String, String> getParams(ParamTypes... excludeParamTypes);
 }

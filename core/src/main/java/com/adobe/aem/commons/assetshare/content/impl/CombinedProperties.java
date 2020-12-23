@@ -22,6 +22,8 @@ package com.adobe.aem.commons.assetshare.content.impl;
 import com.adobe.acs.commons.util.ParameterUtil;
 import com.adobe.aem.commons.assetshare.content.properties.ComputedProperty;
 import com.day.cq.dam.api.Asset;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -155,11 +157,13 @@ public final class CombinedProperties implements Map<String, Object> {
     }
 
     @Override
+    @JsonIgnore
     public final Object put(String key, Object value) {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
     @Override
+    @JsonIgnore
     public Object remove(Object key) {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
@@ -170,31 +174,37 @@ public final class CombinedProperties implements Map<String, Object> {
     }
 
     @Override
+    @JsonIgnore
     public final void clear() {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
     @Override
+    @JsonIgnore
     public Set<String> keySet() {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
     @Override
+    @JsonIgnore
     public final Collection<Object> values() {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
     @Override
+    @JsonIgnore
     public final Set<Entry<String, Object>> entrySet() {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
     @Override
+    @JsonIgnore
     public final boolean equals(Object o) {
         return computedProperties.equals(o);
     }
 
     @Override
+    @JsonIgnore
     public final int hashCode() {
         return computedProperties.hashCode();
     }

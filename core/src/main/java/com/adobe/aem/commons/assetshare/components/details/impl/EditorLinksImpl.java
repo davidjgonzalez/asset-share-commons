@@ -19,13 +19,17 @@
 
 package com.adobe.aem.commons.assetshare.components.details.impl;
 
+import javax.annotation.Nonnull;
+
 import com.adobe.aem.commons.assetshare.components.details.EditorLinks;
 import com.adobe.aem.commons.assetshare.content.AssetModel;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -34,8 +38,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
-
-import javax.annotation.Nonnull;
 
 @Model(
         adaptables = {SlingHttpServletRequest.class},
@@ -63,10 +65,37 @@ public class EditorLinksImpl extends AbstractEmptyTextComponent implements Edito
     private SlingSettingsService slingSettingsService;
 
     @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideLabel;
+    
+    @ValueMapValue
+    private String label;
+
+    @ValueMapValue
     private String assetDetailsLinkLabel;
 
     @ValueMapValue
     private String assetFolderLinkLabel;
+
+    @Override
+    public boolean isHideLabel() {
+        return hideLabel;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
+    }
+
+    @Override
+    public String getAssetFolderEditorLabel() {
+        return assetFolderLinkLabel;
+    }
+
+    @Override
+    public String getAssetDetailsEditorLabel() {
+        return assetDetailsLinkLabel;
+    }
 
     @Override
     public String getAssetDetailsEditorPath() {

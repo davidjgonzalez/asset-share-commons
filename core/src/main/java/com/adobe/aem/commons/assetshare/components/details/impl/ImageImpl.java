@@ -95,6 +95,9 @@ public class ImageImpl extends AbstractEmptyTextComponent implements Image {
     @ValueMapValue
     private String fallbackSrc;
 
+    @ValueMapValue
+    private Integer maxHeight;
+
     private ValueMap combinedProperties;
 
     private String src = null;
@@ -150,6 +153,11 @@ public class ImageImpl extends AbstractEmptyTextComponent implements Image {
         }
 
         return src;
+    }
+
+    @Override
+    public Integer getMaxHeight() {
+        return maxHeight;
     }
 
     @Override

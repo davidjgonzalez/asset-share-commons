@@ -20,7 +20,7 @@
 	    data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
 		data-sly-test.ready="${component.ready}">
 
-	<div class="ui mini ${properties['hideTimeTaken'] ? 'two' : 'three' } statistics"
+	<div class="ui mini ${component.hideTimeTaken ? 'two' : 'three' } statistics"
 		 data-asset-share-id="${component.id}__statistics"
 		 data-asset-share-update-method="replace">
 		<div class="statistic">
@@ -28,7 +28,7 @@
 				${component.runningTotal}
 			</div>
 			<div class="label">
-				${properties['runningTotalLabel']}
+				${component.runningTotalLabel}
 			</div>
 		</div>
 
@@ -37,17 +37,17 @@
 				${component.total}${component.hasMore ? '+' : '' @ i18n}
 			</div>
 			<div class="label">
-				${properties['totalLabel']}
+				${component.totalLabel}
 			</div>
 		</div>
 
 		<div class="statistic"
-			  data-sly-test="${!properties['hideTimeTaken']}">
+			  data-sly-test="${!component.hideTimeTaken}">
 			<div class="value">
 				${component.timeTaken}
 			</div>
 			<div class="label">
-				${properties['timeTakenLabel']}
+				${component.timeTakenLabel}
 			</div>
 		</div>
 	</div>

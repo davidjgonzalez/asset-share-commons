@@ -19,6 +19,17 @@
 
 package com.adobe.aem.commons.assetshare.components.details.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+import javax.inject.Named;
+
 import com.adobe.aem.commons.assetshare.components.details.Tags;
 import com.adobe.aem.commons.assetshare.content.AssetModel;
 import com.adobe.aem.commons.assetshare.content.properties.impl.TagTitlesImpl;
@@ -27,8 +38,10 @@ import com.adobe.cq.export.json.ExporterConstants;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -38,10 +51,6 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.annotation.Nonnull;
-import javax.inject.Named;
-import java.util.*;
 
 @Model(
         adaptables = {SlingHttpServletRequest.class},
@@ -63,14 +72,39 @@ public class TagsImpl extends AbstractEmptyTextComponent implements Tags {
     @Required
     private AssetModel asset;
 
+    @ScriptVariable
+    private Page currentPage;
+
+    @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideLabel;
+    
+    @ValueMapValue
+    private String label;
+    
+    @ValueMapValue
+    private String emptyText;
+
     @ValueMapValue
     @Named("tagPropertyName")
     private String[] tagPropertyNames;
 
-    @ScriptVariable
-    private Page currentPage;
-
     private List<String> tagTitles;
+
+    @Override
+    public boolean isHideLabel() {
+        return hideLabel;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
+    }
+
+    @Override
+    public String getEmptyText() {
+        return emptyText;
+    }
 
     @Override
     public List<String> getTagTitles() {

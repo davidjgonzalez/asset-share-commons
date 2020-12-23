@@ -29,10 +29,10 @@ import javax.inject.Named;
 
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.TagsPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
-import com.adobe.aem.commons.assetshare.components.predicates.options.Options.Type;
-import com.adobe.aem.commons.assetshare.components.predicates.options.impl.TagOptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.Options;
+import com.adobe.aem.commons.assetshare.components.options.Options.Type;
+import com.adobe.aem.commons.assetshare.components.options.impl.TagOptionItem;
 import com.adobe.aem.commons.assetshare.configuration.Config;
 import com.adobe.aem.commons.assetshare.search.impl.predicateevaluators.PropertyValuesPredicateEvaluator;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;

@@ -29,6 +29,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -72,6 +73,13 @@ public class MetadataImpl extends AbstractEmptyTextComponent implements Metadata
     private Page currentPage;
 
     @ValueMapValue
+    @Default(booleanValues = false)
+    private boolean hideLabel;
+    
+    @ValueMapValue
+    private String label;
+
+    @ValueMapValue
     private String propertyName;
 
     @ValueMapValue
@@ -101,6 +109,21 @@ public class MetadataImpl extends AbstractEmptyTextComponent implements Metadata
     @PostConstruct
     public void init() {
         combinedProperties = getProperties();
+    }
+
+    @Override
+    public boolean isHideLabel() {
+        return hideLabel;
+    }
+
+    @Override
+    public String getLabel() {
+        return label;
+    }
+
+    @Override
+    public String getEmptyText() {
+        return emptyText;
     }
 
     @Override

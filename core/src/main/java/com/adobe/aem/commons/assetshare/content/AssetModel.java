@@ -20,6 +20,8 @@
 package com.adobe.aem.commons.assetshare.content;
 
 import com.day.cq.dam.api.Rendition;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 
@@ -31,6 +33,7 @@ public interface AssetModel {
     /**
      * @return the [dam:Asset] resource this Asset model represents.
      */
+    @JsonIgnore
     public Resource getResource();
 
     /**
@@ -44,7 +47,7 @@ public interface AssetModel {
     default public String getUrl() { return getPath(); }
 
     /**
-     * @return the Assets' Id ([dam:Asset]/jcr:contnet@jcr:uuid)
+     * @return the Assets' Id ([dam:Asset]/jcr:content@jcr:uuid)
      */
     public String getAssetId();
 
@@ -61,10 +64,12 @@ public interface AssetModel {
     /**
      * @return a list of all Asset Renditions for this asset;
      */
+    @JsonIgnore
     public List<Rendition> getRenditions();
 
     /**
      * @return a ValueMap composed of a look up based on: 1) ComputedProperties, the [dam:Asset]/jcr:content/metadata ValueMap and finally the [dam:Asset] ValueMap.
      */
+    @JsonIgnore
     public ValueMap getProperties();
 }

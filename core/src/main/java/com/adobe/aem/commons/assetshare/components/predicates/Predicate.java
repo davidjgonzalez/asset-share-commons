@@ -19,6 +19,8 @@
 
 package com.adobe.aem.commons.assetshare.components.predicates;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.annotation.versioning.ConsumerType;
 
@@ -30,6 +32,8 @@ public interface Predicate {
      *
      * @return the Form id, use to bind inputs to a form via &lt;input form="${predicate.formId}"... &gt;.
      */
+
+    @JsonIgnore
     String getFormId();
 
     /**
@@ -38,6 +42,13 @@ public interface Predicate {
      * @return the auto-incrementing QueryBuilder group id.
      */
     String getGroup();
+
+    /**
+     * The QueryBuilder predicate name.
+     * 
+     * @return the predicate name.
+     */
+    String getName();
 
     /**
      * @return true is the predicate view should be expanded.
@@ -59,6 +70,7 @@ public interface Predicate {
      *
      * @return the update method for this component.
      */
+    @JsonIgnore
     default String getComponentUpdateMethod() {
         return "never";
     }

@@ -24,7 +24,7 @@ import java.util.Comparator;
 
 import javax.inject.Named;
 
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.commons.WCMUtils;
 
@@ -195,7 +195,7 @@ public abstract class AbstractPredicate implements Predicate {
 
         if (groupTracker instanceof Integer) {
             groupId = (Integer) groupTracker + 1;
-            request.setAttribute(REQUEST_ATTR_PREDICATE_GROUP_TRACKER, group);
+            request.setAttribute(REQUEST_ATTR_PREDICATE_GROUP_TRACKER, groupId);
 
         }
 

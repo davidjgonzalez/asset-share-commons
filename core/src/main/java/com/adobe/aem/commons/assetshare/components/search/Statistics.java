@@ -13,6 +13,12 @@ public interface Statistics extends Component {
      */
     String getId();
 
+    String getRunningTotalLabel();
+
+    String getTotalLabel();
+
+    String getTimeTakenLabel();
+    
     /**
      * @return the number of results returned so far.
      */
@@ -27,6 +33,12 @@ public interface Statistics extends Component {
      * @return true if there are more results to display for this search (using offset and limit)
      */
     boolean hasMore();
+
+
+    /***
+     * @return true to indicate the Time Taken should not be displayed
+     */
+    boolean isHideTimeTaken();
 
     /**
      * @return the time taken in milliseconds for this specific search. This is NOT an aggregate of all "loads" for this search.

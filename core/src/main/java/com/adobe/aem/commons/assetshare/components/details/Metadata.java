@@ -33,6 +33,21 @@ public interface Metadata extends EmptyTextComponent {
     AssetModel getAsset();
 
     /***
+     * @return true to hide the component's label (title)
+     */
+    boolean isHideLabel();
+
+    /***
+     * @return the component's label (title)
+     */
+    String getLabel();
+
+    /***
+     * @return the empty text to display if no metadata is present
+     */
+    String getEmptyText();
+
+    /***
      * Returns a ValueMap (from AssetModel) composed of a look up based on:
      * 1) ComputedProperties
      * 2) [dam:Asset]'s ValueMap

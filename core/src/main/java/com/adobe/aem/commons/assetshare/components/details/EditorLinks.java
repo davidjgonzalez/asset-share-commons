@@ -23,6 +23,15 @@ import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
 public interface EditorLinks extends EmptyTextComponent {
+
+    boolean isHideLabel();
+
+    String getLabel();
+
+    String getAssetFolderEditorLabel();
+
+    String getAssetDetailsEditorLabel();
+
     String getAssetFolderEditorPath();
 
     String getAssetDetailsEditorPath();

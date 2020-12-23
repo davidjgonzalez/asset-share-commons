@@ -21,7 +21,13 @@ package com.adobe.aem.commons.assetshare.components.details;
 
 import java.util.List;
 
-public interface Tags extends EmptyTextComponent {
+public interface Tags extends EmptyTextComponent {    
+    boolean isHideLabel();
+
+    String getLabel();
+
+    String getEmptyText();
+    
     /***
      *
      * @return an Array of tags titles on the given asset. Titles are already localized

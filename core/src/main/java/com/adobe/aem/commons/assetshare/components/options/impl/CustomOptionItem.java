@@ -17,9 +17,9 @@
  *
  */
 
-package com.adobe.aem.commons.assetshare.components.predicates.options.impl;
+package com.adobe.aem.commons.assetshare.components.options.impl;
 
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -24,11 +24,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
+
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.SortPredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
-import com.adobe.aem.commons.assetshare.components.predicates.options.impl.SortOptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.Options;
+import com.adobe.aem.commons.assetshare.components.options.impl.SortOptionItem;
 import com.adobe.aem.commons.assetshare.components.search.SearchConfig;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;
@@ -75,7 +77,6 @@ public class SortPredicateImpl extends AbstractPredicate implements SortPredicat
     private SlingHttpServletRequest request;
 
     @Self
-    @Required
     private Options options;
 
     @Self
@@ -149,6 +150,16 @@ public class SortPredicateImpl extends AbstractPredicate implements SortPredicat
         } else {
             return descendingLabel;
         }
+    }
+
+    @Override
+    public String getAscendingLabel() {
+        return ascendingLabel;
+    }
+
+    @Override
+    public String getDescendingLabel() {
+        return descendingLabel;
     }
 
     @Override

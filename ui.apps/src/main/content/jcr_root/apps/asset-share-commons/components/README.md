@@ -177,8 +177,6 @@ When using variables that follow Java Bean naming conventions, use the abbreviat
   * Ex. `data-sly.use.checkboxTemplate=templates/checkbox.html`
 * `<template...` names are camelCase
 
- 
- 
 ### Localization
  
  * ~Never use `${ properites['someVal'] || 'default' @ i18n }` in components.

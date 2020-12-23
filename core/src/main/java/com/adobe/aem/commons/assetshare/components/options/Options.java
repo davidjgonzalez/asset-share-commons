@@ -13,7 +13,7 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
- package com.adobe.aem.commons.assetshare.components.predicates.options;
+ package com.adobe.aem.commons.assetshare.components.options;
 
  import java.util.List;
  

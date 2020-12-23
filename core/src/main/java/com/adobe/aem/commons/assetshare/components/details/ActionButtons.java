@@ -20,4 +20,16 @@
 package com.adobe.aem.commons.assetshare.components.details;
 
 public interface ActionButtons extends EmptyTextComponent {
+
+    boolean isHideLabel();
+
+    String getLabel();
+
+    String getDownloadLabel();
+
+    String getShareLabel();
+
+    String getAddToCartLabel();
+
+    String getRemoveFromCartLabel();
 }

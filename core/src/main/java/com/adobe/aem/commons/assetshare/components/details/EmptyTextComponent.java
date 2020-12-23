@@ -26,5 +26,4 @@ public interface EmptyTextComponent extends Component {
     boolean isEmpty();
 
     boolean hasEmptyText();
-
 }

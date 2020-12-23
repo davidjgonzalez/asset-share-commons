@@ -17,7 +17,7 @@
  */-->
 
 <sly data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
-     data-sly-test.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
+     data-sly-set.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
      data-sly-use.field="com.adobe.aem.commons.assetshare.components.details.Metadata"
      data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
      data-sly-use.fieldTypesTemplate="templates/field-types.html"
@@ -25,10 +25,10 @@
 
     <div class="ui basic segment">
         <h4 class="ui header"
-            data-sly-test="${!properties['hideLabel']}">${properties['label']}</h4>
+            data-sly-test="${!field.hideLabel}">${field.label}</h4>
 
         <sly data-sly-test.emptyValue="${field.empty}">
-            <p>${properties['emptyText']}</p>
+            <p>${field.emptyText}</p>
         </sly>
 
         <sly data-sly-test.emptyValue="${!field.empty}">

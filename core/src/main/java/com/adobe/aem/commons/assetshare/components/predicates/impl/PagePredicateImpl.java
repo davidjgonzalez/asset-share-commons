@@ -66,7 +66,7 @@ import java.util.Map;
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION
 )
-public class PagePredicateImpl extends AbstractPredicate implements PagePredicate {
+public class PagePredicateImpl extends AbstractPredicate implements PagePredicate, ComponentExporter {
     protected static final String RESOURCE_TYPE = "asset-share-commons/components/search/results";
 
     private static final int MAX_LIMIT = 1000;
@@ -312,19 +312,8 @@ public class PagePredicateImpl extends AbstractPredicate implements PagePredicat
         return visitor.getModels();
     }
 
-    /**
-     * Deprecated Methods
-     **/
-
     @Override
-    @Deprecated
-    public Map<String, String> getParams() {
-        return getParams(new ParamTypes[]{});
-    }
-
-    @Override
-    @Deprecated
-    public Map<String, String> getParams(ParamTypes... excludeParamTypes) {
-        return PredicateConverter.createMap(getPredicateGroup(excludeParamTypes));
+    public String getExportedType() {
+        return RESOURCE_TYPE;
     }
 }

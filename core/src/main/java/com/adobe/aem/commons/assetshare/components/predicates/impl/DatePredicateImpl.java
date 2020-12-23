@@ -28,9 +28,9 @@ import javax.annotation.Nonnull;
 import com.adobe.aem.commons.assetshare.components.Component;
 import com.adobe.aem.commons.assetshare.components.predicates.AbstractPredicate;
 import com.adobe.aem.commons.assetshare.components.predicates.DatePredicate;
-import com.adobe.aem.commons.assetshare.components.predicates.options.OptionItem;
-import com.adobe.aem.commons.assetshare.components.predicates.options.Options;
-import com.adobe.aem.commons.assetshare.components.predicates.options.impl.SelectedOptionItem;
+import com.adobe.aem.commons.assetshare.components.options.OptionItem;
+import com.adobe.aem.commons.assetshare.components.options.Options;
+import com.adobe.aem.commons.assetshare.components.options.impl.SelectedOptionItem;
 import com.adobe.aem.commons.assetshare.util.PredicateUtil;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -173,8 +173,8 @@ public class DatePredicateImpl extends AbstractPredicate implements DatePredicat
                 valuesFromRequest.put(getLowerBoundName(), getInitialLowerBound());
             }
 
-            if (StringUtils.isNotBlank(getInitialLowerBound())) {
-                valuesFromRequest.put(getUpperBoundName(), getInitialLowerBound());
+            if (StringUtils.isNotBlank(getInitialUpperBound())) {
+                valuesFromRequest.put(getUpperBoundName(), getInitialUpperBound());
             }
         }
 
