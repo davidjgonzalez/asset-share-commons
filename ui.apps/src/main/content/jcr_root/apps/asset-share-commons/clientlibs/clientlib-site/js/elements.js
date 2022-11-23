@@ -114,11 +114,19 @@ AssetShare.Elements = (function (document, $, ns) {
         });
     }
 
+    function addEventListener(selector, eventType, eventCallback) {
+        var elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+            elements.forEach((el) => { el.addEventListener(eventType, eventCallback) } );
+        }
+    }
+
     return {
         selector: getAssetShareIdSelector,
         element: getElementsByAssetShareId,
         update: update,
-        remove: removeElementsByAssetShareId
+        remove: removeElementsByAssetShareId,
+        on: addEventListener
     };
 }(document,
     jQuery,

@@ -69,7 +69,7 @@ AssetShare.Data = ( function ($, ns) {
         var targetEl = ns.Elements.element(id);
 
         targetEl.each(function (index, el) {
-            $(el).attr((attributeName || "value"), value);
+            el.attr((attributeName || "value"), value);
         });
 
         return value;

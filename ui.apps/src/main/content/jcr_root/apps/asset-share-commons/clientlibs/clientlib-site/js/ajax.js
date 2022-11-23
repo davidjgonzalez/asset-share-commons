@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-/*global jQuery: false, AssetShare: false*/
+/*global AssetShare: false*/
 
-AssetShare.Ajax = (function ($, ns, messages) {
+AssetShare.Ajax = (function (ns, messages) {
     "use strict";
 
     var SUCCESS = "success",
@@ -27,10 +27,10 @@ AssetShare.Ajax = (function ($, ns, messages) {
     function ajax(method, url, data, messageId) {
         var params = {
             method: method || 'GET',
-            url: url,
             data: data
         };
 
+        /*
         return $.when($.ajax(params).done(function (data, status) {
             messages.show(messageId);
             return data;
@@ -38,6 +38,17 @@ AssetShare.Ajax = (function ($, ns, messages) {
             messages.show(messageId);
             return data;
         }));
+        */
+
+        return fetch(url, params).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            messages.show(messageId);
+            return data;
+        }).catch(function (error) {
+           messages.show(messageId);
+           return data;
+        });
     }
 
     function get(url, data, messageId) {
@@ -52,6 +63,5 @@ AssetShare.Ajax = (function ($, ns, messages) {
         post: post,
         get: get
     };
-}(jQuery,
-    AssetShare,
+}(AssetShare,
     AssetShare.Messages));

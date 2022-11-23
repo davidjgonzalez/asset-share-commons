@@ -47,11 +47,11 @@ jQuery((function ($, ns) {
 
     // Align when searches end
     $("body").on(ns.Events.SEARCH_END, function() {
-        alignCards();
+    //        alignCards();
     });
 
     // Align on page load
-    alignCards();
+    //alignCards();
 
 }(jQuery,
     AssetShare)));

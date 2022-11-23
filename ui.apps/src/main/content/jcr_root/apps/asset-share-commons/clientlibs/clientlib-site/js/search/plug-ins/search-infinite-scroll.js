@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-/*global jQuery: false, AssetShare: false */
+/*global AssetShare: false */
 
-jQuery((function ($, ns, search) {
+jQuery((function (ns, search) {
     "use strict";
     var timeout;
 
@@ -48,22 +48,54 @@ jQuery((function ($, ns, search) {
     if (ns.Elements.element("infinite-load-more")) {
         if (window === window.top) {
             /** Only infinite scroll when not in an iframe **/
-            $(window).on('DOMContentLoaded load resize scroll', function () {
+
+            document.addEventListener("DOMContentLoaded", function () {
                 greedyLoadMore();
             });
 
+            document.addEventListener("load", function () {
+                greedyLoadMore();
+            });
+
+            document.addEventListener("resize", function () {
+                greedyLoadMore();
+            });
+
+            document.addEventListener("scroll", function () {
+                greedyLoadMore();
+            });
+
+
+            /*
+            $(window).on('DOMContentLoaded load resize scroll', function () {
+                greedyLoadMore();
+            });
+            */
+
+            document.addEventListener(ns.Events.SEARCH_END, function (event, searchType) {
+            alert('stop')
+                if (searchType === "search") {
+                    greedyLoadMore();
+                }
+            });
+
+
+            /*
             $("body").on("asset-share-commons.search.end", function(event, searchType) {
                 if ("search" === searchType) {
                     greedyLoadMore();
                 }
             });
+            */
         }
 
+        ns.Elements.on( ns.Elements.selector("infinite-load-more"), "click", ns.Search.loadMore);
+
+        /*
         $("body").on("click", ns.Elements.selector("infinite-load-more"), function (e) {
             ns.Search.loadMore(e);
-        });
+        });*/
     }
 
-}(jQuery,
-    AssetShare,
+}(AssetShare,
     AssetShare.Search)));

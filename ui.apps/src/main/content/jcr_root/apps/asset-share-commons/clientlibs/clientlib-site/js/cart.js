@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-/*global jQuery: false, AssetShare: false */
+/*global AssetShare: false */
 
-AssetShare.Cart = (function ($, ns, cartStore) {
+AssetShare.Cart = (function (ns, cartStore) {
     "use strict";
 
     function isReady() {
@@ -29,11 +29,9 @@ AssetShare.Cart = (function ($, ns, cartStore) {
     }
 
     function getPaths() {
-
         if (isReady()) {
             return cartStore.getCartAssets();
         }
-
         return [];
     }
 
@@ -58,11 +56,15 @@ AssetShare.Cart = (function ($, ns, cartStore) {
             if(!contains(assetPath)) {
                 cartStore.addCartAsset(assetPath);
 
-                $("body").trigger(ns.Events.CART_ADD, [getSize(), assetPath]);
-                $("body").trigger(ns.Events.CART_UPDATE, [getSize(), getPaths()]);
+                dispatchEvent(new Event(ns.Events.CART_ADD, [getSize(), assetPath]));
+                dispatchEvent(new Event(ns.Events.CART_UPDATE, [getSize(), getPaths()]));
+
+                //$("body").trigger(ns.Events.CART_ADD, [getSize(), assetPath]);
+                //$("body").trigger(ns.Events.CART_UPDATE, [getSize(), getPaths()]);
                 return true;
             } else {
-                $("body").trigger(ns.Events.CART_ALREADY_EXISTS, [getSize(), getPaths()]);
+                dispatchEvent(new Event(ns.Events.CART_ALREADY_EXISTS, [getSize(), getPaths()]));
+                //$("body").trigger(ns.Events.CART_ALREADY_EXISTS, [getSize(), getPaths()]);
             }
         }
 
@@ -73,8 +75,10 @@ AssetShare.Cart = (function ($, ns, cartStore) {
         if (isReady() && contains(assetPath)) {
             cartStore.removeCartAsset(assetPath);
 
-            $("body").trigger(ns.Events.CART_REMOVE, [getSize(), assetPath]);
-            $("body").trigger(ns.Events.CART_UPDATE, [getSize(), getPaths()]);
+            dispatchEvent(new Event(ns.Events.CART_REMOVE, [getSize(), assetPath]));
+            dispatchEvent(new Event(ns.Events.CART_UPDATE, [getSize(), getPaths()]));
+            //$("body").trigger(ns.Events.CART_REMOVE, [getSize(), assetPath]);
+            //$("body").trigger(ns.Events.CART_UPDATE, [getSize(), getPaths()]);
             return true;
         }
 
@@ -84,8 +88,11 @@ AssetShare.Cart = (function ($, ns, cartStore) {
     function clear() {
         if (isReady()) {
             cartStore.clearCartAssets();
-            $("body").trigger(ns.Events.CART_UPDATE, [getSize(), getPaths()]);
-            $("body").trigger(ns.Events.CART_CLEAR, [getSize(), getPaths()]);
+
+            dispatchEvent(new Event(ns.Events.CART_UPDATE, [getSize(), getPaths()]));
+            dispatchEvent(new Event(ns.Events.CART_CLEAR, [getSize(), getPaths()]));
+            //$("body").trigger(ns.Events.CART_UPDATE, [getSize(), getPaths()]);
+            //$("body").trigger(ns.Events.CART_CLEAR, [getSize(), getPaths()]);
         }
     }
 
@@ -99,6 +106,5 @@ AssetShare.Cart = (function ($, ns, cartStore) {
         isReady: isReady
     };
 
-}(jQuery,
-    AssetShare,
+}(AssetShare,
     AssetShare.Store.Cart));

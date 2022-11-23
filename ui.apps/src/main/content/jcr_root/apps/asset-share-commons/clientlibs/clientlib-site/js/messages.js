@@ -18,7 +18,7 @@
 
 /*global jQuery: false, AssetShare: false */
 
-AssetShare.Messages = (function ($, ns) {
+AssetShare.Messages = (function (ns) {
     "use strict";
 
     var DISPLAY_DURATION = 3000,
@@ -27,10 +27,10 @@ AssetShare.Messages = (function ($, ns) {
         activeTimeout,
         activeElement = null;
 
-
     function show(id) {
+    console.log('message id', id);
         var selector = "[data-asset-share-message-id=\"" + id + "\"]",
-            element = $(selector);
+            element = document.querySelector(selector);
 
         if (element.length === 1) {
 
@@ -54,5 +54,4 @@ AssetShare.Messages = (function ($, ns) {
     return {
         show: show
     };
-}(jQuery,
-    AssetShare));
+}(AssetShare));

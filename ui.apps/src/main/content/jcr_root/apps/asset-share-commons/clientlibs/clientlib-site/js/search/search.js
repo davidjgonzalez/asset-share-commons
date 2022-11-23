@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-/*global jQuery: false, AssetShare: false, window: false */
+/*global AssetShare: false, window: false */
 
-AssetShare.Search = (function (window, $, ns, ajax) {
+AssetShare.Search = (function (window, ns, ajax) {
     "use strict";
 
     var EVENT_SEARCH_TYPE_FULL = "search",
@@ -39,17 +39,17 @@ AssetShare.Search = (function (window, $, ns, ajax) {
     }
 
     function trigger(eventType, params) {
-        $("body").trigger(eventType, params);
+        dispatchEvent(new Event(eventType, params));
     }
 
-    function setAddressBar(queyParams) {
+    function setAddressBar(queryParams) {
         if (ns.Util.isSameOrigin()) {
-            ns.Navigation.addressBar(window.top.location.pathname + "?" + queyParams);
+            ns.Navigation.addressBar(window.top.location.pathname + "?" + queryParams);
         } else {
-            ns.Navigation.addressBar(window.location.pathname + "?" + queyParams);
+            ns.Navigation.addressBar(window.location.pathname + "?" + queryParams);
         }
 
-        ns.Navigation.returnUrl(window.location.pathname + "?" + queyParams);
+        ns.Navigation.returnUrl(window.location.pathname + "?" + queryParams);
     }
 
     function processSearch(fragmentHtml) {
@@ -121,7 +121,7 @@ AssetShare.Search = (function (window, $, ns, ajax) {
         if (!running) {
             running = true;
 
-            ns.Data.val("layout", $(this).val());
+            ns.Data.val("layout", this.value);
             if (form.submit(ACTION_SWITCH_LAYOUT, false, processSearch)) {
                 trigger(ns.Events.SEARCH_BEGIN, [EVENT_SEARCH_TYPE_FULL]);
             } else {
@@ -138,24 +138,27 @@ AssetShare.Search = (function (window, $, ns, ajax) {
         }
     }());
 
+    function _addEventListener(selector, eventType, eventCallback) {
+        var elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+            elements.forEach((el) => { el.addEventListener(eventType, eventCallback) } );
+        }
+    }
+
     (function registerEvents() {
         var formId = getForm().id();
 
-        $("body").on("submit", "#" + formId, search);
-        $("body").on("click", ns.Elements.selector("load-more"), loadMore);
-        $("body").on("change", ns.Elements.selector("sort"), sortResults);
-        $("body").on("click", ns.Elements.selector("switch-layout"), switchLayout);
+        ns.Elements.on("#" + formId, "submit", search);
+        ns.Elements.on(ns.Elements.selector("load-more"), "click", loadMore);
+        ns.Elements.on(ns.Elements.selector("sort"), "change", sortResults);
+        ns.Elements.on(ns.Elements.selector("switch-layout"), "click", switchLayout);
 
-        $("body").on("change", "[data-asset-share-search-on='change']", search);
-        $("body").on("click", "[data-asset-share-search-on='click']", search);
+        ns.Elements.on("[data-asset-share-search-on='change']", "change", search);
+        ns.Elements.on("[data-asset-share-search-on='click']", "click", search);
 
         /* Required for IE */
-        $("button[form='" + formId + "']").on("click", search);
-        $("input[form='" + formId + "']").keypress(function(e) {
-            if ((e.keyCode || e.which) === 13) {
-                search(e);
-            }
-        });
+        ns.Elements.on("button[form='" + formId + "']", "click", search);
+        ns.Elements.on("input[form='" + formId + "']", "keyup",  function(e) { if ((e.keyCode || e.which) === 13) { search(e); } });
     }());
 
     return {
@@ -167,6 +170,5 @@ AssetShare.Search = (function (window, $, ns, ajax) {
     };
 
 }(window,
-    jQuery,
     AssetShare,
     AssetShare.Ajax));

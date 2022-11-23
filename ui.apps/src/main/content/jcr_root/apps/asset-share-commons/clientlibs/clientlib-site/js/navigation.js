@@ -18,7 +18,7 @@
 
 /*global jQuery: false, AssetShare: false */
 
-AssetShare.Navigation = (function ($, window, ns, store) {
+AssetShare.Navigation = (function (window, ns, store) {
     "use strict";
 
     var RETURN_URL_KEY = "returnUrl";
@@ -55,7 +55,6 @@ AssetShare.Navigation = (function ($, window, ns, store) {
         returnUrl: getOrSetReturnUrl,
         gotoTop: gotoTop
     };
-}(jQuery,
-    window,
+}(window,
     AssetShare,
     AssetShare.Store));

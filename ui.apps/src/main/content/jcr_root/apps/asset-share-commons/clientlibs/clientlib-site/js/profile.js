@@ -19,7 +19,7 @@
 /**
  * Utility specific to storing data about the users Profile
  */
-AssetShare.Profile = (function ($, ns, profileStore) {
+AssetShare.Profile = (function (ns, profileStore) {
     'use strict';
 
     const CURRENT_USER_URI   = '/libs/granite/security/currentuser.json',
@@ -38,8 +38,10 @@ AssetShare.Profile = (function ($, ns, profileStore) {
      * On a successful response the profile is set with local storage
      * and custom event is dispatched to alert dependent JavaScript objects
      */
-    $.get(CURRENT_USER_URI + '?nocache=' + new Date().getTime(), function(data) {
-        if(data.type === 'user') {
+    fetch(CURRENT_USER_URI + '?nocache=' + new Date().getTime())
+      .then((response) => response.json())
+      .then(data => {
+        if (data.type === 'user') {
             // Set the profile store to enable local storage
             profileStore.setUserProfile(data);
 
@@ -55,9 +57,8 @@ AssetShare.Profile = (function ($, ns, profileStore) {
         } else {
             console.error('Could not retrieve a user profile, cart functionality disabled');
         }
-
-    }).fail(function() {
-        console.error('Could not retrieve a user profile, cart functionality disabled');
+    }).catch(error => {
+        console.error('Could not retrieve a user profile, cart functionality disabled: ' + error);
     });
 
     /**
@@ -66,23 +67,25 @@ AssetShare.Profile = (function ($, ns, profileStore) {
      * @param {*} currentUser - current user object
      */
     function getExtraProfileAttributes(currentUser) {
-        $.get(currentUser[PN_HOME] + '/' + PROFILE_EXT, function(data) {
+        fetch(currentUser[PN_HOME] + '/' + PROFILE_EXT)
+            .then((response) => response.json())
+            .then(data => {
 
-            for (const [key, value] of Object.entries(data)) {
-                // skip keys that start with jcr or sling
-                if (!key.startsWith('jcr:') && !key.startsWith('sling:')) {
-                    currentUser[key] = value;
+                for (const [key, value] of Object.entries(data)) {
+                    // skip keys that start with jcr or sling
+                    if (!key.startsWith('jcr:') && !key.startsWith('sling:')) {
+                        currentUser[key] = value;
+                    }
                 }
-            }
 
-            // update profile in local storage
-            profileStore.setUserProfile(currentUser);
+                // update profile in local storage
+                profileStore.setUserProfile(currentUser);
 
-            //announce profile updated
-            announceProfileLoaded(currentUser);
+                //announce profile updated
+                announceProfileLoaded(currentUser);
 
-        }).fail(function() {
-            console.error('Could not retrieve a user home, extra profile attributes not set.');
+        }).catch(error => {
+            console.error('Could not retrieve a user home, extra profile attributes not set: ' + error);
         });
     }
 
@@ -91,9 +94,7 @@ AssetShare.Profile = (function ($, ns, profileStore) {
      * @param {*} currentUser 
      */
     function announceProfileLoaded(currentUser) {
-        $('body').trigger(ns.Events.PROFILE_LOAD, {detail:currentUser});
+        dispatchEvent(new Event(ns.Events.PROFILE_LOAD, {detail:currentUser}));
     }
 
-}(jQuery,
-    AssetShare,
-    AssetShare.Store.Profile));
+}(AssetShare, AssetShare.Store.Profile));

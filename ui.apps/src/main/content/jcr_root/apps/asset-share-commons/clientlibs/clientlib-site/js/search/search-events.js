@@ -16,27 +16,32 @@
  * limitations under the License.
  */
 
-/*global jQuery: false, AssetShare: false*/
+/*global AssetShare: false*/
 
-jQuery((function ($, ns, search) {
+jQuery((function (ns, search) {
     "use strict";
 
     var formId = search.form().id();
 
-    $("body").on("submit", ns.Elements.selector("form"), search.search);
+    ns.Elements.on(ns.Elements.selector("form"), "submit", search.search);
+    ns.Elements.on(ns.Elements.selector("load-more"), "click", search.loadMore);
+    ns.Elements.on(ns.Elements.selector("sort"), "change", search.sortResults);
+    ns.Elements.on(ns.Elements.selector("switch-layout"), "click", search.switchLayout);
 
-    $("body").on("click", ns.Elements.selector("load-more"), search.loadMore);
-
-    $("body").on("change", ns.Elements.selector("sort"), search.sortResults);
-
-    $("body").on("click", ns.Elements.selector("switch-layout"), search.switchLayout);
+    //$("body").on("submit", ns.Elements.selector("form"), search.search);
+    //$("body").on("click", ns.Elements.selector("load-more"), search.loadMore);
+    //$("body").on("change", ns.Elements.selector("sort"), search.sortResults);
+    //$("body").on("click", ns.Elements.selector("switch-layout"), search.switchLayout);
 
     /*  The following code is required for IE */
 
-    /* Note that search.search(..) has its tracker ot ensure parallel searches do not occurr */
+    /* Note that search.search(..) has its tracker ot ensure parallel searches do not occur */
 
+    ns.Elements.on("button[form='" + formId + "']", "click", search.search);
+    ns.Elements.on("input[form='" + formId + "']", "keyup", function(e) { var code = e.keyCode || e.which; if (code === 13) { e.preventDefault(); search.search(e); } });
+
+    /*
     $("button[form='" + formId + "']").on("click", search.search);
-
     $("input[form='" + formId + "']").keypress(function(e){
         var code = e.keyCode || e.which;
         if (code === 13) {
@@ -44,7 +49,7 @@ jQuery((function ($, ns, search) {
             search.search(e);
         }
     });
+    */
 
-}(jQuery,
-    AssetShare,
+}(AssetShare,
     AssetShare.Search)));
