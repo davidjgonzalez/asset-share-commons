@@ -911,7 +911,7 @@ Bundle-DocURL: https://opensource.adobe.com/asset-share-commons/
         </profile>
 
         <profile>
-            <id>semantic</id>
+            <id>semantic-ui</id>
             <modules>
                 <module>ui.apps.semantic-ui</module>
                 <module>ui.frontend.semantic-ui</module>

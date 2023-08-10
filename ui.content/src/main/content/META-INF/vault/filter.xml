@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/asset-share-commons" mode="merge"/>
+    <filter root="/conf/asset-share-commons/settings/notification" mode="merge"/>
 </workspaceFilter>

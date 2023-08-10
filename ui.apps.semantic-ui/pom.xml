@@ -96,16 +96,9 @@
         </dependency>
         <dependency>
             <groupId>com.adobe.aem.commons</groupId>
-            <artifactId>assetshare.ui.frontend.theme.light</artifactId>
+            <artifactId>assetshare.ui.frontend.semantic-ui</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>com.adobe.aem.commons</groupId>
-            <artifactId>assetshare.ui.frontend.theme.dark</artifactId>
-            <version>${project.version}</version>
-            <type>pom</type>
-        </dependency>
-
     </dependencies>
 </project>

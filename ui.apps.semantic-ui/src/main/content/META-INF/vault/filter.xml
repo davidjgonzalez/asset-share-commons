@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <!-- Clientlibs -->
-    <filter root="/apps/asset-share-commons/components/details/clientlib-theme"/>
+    <filter root="/apps/asset-share-commons/clientlibs/clientlib-theme"/>
 
     <!-- Components -->
     <filter root="/apps/asset-share-commons/components/details"/>
