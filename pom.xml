@@ -50,8 +50,6 @@
         <module>all</module>
         <module>core</module>
         <module>ui.config</module>
-        <module>ui.frontend.theme.light</module>
-        <module>ui.frontend.theme.dark</module>
         <module>ui.apps</module>
         <module>ui.apps.structure</module>
         <module>dispatcher</module>
@@ -73,10 +71,10 @@
         <aem.classic.api.version>6.5.7.0003</aem.classic.api.version><!-- actually one of https://repo1.maven.org/maven2/io/wcm/maven/io.wcm.maven.aem-dependencies/ -->
         <!-- the minimum AEMaaCS version being supported -->
         <aem.sdk.api.version>2023.7.12874.20230726T072051Z-230702</aem.sdk.api.version><!-- actually one of https://repo1.maven.org/maven2/com/adobe/aem/aem-sdk-api/ -->
-        <core.wcm.components.version>2.17.14</core.wcm.components.version>
+        <core.wcm.components.version>2.23.2</core.wcm.components.version>
         <frontend-maven-plugin.version>1.9.0</frontend-maven-plugin.version>
-        <node.version>v13.7.0</node.version>
-        <npm.version>6.13.1</npm.version>
+        <node.version>v16.18.1</node.version>
+        <npm.version>8.19.2</npm.version>
         <bnd.version>6.3.1</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -899,6 +897,24 @@ Bundle-DocURL: https://opensource.adobe.com/asset-share-commons/
             <id>cloud</id>
             <modules>
                 <module>core.cloud</module>
+            </modules>
+        </profile>
+
+
+        <profile>
+            <id>spectrum</id>
+
+            <modules>
+                <module>ui.apps.spectrum</module>
+                <module>ui.frontend.spectrum</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>semantic</id>
+            <modules>
+                <module>ui.apps.semantic-ui</module>
+                <module>ui.frontend.semantic-ui</module>
             </modules>
         </profile>
     </profiles>

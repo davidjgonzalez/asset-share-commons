@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <!-- Clientlibs -->
+    <filter root="/apps/asset-share-commons/components/details/clientlib-theme"/>
+
+    <!-- Components -->
+    <filter root="/apps/asset-share-commons/components/details"/>
+    <filter root="/apps/asset-share-commons/components/modals"/>
+    <filter root="/apps/asset-share-commons/components/search"/>
+    <filter root="/apps/asset-share-commons/components/structure"/>
+</workspaceFilter>

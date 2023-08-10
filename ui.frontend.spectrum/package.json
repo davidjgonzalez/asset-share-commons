@@ -1,0 +1,56 @@
+{
+  "name": "aem-maven-archetype",
+  "version": "1.0.0",
+  "description": "Generates an AEM Frontend project with Webpack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adobe/aem-project-archetype"
+  },
+  "private": true,
+  "main": "src/index.js",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "scripts": {
+    "dev": "webpack --env dev --config ./webpack.dev.js && clientlib --verbose",
+    "prod": "webpack --config ./webpack.prod.js && clientlib --verbose",
+    "start": "webpack-dev-server --open --config ./webpack.dev.js",
+    "webpack-version": "webpack -v"
+  },
+  "devDependencies": {
+    "aem-clientlib-generator": "^1.4.3",
+    "autoprefixer": "^10.4.14",
+    "browserslist": "^4.16.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "cssnano": "^6.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.3",
+    "source-map-loader": "^4.0.1",
+    "style-loader": "^3.3.3",
+    "terser-webpack-plugin": "^5.3.9",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-import-glob-loader": "^1.6.3",
+    "webpack-merge": "^5.9.0"
+  },
+  "dependencies": {
+    "@spectrum-css/button": "^10.1.13",
+    "@spectrum-css/checkbox": "^7.0.1",
+    "@spectrum-css/fieldlabel": "^7.0.22",
+    "@spectrum-css/icon": "^4.0.0",
+    "@spectrum-css/page": "^5.0.32",
+    "@spectrum-css/textfield": "^6.0.10",
+    "@spectrum-css/typography": "^5.0.31",
+    "@spectrum-css/vars": "^9.0.8",
+    "jquery": "^3.5.0"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%"
+  ]
+}
