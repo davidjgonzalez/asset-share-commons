@@ -18,8 +18,8 @@
   -->
 
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    cq:icon="viewGrid"
-    jcr:description="Allows a user to toggle between Grid and List layout views"
-    jcr:primaryType="cq:Component"
-    jcr:title="Layout Toggle"
-    componentGroup="Asset Share Commons - Search"/>
+          cq:icon="viewGrid"
+          jcr:description="Allows a user to toggle between Grid and List layout views"
+          jcr:primaryType="cq:Component"
+          jcr:title="Layout Toggle"
+          componentGroup="Asset Share Commons - Search"/>

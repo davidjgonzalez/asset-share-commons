@@ -22,20 +22,31 @@
      data-sly-set.pagePredicate="${modelCache['com.adobe.aem.commons.assetshare.components.predicates.PagePredicate']}"
      data-sly-set.hideLabels="${properties['hideLabels']}"></sly>
 
-<div data-sly-test.ready="${pagePredicate}"
-        class="ui basic segment">
-    <div class="ui column grid"
-         data-sly-test.showApplyFilterToggle="${!properties['hideApplyFilterToggle']}">
-        <div class="eight wide column"
-             data-sly-call="${togglesTemplate.apply @ label = properties['applyFilterLabel'], hideLabels = hideLabels, pagePredicate = pagePredicate}">
-        </div>
+<div data-sly-test.ready="${pagePredicate}">
 
-        <div class="eight wide column"
-            data-sly-call="${togglesTemplate.reset @ label = properties['resetFilterLabel'], hideLabels = hideLabels, currentPage = currentPage}">
-        </div>
-    </div>
-    <div data-sly-test="${!showApplyFilterToggle}"
-         data-sly-call="${togglesTemplate.reset @ label = properties['resetFilterLabel'], hideLabels = hideLabels, currentPage = currentPage}">
-    </div>
+
+    <sp-action-group justified compact>
+
+        <sp-action-button
+                label="${properties['applyFilterLabel'] @ i18n}"
+                type="submit"
+                form="${pagePredicate.formId}">
+            <sp-icon-search slot="icon"></sp-icon-search>
+            <sly data-sly-test="${!hideLabels}">${properties['applyFilterLabel'] @ i18n}</sly>
+        </sp-action-button>
+
+        <sp-action-button
+                labe="${properties['resetFilterLabel'] @ i18n}"
+                href="${currentPage.path @ extension = 'html'}"
+                form="${pagePredicate.formId}">
+            <sp-icon-refresh slot="icon"></sp-icon-refresh>
+            <sly data-sly-test="${!hideLabels}">${properties['resetFilterLabel'] @ i18n}</sly>
+        </sp-action-button>
+
+    </sp-action-group>
+
+
 </div>
+
+
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

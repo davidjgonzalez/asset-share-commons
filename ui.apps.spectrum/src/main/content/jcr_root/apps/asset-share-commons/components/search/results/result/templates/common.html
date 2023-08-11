@@ -56,12 +56,19 @@
 <template data-sly-template.fragments="${@ search}"></template>
 
 <template data-sly-template.footer="${@ search}">
-    <div data-asset-share-id="results-footer"
+
+
+    <div class="footer"
+         data-asset-share-id="results-footer"
          data-asset-share-update-method="replace">
-        <sly data-sly-test="${search.results.more}">
-            <br/><br/>
-            <button data-asset-share-id="${properties['infiniteLoadMore'] ? 'infinite-load-more' : 'load-more'}"
-                    class="fluid ui button">${properties['loadMoreLabel'] @ i18n}</button>
-        </sly>
+        <sp-button-group style="min-width: max-content"
+                         data-sly-test="${search.results.more}">
+            <sp-button treatment="outline"
+                       variant="primary"
+                       data-asset-share-id="${properties['infiniteLoadMore'] ? 'infinite-load-more' : 'load-more'}">
+                ${properties['loadMoreLabel'] @ i18n}
+            </sp-button>
+        </sp-button-group>
     </div>
+
 </template>

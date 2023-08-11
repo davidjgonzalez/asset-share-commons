@@ -88,14 +88,14 @@
                                                                                             sling:resourceType="asset-share-commons/data-sources/orderable-properties"/>
                                                                                 </property>
                                                                                 <orderby-case
-                                                                                  jcr:primaryType="nt:unstructured"
-                                                                                  sling:orderBefore="name"
-                                                                                  sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                                                  fieldDescription="Check for case-insensitive sorting. Only use for text (String) properties."
-                                                                                  name="./orderByCase"
-                                                                                  text="Case-Insensitive Sorting"
-                                                                                  value="{Boolean}false"
-                                                                                  uncheckedValue="{Boolean}true"/>
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:orderBefore="name"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                                        fieldDescription="Check for case-insensitive sorting. Only use for text (String) properties."
+                                                                                        name="./orderByCase"
+                                                                                        text="Case-Insensitive Sorting"
+                                                                                        value="{Boolean}false"
+                                                                                        uncheckedValue="{Boolean}true"/>
                                                                             </items>
                                                                         </option>
                                                                     </items>

@@ -18,8 +18,8 @@
   -->
 
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    cq:icon="filter"
-    jcr:description="Allows a user to apply filters or reset filters to default state."
-    jcr:primaryType="cq:Component"
-    jcr:title="Filter Toggle"
-    componentGroup="Asset Share Commons - Search"/>
+          cq:icon="filter"
+          jcr:description="Allows a user to apply filters or reset filters to default state."
+          jcr:primaryType="cq:Component"
+          jcr:title="Filter Toggle"
+          componentGroup="Asset Share Commons - Search"/>

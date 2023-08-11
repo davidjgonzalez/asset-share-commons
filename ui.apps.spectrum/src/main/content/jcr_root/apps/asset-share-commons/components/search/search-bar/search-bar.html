@@ -17,22 +17,38 @@
  */-->
 
 <sly data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
-	 data-sly-use.predicate="com.adobe.aem.commons.assetshare.components.predicates.FulltextPredicate"
-	 data-sly-test.ready="${predicate.isReady}">
+     data-sly-use.predicate="com.adobe.aem.commons.assetshare.components.predicates.FulltextPredicate"
+     data-sly-test.ready="${predicate.isReady}">
 
-	<div class="ui fluid big left icon input ${properties['hideButton'] ? '' : 'action'}">
-		<input type="${predicate.type}"
-			   placeholder="${properties['placeholder'] @ i18n}"
-			   name="${predicate.name}"
-			   id="${predicate.id}"
-			   value="${predicate.initialValue}"
-			   form="${predicate.formId}"/>
-		<i class="search icon"></i>
-		<button class="ui primary button ${properties['hideButton'] ? 'hidden' : ''}" 
-				form="${predicate.formId}">
-		        ${properties['buttonLabel'] @ i18n}
-		</button>
-	</div>
+    <input type="hidden"
+           name="${predicate.name}"
+           id="${predicate.id}"
+           value="${predicate.initialValue}"
+           form="${predicate.formId}"
+           data-asset-share-search-on="change"/>
+
+
+    <div style="display: flex; align-items: center; column-gap: 1rem;">
+        <div style="flex-grow:1;">
+            <sp-search size="xl"
+                       style="width: 100%;"
+                       placeholder="${properties['placeholder'] @ i18n}"
+                       value="${predicate.initialValue}"
+                       data-asset-share-target-input-name="${predicate.name}"
+                       onchange="AssetShare.Spectrum.toInput(this)"
+                       oninput="AssetShare.Spectrum.toInput(this)"
+            ></sp-search>
+        </div>
+        <div>
+            <sp-button variant="accent"
+                       size="xl"
+                       form="${predicate.formId}"
+                       data-sly-test="${!properties['hideButton']}">
+                <sp-icon-search slot="icon"></sp-icon-search>
+                ${properties['buttonLabel'] @ i18n}
+            </sp-button>
+        </div>
+    </div>
 
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty= !ready}"></sly>

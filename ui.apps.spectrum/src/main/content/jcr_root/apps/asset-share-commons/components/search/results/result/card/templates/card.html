@@ -16,7 +16,79 @@
   ~ limitations under the License.
  */-->
 
+
 <template data-sly-template.card="${@ asset = result, config = config }">
+
+    <sly data-sly-use.assetDetails="${'com.adobe.aem.commons.assetshare.configuration.AssetDetails' @ request = slingRequest, asset = asset }"></sly>
+
+    <sp-card class="card"
+             heading="${asset.properties['title']}"
+             subheading="${asset.properties['type']}"
+             href="${assetDetails.fullUrl}"
+             toggles="true"
+             data-asset-share-id="asset"
+             data-asset-share-asset="${asset.path}"
+             id="${asset.path}">
+
+        <img slot="preview"
+             src="${asset.properties['rendition?name=card'] || properties['missingImage'] @ context = 'attribute'}"
+             alt="${asset.properties['title']}" decoding="async"/>
+
+        <div slot="footer">${asset.properties['fileSize']}</div>
+    </sp-card>
+
+</template>
+
+
+<!--/*
+<template data-sly-template.card="${@ asset = result, config = config }">
+
+    <sly data-sly-use.assetDetails="${'com.adobe.aem.commons.assetshare.configuration.AssetDetails' @ request = slingRequest, asset = asset }"></sly>
+
+    <div class="card spectrum-Card" tabindex="0" role="figure"
+         data-asset-share-id="asset"
+         data-asset-share-asset="${asset.path}"
+         id="${asset.path}">
+        <div class="image spectrum-Card-coverPhoto" style="background-image: url(${asset.properties['rendition?name=card'] || properties['missingImage'] @ context = 'attribute'})"></div>
+        <hr class="spectrum-Divider spectrum-Divider--sizeS spectrum-Card-divider">
+        <div class="spectrum-Card-body">
+            <div class="spectrum-Card-header">
+                <div class="spectrum-Card-title spectrum-Heading spectrum-Heading--sizeXS">${asset.properties['title']}</div>
+                <div class="spectrum-Card-actionButton">
+                    <button aria-haspopup="true" class="spectrum-ActionButton spectrum-ActionButton--sizeM spectrum-ActionButton--quiet">
+=                        <svg class="spectrum-Icon spectrum-Icon--sizeM spectrum-ActionButton-icon" focusable="false" aria-hidden="true">
+                            <use xlink:href="#spectrum-icon-18-More" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="spectrum-Card-content">
+                <div class="spectrum-Card-description">${asset.properties['description']}</div>
+            </div>
+        </div>
+        <div class="spectrum-Card-footer">
+            ${'SIZE' @ i18n}: ${asset.properties['fileSize']}
+        </div>
+        <div class="spectrum-QuickActions spectrum-Card-quickActions">
+            <div class="spectrum-Checkbox spectrum-Checkbox--sizeM">
+                <input type="checkbox" class="spectrum-Checkbox-input" aria-checked="false" title="Select" value="">
+                <span class="spectrum-Checkbox-box">
+        <svg class="spectrum-Icon spectrum-UIIcon-Checkmark100 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+          <use xlink:href="#spectrum-css-icon-Checkmark100" />
+        </svg>
+        <svg class="spectrum-Icon spectrum-UIIcon-Dash100 spectrum-Checkbox-partialCheckmark" focusable="false" aria-hidden="true">
+          <use xlink:href="#spectrum-css-icon-Dash100" />
+        </svg>
+      </span>
+            </div>
+        </div>
+    </div>
+
+
+</template>
+*/-->
+<!--/*
+<template data-sly-template.x-card="${@ asset = result, config = config }">
 
     <sly data-sly-use.assetDetails="${'com.adobe.aem.commons.assetshare.configuration.AssetDetails' @ request = slingRequest, asset = asset }"></sly>
 
@@ -87,6 +159,7 @@
         </div>
     </article>
 </template>
+*/-->
 
 <template data-sly-template.noResults="${@ search = search, config = config }">
     <h1 class="ui center aligned header">

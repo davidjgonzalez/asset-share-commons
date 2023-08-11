@@ -39,6 +39,8 @@ public class StatisticsImpl implements Statistics {
         search = modelCache.get(Search.class);
     }
 
+    Integer percentComplete = null;
+
     @Override
     public String getId() {
         if (id == null) {
@@ -66,6 +68,23 @@ public class StatisticsImpl implements Statistics {
     @Override
     public long getTimeTaken() {
         return search.getResults().getTimeTaken();
+    }
+
+    @Override
+    public int getPercentComplete() {
+        if (percentComplete == null) {
+            int complete = 100;
+            if (search.getResults().getTotal() > 0) {
+                percentComplete = (int) Math.round((double) search.getResults().getRunningTotal() / (double) search.getResults().getTotal() * 100.0);
+
+                if (percentComplete == 100 && hasMore()) {
+                    // set complete to complete minus random number between 5 and 20
+                    percentComplete = percentComplete - (int) Math.round(Math.random() * 15.0 + 5.0);
+                }
+            }
+        }
+
+        return percentComplete;
     }
 
     @Override

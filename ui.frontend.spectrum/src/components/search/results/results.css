@@ -1,0 +1,15 @@
+.cmp-search-results .footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem 0;
+    min-width: max-content;
+}
+
+/* Cards */
+
+.cmp-search-results .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: flex-start;
+}

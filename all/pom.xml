@@ -22,7 +22,7 @@
     <parent>
         <groupId>com.adobe.aem.commons</groupId>
         <artifactId>assetshare</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>4.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -161,7 +161,29 @@
                                             <target>/apps/asset-share-commons-packages/content/install</target>
                                         </embedded>
                                         <!-- Remove ui.content.sample from all package, as it should not be installed as part of real uses of Asset Share commons -->
-                                     </embeddeds>
+
+
+                                        <!-- Add Spectrum as default for now -->
+                                        <embedded>
+                                            <groupId>com.adobe.aem.commons</groupId>
+                                            <artifactId>assetshare.ui.apps.spectrum</artifactId>
+                                            <type>zip</type>
+                                            <target>/apps/asset-share-commons-packages/application/install</target>
+                                        </embedded>
+                                        <embedded>
+                                            <groupId>com.adobe.aem.commons</groupId>
+                                            <artifactId>assetshare.ui.content.spectrum</artifactId>
+                                            <type>zip</type>
+                                            <target>/apps/asset-share-commons-packages/content/install</target>
+                                        </embedded>
+                                        <embedded>
+                                            <groupId>com.adobe.aem.commons</groupId>
+                                            <artifactId>assetshare.ui.content.spectrum.sample</artifactId>
+                                            <type>zip</type>
+                                            <target>/apps/asset-share-commons-packages/content/install</target>
+                                        </embedded>
+
+                                    </embeddeds>
                                 </configuration>
                             </execution>
                             <execution>
@@ -294,5 +316,47 @@
             <version>${project.version}</version>
             <type>jar</type>
         </dependency>
+
+        <!-- Spectrum -->
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.ui.apps.spectrum</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.ui.content.spectrum</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.ui.content.spectrum.sample</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+
+
+        <!-- Semantic UI
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.ui.apps.semantic-ui</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.ui.content.semantic-ui</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem.commons</groupId>
+            <artifactId>assetshare.ui.content.semantic-ui.sample</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        -->
     </dependencies>
 </project>

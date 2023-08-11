@@ -1,3 +1,8 @@
 #base=js
 
-asc-spectrum.bundle.js
+202.bundle.js
+238.bundle.js
+295.bundle.js
+471.bundle.js
+961.bundle.js
+asset-share-commons_spectrum.bundle.js

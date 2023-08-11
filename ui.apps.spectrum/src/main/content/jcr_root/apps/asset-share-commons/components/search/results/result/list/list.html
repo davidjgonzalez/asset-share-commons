@@ -17,11 +17,11 @@
  */-->
 
 <sly data-sly-use.commonTemplate="../templates/common.html"
-	 data-sly-use.listTemplate="templates/list.html"
-	 data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
-	 data-sly-set.config="${modelCache['com.adobe.aem.commons.assetshare.configuration.Config']}"
-	 data-sly-set.search="${modelCache['com.adobe.aem.commons.assetshare.search.Search']}"
-	 data-sly-set.pagePredicate="${modelCache['com.adobe.aem.commons.assetshare.components.predicates.PagePredicate']}"></sly>
+     data-sly-use.listTemplate="templates/list.html"
+     data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
+     data-sly-set.config="${modelCache['com.adobe.aem.commons.assetshare.configuration.Config']}"
+     data-sly-set.search="${modelCache['com.adobe.aem.commons.assetshare.search.Search']}"
+     data-sly-set.pagePredicate="${modelCache['com.adobe.aem.commons.assetshare.components.predicates.PagePredicate']}"></sly>
 
 <!--/* Common Data */-->
 <sly data-sly-call="${commonTemplate.data @ search = search, pagePredicate = pagePredicate}"></sly>
@@ -31,29 +31,35 @@
 
 <!--/* List Content */-->
 <div data-asset-share-id="results-content"
-	 data-asset-share-missing-image="${properties['missingImage']}"
-	 data-asset-share-update-method="replace"
-	 data-asset-share-update-when="search">
-	<table class="ui left aligned selectable table">
+     data-asset-share-missing-image="${properties['missingImage']}"
+     data-asset-share-update-method="replace"
+     data-asset-share-update-when="search">
 
-		<thead data-sly-unwrap
-			   data-sly-call="${listTemplate.header @ search}"></thead>
 
-		<tbody data-asset-share-id="results-load-more"
-			   data-asset-share-update-method="append"
-			   data-asset-share-update-when="load-more"
-			   data-sly-test="${search.results.size > 0 }"
-			   data-sly-list.result="${search.results.results}">
+    <sp-table
+            size="m"
+            selects="multiple">
 
-            <tr   data-sly-unwrap
-                  data-sly-test="${result.type == 'asset'}"
-				  data-sly-call="${listTemplate.row @ asset = result, config = config}"></tr>
-		</tbody>
+        <thead data-sly-unwrap
+               data-sly-call="${listTemplate.header @ search}"></thead>
 
-		<tbody data-sly-test="${search.results.runningTotal == 0}"
-			 data-sly-call="${listTemplate.noResults @ search = search, config = config}">
-		</tbody>
-	</table>
+        <sp-table-body
+                data-asset-share-id="results-load-more"
+                data-asset-share-update-method="append"
+                data-asset-share-update-when="load-more"
+                data-sly-test="${search.results.size > 0 }"
+                data-sly-list.result="${search.results.results}">
+
+            <tr data-sly-unwrap
+                data-sly-test="${result.type == 'asset'}"
+                data-sly-call="${listTemplate.row @ asset = result, config = config}"></tr>
+        </sp-table-body>
+
+        <sp-table-body class="spectrum-Table-body"
+                       data-sly-test="${search.results.runningTotal == 0}"
+                       data-sly-call="${listTemplate.noResults @ search = search, config = config}">
+        </sp-table-body>
+    </sp-table>
 </div>
 
 <!--/* Results Footer */-->

@@ -53,7 +53,7 @@
 
     <!--/* DROP-DOWN */-->
     <div class="ui form"
-		 data-sly-test="${predicate.type.value == 'drop-down' || predicate.type.value == 'multi-drop-down'}">
+         data-sly-test="${predicate.type.value == 'drop-down' || predicate.type.value == 'multi-drop-down'}">
         <div class="ui fluid styled accordion field">
             <div class="${predicate.type.value}"
                  data-sly-call="${optionsTemplate.dropdown @ predicate = predicate}"></div>

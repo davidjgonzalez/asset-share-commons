@@ -18,7 +18,7 @@
     <groupId>com.adobe.aem.commons</groupId>
     <artifactId>assetshare</artifactId>
     <packaging>pom</packaging>
-    <version>3.4.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
 
     <name>Asset Share Commons - Reactor Project</name>
     <description>asset-share-commons</description>
@@ -903,18 +903,27 @@ Bundle-DocURL: https://opensource.adobe.com/asset-share-commons/
 
         <profile>
             <id>spectrum</id>
-
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <modules>
-                <module>ui.apps.spectrum</module>
                 <module>ui.frontend.spectrum</module>
+                <module>ui.apps.spectrum</module>
+                <module>ui.content.spectrum</module>
+                <module>ui.content.spectrum.sample</module>
             </modules>
         </profile>
 
         <profile>
             <id>semantic-ui</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <modules>
-                <module>ui.apps.semantic-ui</module>
                 <module>ui.frontend.semantic-ui</module>
+                <module>ui.apps.semantic-ui</module>
+                <module>ui.content.semantic-ui</module>
+                <module>ui.content.semantic-ui.sample</module>
             </modules>
         </profile>
     </profiles>

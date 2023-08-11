@@ -6,16 +6,11 @@ const MiniCssExtractPlugin    = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 
 module.exports = {
-        resolve: {
-             alias: {
-                  "@spectrum-css": path.resolve(__dirname, 'node_modules/@spectrum-css/'),
-             },
-        },
         entry: {
-            site: __dirname + '/src/index.js'
+            "asset-share-commons_spectrum": __dirname + '/src/index.js'
         },
         output: {
-            filename: 'js/asc-spectrum.bundle.js',
+            filename: 'js/[name].bundle.js',
             path: path.resolve(__dirname, 'dist')
         },
         optimization: {
@@ -60,8 +55,7 @@ module.exports = {
             new CleanWebpackPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             new MiniCssExtractPlugin({
-                //filename: 'css/[name].bundle.css'
-                filename: 'css/asc-spectrum.bundle.css'
+                filename: 'css/[name].bundle.css'
             })
         ],
 

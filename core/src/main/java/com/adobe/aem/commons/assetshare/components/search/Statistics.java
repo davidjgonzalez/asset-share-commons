@@ -32,5 +32,10 @@ public interface Statistics extends Component {
      * @return the time taken in milliseconds for this specific search. This is NOT an aggregate of all "loads" for this search.
      */
     long getTimeTaken();
+
+    /**
+     * @return an estimated percentage complete for this search. This is an int, not a decimal (0-100).
+     */
+    default int getPercentComplete() { return 0; };
 }
 

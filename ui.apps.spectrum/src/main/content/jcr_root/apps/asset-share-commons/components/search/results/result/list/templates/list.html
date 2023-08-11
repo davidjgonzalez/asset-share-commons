@@ -18,81 +18,89 @@
 
 <template data-sly-template.header="${@ search}">
 
-	<thead>
-		<tr><th class="left aligned">Preview</th>
-			<th>${'Name' @i18n}</th>
-			<th>${'Date' @ i18n}</th>
-			<th>${'Res.' @ i18n}</th>
-			<th>${'Size' @ i18n}</th>
-			<th></th>
-		</tr>
-	</thead>
+    <sp-table-head>
+        <sp-table-head-cell>Preview</sp-table-head-cell>
+        <sp-table-head-cell>${'Name' @i18n}</sp-table-head-cell>
+        <sp-table-head-cell>${'Date' @ i18n}</sp-table-head-cell>
+        <sp-table-head-cell>${'Res.' @ i18n}</sp-table-head-cell>
+        <sp-table-head-cell>${'Size' @ i18n}</sp-table-head-cell>
+        <sp-table-head-cell></sp-table-head-cell>
+    </sp-table-head>
 
 </template>
 
 <template data-sly-template.row="${@ asset = result, config = config }">
 
-	<sly    data-sly-use.assetDetails="${'com.adobe.aem.commons.assetshare.configuration.AssetDetails' @ request = slingRequest, asset = asset }"></sly>
+    <sly data-sly-use.assetDetails="${'com.adobe.aem.commons.assetshare.configuration.AssetDetails' @ request = slingRequest, asset = asset }"></sly>
 
-	<tr     data-asset-share-id="asset"
-			data-asset-share-asset="${asset.path}"
-			id="${asset.path}">
+    <sp-table-row data-asset-share-id="asset"
+                  data-asset-share-asset="${asset.path}"
+                  value="${asset.path}"
+                  id="${asset.path}">
+        <sp-table-cell>
+            <a href="${assetDetails.fullUrl}"><img
+                    src="${asset.properties['rendition?name=list'] || properties['missingImage'] @ context = 'attribute'}"
+                    width="98px"
+                    alt="${asset.properties['title']}"/></a>
+        </sp-table-cell>
+        <sp-table-cell>
+            <a href="${assetDetails.fullUrl}">${asset.properties['title']}</a>
+        </sp-table-cell>
+        <sp-table-cell>
+            ${'yyyy-MM-dd' @ format=asset.properties['jcr:content/jcr:lastModified'], locale=config.locale}
+        </sp-table-cell>
+        <sp-table-cell>
+            <sly data-sly-test="${asset.properties['resolution']}">
+                ${asset.properties['resolution']}
+            </sly>
+        </sp-table-cell>
+        <sp-table-cell>
+            ${asset.properties['fileSize']}
+        </sp-table-cell>
+        <sp-table-cell>
+            ${'Actions' @ i18n}
+        </sp-table-cell>
+    </sp-table-row>
 
-		<td class="image">
-			<a href="${assetDetails.fullUrl}"><img src="${asset.properties['rendition?name=list'] || properties['missingImage'] @ context = 'attribute'}"
-												   width="98px"
-												   alt="${asset.properties['title']}"/></a>
-		</td>
-		<td class="header">
-			<a href="${assetDetails.fullUrl}">${asset.properties['title']}</a>
-		</td>
-		<td>${'yyyy-MM-dd' @ format=asset.properties['jcr:content/jcr:lastModified'], locale=config.locale}</td>
-		<td>
-			<sly data-sly-test="${asset.properties['resolution']}">
-				${asset.properties['resolution']}
-			</sly>
-		</td>
-		<td>${asset.properties['fileSize']}</td>
-		<td>
-			
-			<div class="ui simple dropdown item">
-			   	${'Actions' @ i18n}
-				<i class="dropdown icon"></i>
-  				<div class="menu">
-  					<div class="item"
-  					     data-asset-share-id="download-asset"
-					     data-asset-share-asset="${asset.path}"
-					     data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-					     data-sly-test="${config.downloadEnabled}">${'Download' @ i18n}</div>
-  					<div class="item"
-  					     data-asset-share-id="share-asset"
-					     data-asset-share-asset="${asset.path}"
-					     data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-					     data-sly-test="${config.shareEnabled}">${'Share' @ i18n}</div>
-  					<div class="item"
-  					     data-asset-share-id="add-to-cart"
-					     data-asset-share-asset="${asset.path}"
-					     data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-					     data-sly-test="${config.cartEnabled}">${'Add to Cart' @ i18n}</div>
-					<div class="item hidden"
-  					     data-asset-share-id="remove-from-cart"
-					     data-asset-share-asset="${asset.path}"
-					     data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-					     data-sly-test="${config.cartEnabled}">${'Remove From Cart' @ i18n}</div>
-  				</div>
-			</div>
-		</td>
-	</tr>
+
+    <!--
+    <div class="ui simple dropdown item">
+           ${'Actions' @ i18n}
+        <i class="dropdown icon"></i>
+          <div class="menu">
+              <div class="item"
+                   data-asset-share-id="download-asset"
+                 data-asset-share-asset="${asset.path}"
+                 data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
+                 data-sly-test="${config.downloadEnabled}">${'Download' @ i18n}</div>
+              <div class="item"
+                   data-asset-share-id="share-asset"
+                 data-asset-share-asset="${asset.path}"
+                 data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
+                 data-sly-test="${config.shareEnabled}">${'Share' @ i18n}</div>
+              <div class="item"
+                   data-asset-share-id="add-to-cart"
+                 data-asset-share-asset="${asset.path}"
+                 data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
+                 data-sly-test="${config.cartEnabled}">${'Add to Cart' @ i18n}</div>
+            <div class="item hidden"
+                   data-asset-share-id="remove-from-cart"
+                 data-asset-share-asset="${asset.path}"
+                 data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
+                 data-sly-test="${config.cartEnabled}">${'Remove From Cart' @ i18n}</div>
+          </div>
+    </div>
+    -->
 
 </template>
 
 
 <template data-sly-template.noResults="${@ search = search, config = config }">
-	<tr>
-		<td colspan="7">
-			<h1 class="ui center aligned header">
-				${properties['noResultsText'] || 'No results could be found' @ i18n}
-			</h1>
-		</td>
-	</tr>
+    <sp-table-row>
+        <sp-table-cell colspan="7" style="text-align: center;">
+            <h1 style="margin: 2rem auto;">
+                ${properties['noResultsText'] || 'No results could be found' @ i18n}
+            </h1>
+        </sp-table-cell>
+    </sp-table-row>
 </template>

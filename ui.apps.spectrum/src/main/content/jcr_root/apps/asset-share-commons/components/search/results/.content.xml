@@ -18,8 +18,8 @@
   -->
 
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    jcr:primaryType="cq:Component"
-    jcr:title="Search Results"
-    cq:icon="viewRow"
-    componentGroup="Asset Share Commons - Search"
-    jcr:description="Displays a grid or list view of asset search results."/>
+          jcr:primaryType="cq:Component"
+          jcr:title="Search Results"
+          cq:icon="viewRow"
+          componentGroup="Asset Share Commons - Search"
+          jcr:description="Displays a grid or list view of asset search results."/>
