@@ -1,0 +1,11 @@
+body {
+   margin: 0;
+   padding: 0;
+}
+
+#asset-share-commons .responsivegrid.rail {
+    position: sticky;
+    top: 0;
+    border-left: solid 1px #ccc;
+    background-color: #f7f7f7;
+}

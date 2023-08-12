@@ -1,12 +1,10 @@
-//import './spectrum-css/index.js';
 import './spectrum-web-components/index.js';
 
+import './components/layout.css';
 import './components/search/results/results.css';
 
 
 /* Placeholder JS */
-
-
 function toInput(sourceEL) {
     const targetName = sourceEL.dataset.assetShareTargetInputName;
     const targetEl =  document.querySelector('input[name="' + targetName + '"]');
