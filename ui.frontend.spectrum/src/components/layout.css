@@ -9,3 +9,44 @@ body {
     border-left: solid 1px #ccc;
     background-color: #f7f7f7;
 }
+
+
+
+
+
+
+.asc-expandable-section {
+
+}
+
+.asc-expandable-section__title {
+    display: inline-block;
+    transform-origin: center;
+    transition: transform 0.1s ease-in-out;
+    transform: rotate(0deg);
+}
+
+.asc-expandable-section__title:hover {
+    cursor: pointer;
+}
+
+.asc-expandable-section__title:before {
+    content: ">";
+}
+
+
+.asc-expandable-section__content {
+    display: none;
+}
+
+.asc-expandable-section.asc-expandable-section--expanded .asc-expandable-section__title:before {
+    display: inline-block;
+    transform-origin: center;
+    transition: transform 0.1s ease-in-out;
+    transform: rotate(90deg);
+}
+
+
+.asc-expandable-section.asc-expandable-section--expanded .asc-expandable-section__content {
+    display: block;
+}

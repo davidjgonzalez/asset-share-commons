@@ -42,25 +42,33 @@
            form="${predicate.formId}"
            data-asset-share-predicate-id="${predicate.id}"/>
 
-    <!--/* CHECKBOX and Variations*/-->
 
-    <sly data-sly-test="${predicate.subType == 'checkbox'}"
-         data-sly-call="${optionsTemplate.checkbox @ predicate = predicate}"></sly>
-
-    <sly data-sly-test="${predicate.subType == 'radio'}"
-         data-sly-call="${optionsTemplate.radio @ predicate = predicate}"></sly>
-
-    <!--/* TODO: ALIGN DIALOG WITH OPTIONS */-->
-    <sly data-sly-test="${predicate.subType == 'switch' || predicate.subType == 'toggle' || predicate.subType == 'slider'}"
-         data-sly-call="${optionsTemplate.switch @ predicate = predicate}"></sly>
-
-    <!--/* DROP-DOWN */-->
-    <div class="ui form"
-         data-sly-test="${predicate.type.value == 'drop-down' || predicate.type.value == 'multi-drop-down'}">
-        <div class="ui fluid styled accordion field">
-            <div class="${predicate.type.value}"
-                 data-sly-call="${optionsTemplate.dropdown @ predicate = predicate}"></div>
+    <section class="asc-expandable-section ${predicate.isExpanded ? 'asc-expandable-section--expanded' : ''} ">
+        <div class="asc-expandable-section__title">
+            ${predicate.title}
         </div>
-    </div>
+        <div class="asc-expandable-section__content">
+            <!--/* CHECKBOX and Variations*/-->
+
+            <sly data-sly-test="${predicate.subType == 'checkbox'}"
+                 data-sly-call="${optionsTemplate.checkbox @ predicate = predicate}"></sly>
+
+            <sly data-sly-test="${predicate.subType == 'radio'}"
+                 data-sly-call="${optionsTemplate.radio @ predicate = predicate}"></sly>
+
+            <!--/* TODO: ALIGN DIALOG WITH OPTIONS */-->
+            <sly data-sly-test="${predicate.subType == 'switch' || predicate.subType == 'toggle' || predicate.subType == 'slider'}"
+                 data-sly-call="${optionsTemplate.switch @ predicate = predicate}"></sly>
+
+            <!--/* DROP-DOWN */-->
+            <div class="ui form"
+                 data-sly-test="${predicate.type.value == 'drop-down' || predicate.type.value == 'multi-drop-down'}">
+                <div class="ui fluid styled accordion field">
+                    <div class="${predicate.type.value}"
+                         data-sly-call="${optionsTemplate.dropdown @ predicate = predicate}"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

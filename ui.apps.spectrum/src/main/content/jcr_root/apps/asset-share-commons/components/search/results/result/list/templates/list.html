@@ -44,7 +44,7 @@
                     alt="${asset.properties['title']}"/></a>
         </sp-table-cell>
         <sp-table-cell>
-            <a href="${assetDetails.fullUrl}">${asset.properties['title']}</a>
+            <sp-link variant="secondary" href="${assetDetails.fullUrl}">${asset.properties['title']}</sp-link>
         </sp-table-cell>
         <sp-table-cell>
             ${'yyyy-MM-dd' @ format=asset.properties['jcr:content/jcr:lastModified'], locale=config.locale}

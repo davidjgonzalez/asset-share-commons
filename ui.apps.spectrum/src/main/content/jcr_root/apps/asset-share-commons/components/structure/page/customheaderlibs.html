@@ -16,7 +16,7 @@
   ~ limitations under the License.
  */-->
 
-<sly
+<sly    data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
         data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
         data-sly-set.config="${modelCache['com.adobe.aem.commons.assetshare.configuration.Config']}"/>
 
@@ -28,9 +28,9 @@
 
 <!--/*
     Custom Headerlibs for Asset Share Site
+
+<sly data-sly-call="${clientlib.css @ categories='asset-share-commons.base'}"/>
 */-->
-<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
-     data-sly-call="${clientlib.css @ categories='asset-share-commons.base'}"/>
 
 <!--/* Load authoring related client libraries */-->
 <sly data-sly-test="${wcmmode.preview || wcmmode.edit}"

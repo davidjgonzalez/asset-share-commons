@@ -20,7 +20,13 @@
     This overlay copies the code from ../v2/page/body.html and adds additional HTL scripts to add global elements to support the site.
 */-->
 
-<sp-theme scale="large" color="light">
+<script>
+    setTimeout(function () {
+        document.getElementById('asset-share-commons').style.display = 'unset';
+    }, 250);
+</script>
+
+<sp-theme scale="large" color="light" id="asset-share-commons" style="display: none;">
 
     <sly data-sly-include="init.html"/>
 

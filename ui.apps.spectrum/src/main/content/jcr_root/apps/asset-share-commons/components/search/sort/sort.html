@@ -46,8 +46,7 @@
             data-asset-share-search-actions="all"
             data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
 
-    <sp-picker id="picker-m" size="m"
-               label="${predicate.orderByLabel}"
+    <sp-picker label="${predicate.orderByLabel}"
                value="${predicate.initialValues['orderby']}"
                onchange="AssetShare.Spectrum.toInput(this)"
                data-asset-share-target-input-name="orderby"
@@ -59,8 +58,7 @@
     </sp-picker>
 
 
-    <sp-picker id="picker-m" size="m"
-               label="${predicate.orderBySortLabel}"
+    <sp-picker label="${predicate.orderBySortLabel}"
                value="${predicate.initialValues['orderby.sort']}"
                onchange="AssetShare.Spectrum.toInput(this)"
                data-asset-share-target-input-name="orderby.sort">

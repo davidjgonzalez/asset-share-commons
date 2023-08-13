@@ -37,7 +37,7 @@
 
 
     <sp-table
-            size="m"
+            style="min-width: max-content;"
             selects="multiple">
 
         <thead data-sly-unwrap
@@ -55,8 +55,7 @@
                 data-sly-call="${listTemplate.row @ asset = result, config = config}"></tr>
         </sp-table-body>
 
-        <sp-table-body class="spectrum-Table-body"
-                       data-sly-test="${search.results.runningTotal == 0}"
+        <sp-table-body data-sly-test="${search.results.runningTotal == 0}"
                        data-sly-call="${listTemplate.noResults @ search = search, config = config}">
         </sp-table-body>
     </sp-table>

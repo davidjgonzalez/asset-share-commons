@@ -24,3 +24,15 @@ window.AssetShare = window.AssetShare || {};
 window.AssetShare.Spectrum = {
     toInput: toInput
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.asc-expandable-section').forEach(function(sectionEl) {
+        sectionEl.addEventListener('click', function(titleEl) {
+            if (titleEl.target.matches('.asc-expandable-section__title')) {
+                sectionEl.classList.toggle('asc-expandable-section--expanded');
+            }
+        });
+    });
+});
+

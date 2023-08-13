@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@spectrum-web-components/action-group": "^0.35.0",
-    "@spectrum-web-components/button": "^0.35.0",
-    "@spectrum-web-components/button-group": "^0.35.0",
-    "@spectrum-web-components/meter": "^0.35.0",
-    "@spectrum-web-components/tooltip": "^0.35.0"
-  }
-}

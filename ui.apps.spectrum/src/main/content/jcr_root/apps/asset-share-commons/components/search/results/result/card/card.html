@@ -46,9 +46,9 @@
 
     </div>
 
-    <div data-sly-test="${search.results.runningTotal == 0}"
-         data-sly-call="${cardTemplate.noResults @ search = search, config = config}">
-    </div>
+    <h1 data-sly-test="${search.results.runningTotal == 0}">
+        ${properties['noResultsText'] || 'No results could be found' @ i18n}
+    </h1>
 </div>
 
 <!--/* Common Results Footer */-->

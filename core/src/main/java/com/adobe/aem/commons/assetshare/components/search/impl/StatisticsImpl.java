@@ -73,9 +73,9 @@ public class StatisticsImpl implements Statistics {
     @Override
     public int getPercentComplete() {
         if (percentComplete == null) {
-            int complete = 100;
-            if (search.getResults().getTotal() > 0) {
-                percentComplete = (int) Math.round((double) search.getResults().getRunningTotal() / (double) search.getResults().getTotal() * 100.0);
+            percentComplete = 100;
+            if (getTotal() > 0) {
+                percentComplete = (int) Math.round((double) getRunningTotal() / (double) getTotal() * 100.0);
 
                 if (percentComplete == 100 && hasMore()) {
                     // set complete to complete minus random number between 5 and 20

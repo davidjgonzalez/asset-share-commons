@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:Template">
+    <jcr:content
+        cq:lastModified="{Date}2023-08-12T15:21:28.723-04:00"
+        cq:lastModifiedBy="admin"
+        cq:templateType="/conf/asset-share-commons/settings/wcm/template-types/search-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Search Template"
+        status="enabled"/>
+</jcr:root>

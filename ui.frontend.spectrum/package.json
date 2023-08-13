@@ -40,15 +40,19 @@
   },
   "dependencies": {
     "@spectrum-web-components/accordion": "^0.35.0",
+    "@spectrum-web-components/action-group": "^0.35.0",
     "@spectrum-web-components/action-menu": "^0.35.0",
     "@spectrum-web-components/asset": "^0.35.0",
+    "@spectrum-web-components/button": "^0.35.0",
+    "@spectrum-web-components/button-group": "^0.35.0",
     "@spectrum-web-components/card": "^0.35.0",
     "@spectrum-web-components/checkbox": "^0.35.0",
     "@spectrum-web-components/field-group": "^0.35.0",
     "@spectrum-web-components/grid": "^0.35.0",
     "@spectrum-web-components/icons-workflow": "^0.35.0",
     "@spectrum-web-components/link": "^0.35.0",
-    "@spectrum-web-components/menu-item": "^0.5.4",
+    "@spectrum-web-components/menu": "^0.35.0",
+    "@spectrum-web-components/meter": "^0.35.0",
     "@spectrum-web-components/overlay": "^0.35.0",
     "@spectrum-web-components/picker": "^0.35.0",
     "@spectrum-web-components/progress-bar": "^0.35.0",
@@ -59,7 +63,8 @@
     "@spectrum-web-components/table": "^0.35.0",
     "@spectrum-web-components/tags": "^0.35.0",
     "@spectrum-web-components/textfield": "^0.35.0",
-    "@spectrum-web-components/theme": "^0.35.0"
+    "@spectrum-web-components/theme": "^0.35.0",
+    "@spectrum-web-components/tooltip": "^0.35.0"
   },
   "browserslist": [
     "last 2 version",

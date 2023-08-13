@@ -20,9 +20,6 @@
 
 <template data-sly-template.checkbox="${ @ predicate}">
 
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
 
     <sly data-sly-list.option="${predicate.items}">
         <input
@@ -55,10 +52,6 @@
 
 <template data-sly-template.switch="${ @ predicate}">
 
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
-
     <sly data-sly-list.option="${predicate.items}">
         <input
                 style="display: none;"
@@ -90,9 +83,6 @@
 
 <template data-sly-template.radio="${ @ predicate}">
 
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
 
     <input
             type="hidden"
@@ -123,9 +113,6 @@
 
 <!--/* Dropdown Template - renders a dropdown */-->
 <template data-sly-template.dropdown="${ @ predicate}">
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
 
     <div class="${predicate.isExpanded ? 'active' : ''} content field">
         <select class="ui fluid dropdown"
