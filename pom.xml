@@ -907,10 +907,10 @@ Bundle-DocURL: https://opensource.adobe.com/asset-share-commons/
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
-                <module>ui.frontend.spectrum</module>
-                <module>ui.apps.spectrum</module>
-                <module>ui.content.spectrum</module>
-                <module>ui.content.spectrum.sample</module>
+                <module>spectrum/ui.frontend.spectrum</module>
+                <module>spectrum/ui.apps.spectrum</module>
+                <module>spectrum/ui.content.spectrum</module>
+                <module>spectrum/ui.content.spectrum.sample</module>
             </modules>
         </profile>
 
@@ -920,10 +920,10 @@ Bundle-DocURL: https://opensource.adobe.com/asset-share-commons/
                 <activeByDefault>false</activeByDefault>
             </activation>
             <modules>
-                <module>ui.frontend.semantic-ui</module>
-                <module>ui.apps.semantic-ui</module>
-                <module>ui.content.semantic-ui</module>
-                <module>ui.content.semantic-ui.sample</module>
+                <module>semantic-ui/ui.frontend.semantic-ui</module>
+                <module>semantic-ui/ui.apps.semantic-ui</module>
+                <module>semantic-ui/ui.content.semantic-ui</module>
+                <module>semantic-ui/ui.content.semantic-ui.sample</module>
             </modules>
         </profile>
     </profiles>
