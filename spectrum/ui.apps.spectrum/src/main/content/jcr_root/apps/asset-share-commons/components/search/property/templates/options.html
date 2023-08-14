@@ -19,8 +19,6 @@
 <!--/* Checkbox Template also renders Radio, Toggle, and Slide formats */-->
 
 <template data-sly-template.checkbox="${ @ predicate}">
-
-
     <sly data-sly-list.option="${predicate.items}">
         <input
                 style="display: none;"
@@ -34,11 +32,7 @@
                 data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
     </sly>
 
-    <sp-field-group
-            data-asset-share-id="${predicate.id}__fields"
-            data-asset-share-update-method="${predicate.componentUpdateMethod}"
-            data-sly-list.option="${predicate.items}">
-
+    <sp-field-group data-sly-list.option="${predicate.items}">
         <sp-checkbox
                 checked="${option.selected}"
                 disabled="${option.disabled}"
@@ -47,11 +41,9 @@
                 onchange="AssetShare.Spectrum.toInput(this)">${option.text}
         </sp-checkbox>
     </sp-field-group>
-
 </template>
 
 <template data-sly-template.switch="${ @ predicate}">
-
     <sly data-sly-list.option="${predicate.items}">
         <input
                 style="display: none;"
@@ -64,11 +56,7 @@
                 value="${option.value}"
                 data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
     </sly>
-
-    <sp-field-group
-            data-asset-share-id="${predicate.id}__fields"
-            data-asset-share-update-method="${predicate.componentUpdateMethod}"
-            data-sly-list.option="${predicate.items}">
+    <sp-field-group data-sly-list.option="${predicate.items}">
         <sp-switch
                 checked="${option.selected}"
                 disabled="${option.disabled}"
@@ -77,13 +65,10 @@
                 onchange="AssetShare.Spectrum.toInput(this)">${option.text}
         </sp-switch>
     </sp-field-group>
-
 </template>
 
 
 <template data-sly-template.radio="${ @ predicate}">
-
-
     <input
             type="hidden"
             for="${predicate.id}"
@@ -93,10 +78,7 @@
             value="${predicate.initialValue}"
             data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
 
-    <sp-radio-group
-            selected="${predicate.intialValue}"
-            data-asset-share-id="${predicate.id}__fields"
-            data-asset-share-update-method="${predicate.componentUpdateMethod}"
+    <sp-radio-group selected="${predicate.intialValue}"
             data-sly-list.option="${predicate.items}">
 
         <sp-radio
@@ -107,30 +89,26 @@
                 onchange="AssetShare.Spectrum.toInput(this)">${option.text}
         </sp-radio>
     </sp-radio-group>
-
 </template>
 
 
 <!--/* Dropdown Template - renders a dropdown */-->
 <template data-sly-template.dropdown="${ @ predicate}">
+    <input
+            type="hidden"
+            name="${predicate.group}.${predicate.name}.${predicate.valuesKey}"
+            value="${predicate.intialValue}"
+            form="${predicate.formId}"
+            for="${predicate.id}"
+            data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
 
-    <div class="${predicate.isExpanded ? 'active' : ''} content field">
-        <select class="ui fluid dropdown"
-                name="${predicate.group}.${predicate.name}.${predicate.valuesKey}"
-                value="${predicate.intialValue}"
-                form="${predicate.formId}"
-                for="${predicate.id}"
-                data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"
-                data-asset-share-id="${predicate.id}__fields"
-                data-asset-share-update-method="${predicate.componentUpdateMethod}">
-            <option value="">${predicate.title}</option>
-            <sly data-sly-list.optionItem="${predicate.items}">
-                <option value="${optionItem.value}"
-                        disabled="${optionItem.disabled}"
-                        selected="${optionItem.selected ? 'selected' : ''}">
-                    ${optionItem.text}
-                </option>
-            </sly>
-        </select>
-    </div>
+    <sp-picker style="width: 100%;"
+               multiple
+               label="${predicate.title}"
+               value="${predicate.intialValue}"
+               onchange="AssetShare.Spectrum.toInput(this)"
+               data-asset-share-target-input-name="${predicate.group}.${predicate.name}.${predicate.valuesKey}"
+               data-sly-list.item="${predicate.items}">
+        <sp-menu-item  value="${item.value}">${item.text}</sp-menu-item>
+    </sp-picker>
 </template>

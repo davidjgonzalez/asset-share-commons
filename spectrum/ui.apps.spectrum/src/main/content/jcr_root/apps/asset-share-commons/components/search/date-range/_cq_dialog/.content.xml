@@ -134,6 +134,7 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/well">
                                                                         <items jcr:primaryType="nt:unstructured">
+                                                                            <!--
                                                                             <option-types
                                                                                     granite:class="cmp-options--editor-type-v1"
                                                                                     jcr:primaryType="nt:unstructured"
@@ -146,16 +147,9 @@
                                                                                             jcr:primaryType="nt:unstructured"
                                                                                             text="Radio buttons"
                                                                                             value="radio"/>
-                                                                                    <slider
-                                                                                            jcr:primaryType="nt:unstructured"
-                                                                                            text="Slider"
-                                                                                            value="slider"/>
-                                                                                    <toggle
-                                                                                            jcr:primaryType="nt:unstructured"
-                                                                                            text="Toggle"
-                                                                                            value="toggle"/>
                                                                                 </items>
                                                                             </option-types>
+                                                                            -->
                                                                             <options
                                                                                     jcr:primaryType="nt:unstructured"
                                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"

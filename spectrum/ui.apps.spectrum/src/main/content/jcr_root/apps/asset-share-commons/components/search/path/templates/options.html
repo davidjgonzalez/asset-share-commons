@@ -17,11 +17,6 @@
  */-->
 
 <template data-sly-template.checkbox="${ @ predicate}">
-
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
-
     <sly data-sly-list.option="${predicate.items}">
         <input
                 style="display: none;"
@@ -34,11 +29,7 @@
                 data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
     </sly>
 
-    <sp-field-group
-            data-asset-share-id="${predicate.id}__fields"
-            data-asset-share-update-method="${predicate.componentUpdateMethod}"
-            data-sly-list.option="${predicate.items}">
-
+    <sp-field-group data-sly-list.option="${predicate.items}">
         <sp-checkbox
                 size="m"
                 checked="${option.selected}"
@@ -48,15 +39,9 @@
                 onchange="AssetShare.Spectrum.toInput(this)">${option.text}
         </sp-checkbox>
     </sp-field-group>
-
 </template>
 
 <template data-sly-template.switch="${ @ predicate}">
-
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
-
     <sly data-sly-list.option="${predicate.items}">
         <input
                 style="display: none;"
@@ -69,10 +54,7 @@
                 data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
     </sly>
 
-    <sp-field-group
-            data-asset-share-id="${predicate.id}__fields"
-            data-asset-share-update-method="${predicate.componentUpdateMethod}"
-            data-sly-list.option="${predicate.items}">
+    <sp-field-group data-sly-list.option="${predicate.items}">
         <sp-switch
                 size="m"
                 checked="${option.selected}"
@@ -82,32 +64,25 @@
                 onchange="AssetShare.Spectrum.toInput(this)">${option.text}
         </sp-switch>
     </sp-field-group>
-
 </template>
 
 
 <!--/* Dropdown Template - renders a dropdown */-->
 <template data-sly-template.dropdown="${ @ predicate}">
-    <div class="${predicate.isExpanded ? 'active' : ''} title right">
-        <i class="dropdown icon"></i> ${predicate.title}
-    </div>
+    <input
+            type="hidden"
+            name="${predicate.group}.${predicate.name}"
+            value="${predicate.intialValue}"
+            form="${predicate.formId}"
+            for="${predicate.id}"
+            data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
 
-    <div class="${predicate.isExpanded ? 'active' : ''} content field">
-        <select class="ui fluid dropdown"
-                name="${predicate.group}.${predicate.name}"
-                value="${predicate.intialValue}"
-                form="${predicate.formId}"
-                data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"
-                data-asset-share-id="${predicate.id}__fields"
-                data-asset-share-update-method="${predicate.componentUpdateMethod}">
-            <option value="">${predicate.title}</option>
-            <sly data-sly-list.optionItem="${predicate.items}">
-                <option value="${optionItem.value}"
-                        disabled="${optionItem.disabled}"
-                        selected="${optionItem.selected ? 'selected' : ''}">
-                    ${optionItem.text}
-                </option>
-            </sly>
-        </select>
-    </div>
+    <sp-picker style="width: 100%;"
+               label="${predicate.title}"
+               value="${predicate.intialValue}"
+               onchange="AssetShare.Spectrum.toInput(this)"
+               data-asset-share-target-input-name="${predicate.group}.${predicate.name}"
+               data-sly-list.item="${predicate.items}">
+        <sp-menu-item  value="${item.value}">${item.text}</sp-menu-item>
+    </sp-picker>
 </template>

@@ -32,7 +32,7 @@
     <!-- ====================================================================== -->
     <artifactId>assetshare.ui.apps.spectrum</artifactId>
     <packaging>content-package</packaging>
-    <name>Asset Share Commons - UI Apps (Spectrum)</name>
+    <name>Asset Share Commons - Spectrum - UI Apps</name>
     <description>UI apps package using Adobe Spectrum components for Asset Share Commons</description>
 
     <!-- ====================================================================== -->

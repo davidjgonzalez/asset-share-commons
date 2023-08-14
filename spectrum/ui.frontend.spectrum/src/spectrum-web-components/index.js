@@ -18,6 +18,7 @@ import '@spectrum-web-components/button/sp-close-button.js';
 import '@spectrum-web-components/progress-bar/sp-progress-bar.js';
 import '@spectrum-web-components/tooltip/sp-tooltip.js';
 
+import '@spectrum-web-components/meter/sp-meter.js';
 
 /* Form fields */
 import '@spectrum-web-components/field-group/sp-field-group.js';
@@ -50,3 +51,6 @@ import '@spectrum-web-components/icons-workflow/icons/sp-icon-classic-grid-view.
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-view-list.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-search.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-refresh.js';
+
+import '@spectrum-web-components/icons-ui/icons/sp-icon-chevron75.js';
+import '@spectrum-web-components/icons-ui/icons/sp-icon-chevron300.js';

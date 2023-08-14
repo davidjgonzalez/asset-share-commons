@@ -54,21 +54,29 @@
 
 <!--/* Relative Date Range  */-->
 <template data-sly-template.relativeDateRange="${ @ predicate}">
-    <div class="grouped fields"
-         data-sly-list.option="${predicate.items}">
-        <div class="field">
-            <div class="ui ${predicate.subType} checkbox">
-                <input for="${predicate.id}"
-                       form="${predicate.formId}"
-                       type="${predicate.subType == 'checkbox' ? 'checkbox' : 'radio'}"
-                       name="${predicate.group}.${predicate.name}.lowerBound"
-                       value="${option.value}"
-                       checked="${option.selected}"
-                       disabled="${option.disabled}"
-                       autocomplete="off"
-                       data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
-                <label>${option.text}</label>
-            </div>
-        </div>
-    </div>
+
+    <input type="hidden"
+           for="${predicate.id}"
+           id="${predicate.id}_${optionList.index}"
+           form="${predicate.formId}"
+           name="${predicate.group}.${predicate.name}.lowerBound"
+           value="${predicate.initialValue}"
+           autocomplete="off"
+           data-asset-share-search-on="${predicate.autoSearch ? 'change' : ''}"/>
+
+    <sp-radio-group
+            selected="${predicate.intialValue}"
+            data-asset-share-id="${predicate.id}__fields"
+            data-asset-share-update-method="${predicate.componentUpdateMethod}"
+            data-sly-list.option="${predicate.items}">
+
+        <sp-radio
+                checked="${option.selected}"
+                disabled="${option.disabled}"
+                value="${option.value}"
+                data-asset-share-target-input-name="${predicate.group}.${predicate.name}.lowerBound"
+                onchange="AssetShare.Spectrum.toInput(this)">${option.text}
+        </sp-radio>
+    </sp-radio-group>
+
 </template>

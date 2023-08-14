@@ -26,18 +26,17 @@
 
         <!-- The last search took ${component.timeTaken}ms to complete. -->
 
-        <sp-progress-bar
+        <sp-meter
                 style="width: 100%;"
                 label="Displaying ${component.runningTotal} of ${component.total}${component.hasMore ? '+' : ''} results"
-                progress="${component.percentComplete}"
-        >
+                progress="${component.percentComplete}">
             <sp-tooltip
                     self-managed
                     placement="bottom">
                 This is an estimate of how many total results match the search criteria. The actual number of results
                 may be different.
             </sp-tooltip>
-        </sp-progress-bar>
+        </sp-meter>
     </div>
 
 </sly>

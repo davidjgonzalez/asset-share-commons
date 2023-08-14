@@ -69,18 +69,14 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             text="Checkboxes"
                                                                             value="checkbox"/>
+                                                                    <switch
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Switch"
+                                                                            value="switch"/>
                                                                     <radio
                                                                             jcr:primaryType="nt:unstructured"
                                                                             text="Radio buttons"
                                                                             value="radio"/>
-                                                                    <slider
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            text="Slider"
-                                                                            value="slider"/>
-                                                                    <toggle
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            text="Toggle"
-                                                                            value="toggle"/>
                                                                 </items>
                                                             </optionTypes>
                                                             <title

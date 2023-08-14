@@ -31,7 +31,7 @@
     <!-- ====================================================================== -->
     <artifactId>assetshare.ui.content.spectrum</artifactId>
     <packaging>content-package</packaging>
-    <name>Asset Share Commons - UI Content (Spectrum)</name>
+    <name>Asset Share Commons - Spectrum - UI Content</name>
     <description>UI content package for Asset Share Commons</description>
 
     <!-- ====================================================================== -->

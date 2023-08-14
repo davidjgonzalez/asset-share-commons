@@ -29,27 +29,24 @@
            value="${predicate.property}"
            data-asset-share-predicate-id="${predicate.id}"/>
 
-    <div class="ui form">
-        <div class="ui fluid styled accordion field">
-
-            <div class="${predicate.expanded ? 'active' : ''} title right">
-                <i class="dropdown icon"></i>
-                ${predicate.title}
-            </div>
-
-            <div class="${predicate.expanded ? 'active' : ''} content field"
-                 data-asset-share-id="${predicate.id}__fields"
-                 data-asset-share-update-method="${predicate.componentUpdateMethod}">
-                <sly data-sly-test="${predicate.dateType == 'daterange'}">
-                    <sly data-sly-call="${optionsTemplate.dateRange @ predicate = predicate}"></sly>
-                </sly>
-
-                <sly data-sly-test="${predicate.dateType == 'relativedaterange'}">
-                    <sly data-sly-call="${optionsTemplate.relativeDateRange @ predicate = predicate}"></sly>
-                </sly>
-            </div>
+    <section class="asc-expandable-section ${predicate.isExpanded ? 'asc-expandable-section--expanded' : ''} ">
+        <div class="asc-expandable-section__title">
+            <span class="asc-expandable-section__title-arrow">
+                <sp-icon-chevron75/>
+            </span>
+            ${predicate.title}
         </div>
-    </div>
+        <div class="asc-expandable-section__content"
+             data-asset-share-id="${predicate.id}__fields"
+             data-asset-share-update-method="${predicate.componentUpdateMethod}">
+
+            <sly data-sly-test="${predicate.dateType == 'daterange'}"
+                 data-sly-call="${optionsTemplate.dateRange @ predicate = predicate}"/>
+
+            <sly data-sly-test="${predicate.dateType == 'relativedaterange'}"
+                 data-sly-call="${optionsTemplate.relativeDateRange @ predicate = predicate}"/>
+        </div>
+    </section>
 
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

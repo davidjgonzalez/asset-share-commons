@@ -57,7 +57,6 @@
         </sp-menu-item>
     </sp-picker>
 
-
     <sp-picker label="${predicate.orderBySortLabel}"
                value="${predicate.initialValues['orderby.sort']}"
                onchange="AssetShare.Spectrum.toInput(this)"
@@ -71,9 +70,5 @@
                 data-asset-share-sort-case-sensitive="${item.caseSensitive}">${properties['descendingLabel'] @ i18n}
         </sp-menu-item>
     </sp-picker>
-
-    <br/>
-    <br/>
-
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

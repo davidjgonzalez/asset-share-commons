@@ -32,7 +32,7 @@
     <!-- ====================================================================== -->
     <artifactId>assetshare.ui.frontend.spectrum</artifactId>
     <packaging>pom</packaging>
-    <name>Asset Share Commons - UI Frontend - Spectrum</name>
+    <name>Asset Share Commons - Spectrum - UI Frontend</name>
 
     <!-- ====================================================================== -->
     <!-- B U I L D   D E F I N I T I O N                                        -->
