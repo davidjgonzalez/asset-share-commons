@@ -21,10 +21,8 @@
 	 data-sly-use.video="com.adobe.aem.commons.assetshare.components.details.Video"
      data-sly-test.ready="${video.ready}">
 
-<h4 class="ui header center aligned" 
-    data-sly-test="${!video.isVideoAsset}"> 
-	${properties['invalidFormatMsg'] @ i18n}
-</h4>
+	<h4 data-sly-test="${!video.isVideoAsset}">${properties['invalidFormatMsg'] @ i18n}</h4>
+
 	<sly data-sly-test="${video.isVideoAsset}">
 		<sly data-sly-test="${properties.computedProperty =='thumbnail'}">
 			<sly data-sly-call="${playerTemplate.image @ image = video}" />

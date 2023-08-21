@@ -22,19 +22,13 @@
      data-sly-use.field="com.adobe.aem.commons.assetshare.components.details.Tags"
      data-sly-test.ready="${field.ready}">
 
-    <div class="ui basic segment">
-        <h4 class="ui header" data-sly-test="${!properties['hideLabel']}">${properties['label'] @ i18n}</h4>
+    <h4 class="ui header" data-sly-test="${!properties['hideLabel']}">${properties['label'] @ i18n}</h4>
 
-        <p data-sly-test.empty="${field.tagTitles.size == 0}">${properties['emptyText'] @ i18n}</p>
+    <p data-sly-test.empty="${field.tagTitles.size == 0}">${properties['emptyText'] @ i18n}</p>
 
-        <div class="ui labels"
-             data-sly-list.tagTitle="${field.tagTitles}">
-            <div class="ui basic large label">
-                ${tagTitle}
-            </div>
-        </div>
-
-    </div>
+    <sp-tags data-sly-list.tagTitle="${field.tagTitles}">
+        <sp-tag>${tagTitle}</sp-tag>
+    </sp-tags>
 
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

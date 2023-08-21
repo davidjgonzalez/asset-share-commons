@@ -13,6 +13,10 @@ module.exports = {
             filename: 'js/[name].bundle.js',
             path: path.resolve(__dirname, 'dist')
         },
+          externals: {
+            // Mark the `window` variable as provided by window
+            'window': 'window',
+          },
         optimization: {
             splitChunks: {
                    chunks: 'all'

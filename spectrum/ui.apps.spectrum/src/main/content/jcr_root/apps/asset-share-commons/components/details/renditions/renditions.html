@@ -23,27 +23,29 @@
      data-sly-use.renditions="com.adobe.aem.commons.assetshare.components.details.Renditions"
      data-sly-test.ready="${renditions.ready}">
 
-    <div class="ui basic segment">
-        <h4 class="ui header" data-sly-test="${!properties['hideLabel']}">${properties['label'] @ i18n}</h4>
+    <h4 data-sly-test="${!properties['hideLabel']}">${properties['label'] @ i18n}</h4>
 
-        <div class="ui labels"
-             data-sly-list.rendition="${renditions.renditions}">
+    <sp-button-group data-sly-list.rendition="${renditions.renditions}">
+        <sp-button variant="secondary"
+                   treatment="fill"
+                   href="${rendition.path}"
+                   download="${asset.title} - ${rendition.downloadFileName}"
+                   data-sly-test="${renditions.allowLinks && rendition.exists && (!config.licenseEnabled || !rendition.licensed)}">
+            ${rendition.label}
+        </sp-button>
 
-            <a class="ui basic large label"
-               href="${rendition.path}"
-               download="${asset.title} - ${rendition.downloadFileName}"
-               data-sly-test="${renditions.allowLinks && rendition.exists && (!config.licenseEnabled || !rendition.licensed)}">${rendition.label}</a>
+        <sp-button variant="secondary"
+                  treatment="fill"
+                  data-sly-test="${(!renditions.allowLinks || (config.licenseEnabled && rendition.licensed)) && rendition.exists}">
+            ${rendition.label}
+        </sp-button>
 
-            <div class="ui basic large label"
-                 data-sly-test="${(!renditions.allowLinks || (config.licenseEnabled && rendition.licensed)) && rendition.exists}">
-                ${rendition.label}
-            </div>
-
-            <div class="ui basic large disabled label"
-                 data-sly-test="${renditions.showMissingRenditions && !rendition.exists}">${rendition.label}
-            </div>
-        </div>
-    </div>
-
+        <sp-button variant="secondary"
+                   treatment="fill"
+                   disabled
+                   data-sly-test="${renditions.showMissingRenditions && !rendition.exists}">
+            ${rendition.label}
+        </sp-button>
+    </sp-button-group>
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

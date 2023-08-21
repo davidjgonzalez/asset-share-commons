@@ -31,26 +31,37 @@ import '@spectrum-web-components/radio/sp-radio.js';
 import '@spectrum-web-components/picker/sp-picker.js';
 
 
-
-
-// https://github.com/adobe/spectrum-web-components/issues/3535
-//import '@spectrum-web-components/meter/sp-meter.js';
+/* Asset Details */
+import '@spectrum-web-components/asset/sp-asset.js';
+import '@spectrum-web-components/tags/sp-tags.js';
+import '@spectrum-web-components/tags/sp-tag.js';
 
 /* Unused */
-//import '@spectrum-web-components/tags/sp-tags.js';
-//import '@spectrum-web-components/tags/sp-tag.js';
 //import '@spectrum-web-components/quick-actions/sp-quick-actions.js';
 //import '@spectrum-web-components/accordion/sp-accordion.js';
 //import '@spectrum-web-components/accordion/sp-accordion-item.js';
 
+/* Modals */
+//import '@spectrum-web-components/overlay/overlay-trigger.js';
+//import '@spectrum-web-components/dialog/sp-dialog-base.js';
+//import '@spectrum-web-components/dialog/sp-dialog-wrapper.js';
+import '@spectrum-web-components/overlay/overlay-trigger.js';
+import '@spectrum-web-components/dialog/sp-dialog-wrapper.js';
+import '@spectrum-web-components/banner/sp-banner.js';
+import '@spectrum-web-components/thumbnail/sp-thumbnail.js';
 
-
+//import '@spectrum-web-components/toast/sp-toast.js';
 
 /* Icons */
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-classic-grid-view.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-view-list.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-search.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-refresh.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-download.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-share.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-add.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-remove.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-shopping-cart.js';
 
 import '@spectrum-web-components/icons-ui/icons/sp-icon-chevron75.js';
-import '@spectrum-web-components/icons-ui/icons/sp-icon-chevron300.js';
+import '@spectrum-web-components/icons-ui/icons/sp-icon-arrow75.js';

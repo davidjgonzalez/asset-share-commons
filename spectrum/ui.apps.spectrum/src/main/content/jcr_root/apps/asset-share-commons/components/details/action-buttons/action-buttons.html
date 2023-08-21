@@ -23,37 +23,65 @@
      data-sly-set.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"
      data-sly-test.ready="${actionButtons.ready}">
 
-    <div class="ui basic segment">
-        <h4 class="ui header" data-sly-test="${!properties['hideLabel']}">${properties['label'] @ i18n}</h4>
-		<div class="actions cmp-action-buttons">
-            <button class="ui primary button cmp-action-buttons__button"
-                    data-asset-share-id="download-asset"
-                    data-asset-share-asset="${asset.path}"
-                    data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-                    data-sly-test="${properties['downloadLabel'] && config.downloadEnabled}">
+
+    <sp-field-label for="asset-share-details-action-buttons"
+                    data-sly-test="${!properties['hideLabel']}">${properties['label'] @ i18n}
+    </sp-field-label>
+
+    <sp-action-group id="asset-share-details-action-buttons">
+
+        <overlay-trigger type="modal"
+                         placement="none"
+                         data-sly-test="${properties['downloadLabel'] && config.downloadEnabled}">
+            <sp-action-button slot="trigger"
+                              data-asset-share-id="download-asset"
+                              data-asset-share-asset="${asset.path}"
+                              data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}">
+                <sp-icon-download slot="icon"></sp-icon-download>
                 ${properties['downloadLabel'] @ i18n}
-            </button>
-            <button class="ui button cmp-action-buttons__button"
-                    data-asset-share-id="share-asset"
-                    data-asset-share-asset="${asset.path}"
-                    data-sly-test="${properties['shareLabel'] && config.shareEnabled}">
+            </sp-action-button>
+            <asset-share-download-modal slot="click-content"
+                               data-asset-share-asset="${asset.path}"
+                               data-asset-share-form-param-path="${asset.path}"
+                               data-asset-share-modal="/content/asset-share-commons/en/actions/download"
+                               data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"/>
+        </overlay-trigger>
+
+
+        <overlay-trigger type="modal"
+                         placement="none"
+                         data-sly-test="${properties['shareLabel'] && config.shareEnabled}">
+            <sp-action-button slot="trigger">
+                <sp-icon-share slot="icon"></sp-icon-share>
                 ${properties['shareLabel'] @ i18n}
-            </button>
-            <button class="ui button cmp-action-buttons__button"
-                    data-asset-share-id="add-to-cart"
-                    data-asset-share-asset="${asset.path}"
-                    data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
-                    data-sly-test.cartEnabled="${properties['addToCartLabel'] && properties['removeFromCartLabel'] && config.cartEnabled}">
-                ${properties['addToCartLabel'] @ i18n}
-            </button>
-            <button class="ui button cmp-action-buttons__button hidden"
-                    data-asset-share-id="remove-from-cart"
-                    data-asset-share-asset="${asset.path}"
-                    data-sly-test="${cartEnabled}">
-               ${properties['removeFromCartLabel'] @ i18n}
-            </button>
-        </div>	
-    </div>
+            </sp-action-button>
+            <asset-share-share-modal slot="click-content"
+                                        ata-asset-share-id="share-asset"
+                                        data-asset-share-asset="${asset.path}"
+                                        data-asset-share-form-param-path="${asset.path}"
+                                        data-asset-share-modal="/content/asset-share-commons/en/actions/share"/>
+        </overlay-trigger>
+
+
+
+        <sp-action-button
+                          data-asset-share-id="add-to-cart"
+                          data-asset-share-asset="${asset.path}"
+                          data-asset-share-license="${config.licenseEnabled ? asset.properties['license'] : ''}"
+                          data-sly-test.cartEnabled="${properties['addToCartLabel'] && properties['removeFromCartLabel'] && config.cartEnabled}">
+            <sp-icon-add slot="icon"></sp-icon-add>
+            ${properties['addToCartLabel'] @ i18n}
+        </sp-action-button>
+
+        <sp-action-button
+                          data-asset-share-id="remove-from-cart"
+                          data-asset-share-asset="${asset.path}"
+                          data-sly-test="${cartEnabled}">
+            <sp-icon-remove slot="icon"></sp-icon-remove>
+            ${properties['removeFromCartLabel'] @ i18n}
+        </sp-action-button>
+
+    </sp-action-group>
 
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

@@ -1,49 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:deviceGroups="[mobile/groups/responsive]"
         cq:template="/conf/asset-share-commons/settings/wcm/templates/details-template"
-        jcr:isCheckedOut="{Boolean}true"
-        jcr:mixinTypes="[mix:versionable]"
+        jcr:mixinTypes="[]"
         jcr:primaryType="cq:PageContent"
-        jcr:uuid="bf79cd02-66d3-4706-b91c-291b0434b9fc"
         sling:resourceType="asset-share-commons/components/structure/details-page">
         <root
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="asset-share-commons/components/structure/root">
-            <rail
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid_main
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/foundation/components/responsivegrid">
-                <cq:responsive jcr:primaryType="nt:unstructured"/>
-                <user_menu
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="asset-share-commons/components/structure/user-menu"/>
-                <responsivegrid
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid"
-                    editable="{Boolean}true">
-                    <cq:responsive jcr:primaryType="nt:unstructured"/>
-                </responsivegrid>
-            </rail>
-            <main
+                sling:resourceType="wcm/foundation/components/responsivegrid"
+                editable="{Boolean}true">
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default
+                        jcr:primaryType="nt:unstructured"
+                        offset="0"
+                        width="9"/>
+                </cq:responsive>
+            </responsivegrid_main>
+            <responsivegrid_rail
+                cq:styleIds="[1691811036994]"
+                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/foundation/components/responsivegrid">
-                <cq:responsive jcr:primaryType="nt:unstructured"/>
-                <header
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="asset-share-commons/components/structure/header"/>
-                <responsivegrid
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid"
-                    editable="{Boolean}true">
-                    <cq:responsive jcr:primaryType="nt:unstructured"/>
-                </responsivegrid>
-                <footer
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="asset-share-commons/components/structure/footer"
-                    text="&amp;copy; ADOBE SYSTEMS INC."/>
-            </main>
+                sling:resourceType="wcm/foundation/components/responsivegrid"
+                editable="{Boolean}true">
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default
+                        jcr:primaryType="nt:unstructured"
+                        offset="0"
+                        width="3"/>
+                </cq:responsive>
+            </responsivegrid_rail>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">

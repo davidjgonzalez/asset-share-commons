@@ -16,50 +16,43 @@
   ~ limitations under the License.
  */-->
 
-<sly    data-sly-use.modelCache="com.adobe.aem.commons.assetshare.util.ModelCache"
-        data-sly-set.asset="${modelCache['com.adobe.aem.commons.assetshare.content.AssetModel']}"></sly>
+<sly data-sly-use.license="com.adobe.aem.commons.assetshare.components.actions.license.License"></sly>
 
-<style data-sly-test="${!wccmode.disabled}">
-    .cmp-modal-license .ui.modal {
-        position: relative !important;
-        display: block !important;;
-        top: 0 !important;;
-    }
-</style>
+<!--/*
+<style data-sly-test="${!wccmode.disabled}"></style>
+*/-->
 
-<div data-sly-test="${asset.properties['license']}"
-     data-asset-share-id="license-modal"
-     class="ui long modal cmp-modal-license--wrapper cmp-modal">
-    <i class="close icon"></i>
-    <div class="header">
-        ${properties['modalTitle'] @ i18n}
-    </div>
-    <div class="cmp-content image scrolling content">
-        <div class="ui medium image">
-            <img src="${asset.properties['thumbnail']}"/>
-        </div>
-        <div class="description cmp-content__iframe--wrapper">
-            
-            <iframe data-sly-test="${!wcmmode.disabled && asset.properties['license']}"
-                    style="border: solid 1px #ccc"
-                    width="100%" height="100%" scrolling="auto"
-                    src="${asset.properties['license']}?wcmmode=disabled"></iframe>
+<sp-dialog-wrapper
+        open
+        slot="click-content"
+        underlay
+        placement="none"
+        headline="${properties['modalTitle'] @ i18n}"
+        confirm-label="${properties['acceptButtonText'] @ i18n}"
+        cancel-label="${properties['rejectButtonText'] @ i18n}">
 
-            <iframe data-sly-test="${wcmmode.disabled && asset.properties['license']}"
-                    style="border: solid 1px #ccc"
-                    width="100%" height="100%" scrolling="auto"
-                    src="${asset.properties['license']}"></iframe>
-        </div>
-    </div>
+    <div data-sly-test="${asset.properties['license']}"
+         data-asset-share-id="license-modal">
 
-    <div class="actions">
-        <div class="ui deny button">
-            ${properties['rejectButtonText'] @ i18n}
-        </div>
-        <div class="ui positive right labeled icon button"
-             data-asset-share-id="license-accept">
-            ${properties['acceptButtonText'] @ i18n}
-            <i class="checkmark icon"></i>
+        <div style="display: flex;"
+             data-sly-list.asset="${license.assets}">
+
+            <sp-asset style="height: 128px">
+                <img src="${asset.properties['thumbnail']}" alt="${asset.properties['title']}" />
+            </sp-asset>
+
+            <div>
+                <iframe data-sly-test="${!wcmmode.disabled && asset.properties['license']}"
+                        style="border: solid 1px #ccc"
+                        width="100%" height="100%"
+                        src="${asset.properties['license']}?wcmmode=disabled"></iframe>
+
+                <iframe data-sly-test="${wcmmode.disabled && asset.properties['license']}"
+                        style="border: solid 1px #ccc"
+                        width="100%" height="100%"
+                        src="${asset.properties['license']}"></iframe>
+            </div>
         </div>
     </div>
-</div>
+
+</sp-dialog-wrapper>

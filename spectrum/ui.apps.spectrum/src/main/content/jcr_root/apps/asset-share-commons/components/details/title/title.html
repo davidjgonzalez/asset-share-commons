@@ -22,16 +22,16 @@
      data-sly-use.title="com.adobe.aem.commons.assetshare.components.details.Title"
      data-sly-test.ready="${title.ready}">
 
-    <h1 class="ui header">
+    <div style="display: flex; align-items: center;">
         <a href="${title.returnPath @ extension = 'html'}#${asset.url @ context = 'uri'}"
            data-asset-share-id="return-link"
            data-asset-share-asset="${asset.path}">
-            <i class="chevron left link icon"></i>
+            <sp-icon-arrow75 sizestyle="transform: rotate(180deg);"/>
         </a>
-        <div class="content">
+        <h1 style="margin-left: 1rem;">
             ${title.title}
-        </div>
-    </h1>
+        </h1>
+    </div>
 
 </sly>
 <sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!ready}"></sly>

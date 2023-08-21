@@ -1,4 +1,29 @@
-"use strict";(self.webpackChunkaem_maven_archetype=self.webpackChunkaem_maven_archetype||[]).push([[238],{1238:function(t,e,n){n.d(e,{Overlay:function(){return Et}});var i=n(3599),o=n(9550),s=n(5118),r=n(7338),a=n(6731),l=n(7171);var c=o.iv`
+"use strict";
+(self["webpackChunkaem_maven_archetype"] = self["webpackChunkaem_maven_archetype"] || []).push([[238],{
+
+/***/ 1238:
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  Overlay: function() { return /* binding */ Overlay; }
+});
+
+// EXTERNAL MODULE: ./node_modules/@spectrum-web-components/base/src/Base.js
+var Base = __webpack_require__(3599);
+// EXTERNAL MODULE: ./node_modules/lit/index.js + 3 modules
+var lit = __webpack_require__(9550);
+// EXTERNAL MODULE: ./node_modules/lit/directives/if-defined.js + 1 modules
+var if_defined = __webpack_require__(5118);
+// EXTERNAL MODULE: ./node_modules/lit/decorators.js + 6 modules
+var decorators = __webpack_require__(7338);
+// EXTERNAL MODULE: ./node_modules/@spectrum-web-components/shared/src/reparent-children.js
+var reparent_children = __webpack_require__(6731);
+// EXTERNAL MODULE: ./node_modules/@spectrum-web-components/shared/src/first-focusable-in.js
+var first_focusable_in = __webpack_require__(7171);
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/src/active-overlay.css.js
+const e=(0,lit/* css */.iv)`
 @keyframes sp-overlay-fade-in{0%{opacity:0;transform:var(--sp-overlay-from)}to{opacity:1;transform:translate(0)}}@keyframes sp-overlay-fade-out{0%{opacity:1;transform:translate(0)}to{opacity:0;transform:var(--sp-overlay-from)}}:host{display:inline-block;left:-9999em;max-height:100%;pointer-events:none;position:fixed;top:-9999em;z-index:1000}:host(:focus){outline:none}:host([placement=none]){height:100vh;height:100dvh;height:-webkit-fill-available;height:fill-available;left:0;position:fixed;top:0}#contents,sp-theme{height:100%}#contents{--swc-overlay-animation-distance:var(
 --spectrum-picker-m-texticon-popover-offset-y,var(--spectrum-global-dimension-size-75)
 );animation-duration:var(
@@ -6,19 +31,1942 @@
 );animation-timing-function:var(
 --spectrum-global-animation-ease-out,ease-out
 );box-sizing:border-box;display:inline-block;opacity:1;pointer-events:none;visibility:visible}:host([actual-placement*=top]) #contents{--sp-overlay-from:translateY(var(--spectrum-global-dimension-size-75));align-items:flex-end;display:inline-flex;padding-top:var(--swc-overlay-animation-distance)}:host([actual-placement*=right]) #contents{--sp-overlay-from:translateX(calc(var(--spectrum-global-dimension-size-75)*-1));padding-right:var(--swc-overlay-animation-distance)}:host([actual-placement*=bottom]) #contents{--sp-overlay-from:translateY(calc(var(--spectrum-global-dimension-size-75)*-1));padding-bottom:var(--swc-overlay-animation-distance)}:host([actual-placement*=left]) #contents{--sp-overlay-from:translateX(var(--spectrum-global-dimension-size-75));padding-left:var(--swc-overlay-animation-distance)}:host([animating]) ::slotted(*){pointer-events:none}:host(:not([animating])) ::slotted(*){pointer-events:auto}#contents ::slotted(*){position:relative}
-`;const h=t=>{if(!t)return null;const e=t.closest("active-overlay");if(e)return e;const n=t.getRootNode();return n.host?h(n.host):null},d=(t,e)=>{const n=[];if(!t)return[];for(const i of e)i.root&&h(i.root)===t&&(n.push(i),n.push(...d(i,e)));return n},p=Math.min,u=Math.max,m=Math.round,f=Math.floor,v=t=>({x:t,y:t}),y={left:"right",right:"left",bottom:"top",top:"bottom"},g={start:"end",end:"start"};function b(t,e,n){return u(t,p(e,n))}function w(t,e){return"function"==typeof t?t(e):t}function C(t){return t.split("-")[0]}function x(t){return t.split("-")[1]}function T(t){return"x"===t?"y":"x"}function O(t){return"y"===t?"height":"width"}function E(t){return["top","bottom"].includes(C(t))?"y":"x"}function A(t){return T(E(t))}function R(t){return t.replace(/start|end/g,(t=>g[t]))}function P(t){return t.replace(/left|right|bottom|top/g,(t=>y[t]))}function k(t){return"number"!=typeof t?function(t){return{top:0,right:0,bottom:0,left:0,...t}}(t):{top:t,right:t,bottom:t,left:t}}function L(t){return{...t,top:t.y,left:t.x,right:t.x+t.width,bottom:t.y+t.height}}function F(t,e,n){let{reference:i,floating:o}=t;const s=E(e),r=A(e),a=O(r),l=C(e),c="y"===s,h=i.x+i.width/2-o.width/2,d=i.y+i.height/2-o.height/2,p=i[a]/2-o[a]/2;let u;switch(l){case"top":u={x:h,y:i.y-o.height};break;case"bottom":u={x:h,y:i.y+i.height};break;case"right":u={x:i.x+i.width,y:d};break;case"left":u={x:i.x-o.width,y:d};break;default:u={x:i.x,y:i.y}}switch(x(e)){case"start":u[r]-=p*(n&&c?-1:1);break;case"end":u[r]+=p*(n&&c?-1:1)}return u}async function D(t,e){var n;void 0===e&&(e={});const{x:i,y:o,platform:s,rects:r,elements:a,strategy:l}=t,{boundary:c="clippingAncestors",rootBoundary:h="viewport",elementContext:d="floating",altBoundary:p=!1,padding:u=0}=w(e,t),m=k(u),f=a[p?"floating"===d?"reference":"floating":d],v=L(await s.getClippingRect({element:null==(n=await(null==s.isElement?void 0:s.isElement(f)))||n?f:f.contextElement||await(null==s.getDocumentElement?void 0:s.getDocumentElement(a.floating)),boundary:c,rootBoundary:h,strategy:l})),y="floating"===d?{...r.floating,x:i,y:o}:r.reference,g=await(null==s.getOffsetParent?void 0:s.getOffsetParent(a.floating)),b=await(null==s.isElement?void 0:s.isElement(g))&&await(null==s.getScale?void 0:s.getScale(g))||{x:1,y:1},C=L(s.convertOffsetParentRelativeRectToViewportRelativeRect?await s.convertOffsetParentRelativeRectToViewportRelativeRect({rect:y,offsetParent:g,strategy:l}):y);return{top:(v.top-C.top+m.top)/b.y,bottom:(C.bottom-v.bottom+m.bottom)/b.y,left:(v.left-C.left+m.left)/b.x,right:(C.right-v.right+m.right)/b.x}}const M=function(t){return void 0===t&&(t={}),{name:"flip",options:t,async fn(e){var n;const{placement:i,middlewareData:o,rects:s,initialPlacement:r,platform:a,elements:l}=e,{mainAxis:c=!0,crossAxis:h=!0,fallbackPlacements:d,fallbackStrategy:p="bestFit",fallbackAxisSideDirection:u="none",flipAlignment:m=!0,...f}=w(t,e),v=C(i),y=C(r)===r,g=await(null==a.isRTL?void 0:a.isRTL(l.floating)),b=d||(y||!m?[P(r)]:function(t){const e=P(t);return[R(t),e,R(e)]}(r));d||"none"===u||b.push(...function(t,e,n,i){const o=x(t);let s=function(t,e,n){const i=["left","right"],o=["right","left"],s=["top","bottom"],r=["bottom","top"];switch(t){case"top":case"bottom":return n?e?o:i:e?i:o;case"left":case"right":return e?s:r;default:return[]}}(C(t),"start"===n,i);return o&&(s=s.map((t=>t+"-"+o)),e&&(s=s.concat(s.map(R)))),s}(r,m,u,g));const T=[r,...b],E=await D(e,f),k=[];let L=(null==(n=o.flip)?void 0:n.overflows)||[];if(c&&k.push(E[v]),h){const t=function(t,e,n){void 0===n&&(n=!1);const i=x(t),o=A(t),s=O(o);let r="x"===o?i===(n?"end":"start")?"right":"left":"start"===i?"bottom":"top";return e.reference[s]>e.floating[s]&&(r=P(r)),[r,P(r)]}(i,s,g);k.push(E[t[0]],E[t[1]])}if(L=[...L,{placement:i,overflows:k}],!k.every((t=>t<=0))){var F,M;const t=((null==(F=o.flip)?void 0:F.index)||0)+1,e=T[t];if(e)return{data:{index:t,overflows:L},reset:{placement:e}};let n=null==(M=L.filter((t=>t.overflows[0]<=0)).sort(((t,e)=>t.overflows[1]-e.overflows[1]))[0])?void 0:M.placement;if(!n)switch(p){case"bestFit":{var S;const t=null==(S=L.map((t=>[t.placement,t.overflows.filter((t=>t>0)).reduce(((t,e)=>t+e),0)])).sort(((t,e)=>t[1]-e[1]))[0])?void 0:S[0];t&&(n=t);break}case"initialPlacement":n=r}if(i!==n)return{reset:{placement:n}}}return{}}}};const S=function(t){return void 0===t&&(t=0),{name:"offset",options:t,async fn(e){const{x:n,y:i}=e,o=await async function(t,e){const{placement:n,platform:i,elements:o}=t,s=await(null==i.isRTL?void 0:i.isRTL(o.floating)),r=C(n),a=x(n),l="y"===E(n),c=["left","top"].includes(r)?-1:1,h=s&&l?-1:1,d=w(e,t);let{mainAxis:p,crossAxis:u,alignmentAxis:m}="number"==typeof d?{mainAxis:d,crossAxis:0,alignmentAxis:null}:{mainAxis:0,crossAxis:0,alignmentAxis:null,...d};return a&&"number"==typeof m&&(u="end"===a?-1*m:m),l?{x:u*h,y:p*c}:{x:p*c,y:u*h}}(e,t);return{x:n+o.x,y:i+o.y,data:o}}}},W=function(t){return void 0===t&&(t={}),{name:"size",options:t,async fn(e){const{placement:n,rects:i,platform:o,elements:s}=e,{apply:r=(()=>{}),...a}=w(t,e),l=await D(e,a),c=C(n),h=x(n),d="y"===E(n),{width:m,height:f}=i.floating;let v,y;"top"===c||"bottom"===c?(v=c,y=h===(await(null==o.isRTL?void 0:o.isRTL(s.floating))?"start":"end")?"left":"right"):(y=c,v="end"===h?"top":"bottom");const g=f-l[v],b=m-l[y],T=!e.middlewareData.shift;let O=g,A=b;if(d){const t=m-l.left-l.right;A=h||T?p(b,t):t}else{const t=f-l.top-l.bottom;O=h||T?p(g,t):t}if(T&&!h){const t=u(l.left,0),e=u(l.right,0),n=u(l.top,0),i=u(l.bottom,0);d?A=m-2*(0!==t||0!==e?t+e:u(l.left,l.right)):O=f-2*(0!==n||0!==i?n+i:u(l.top,l.bottom))}await r({...e,availableWidth:A,availableHeight:O});const R=await o.getDimensions(s.floating);return m!==R.width||f!==R.height?{reset:{rects:!0}}:{}}}};function _(t){return N(t)?(t.nodeName||"").toLowerCase():"#document"}function H(t){var e;return(null==t||null==(e=t.ownerDocument)?void 0:e.defaultView)||window}function z(t){var e;return null==(e=(N(t)?t.ownerDocument:t.document)||window.document)?void 0:e.documentElement}function N(t){return t instanceof Node||t instanceof H(t).Node}function I(t){return t instanceof Element||t instanceof H(t).Element}function $(t){return t instanceof HTMLElement||t instanceof H(t).HTMLElement}function B(t){return"undefined"!=typeof ShadowRoot&&(t instanceof ShadowRoot||t instanceof H(t).ShadowRoot)}function q(t){const{overflow:e,overflowX:n,overflowY:i,display:o}=X(t);return/auto|scroll|overlay|hidden|clip/.test(e+i+n)&&!["inline","contents"].includes(o)}function K(t){return["table","td","th"].includes(_(t))}function j(t){const e=V(),n=X(t);return"none"!==n.transform||"none"!==n.perspective||!!n.containerType&&"normal"!==n.containerType||!e&&!!n.backdropFilter&&"none"!==n.backdropFilter||!e&&!!n.filter&&"none"!==n.filter||["transform","perspective","filter"].some((t=>(n.willChange||"").includes(t)))||["paint","layout","strict","content"].some((t=>(n.contain||"").includes(t)))}function V(){return!("undefined"==typeof CSS||!CSS.supports)&&CSS.supports("-webkit-backdrop-filter","none")}function U(t){return["html","body","#document"].includes(_(t))}function X(t){return H(t).getComputedStyle(t)}function Y(t){return I(t)?{scrollLeft:t.scrollLeft,scrollTop:t.scrollTop}:{scrollLeft:t.pageXOffset,scrollTop:t.pageYOffset}}function G(t){if("html"===_(t))return t;const e=t.assignedSlot||t.parentNode||B(t)&&t.host||z(t);return B(e)?e.host:e}function J(t){const e=G(t);return U(e)?t.ownerDocument?t.ownerDocument.body:t.body:$(e)&&q(e)?e:J(e)}function Q(t,e){var n;void 0===e&&(e=[]);const i=J(t),o=i===(null==(n=t.ownerDocument)?void 0:n.body),s=H(i);return o?e.concat(s,s.visualViewport||[],q(i)?i:[]):e.concat(i,Q(i))}function Z(t){const e=X(t);let n=parseFloat(e.width)||0,i=parseFloat(e.height)||0;const o=$(t),s=o?t.offsetWidth:n,r=o?t.offsetHeight:i,a=m(n)!==s||m(i)!==r;return a&&(n=s,i=r),{width:n,height:i,$:a}}function tt(t){return I(t)?t:t.contextElement}function et(t){const e=tt(t);if(!$(e))return v(1);const n=e.getBoundingClientRect(),{width:i,height:o,$:s}=Z(e);let r=(s?m(n.width):n.width)/i,a=(s?m(n.height):n.height)/o;return r&&Number.isFinite(r)||(r=1),a&&Number.isFinite(a)||(a=1),{x:r,y:a}}const nt=v(0);function it(t){const e=H(t);return V()&&e.visualViewport?{x:e.visualViewport.offsetLeft,y:e.visualViewport.offsetTop}:nt}function ot(t,e,n,i){void 0===e&&(e=!1),void 0===n&&(n=!1);const o=t.getBoundingClientRect(),s=tt(t);let r=v(1);e&&(i?I(i)&&(r=et(i)):r=et(t));const a=function(t,e,n){return void 0===e&&(e=!1),!(!n||e&&n!==H(t))&&e}(s,n,i)?it(s):v(0);let l=(o.left+a.x)/r.x,c=(o.top+a.y)/r.y,h=o.width/r.x,d=o.height/r.y;if(s){const t=H(s),e=i&&I(i)?H(i):i;let n=t.frameElement;for(;n&&i&&e!==t;){const t=et(n),e=n.getBoundingClientRect(),i=X(n),o=e.left+(n.clientLeft+parseFloat(i.paddingLeft))*t.x,s=e.top+(n.clientTop+parseFloat(i.paddingTop))*t.y;l*=t.x,c*=t.y,h*=t.x,d*=t.y,l+=o,c+=s,n=H(n).frameElement}}return L({width:h,height:d,x:l,y:c})}function st(t){return ot(z(t)).left+Y(t).scrollLeft}function rt(t,e,n){let i;if("viewport"===e)i=function(t,e){const n=H(t),i=z(t),o=n.visualViewport;let s=i.clientWidth,r=i.clientHeight,a=0,l=0;if(o){s=o.width,r=o.height;const t=V();(!t||t&&"fixed"===e)&&(a=o.offsetLeft,l=o.offsetTop)}return{width:s,height:r,x:a,y:l}}(t,n);else if("document"===e)i=function(t){const e=z(t),n=Y(t),i=t.ownerDocument.body,o=u(e.scrollWidth,e.clientWidth,i.scrollWidth,i.clientWidth),s=u(e.scrollHeight,e.clientHeight,i.scrollHeight,i.clientHeight);let r=-n.scrollLeft+st(t);const a=-n.scrollTop;return"rtl"===X(i).direction&&(r+=u(e.clientWidth,i.clientWidth)-o),{width:o,height:s,x:r,y:a}}(z(t));else if(I(e))i=function(t,e){const n=ot(t,!0,"fixed"===e),i=n.top+t.clientTop,o=n.left+t.clientLeft,s=$(t)?et(t):v(1);return{width:t.clientWidth*s.x,height:t.clientHeight*s.y,x:o*s.x,y:i*s.y}}(e,n);else{const n=it(t);i={...e,x:e.x-n.x,y:e.y-n.y}}return L(i)}function at(t,e){const n=G(t);return!(n===e||!I(n)||U(n))&&("fixed"===X(n).position||at(n,e))}function lt(t,e,n){const i=$(e),o=z(e),s="fixed"===n,r=ot(t,!0,s,e);let a={scrollLeft:0,scrollTop:0};const l=v(0);if(i||!i&&!s)if(("body"!==_(e)||q(o))&&(a=Y(e)),i){const t=ot(e,!0,s,e);l.x=t.x+e.clientLeft,l.y=t.y+e.clientTop}else o&&(l.x=st(o));return{x:r.left+a.scrollLeft-l.x,y:r.top+a.scrollTop-l.y,width:r.width,height:r.height}}function ct(t,e){return $(t)&&"fixed"!==X(t).position?e?e(t):t.offsetParent:null}function ht(t,e){const n=H(t);if(!$(t))return n;let i=ct(t,e);for(;i&&K(i)&&"static"===X(i).position;)i=ct(i,e);return i&&("html"===_(i)||"body"===_(i)&&"static"===X(i).position&&!j(i))?n:i||function(t){let e=G(t);for(;$(e)&&!U(e);){if(j(e))return e;e=G(e)}return null}(t)||n}const dt={convertOffsetParentRelativeRectToViewportRelativeRect:function(t){let{rect:e,offsetParent:n,strategy:i}=t;const o=$(n),s=z(n);if(n===s)return e;let r={scrollLeft:0,scrollTop:0},a=v(1);const l=v(0);if((o||!o&&"fixed"!==i)&&(("body"!==_(n)||q(s))&&(r=Y(n)),$(n))){const t=ot(n);a=et(n),l.x=t.x+n.clientLeft,l.y=t.y+n.clientTop}return{width:e.width*a.x,height:e.height*a.y,x:e.x*a.x-r.scrollLeft*a.x+l.x,y:e.y*a.y-r.scrollTop*a.y+l.y}},getDocumentElement:z,getClippingRect:function(t){let{element:e,boundary:n,rootBoundary:i,strategy:o}=t;const s=[..."clippingAncestors"===n?function(t,e){const n=e.get(t);if(n)return n;let i=Q(t).filter((t=>I(t)&&"body"!==_(t))),o=null;const s="fixed"===X(t).position;let r=s?G(t):t;for(;I(r)&&!U(r);){const e=X(r),n=j(r);n||"fixed"!==e.position||(o=null),(s?!n&&!o:!n&&"static"===e.position&&o&&["absolute","fixed"].includes(o.position)||q(r)&&!n&&at(t,r))?i=i.filter((t=>t!==r)):o=e,r=G(r)}return e.set(t,i),i}(e,this._c):[].concat(n),i],r=s[0],a=s.reduce(((t,n)=>{const i=rt(e,n,o);return t.top=u(i.top,t.top),t.right=p(i.right,t.right),t.bottom=p(i.bottom,t.bottom),t.left=u(i.left,t.left),t}),rt(e,r,o));return{width:a.right-a.left,height:a.bottom-a.top,x:a.left,y:a.top}},getOffsetParent:ht,getElementRects:async function(t){let{reference:e,floating:n,strategy:i}=t;const o=this.getOffsetParent||ht,s=this.getDimensions;return{reference:lt(e,await o(n),i),floating:{x:0,y:0,...await s(n)}}},getClientRects:function(t){return Array.from(t.getClientRects())},getDimensions:function(t){return Z(t)},getScale:et,isElement:I,isRTL:function(t){return"rtl"===X(t).direction}};function pt(t,e,n,i){void 0===i&&(i={});const{ancestorScroll:o=!0,ancestorResize:s=!0,elementResize:r="function"==typeof ResizeObserver,layoutShift:a="function"==typeof IntersectionObserver,animationFrame:l=!1}=i,c=tt(t),h=o||s?[...c?Q(c):[],...Q(e)]:[];h.forEach((t=>{o&&t.addEventListener("scroll",n,{passive:!0}),s&&t.addEventListener("resize",n)}));const d=c&&a?function(t,e){let n,i=null;const o=z(t);function s(){clearTimeout(n),i&&i.disconnect(),i=null}return function r(a,l){void 0===a&&(a=!1),void 0===l&&(l=1),s();const{left:c,top:h,width:d,height:m}=t.getBoundingClientRect();if(a||e(),!d||!m)return;const v={rootMargin:-f(h)+"px "+-f(o.clientWidth-(c+d))+"px "+-f(o.clientHeight-(h+m))+"px "+-f(c)+"px",threshold:u(0,p(1,l))||1};let y=!0;function g(t){const e=t[0].intersectionRatio;if(e!==l){if(!y)return r();e?r(!1,e):n=setTimeout((()=>{r(!1,1e-7)}),100)}y=!1}try{i=new IntersectionObserver(g,{...v,root:o.ownerDocument})}catch(t){i=new IntersectionObserver(g,v)}i.observe(t)}(!0),s}(c,n):null;let m,v=-1,y=null;r&&(y=new ResizeObserver((t=>{let[i]=t;i&&i.target===c&&y&&(y.unobserve(e),cancelAnimationFrame(v),v=requestAnimationFrame((()=>{y&&y.observe(e)}))),n()})),c&&!l&&y.observe(c),y.observe(e));let g=l?ot(t):null;return l&&function e(){const i=ot(t);!g||i.x===g.x&&i.y===g.y&&i.width===g.width&&i.height===g.height||n();g=i,m=requestAnimationFrame(e)}(),n(),()=>{h.forEach((t=>{o&&t.removeEventListener("scroll",n),s&&t.removeEventListener("resize",n)})),d&&d(),y&&y.disconnect(),y=null,l&&cancelAnimationFrame(m)}}const ut=(t,e,n)=>{const i=new Map,o={platform:dt,...n},s={...o.platform,_c:i};return(async(t,e,n)=>{const{placement:i="bottom",strategy:o="absolute",middleware:s=[],platform:r}=n,a=s.filter(Boolean),l=await(null==r.isRTL?void 0:r.isRTL(e));let c=await r.getElementRects({reference:t,floating:e,strategy:o}),{x:h,y:d}=F(c,i,l),p=i,u={},m=0;for(let n=0;n<a.length;n++){const{name:s,fn:f}=a[n],{x:v,y:y,data:g,reset:b}=await f({x:h,y:d,initialPlacement:i,placement:p,strategy:o,middlewareData:u,rects:c,platform:r,elements:{reference:t,floating:e}});h=null!=v?v:h,d=null!=y?y:d,u={...u,[s]:{...u[s],...g}},b&&m<=50&&(m++,"object"==typeof b&&(b.placement&&(p=b.placement),b.rects&&(c=!0===b.rects?await r.getElementRects({reference:t,floating:e,strategy:o}):b.rects),({x:h,y:d}=F(c,p,l))),n=-1)}return{x:h,y:d,placement:p,strategy:o,middlewareData:u}})(t,e,{...o,platform:s})};var mt=Object.defineProperty,ft=Object.getOwnPropertyDescriptor,vt=(t,e,n,i)=>{for(var o,s=i>1?void 0:i?ft(e,n):e,r=t.length-1;r>=0;r--)(o=t[r])&&(s=(i?o(e,n,s):o(s))||s);return i&&s&&mt(e,n,s),s};const yt={initial:"idle",states:{idle:{on:{active:"active"}},active:{on:{hiding:"hiding",idle:"idle"}},hiding:{on:{dispose:"dispose"}},dispose:{on:{disposed:"disposed"}},disposed:{on:{}}}},gt=(t,e)=>t?e&&yt.states[t].on[e]||t:yt.initial,bt=t=>{var e;return null!=(e={left:["right","bottom","top"],"left-start":["right-start","bottom","top"],"left-end":["right-end","bottom","top"],right:["left","bottom","top"],"right-start":["left-start","bottom","top"],"right-end":["left-end","bottom","top"],top:["bottom","left","right"],"top-start":["bottom-start","left","right"],"top-end":["bottom-end","left","right"],bottom:["top","left","right"],"bottom-start":["top-start","left","right"],"bottom-end":["top-end","left","right"]}[t])?e:[t]},wt=class extends i.o{constructor(){super(),this.contentAnimationPromise=Promise.resolve(!0),this.resolveContentAnimationPromise=()=>{},this._state=gt(),this.animating=!1,this.theme={},this.tabbingAway=!1,this.offset=6,this.skidding=0,this.interaction="hover",this.positionAnimationFrame=0,this.willNotifyClosed=!1,this.isConstrained=!1,this.updateOverlayPosition=()=>{"modal"!==this.interaction&&this.cleanup?this.dispatchEvent(new Event("close")):this.setOverlayPosition()},this.resetOverlayPosition=()=>{this.style.removeProperty("max-height"),this.style.removeProperty("height"),this.initialHeight=void 0,this.isConstrained=!1,this.offsetHeight,this.setOverlayPosition()},this.setOverlayPosition=async()=>{if(!this.placement||"none"===this.placement)return;function t(t){const e=window.devicePixelRatio||1;return Math.round(t*e)/e||-1e4}await(document.fonts?document.fonts.ready:Promise.resolve());const e=this.virtualTrigger?M({padding:8,fallbackPlacements:bt(this.placement)}):M({padding:8}),n=[S({mainAxis:this.offset,crossAxis:this.skidding}),(i={padding:8},void 0===i&&(i={}),{name:"shift",options:i,async fn(t){const{x:e,y:n,placement:o}=t,{mainAxis:s=!0,crossAxis:r=!1,limiter:a={fn:t=>{let{x:e,y:n}=t;return{x:e,y:n}}},...l}=w(i,t),c={x:e,y:n},h=await D(t,l),d=E(C(o)),p=T(d);let u=c[p],m=c[d];if(s){const t="y"===p?"bottom":"right";u=b(u+h["y"===p?"top":"left"],u,u-h[t])}if(r){const t="y"===d?"bottom":"right";m=b(m+h["y"===d?"top":"left"],m,m-h[t])}const f=a.fn({...t,[p]:u,[d]:m});return{...f,data:{x:f.x-e,y:f.y-n}}}}),e,W({padding:8,apply:({availableWidth:t,availableHeight:e,rects:{floating:n}})=>{const i=Math.max(100,Math.floor(e)),o=n.height;this.initialHeight=(this.isConstrained||this.virtualTrigger)&&this.initialHeight||o,this.isConstrained=o<this.initialHeight||i<=o;const s=this.isConstrained?`${i}px`:"";Object.assign(this.style,{maxWidth:`${Math.floor(t)}px`,maxHeight:s,height:s})}})];var i;this.overlayContentTip&&n.push((t=>({name:"arrow",options:t,async fn(e){const{x:n,y:i,placement:o,rects:s,platform:r,elements:a}=e,{element:l,padding:c=0}=w(t,e)||{};if(null==l)return{};const h=k(c),d={x:n,y:i},u=A(o),m=O(u),f=await r.getDimensions(l),v="y"===u,y=v?"top":"left",g=v?"bottom":"right",C=v?"clientHeight":"clientWidth",T=s.reference[m]+s.reference[u]-d[u]-s.floating[m],E=d[u]-s.reference[u],R=await(null==r.getOffsetParent?void 0:r.getOffsetParent(l));let P=R?R[C]:0;P&&await(null==r.isElement?void 0:r.isElement(R))||(P=a.floating[C]||s.floating[m]);const L=T/2-E/2,F=P/2-f[m]/2-1,D=p(h[y],F),M=p(h[g],F),S=D,W=P-f[m]-M,_=P/2-f[m]/2+L,H=b(S,_,W),z=null!=x(o)&&_!=H&&s.reference[m]/2-(_<S?D:M)-f[m]/2<0?_<S?S-_:W-_:0;return{[u]:d[u]-z,data:{[u]:H,centerOffset:_-H+z}}}}))({element:this.overlayContentTip}));const{x:o,y:s,placement:r,middlewareData:a}=await ut(this.virtualTrigger||this.trigger,this,{placement:this.placement,middleware:n,strategy:"fixed"});if(Object.assign(this.style,{top:"0px",left:"0px",transform:`translate(${t(o)}px, ${t(s)}px)`}),r!==this.getAttribute("actual-placement")&&(this.setAttribute("actual-placement",r),this.overlayContent.setAttribute("placement",r)),this.overlayContentTip&&a.arrow){const{x:e,y:n}=a.arrow;Object.assign(this.overlayContentTip.style,{left:null!=e?`${t(e)}px`:"",top:null!=n?`${t(n)}px`:"",right:"",bottom:""})}},this.handleInlineTriggerKeydown=t=>{const{code:e,shiftKey:n}=t;if("Tab"===e){if(n)return this.tabbingAway=!0,void this.dispatchEvent(new Event("close"));t.stopPropagation(),t.preventDefault(),this.focus()}},this.stealOverlayContentPromise=Promise.resolve(),this.stealOverlayContentPromise=new Promise((t=>this.stealOverlayContentResolver=t))}get state(){return this._state}set state(t){const e=gt(this.state,t);e!==this.state&&(this._state=e,"active"===this.state||"hiding"===this.state?this.setAttribute("state",this.state):this.removeAttribute("state"))}async focus(){const t=(0,l.i)(this);if(t){t.updateComplete&&await t.updateComplete;const e=this.getRootNode().activeElement;(e===this||!this.contains(e))&&t.focus()}else super.focus();this.removeAttribute("tabindex")}get hasTheme(){return!!this.theme.color||!!this.theme.scale||!!this.theme.lang}static get styles(){return[c]}get hasModalRoot(){return!!this._modalRoot}feature(){this.contains(document.activeElement)||(this.tabIndex=-1);const t=h(this.trigger);t&&"open"===t.slot&&(this._modalRoot=t._modalRoot||t),("modal"===this.interaction||this._modalRoot)&&(this.slot="open","modal"===this.interaction&&this.setAttribute("aria-modal","true"),this._modalRoot&&(null==t||t.feature()))}obscure(t){if(this.slot&&"modal"===t){if(this.removeAttribute("slot"),this.removeAttribute("aria-modal"),"modal"!==this.interaction){const e=h(this.trigger);return this._modalRoot=null==e?void 0:e.obscure(t),this._modalRoot}return this}}async willUpdate(){this.hasUpdated||!this.overlayContent||!this.trigger||(this.stealOverlayContent(this.overlayContent),this.state="active",this.feature(),this.placement&&"none"!==this.placement&&(await this.updateOverlayPosition(),document.addEventListener("sp-update-overlays",this.resetOverlayPosition)),this.placement&&"none"!==this.placement&&(this.contentAnimationPromise=this.applyContentAnimation("sp-overlay-fade-in")))}async openCallback(t){await this.updateComplete,this.receivesFocus&&await this.focus(),await t(),this.trigger.dispatchEvent(new CustomEvent("sp-opened",{bubbles:!0,composed:!0,cancelable:!0,detail:{interaction:this.interaction}}))}open(t){this.extractDetail(t)}extractDetail(t){this.overlayContent=t.content,this.overlayContentTip=t.contentTip,this.trigger=t.trigger,this.virtualTrigger=t.virtualTrigger,this.placement=t.placement,this.offset=t.offset,this.skidding=t.skidding||0,this.interaction=t.interaction,this.theme=t.theme,this.receivesFocus=t.receivesFocus,this.root=t.root}dispose(){"dispose"===this.state&&(this.timeout&&(clearTimeout(this.timeout),delete this.timeout),this.trigger.removeEventListener("keydown",this.handleInlineTriggerKeydown),this.returnOverlayContent(),this.state="disposed",this.willNotifyClosed&&(this.overlayContent.dispatchEvent(new Event("sp-overlay-closed")),this.willNotifyClosed=!1),this.cleanup&&this.cleanup())}stealOverlayContent(t){this.originalPlacement=t.getAttribute("placement"),this.restoreContent=(0,a.G)([t],this,{position:"beforeend",prepareCallback:t=>{const e=t.slot,n=t.placement;return t.removeAttribute("slot"),t=>{t.slot=e,t.placement=n}}}),this.stealOverlayContentResolver()}returnOverlayContent(){if(!this.restoreContent)return;const[t]=this.restoreContent();this.restoreContent=void 0,this.willNotifyClosed=!0,this.originalPlacement&&(t.setAttribute("placement",this.originalPlacement),delete this.originalPlacement)}async placeOverlay(){!this.placement||"none"===this.placement||(this.cleanup=pt(this.virtualTrigger||this.trigger,this,this.updateOverlayPosition,{elementResize:!1}))}async hide(t=!0){"active"===this.state&&(this.state="hiding",t&&await this.applyContentAnimation("sp-overlay-fade-out"),this.state="dispose")}schedulePositionUpdate(){cancelAnimationFrame(this.positionAnimationFrame),this.positionAnimationFrame=requestAnimationFrame((()=>{this.cleanup?this.updateOverlayPosition():this.placeOverlay()}))}onSlotChange(){this.schedulePositionUpdate()}applyContentAnimation(t){return"none"===this.placement?Promise.resolve(!0):(this.resolveContentAnimationPromise(),new Promise((e=>{this.resolveContentAnimationPromise=()=>{e(!1)};const n=this.shadowRoot.querySelector("#contents"),i=o=>{t===o.animationName&&(n.removeEventListener("animationend",i),n.removeEventListener("animationcancel",i),this.animating=!1,e("animationcancel"===o.type))};n.addEventListener("animationend",i),n.addEventListener("animationcancel",i),n.style.animationName=t,this.animating=!0})))}renderTheme(t){const{color:e,scale:n,lang:i,theme:r}=this.theme;return o.dy`
+`;/* harmony default export */ var active_overlay_css = (e);
+//# sourceMappingURL=active-overlay.css.js.map
+
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/src/overlay-utils.js
+const parentOverlayOf=e=>{if(!e)return null;const o=e.closest("active-overlay");if(o)return o;const t=e.getRootNode();return t.host?parentOverlayOf(t.host):null},findOverlaysRootedInOverlay=(e,o)=>{const t=[];if(!e)return[];for(const r of o)r.root&&parentOverlayOf(r.root)===e&&(t.push(r),t.push(...findOverlaysRootedInOverlay(r,o)));return t};
+//# sourceMappingURL=overlay-utils.js.map
+
+;// CONCATENATED MODULE: ./node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+const floating_ui_utils_sides = (/* unused pure expression or super */ null && (['top', 'right', 'bottom', 'left']));
+const alignments = (/* unused pure expression or super */ null && (['start', 'end']));
+const floating_ui_utils_placements = /*#__PURE__*/(/* unused pure expression or super */ null && (floating_ui_utils_sides.reduce((acc, side) => acc.concat(side, side + "-" + alignments[0], side + "-" + alignments[1]), [])));
+const floating_ui_utils_min = Math.min;
+const floating_ui_utils_max = Math.max;
+const round = Math.round;
+const floor = Math.floor;
+const createCoords = v => ({
+  x: v,
+  y: v
+});
+const oppositeSideMap = {
+  left: 'right',
+  right: 'left',
+  bottom: 'top',
+  top: 'bottom'
+};
+const oppositeAlignmentMap = {
+  start: 'end',
+  end: 'start'
+};
+function clamp(start, value, end) {
+  return floating_ui_utils_max(start, floating_ui_utils_min(value, end));
+}
+function floating_ui_utils_evaluate(value, param) {
+  return typeof value === 'function' ? value(param) : value;
+}
+function floating_ui_utils_getSide(placement) {
+  return placement.split('-')[0];
+}
+function floating_ui_utils_getAlignment(placement) {
+  return placement.split('-')[1];
+}
+function floating_ui_utils_getOppositeAxis(axis) {
+  return axis === 'x' ? 'y' : 'x';
+}
+function getAxisLength(axis) {
+  return axis === 'y' ? 'height' : 'width';
+}
+function floating_ui_utils_getSideAxis(placement) {
+  return ['top', 'bottom'].includes(floating_ui_utils_getSide(placement)) ? 'y' : 'x';
+}
+function getAlignmentAxis(placement) {
+  return floating_ui_utils_getOppositeAxis(floating_ui_utils_getSideAxis(placement));
+}
+function floating_ui_utils_getAlignmentSides(placement, rects, rtl) {
+  if (rtl === void 0) {
+    rtl = false;
+  }
+  const alignment = floating_ui_utils_getAlignment(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const length = getAxisLength(alignmentAxis);
+  let mainAlignmentSide = alignmentAxis === 'x' ? alignment === (rtl ? 'end' : 'start') ? 'right' : 'left' : alignment === 'start' ? 'bottom' : 'top';
+  if (rects.reference[length] > rects.floating[length]) {
+    mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
+  }
+  return [mainAlignmentSide, getOppositePlacement(mainAlignmentSide)];
+}
+function getExpandedPlacements(placement) {
+  const oppositePlacement = getOppositePlacement(placement);
+  return [floating_ui_utils_getOppositeAlignmentPlacement(placement), oppositePlacement, floating_ui_utils_getOppositeAlignmentPlacement(oppositePlacement)];
+}
+function floating_ui_utils_getOppositeAlignmentPlacement(placement) {
+  return placement.replace(/start|end/g, alignment => oppositeAlignmentMap[alignment]);
+}
+function getSideList(side, isStart, rtl) {
+  const lr = ['left', 'right'];
+  const rl = ['right', 'left'];
+  const tb = ['top', 'bottom'];
+  const bt = ['bottom', 'top'];
+  switch (side) {
+    case 'top':
+    case 'bottom':
+      if (rtl) return isStart ? rl : lr;
+      return isStart ? lr : rl;
+    case 'left':
+    case 'right':
+      return isStart ? tb : bt;
+    default:
+      return [];
+  }
+}
+function getOppositeAxisPlacements(placement, flipAlignment, direction, rtl) {
+  const alignment = floating_ui_utils_getAlignment(placement);
+  let list = getSideList(floating_ui_utils_getSide(placement), direction === 'start', rtl);
+  if (alignment) {
+    list = list.map(side => side + "-" + alignment);
+    if (flipAlignment) {
+      list = list.concat(list.map(floating_ui_utils_getOppositeAlignmentPlacement));
+    }
+  }
+  return list;
+}
+function getOppositePlacement(placement) {
+  return placement.replace(/left|right|bottom|top/g, side => oppositeSideMap[side]);
+}
+function expandPaddingObject(padding) {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    ...padding
+  };
+}
+function floating_ui_utils_getPaddingObject(padding) {
+  return typeof padding !== 'number' ? expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
+}
+function floating_ui_utils_rectToClientRect(rect) {
+  return {
+    ...rect,
+    top: rect.y,
+    left: rect.x,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
+  };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+
+
+
+function computeCoordsFromPlacement(_ref, placement, rtl) {
+  let {
+    reference,
+    floating
+  } = _ref;
+  const sideAxis = floating_ui_utils_getSideAxis(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const alignLength = getAxisLength(alignmentAxis);
+  const side = floating_ui_utils_getSide(placement);
+  const isVertical = sideAxis === 'y';
+  const commonX = reference.x + reference.width / 2 - floating.width / 2;
+  const commonY = reference.y + reference.height / 2 - floating.height / 2;
+  const commonAlign = reference[alignLength] / 2 - floating[alignLength] / 2;
+  let coords;
+  switch (side) {
+    case 'top':
+      coords = {
+        x: commonX,
+        y: reference.y - floating.height
+      };
+      break;
+    case 'bottom':
+      coords = {
+        x: commonX,
+        y: reference.y + reference.height
+      };
+      break;
+    case 'right':
+      coords = {
+        x: reference.x + reference.width,
+        y: commonY
+      };
+      break;
+    case 'left':
+      coords = {
+        x: reference.x - floating.width,
+        y: commonY
+      };
+      break;
+    default:
+      coords = {
+        x: reference.x,
+        y: reference.y
+      };
+  }
+  switch (floating_ui_utils_getAlignment(placement)) {
+    case 'start':
+      coords[alignmentAxis] -= commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+    case 'end':
+      coords[alignmentAxis] += commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+  }
+  return coords;
+}
+
+/**
+ * Computes the `x` and `y` coordinates that will place the floating element
+ * next to a reference element when it is given a certain positioning strategy.
+ *
+ * This export does not have any `platform` interface logic. You will need to
+ * write one for the platform you are using Floating UI with.
+ */
+const computePosition = async (reference, floating, config) => {
+  const {
+    placement = 'bottom',
+    strategy = 'absolute',
+    middleware = [],
+    platform
+  } = config;
+  const validMiddleware = middleware.filter(Boolean);
+  const rtl = await (platform.isRTL == null ? void 0 : platform.isRTL(floating));
+  let rects = await platform.getElementRects({
+    reference,
+    floating,
+    strategy
+  });
+  let {
+    x,
+    y
+  } = computeCoordsFromPlacement(rects, placement, rtl);
+  let statefulPlacement = placement;
+  let middlewareData = {};
+  let resetCount = 0;
+  for (let i = 0; i < validMiddleware.length; i++) {
+    const {
+      name,
+      fn
+    } = validMiddleware[i];
+    const {
+      x: nextX,
+      y: nextY,
+      data,
+      reset
+    } = await fn({
+      x,
+      y,
+      initialPlacement: placement,
+      placement: statefulPlacement,
+      strategy,
+      middlewareData,
+      rects,
+      platform,
+      elements: {
+        reference,
+        floating
+      }
+    });
+    x = nextX != null ? nextX : x;
+    y = nextY != null ? nextY : y;
+    middlewareData = {
+      ...middlewareData,
+      [name]: {
+        ...middlewareData[name],
+        ...data
+      }
+    };
+    if (reset && resetCount <= 50) {
+      resetCount++;
+      if (typeof reset === 'object') {
+        if (reset.placement) {
+          statefulPlacement = reset.placement;
+        }
+        if (reset.rects) {
+          rects = reset.rects === true ? await platform.getElementRects({
+            reference,
+            floating,
+            strategy
+          }) : reset.rects;
+        }
+        ({
+          x,
+          y
+        } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
+      }
+      i = -1;
+      continue;
+    }
+  }
+  return {
+    x,
+    y,
+    placement: statefulPlacement,
+    strategy,
+    middlewareData
+  };
+};
+
+/**
+ * Resolves with an object of overflow side offsets that determine how much the
+ * element is overflowing a given clipping boundary on each side.
+ * - positive = overflowing the boundary by that number of pixels
+ * - negative = how many pixels left before it will overflow
+ * - 0 = lies flush with the boundary
+ * @see https://floating-ui.com/docs/detectOverflow
+ */
+async function detectOverflow(state, options) {
+  var _await$platform$isEle;
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    x,
+    y,
+    platform,
+    rects,
+    elements,
+    strategy
+  } = state;
+  const {
+    boundary = 'clippingAncestors',
+    rootBoundary = 'viewport',
+    elementContext = 'floating',
+    altBoundary = false,
+    padding = 0
+  } = floating_ui_utils_evaluate(options, state);
+  const paddingObject = floating_ui_utils_getPaddingObject(padding);
+  const altContext = elementContext === 'floating' ? 'reference' : 'floating';
+  const element = elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = floating_ui_utils_rectToClientRect(await platform.getClippingRect({
+    element: ((_await$platform$isEle = await (platform.isElement == null ? void 0 : platform.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || (await (platform.getDocumentElement == null ? void 0 : platform.getDocumentElement(elements.floating))),
+    boundary,
+    rootBoundary,
+    strategy
+  }));
+  const rect = elementContext === 'floating' ? {
+    ...rects.floating,
+    x,
+    y
+  } : rects.reference;
+  const offsetParent = await (platform.getOffsetParent == null ? void 0 : platform.getOffsetParent(elements.floating));
+  const offsetScale = (await (platform.isElement == null ? void 0 : platform.isElement(offsetParent))) ? (await (platform.getScale == null ? void 0 : platform.getScale(offsetParent))) || {
+    x: 1,
+    y: 1
+  } : {
+    x: 1,
+    y: 1
+  };
+  const elementClientRect = floating_ui_utils_rectToClientRect(platform.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform.convertOffsetParentRelativeRectToViewportRelativeRect({
+    rect,
+    offsetParent,
+    strategy
+  }) : rect);
+  return {
+    top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
+    bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
+    left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
+    right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
+  };
+}
+
+/**
+ * Provides data to position an inner element of the floating element so that it
+ * appears centered to the reference element.
+ * @see https://floating-ui.com/docs/arrow
+ */
+const arrow = options => ({
+  name: 'arrow',
+  options,
+  async fn(state) {
+    const {
+      x,
+      y,
+      placement,
+      rects,
+      platform,
+      elements
+    } = state;
+    // Since `element` is required, we don't Partial<> the type.
+    const {
+      element,
+      padding = 0
+    } = floating_ui_utils_evaluate(options, state) || {};
+    if (element == null) {
+      return {};
+    }
+    const paddingObject = floating_ui_utils_getPaddingObject(padding);
+    const coords = {
+      x,
+      y
+    };
+    const axis = getAlignmentAxis(placement);
+    const length = getAxisLength(axis);
+    const arrowDimensions = await platform.getDimensions(element);
+    const isYAxis = axis === 'y';
+    const minProp = isYAxis ? 'top' : 'left';
+    const maxProp = isYAxis ? 'bottom' : 'right';
+    const clientProp = isYAxis ? 'clientHeight' : 'clientWidth';
+    const endDiff = rects.reference[length] + rects.reference[axis] - coords[axis] - rects.floating[length];
+    const startDiff = coords[axis] - rects.reference[axis];
+    const arrowOffsetParent = await (platform.getOffsetParent == null ? void 0 : platform.getOffsetParent(element));
+    let clientSize = arrowOffsetParent ? arrowOffsetParent[clientProp] : 0;
+
+    // DOM platform can return `window` as the `offsetParent`.
+    if (!clientSize || !(await (platform.isElement == null ? void 0 : platform.isElement(arrowOffsetParent)))) {
+      clientSize = elements.floating[clientProp] || rects.floating[length];
+    }
+    const centerToReference = endDiff / 2 - startDiff / 2;
+
+    // If the padding is large enough that it causes the arrow to no longer be
+    // centered, modify the padding so that it is centered.
+    const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
+    const minPadding = floating_ui_utils_min(paddingObject[minProp], largestPossiblePadding);
+    const maxPadding = floating_ui_utils_min(paddingObject[maxProp], largestPossiblePadding);
+
+    // Make sure the arrow doesn't overflow the floating element if the center
+    // point is outside the floating element's bounds.
+    const min$1 = minPadding;
+    const max = clientSize - arrowDimensions[length] - maxPadding;
+    const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
+    const offset = clamp(min$1, center, max);
+
+    // If the reference is small enough that the arrow's padding causes it to
+    // to point to nothing for an aligned placement, adjust the offset of the
+    // floating element itself. This stops `shift()` from taking action, but can
+    // be worked around by calling it again after the `arrow()` if desired.
+    const shouldAddOffset = floating_ui_utils_getAlignment(placement) != null && center != offset && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1 ? min$1 - center : max - center : 0;
+    return {
+      [axis]: coords[axis] - alignmentOffset,
+      data: {
+        [axis]: offset,
+        centerOffset: center - offset + alignmentOffset
+      }
+    };
+  }
+});
+
+function getPlacementList(alignment, autoAlignment, allowedPlacements) {
+  const allowedPlacementsSortedByAlignment = alignment ? [...allowedPlacements.filter(placement => getAlignment(placement) === alignment), ...allowedPlacements.filter(placement => getAlignment(placement) !== alignment)] : allowedPlacements.filter(placement => getSide(placement) === placement);
+  return allowedPlacementsSortedByAlignment.filter(placement => {
+    if (alignment) {
+      return getAlignment(placement) === alignment || (autoAlignment ? getOppositeAlignmentPlacement(placement) !== placement : false);
+    }
+    return true;
+  });
+}
+/**
+ * Optimizes the visibility of the floating element by choosing the placement
+ * that has the most space available automatically, without needing to specify a
+ * preferred placement. Alternative to `flip`.
+ * @see https://floating-ui.com/docs/autoPlacement
+ */
+const autoPlacement = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: 'autoPlacement',
+    options,
+    async fn(state) {
+      var _middlewareData$autoP, _middlewareData$autoP2, _placementsThatFitOnE;
+      const {
+        rects,
+        middlewareData,
+        placement,
+        platform,
+        elements
+      } = state;
+      const {
+        crossAxis = false,
+        alignment,
+        allowedPlacements = placements,
+        autoAlignment = true,
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      const placements$1 = alignment !== undefined || allowedPlacements === placements ? getPlacementList(alignment || null, autoAlignment, allowedPlacements) : allowedPlacements;
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const currentIndex = ((_middlewareData$autoP = middlewareData.autoPlacement) == null ? void 0 : _middlewareData$autoP.index) || 0;
+      const currentPlacement = placements$1[currentIndex];
+      if (currentPlacement == null) {
+        return {};
+      }
+      const alignmentSides = getAlignmentSides(currentPlacement, rects, await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating)));
+
+      // Make `computeCoords` start from the right place.
+      if (placement !== currentPlacement) {
+        return {
+          reset: {
+            placement: placements$1[0]
+          }
+        };
+      }
+      const currentOverflows = [overflow[getSide(currentPlacement)], overflow[alignmentSides[0]], overflow[alignmentSides[1]]];
+      const allOverflows = [...(((_middlewareData$autoP2 = middlewareData.autoPlacement) == null ? void 0 : _middlewareData$autoP2.overflows) || []), {
+        placement: currentPlacement,
+        overflows: currentOverflows
+      }];
+      const nextPlacement = placements$1[currentIndex + 1];
+
+      // There are more placements to check.
+      if (nextPlacement) {
+        return {
+          data: {
+            index: currentIndex + 1,
+            overflows: allOverflows
+          },
+          reset: {
+            placement: nextPlacement
+          }
+        };
+      }
+      const placementsSortedByMostSpace = allOverflows.map(d => {
+        const alignment = getAlignment(d.placement);
+        return [d.placement, alignment && crossAxis ?
+        // Check along the mainAxis and main crossAxis side.
+        d.overflows.slice(0, 2).reduce((acc, v) => acc + v, 0) :
+        // Check only the mainAxis.
+        d.overflows[0], d.overflows];
+      }).sort((a, b) => a[1] - b[1]);
+      const placementsThatFitOnEachSide = placementsSortedByMostSpace.filter(d => d[2].slice(0,
+      // Aligned placements should not check their opposite crossAxis
+      // side.
+      getAlignment(d[0]) ? 2 : 3).every(v => v <= 0));
+      const resetPlacement = ((_placementsThatFitOnE = placementsThatFitOnEachSide[0]) == null ? void 0 : _placementsThatFitOnE[0]) || placementsSortedByMostSpace[0][0];
+      if (resetPlacement !== placement) {
+        return {
+          data: {
+            index: currentIndex + 1,
+            overflows: allOverflows
+          },
+          reset: {
+            placement: resetPlacement
+          }
+        };
+      }
+      return {};
+    }
+  };
+};
+
+/**
+ * Optimizes the visibility of the floating element by flipping the `placement`
+ * in order to keep it in view when the preferred placement(s) will overflow the
+ * clipping boundary. Alternative to `autoPlacement`.
+ * @see https://floating-ui.com/docs/flip
+ */
+const flip = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: 'flip',
+    options,
+    async fn(state) {
+      var _middlewareData$flip;
+      const {
+        placement,
+        middlewareData,
+        rects,
+        initialPlacement,
+        platform,
+        elements
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true,
+        fallbackPlacements: specifiedFallbackPlacements,
+        fallbackStrategy = 'bestFit',
+        fallbackAxisSideDirection = 'none',
+        flipAlignment = true,
+        ...detectOverflowOptions
+      } = floating_ui_utils_evaluate(options, state);
+      const side = floating_ui_utils_getSide(placement);
+      const isBasePlacement = floating_ui_utils_getSide(initialPlacement) === initialPlacement;
+      const rtl = await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating));
+      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
+      if (!specifiedFallbackPlacements && fallbackAxisSideDirection !== 'none') {
+        fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
+      }
+      const placements = [initialPlacement, ...fallbackPlacements];
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const overflows = [];
+      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
+      if (checkMainAxis) {
+        overflows.push(overflow[side]);
+      }
+      if (checkCrossAxis) {
+        const sides = floating_ui_utils_getAlignmentSides(placement, rects, rtl);
+        overflows.push(overflow[sides[0]], overflow[sides[1]]);
+      }
+      overflowsData = [...overflowsData, {
+        placement,
+        overflows
+      }];
+
+      // One or more sides is overflowing.
+      if (!overflows.every(side => side <= 0)) {
+        var _middlewareData$flip2, _overflowsData$filter;
+        const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
+        const nextPlacement = placements[nextIndex];
+        if (nextPlacement) {
+          // Try next placement and re-run the lifecycle.
+          return {
+            data: {
+              index: nextIndex,
+              overflows: overflowsData
+            },
+            reset: {
+              placement: nextPlacement
+            }
+          };
+        }
+
+        // First, find the candidates that fit on the mainAxis side of overflow,
+        // then find the placement that fits the best on the main crossAxis side.
+        let resetPlacement = (_overflowsData$filter = overflowsData.filter(d => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? void 0 : _overflowsData$filter.placement;
+
+        // Otherwise fallback.
+        if (!resetPlacement) {
+          switch (fallbackStrategy) {
+            case 'bestFit':
+              {
+                var _overflowsData$map$so;
+                const placement = (_overflowsData$map$so = overflowsData.map(d => [d.placement, d.overflows.filter(overflow => overflow > 0).reduce((acc, overflow) => acc + overflow, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$map$so[0];
+                if (placement) {
+                  resetPlacement = placement;
+                }
+                break;
+              }
+            case 'initialPlacement':
+              resetPlacement = initialPlacement;
+              break;
+          }
+        }
+        if (placement !== resetPlacement) {
+          return {
+            reset: {
+              placement: resetPlacement
+            }
+          };
+        }
+      }
+      return {};
+    }
+  };
+};
+
+function getSideOffsets(overflow, rect) {
+  return {
+    top: overflow.top - rect.height,
+    right: overflow.right - rect.width,
+    bottom: overflow.bottom - rect.height,
+    left: overflow.left - rect.width
+  };
+}
+function isAnySideFullyClipped(overflow) {
+  return sides.some(side => overflow[side] >= 0);
+}
+/**
+ * Provides data to hide the floating element in applicable situations, such as
+ * when it is not in the same clipping context as the reference element.
+ * @see https://floating-ui.com/docs/hide
+ */
+const hide = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: 'hide',
+    options,
+    async fn(state) {
+      const {
+        rects
+      } = state;
+      const {
+        strategy = 'referenceHidden',
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      switch (strategy) {
+        case 'referenceHidden':
+          {
+            const overflow = await detectOverflow(state, {
+              ...detectOverflowOptions,
+              elementContext: 'reference'
+            });
+            const offsets = getSideOffsets(overflow, rects.reference);
+            return {
+              data: {
+                referenceHiddenOffsets: offsets,
+                referenceHidden: isAnySideFullyClipped(offsets)
+              }
+            };
+          }
+        case 'escaped':
+          {
+            const overflow = await detectOverflow(state, {
+              ...detectOverflowOptions,
+              altBoundary: true
+            });
+            const offsets = getSideOffsets(overflow, rects.floating);
+            return {
+              data: {
+                escapedOffsets: offsets,
+                escaped: isAnySideFullyClipped(offsets)
+              }
+            };
+          }
+        default:
+          {
+            return {};
+          }
+      }
+    }
+  };
+};
+
+function getBoundingRect(rects) {
+  const minX = min(...rects.map(rect => rect.left));
+  const minY = min(...rects.map(rect => rect.top));
+  const maxX = max(...rects.map(rect => rect.right));
+  const maxY = max(...rects.map(rect => rect.bottom));
+  return {
+    x: minX,
+    y: minY,
+    width: maxX - minX,
+    height: maxY - minY
+  };
+}
+function getRectsByLine(rects) {
+  const sortedRects = rects.slice().sort((a, b) => a.y - b.y);
+  const groups = [];
+  let prevRect = null;
+  for (let i = 0; i < sortedRects.length; i++) {
+    const rect = sortedRects[i];
+    if (!prevRect || rect.y - prevRect.y > prevRect.height / 2) {
+      groups.push([rect]);
+    } else {
+      groups[groups.length - 1].push(rect);
+    }
+    prevRect = rect;
+  }
+  return groups.map(rect => rectToClientRect(getBoundingRect(rect)));
+}
+/**
+ * Provides improved positioning for inline reference elements that can span
+ * over multiple lines, such as hyperlinks or range selections.
+ * @see https://floating-ui.com/docs/inline
+ */
+const inline = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: 'inline',
+    options,
+    async fn(state) {
+      const {
+        placement,
+        elements,
+        rects,
+        platform,
+        strategy
+      } = state;
+      // A MouseEvent's client{X,Y} coords can be up to 2 pixels off a
+      // ClientRect's bounds, despite the event listener being triggered. A
+      // padding of 2 seems to handle this issue.
+      const {
+        padding = 2,
+        x,
+        y
+      } = evaluate(options, state);
+      const nativeClientRects = Array.from((await (platform.getClientRects == null ? void 0 : platform.getClientRects(elements.reference))) || []);
+      const clientRects = getRectsByLine(nativeClientRects);
+      const fallback = rectToClientRect(getBoundingRect(nativeClientRects));
+      const paddingObject = getPaddingObject(padding);
+      function getBoundingClientRect() {
+        // There are two rects and they are disjoined.
+        if (clientRects.length === 2 && clientRects[0].left > clientRects[1].right && x != null && y != null) {
+          // Find the first rect in which the point is fully inside.
+          return clientRects.find(rect => x > rect.left - paddingObject.left && x < rect.right + paddingObject.right && y > rect.top - paddingObject.top && y < rect.bottom + paddingObject.bottom) || fallback;
+        }
+
+        // There are 2 or more connected rects.
+        if (clientRects.length >= 2) {
+          if (getSideAxis(placement) === 'y') {
+            const firstRect = clientRects[0];
+            const lastRect = clientRects[clientRects.length - 1];
+            const isTop = getSide(placement) === 'top';
+            const top = firstRect.top;
+            const bottom = lastRect.bottom;
+            const left = isTop ? firstRect.left : lastRect.left;
+            const right = isTop ? firstRect.right : lastRect.right;
+            const width = right - left;
+            const height = bottom - top;
+            return {
+              top,
+              bottom,
+              left,
+              right,
+              width,
+              height,
+              x: left,
+              y: top
+            };
+          }
+          const isLeftSide = getSide(placement) === 'left';
+          const maxRight = max(...clientRects.map(rect => rect.right));
+          const minLeft = min(...clientRects.map(rect => rect.left));
+          const measureRects = clientRects.filter(rect => isLeftSide ? rect.left === minLeft : rect.right === maxRight);
+          const top = measureRects[0].top;
+          const bottom = measureRects[measureRects.length - 1].bottom;
+          const left = minLeft;
+          const right = maxRight;
+          const width = right - left;
+          const height = bottom - top;
+          return {
+            top,
+            bottom,
+            left,
+            right,
+            width,
+            height,
+            x: left,
+            y: top
+          };
+        }
+        return fallback;
+      }
+      const resetRects = await platform.getElementRects({
+        reference: {
+          getBoundingClientRect
+        },
+        floating: elements.floating,
+        strategy
+      });
+      if (rects.reference.x !== resetRects.reference.x || rects.reference.y !== resetRects.reference.y || rects.reference.width !== resetRects.reference.width || rects.reference.height !== resetRects.reference.height) {
+        return {
+          reset: {
+            rects: resetRects
+          }
+        };
+      }
+      return {};
+    }
+  };
+};
+
+// For type backwards-compatibility, the `OffsetOptions` type was also
+// Derivable.
+async function convertValueToCoords(state, options) {
+  const {
+    placement,
+    platform,
+    elements
+  } = state;
+  const rtl = await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating));
+  const side = floating_ui_utils_getSide(placement);
+  const alignment = floating_ui_utils_getAlignment(placement);
+  const isVertical = floating_ui_utils_getSideAxis(placement) === 'y';
+  const mainAxisMulti = ['left', 'top'].includes(side) ? -1 : 1;
+  const crossAxisMulti = rtl && isVertical ? -1 : 1;
+  const rawValue = floating_ui_utils_evaluate(options, state);
+
+  // eslint-disable-next-line prefer-const
+  let {
+    mainAxis,
+    crossAxis,
+    alignmentAxis
+  } = typeof rawValue === 'number' ? {
+    mainAxis: rawValue,
+    crossAxis: 0,
+    alignmentAxis: null
+  } : {
+    mainAxis: 0,
+    crossAxis: 0,
+    alignmentAxis: null,
+    ...rawValue
+  };
+  if (alignment && typeof alignmentAxis === 'number') {
+    crossAxis = alignment === 'end' ? alignmentAxis * -1 : alignmentAxis;
+  }
+  return isVertical ? {
+    x: crossAxis * crossAxisMulti,
+    y: mainAxis * mainAxisMulti
+  } : {
+    x: mainAxis * mainAxisMulti,
+    y: crossAxis * crossAxisMulti
+  };
+}
+
+/**
+ * Modifies the placement by translating the floating element along the
+ * specified axes.
+ * A number (shorthand for `mainAxis` or distance), or an axes configuration
+ * object may be passed.
+ * @see https://floating-ui.com/docs/offset
+ */
+const offset = function (options) {
+  if (options === void 0) {
+    options = 0;
+  }
+  return {
+    name: 'offset',
+    options,
+    async fn(state) {
+      const {
+        x,
+        y
+      } = state;
+      const diffCoords = await convertValueToCoords(state, options);
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: diffCoords
+      };
+    }
+  };
+};
+
+/**
+ * Optimizes the visibility of the floating element by shifting it in order to
+ * keep it in view when it will overflow the clipping boundary.
+ * @see https://floating-ui.com/docs/shift
+ */
+const shift = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: 'shift',
+    options,
+    async fn(state) {
+      const {
+        x,
+        y,
+        placement
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = false,
+        limiter = {
+          fn: _ref => {
+            let {
+              x,
+              y
+            } = _ref;
+            return {
+              x,
+              y
+            };
+          }
+        },
+        ...detectOverflowOptions
+      } = floating_ui_utils_evaluate(options, state);
+      const coords = {
+        x,
+        y
+      };
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const crossAxis = floating_ui_utils_getSideAxis(floating_ui_utils_getSide(placement));
+      const mainAxis = floating_ui_utils_getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      if (checkMainAxis) {
+        const minSide = mainAxis === 'y' ? 'top' : 'left';
+        const maxSide = mainAxis === 'y' ? 'bottom' : 'right';
+        const min = mainAxisCoord + overflow[minSide];
+        const max = mainAxisCoord - overflow[maxSide];
+        mainAxisCoord = clamp(min, mainAxisCoord, max);
+      }
+      if (checkCrossAxis) {
+        const minSide = crossAxis === 'y' ? 'top' : 'left';
+        const maxSide = crossAxis === 'y' ? 'bottom' : 'right';
+        const min = crossAxisCoord + overflow[minSide];
+        const max = crossAxisCoord - overflow[maxSide];
+        crossAxisCoord = clamp(min, crossAxisCoord, max);
+      }
+      const limitedCoords = limiter.fn({
+        ...state,
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      });
+      return {
+        ...limitedCoords,
+        data: {
+          x: limitedCoords.x - x,
+          y: limitedCoords.y - y
+        }
+      };
+    }
+  };
+};
+/**
+ * Built-in `limiter` that will stop `shift()` at a certain point.
+ */
+const limitShift = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    options,
+    fn(state) {
+      const {
+        x,
+        y,
+        placement,
+        rects,
+        middlewareData
+      } = state;
+      const {
+        offset = 0,
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true
+      } = evaluate(options, state);
+      const coords = {
+        x,
+        y
+      };
+      const crossAxis = getSideAxis(placement);
+      const mainAxis = getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      const rawOffset = evaluate(offset, state);
+      const computedOffset = typeof rawOffset === 'number' ? {
+        mainAxis: rawOffset,
+        crossAxis: 0
+      } : {
+        mainAxis: 0,
+        crossAxis: 0,
+        ...rawOffset
+      };
+      if (checkMainAxis) {
+        const len = mainAxis === 'y' ? 'height' : 'width';
+        const limitMin = rects.reference[mainAxis] - rects.floating[len] + computedOffset.mainAxis;
+        const limitMax = rects.reference[mainAxis] + rects.reference[len] - computedOffset.mainAxis;
+        if (mainAxisCoord < limitMin) {
+          mainAxisCoord = limitMin;
+        } else if (mainAxisCoord > limitMax) {
+          mainAxisCoord = limitMax;
+        }
+      }
+      if (checkCrossAxis) {
+        var _middlewareData$offse, _middlewareData$offse2;
+        const len = mainAxis === 'y' ? 'width' : 'height';
+        const isOriginSide = ['top', 'left'].includes(getSide(placement));
+        const limitMin = rects.reference[crossAxis] - rects.floating[len] + (isOriginSide ? ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse[crossAxis]) || 0 : 0) + (isOriginSide ? 0 : computedOffset.crossAxis);
+        const limitMax = rects.reference[crossAxis] + rects.reference[len] + (isOriginSide ? 0 : ((_middlewareData$offse2 = middlewareData.offset) == null ? void 0 : _middlewareData$offse2[crossAxis]) || 0) - (isOriginSide ? computedOffset.crossAxis : 0);
+        if (crossAxisCoord < limitMin) {
+          crossAxisCoord = limitMin;
+        } else if (crossAxisCoord > limitMax) {
+          crossAxisCoord = limitMax;
+        }
+      }
+      return {
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      };
+    }
+  };
+};
+
+/**
+ * Provides data that allows you to change the size of the floating element —
+ * for instance, prevent it from overflowing the clipping boundary or match the
+ * width of the reference element.
+ * @see https://floating-ui.com/docs/size
+ */
+const size = function (options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: 'size',
+    options,
+    async fn(state) {
+      const {
+        placement,
+        rects,
+        platform,
+        elements
+      } = state;
+      const {
+        apply = () => {},
+        ...detectOverflowOptions
+      } = floating_ui_utils_evaluate(options, state);
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const side = floating_ui_utils_getSide(placement);
+      const alignment = floating_ui_utils_getAlignment(placement);
+      const isYAxis = floating_ui_utils_getSideAxis(placement) === 'y';
+      const {
+        width,
+        height
+      } = rects.floating;
+      let heightSide;
+      let widthSide;
+      if (side === 'top' || side === 'bottom') {
+        heightSide = side;
+        widthSide = alignment === ((await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating))) ? 'start' : 'end') ? 'left' : 'right';
+      } else {
+        widthSide = side;
+        heightSide = alignment === 'end' ? 'top' : 'bottom';
+      }
+      const overflowAvailableHeight = height - overflow[heightSide];
+      const overflowAvailableWidth = width - overflow[widthSide];
+      const noShift = !state.middlewareData.shift;
+      let availableHeight = overflowAvailableHeight;
+      let availableWidth = overflowAvailableWidth;
+      if (isYAxis) {
+        const maximumClippingWidth = width - overflow.left - overflow.right;
+        availableWidth = alignment || noShift ? floating_ui_utils_min(overflowAvailableWidth, maximumClippingWidth) : maximumClippingWidth;
+      } else {
+        const maximumClippingHeight = height - overflow.top - overflow.bottom;
+        availableHeight = alignment || noShift ? floating_ui_utils_min(overflowAvailableHeight, maximumClippingHeight) : maximumClippingHeight;
+      }
+      if (noShift && !alignment) {
+        const xMin = floating_ui_utils_max(overflow.left, 0);
+        const xMax = floating_ui_utils_max(overflow.right, 0);
+        const yMin = floating_ui_utils_max(overflow.top, 0);
+        const yMax = floating_ui_utils_max(overflow.bottom, 0);
+        if (isYAxis) {
+          availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : floating_ui_utils_max(overflow.left, overflow.right));
+        } else {
+          availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : floating_ui_utils_max(overflow.top, overflow.bottom));
+        }
+      }
+      await apply({
+        ...state,
+        availableWidth,
+        availableHeight
+      });
+      const nextDimensions = await platform.getDimensions(elements.floating);
+      if (width !== nextDimensions.width || height !== nextDimensions.height) {
+        return {
+          reset: {
+            rects: true
+          }
+        };
+      }
+      return {};
+    }
+  };
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/@floating-ui/utils/dom/dist/floating-ui.utils.dom.mjs
+function getNodeName(node) {
+  if (isNode(node)) {
+    return (node.nodeName || '').toLowerCase();
+  }
+  // Mocked nodes in testing environments may not be instances of Node. By
+  // returning `#document` an infinite loop won't occur.
+  // https://github.com/floating-ui/floating-ui/issues/2317
+  return '#document';
+}
+function getWindow(node) {
+  var _node$ownerDocument;
+  return (node == null ? void 0 : (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
+}
+function getDocumentElement(node) {
+  var _ref;
+  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
+}
+function isNode(value) {
+  return value instanceof Node || value instanceof getWindow(value).Node;
+}
+function isElement(value) {
+  return value instanceof Element || value instanceof getWindow(value).Element;
+}
+function isHTMLElement(value) {
+  return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
+}
+function isShadowRoot(value) {
+  // Browsers without `ShadowRoot` support.
+  if (typeof ShadowRoot === 'undefined') {
+    return false;
+  }
+  return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
+}
+function isOverflowElement(element) {
+  const {
+    overflow,
+    overflowX,
+    overflowY,
+    display
+  } = floating_ui_utils_dom_getComputedStyle(element);
+  return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && !['inline', 'contents'].includes(display);
+}
+function isTableElement(element) {
+  return ['table', 'td', 'th'].includes(getNodeName(element));
+}
+function isContainingBlock(element) {
+  const webkit = isWebKit();
+  const css = floating_ui_utils_dom_getComputedStyle(element);
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
+  return css.transform !== 'none' || css.perspective !== 'none' || (css.containerType ? css.containerType !== 'normal' : false) || !webkit && (css.backdropFilter ? css.backdropFilter !== 'none' : false) || !webkit && (css.filter ? css.filter !== 'none' : false) || ['transform', 'perspective', 'filter'].some(value => (css.willChange || '').includes(value)) || ['paint', 'layout', 'strict', 'content'].some(value => (css.contain || '').includes(value));
+}
+function getContainingBlock(element) {
+  let currentNode = getParentNode(element);
+  while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    if (isContainingBlock(currentNode)) {
+      return currentNode;
+    } else {
+      currentNode = getParentNode(currentNode);
+    }
+  }
+  return null;
+}
+function isWebKit() {
+  if (typeof CSS === 'undefined' || !CSS.supports) return false;
+  return CSS.supports('-webkit-backdrop-filter', 'none');
+}
+function isLastTraversableNode(node) {
+  return ['html', 'body', '#document'].includes(getNodeName(node));
+}
+function floating_ui_utils_dom_getComputedStyle(element) {
+  return getWindow(element).getComputedStyle(element);
+}
+function getNodeScroll(element) {
+  if (isElement(element)) {
+    return {
+      scrollLeft: element.scrollLeft,
+      scrollTop: element.scrollTop
+    };
+  }
+  return {
+    scrollLeft: element.pageXOffset,
+    scrollTop: element.pageYOffset
+  };
+}
+function getParentNode(node) {
+  if (getNodeName(node) === 'html') {
+    return node;
+  }
+  const result =
+  // Step into the shadow DOM of the parent of a slotted node.
+  node.assignedSlot ||
+  // DOM Element detected.
+  node.parentNode ||
+  // ShadowRoot detected.
+  isShadowRoot(node) && node.host ||
+  // Fallback.
+  getDocumentElement(node);
+  return isShadowRoot(result) ? result.host : result;
+}
+function getNearestOverflowAncestor(node) {
+  const parentNode = getParentNode(node);
+  if (isLastTraversableNode(parentNode)) {
+    return node.ownerDocument ? node.ownerDocument.body : node.body;
+  }
+  if (isHTMLElement(parentNode) && isOverflowElement(parentNode)) {
+    return parentNode;
+  }
+  return getNearestOverflowAncestor(parentNode);
+}
+function getOverflowAncestors(node, list) {
+  var _node$ownerDocument2;
+  if (list === void 0) {
+    list = [];
+  }
+  const scrollableAncestor = getNearestOverflowAncestor(node);
+  const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
+  const win = getWindow(scrollableAncestor);
+  if (isBody) {
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : []);
+  }
+  return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor));
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
+
+
+
+
+
+
+function getCssDimensions(element) {
+  const css = floating_ui_utils_dom_getComputedStyle(element);
+  // In testing environments, the `width` and `height` properties are empty
+  // strings for SVG elements, returning NaN. Fallback to `0` in this case.
+  let width = parseFloat(css.width) || 0;
+  let height = parseFloat(css.height) || 0;
+  const hasOffset = isHTMLElement(element);
+  const offsetWidth = hasOffset ? element.offsetWidth : width;
+  const offsetHeight = hasOffset ? element.offsetHeight : height;
+  const shouldFallback = round(width) !== offsetWidth || round(height) !== offsetHeight;
+  if (shouldFallback) {
+    width = offsetWidth;
+    height = offsetHeight;
+  }
+  return {
+    width,
+    height,
+    $: shouldFallback
+  };
+}
+
+function unwrapElement(element) {
+  return !isElement(element) ? element.contextElement : element;
+}
+
+function getScale(element) {
+  const domElement = unwrapElement(element);
+  if (!isHTMLElement(domElement)) {
+    return createCoords(1);
+  }
+  const rect = domElement.getBoundingClientRect();
+  const {
+    width,
+    height,
+    $
+  } = getCssDimensions(domElement);
+  let x = ($ ? round(rect.width) : rect.width) / width;
+  let y = ($ ? round(rect.height) : rect.height) / height;
+
+  // 0, NaN, or Infinity should always fallback to 1.
+
+  if (!x || !Number.isFinite(x)) {
+    x = 1;
+  }
+  if (!y || !Number.isFinite(y)) {
+    y = 1;
+  }
+  return {
+    x,
+    y
+  };
+}
+
+const noOffsets = /*#__PURE__*/createCoords(0);
+function getVisualOffsets(element) {
+  const win = getWindow(element);
+  if (!isWebKit() || !win.visualViewport) {
+    return noOffsets;
+  }
+  return {
+    x: win.visualViewport.offsetLeft,
+    y: win.visualViewport.offsetTop
+  };
+}
+function shouldAddVisualOffsets(element, isFixed, floatingOffsetParent) {
+  if (isFixed === void 0) {
+    isFixed = false;
+  }
+  if (!floatingOffsetParent || isFixed && floatingOffsetParent !== getWindow(element)) {
+    return false;
+  }
+  return isFixed;
+}
+
+function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetParent) {
+  if (includeScale === void 0) {
+    includeScale = false;
+  }
+  if (isFixedStrategy === void 0) {
+    isFixedStrategy = false;
+  }
+  const clientRect = element.getBoundingClientRect();
+  const domElement = unwrapElement(element);
+  let scale = createCoords(1);
+  if (includeScale) {
+    if (offsetParent) {
+      if (isElement(offsetParent)) {
+        scale = getScale(offsetParent);
+      }
+    } else {
+      scale = getScale(element);
+    }
+  }
+  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
+  let x = (clientRect.left + visualOffsets.x) / scale.x;
+  let y = (clientRect.top + visualOffsets.y) / scale.y;
+  let width = clientRect.width / scale.x;
+  let height = clientRect.height / scale.y;
+  if (domElement) {
+    const win = getWindow(domElement);
+    const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
+    let currentIFrame = win.frameElement;
+    while (currentIFrame && offsetParent && offsetWin !== win) {
+      const iframeScale = getScale(currentIFrame);
+      const iframeRect = currentIFrame.getBoundingClientRect();
+      const css = floating_ui_utils_dom_getComputedStyle(currentIFrame);
+      const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
+      const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
+      x *= iframeScale.x;
+      y *= iframeScale.y;
+      width *= iframeScale.x;
+      height *= iframeScale.y;
+      x += left;
+      y += top;
+      currentIFrame = getWindow(currentIFrame).frameElement;
+    }
+  }
+  return floating_ui_utils_rectToClientRect({
+    width,
+    height,
+    x,
+    y
+  });
+}
+
+function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
+  let {
+    rect,
+    offsetParent,
+    strategy
+  } = _ref;
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  if (offsetParent === documentElement) {
+    return rect;
+  }
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  let scale = createCoords(1);
+  const offsets = createCoords(0);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && strategy !== 'fixed') {
+    if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isHTMLElement(offsetParent)) {
+      const offsetRect = getBoundingClientRect(offsetParent);
+      scale = getScale(offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    }
+  }
+  return {
+    width: rect.width * scale.x,
+    height: rect.height * scale.y,
+    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x,
+    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y
+  };
+}
+
+function getClientRects(element) {
+  return Array.from(element.getClientRects());
+}
+
+function getWindowScrollBarX(element) {
+  // If <html> has a CSS width greater than the viewport, then this will be
+  // incorrect for RTL.
+  return getBoundingClientRect(getDocumentElement(element)).left + getNodeScroll(element).scrollLeft;
+}
+
+// Gets the entire size of the scrollable document area, even extending outside
+// of the `<html>` and `<body>` rect bounds if horizontally scrollable.
+function getDocumentRect(element) {
+  const html = getDocumentElement(element);
+  const scroll = getNodeScroll(element);
+  const body = element.ownerDocument.body;
+  const width = floating_ui_utils_max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = floating_ui_utils_max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
+  const y = -scroll.scrollTop;
+  if (floating_ui_utils_dom_getComputedStyle(body).direction === 'rtl') {
+    x += floating_ui_utils_max(html.clientWidth, body.clientWidth) - width;
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+
+function getViewportRect(element, strategy) {
+  const win = getWindow(element);
+  const html = getDocumentElement(element);
+  const visualViewport = win.visualViewport;
+  let width = html.clientWidth;
+  let height = html.clientHeight;
+  let x = 0;
+  let y = 0;
+  if (visualViewport) {
+    width = visualViewport.width;
+    height = visualViewport.height;
+    const visualViewportBased = isWebKit();
+    if (!visualViewportBased || visualViewportBased && strategy === 'fixed') {
+      x = visualViewport.offsetLeft;
+      y = visualViewport.offsetTop;
+    }
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+
+// Returns the inner client rect, subtracting scrollbars if present.
+function getInnerBoundingClientRect(element, strategy) {
+  const clientRect = getBoundingClientRect(element, true, strategy === 'fixed');
+  const top = clientRect.top + element.clientTop;
+  const left = clientRect.left + element.clientLeft;
+  const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
+  const width = element.clientWidth * scale.x;
+  const height = element.clientHeight * scale.y;
+  const x = left * scale.x;
+  const y = top * scale.y;
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
+  let rect;
+  if (clippingAncestor === 'viewport') {
+    rect = getViewportRect(element, strategy);
+  } else if (clippingAncestor === 'document') {
+    rect = getDocumentRect(getDocumentElement(element));
+  } else if (isElement(clippingAncestor)) {
+    rect = getInnerBoundingClientRect(clippingAncestor, strategy);
+  } else {
+    const visualOffsets = getVisualOffsets(element);
+    rect = {
+      ...clippingAncestor,
+      x: clippingAncestor.x - visualOffsets.x,
+      y: clippingAncestor.y - visualOffsets.y
+    };
+  }
+  return floating_ui_utils_rectToClientRect(rect);
+}
+function hasFixedPositionAncestor(element, stopNode) {
+  const parentNode = getParentNode(element);
+  if (parentNode === stopNode || !isElement(parentNode) || isLastTraversableNode(parentNode)) {
+    return false;
+  }
+  return floating_ui_utils_dom_getComputedStyle(parentNode).position === 'fixed' || hasFixedPositionAncestor(parentNode, stopNode);
+}
+
+// A "clipping ancestor" is an `overflow` element with the characteristic of
+// clipping (or hiding) child elements. This returns all clipping ancestors
+// of the given element up the tree.
+function getClippingElementAncestors(element, cache) {
+  const cachedResult = cache.get(element);
+  if (cachedResult) {
+    return cachedResult;
+  }
+  let result = getOverflowAncestors(element).filter(el => isElement(el) && getNodeName(el) !== 'body');
+  let currentContainingBlockComputedStyle = null;
+  const elementIsFixed = floating_ui_utils_dom_getComputedStyle(element).position === 'fixed';
+  let currentNode = elementIsFixed ? getParentNode(element) : element;
+
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
+  while (isElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    const computedStyle = floating_ui_utils_dom_getComputedStyle(currentNode);
+    const currentNodeIsContaining = isContainingBlock(currentNode);
+    if (!currentNodeIsContaining && computedStyle.position === 'fixed') {
+      currentContainingBlockComputedStyle = null;
+    }
+    const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === 'static' && !!currentContainingBlockComputedStyle && ['absolute', 'fixed'].includes(currentContainingBlockComputedStyle.position) || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
+    if (shouldDropCurrentNode) {
+      // Drop non-containing blocks.
+      result = result.filter(ancestor => ancestor !== currentNode);
+    } else {
+      // Record last containing block for next iteration.
+      currentContainingBlockComputedStyle = computedStyle;
+    }
+    currentNode = getParentNode(currentNode);
+  }
+  cache.set(element, result);
+  return result;
+}
+
+// Gets the maximum area that the element is visible in due to any number of
+// clipping ancestors.
+function getClippingRect(_ref) {
+  let {
+    element,
+    boundary,
+    rootBoundary,
+    strategy
+  } = _ref;
+  const elementClippingAncestors = boundary === 'clippingAncestors' ? getClippingElementAncestors(element, this._c) : [].concat(boundary);
+  const clippingAncestors = [...elementClippingAncestors, rootBoundary];
+  const firstClippingAncestor = clippingAncestors[0];
+  const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
+    const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
+    accRect.top = floating_ui_utils_max(rect.top, accRect.top);
+    accRect.right = floating_ui_utils_min(rect.right, accRect.right);
+    accRect.bottom = floating_ui_utils_min(rect.bottom, accRect.bottom);
+    accRect.left = floating_ui_utils_max(rect.left, accRect.left);
+    return accRect;
+  }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
+  return {
+    width: clippingRect.right - clippingRect.left,
+    height: clippingRect.bottom - clippingRect.top,
+    x: clippingRect.left,
+    y: clippingRect.top
+  };
+}
+
+function getDimensions(element) {
+  return getCssDimensions(element);
+}
+
+function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  const isFixed = strategy === 'fixed';
+  const rect = getBoundingClientRect(element, true, isFixed, offsetParent);
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  const offsets = createCoords(0);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isOffsetParentAnElement) {
+      const offsetRect = getBoundingClientRect(offsetParent, true, isFixed, offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    } else if (documentElement) {
+      offsets.x = getWindowScrollBarX(documentElement);
+    }
+  }
+  return {
+    x: rect.left + scroll.scrollLeft - offsets.x,
+    y: rect.top + scroll.scrollTop - offsets.y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+function getTrueOffsetParent(element, polyfill) {
+  if (!isHTMLElement(element) || floating_ui_utils_dom_getComputedStyle(element).position === 'fixed') {
+    return null;
+  }
+  if (polyfill) {
+    return polyfill(element);
+  }
+  return element.offsetParent;
+}
+
+// Gets the closest ancestor positioned element. Handles some edge cases,
+// such as table ancestors and cross browser bugs.
+function getOffsetParent(element, polyfill) {
+  const window = getWindow(element);
+  if (!isHTMLElement(element)) {
+    return window;
+  }
+  let offsetParent = getTrueOffsetParent(element, polyfill);
+  while (offsetParent && isTableElement(offsetParent) && floating_ui_utils_dom_getComputedStyle(offsetParent).position === 'static') {
+    offsetParent = getTrueOffsetParent(offsetParent, polyfill);
+  }
+  if (offsetParent && (getNodeName(offsetParent) === 'html' || getNodeName(offsetParent) === 'body' && floating_ui_utils_dom_getComputedStyle(offsetParent).position === 'static' && !isContainingBlock(offsetParent))) {
+    return window;
+  }
+  return offsetParent || getContainingBlock(element) || window;
+}
+
+const getElementRects = async function (_ref) {
+  let {
+    reference,
+    floating,
+    strategy
+  } = _ref;
+  const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
+  const getDimensionsFn = this.getDimensions;
+  return {
+    reference: getRectRelativeToOffsetParent(reference, await getOffsetParentFn(floating), strategy),
+    floating: {
+      x: 0,
+      y: 0,
+      ...(await getDimensionsFn(floating))
+    }
+  };
+};
+
+function isRTL(element) {
+  return floating_ui_utils_dom_getComputedStyle(element).direction === 'rtl';
+}
+
+const platform = {
+  convertOffsetParentRelativeRectToViewportRelativeRect,
+  getDocumentElement: getDocumentElement,
+  getClippingRect,
+  getOffsetParent,
+  getElementRects,
+  getClientRects,
+  getDimensions,
+  getScale,
+  isElement: isElement,
+  isRTL
+};
+
+// https://samthor.au/2021/observing-dom/
+function observeMove(element, onMove) {
+  let io = null;
+  let timeoutId;
+  const root = getDocumentElement(element);
+  function cleanup() {
+    clearTimeout(timeoutId);
+    io && io.disconnect();
+    io = null;
+  }
+  function refresh(skip, threshold) {
+    if (skip === void 0) {
+      skip = false;
+    }
+    if (threshold === void 0) {
+      threshold = 1;
+    }
+    cleanup();
+    const {
+      left,
+      top,
+      width,
+      height
+    } = element.getBoundingClientRect();
+    if (!skip) {
+      onMove();
+    }
+    if (!width || !height) {
+      return;
+    }
+    const insetTop = floor(top);
+    const insetRight = floor(root.clientWidth - (left + width));
+    const insetBottom = floor(root.clientHeight - (top + height));
+    const insetLeft = floor(left);
+    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
+    const options = {
+      rootMargin,
+      threshold: floating_ui_utils_max(0, floating_ui_utils_min(1, threshold)) || 1
+    };
+    let isFirstUpdate = true;
+    function handleObserve(entries) {
+      const ratio = entries[0].intersectionRatio;
+      if (ratio !== threshold) {
+        if (!isFirstUpdate) {
+          return refresh();
+        }
+        if (!ratio) {
+          timeoutId = setTimeout(() => {
+            refresh(false, 1e-7);
+          }, 100);
+        } else {
+          refresh(false, ratio);
+        }
+      }
+      isFirstUpdate = false;
+    }
+
+    // Older browsers don't support a `document` as the root and will throw an
+    // error.
+    try {
+      io = new IntersectionObserver(handleObserve, {
+        ...options,
+        // Handle <iframe>s
+        root: root.ownerDocument
+      });
+    } catch (e) {
+      io = new IntersectionObserver(handleObserve, options);
+    }
+    io.observe(element);
+  }
+  refresh(true);
+  return cleanup;
+}
+
+/**
+ * Automatically updates the position of the floating element when necessary.
+ * Should only be called when the floating element is mounted on the DOM or
+ * visible on the screen.
+ * @returns cleanup function that should be invoked when the floating element is
+ * removed from the DOM or hidden from the screen.
+ * @see https://floating-ui.com/docs/autoUpdate
+ */
+function autoUpdate(reference, floating, update, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    ancestorScroll = true,
+    ancestorResize = true,
+    elementResize = typeof ResizeObserver === 'function',
+    layoutShift = typeof IntersectionObserver === 'function',
+    animationFrame = false
+  } = options;
+  const referenceEl = unwrapElement(reference);
+  const ancestors = ancestorScroll || ancestorResize ? [...(referenceEl ? getOverflowAncestors(referenceEl) : []), ...getOverflowAncestors(floating)] : [];
+  ancestors.forEach(ancestor => {
+    ancestorScroll && ancestor.addEventListener('scroll', update, {
+      passive: true
+    });
+    ancestorResize && ancestor.addEventListener('resize', update);
+  });
+  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
+  let reobserveFrame = -1;
+  let resizeObserver = null;
+  if (elementResize) {
+    resizeObserver = new ResizeObserver(_ref => {
+      let [firstEntry] = _ref;
+      if (firstEntry && firstEntry.target === referenceEl && resizeObserver) {
+        // Prevent update loops when using the `size` middleware.
+        // https://github.com/floating-ui/floating-ui/issues/1740
+        resizeObserver.unobserve(floating);
+        cancelAnimationFrame(reobserveFrame);
+        reobserveFrame = requestAnimationFrame(() => {
+          resizeObserver && resizeObserver.observe(floating);
+        });
+      }
+      update();
+    });
+    if (referenceEl && !animationFrame) {
+      resizeObserver.observe(referenceEl);
+    }
+    resizeObserver.observe(floating);
+  }
+  let frameId;
+  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
+  if (animationFrame) {
+    frameLoop();
+  }
+  function frameLoop() {
+    const nextRefRect = getBoundingClientRect(reference);
+    if (prevRefRect && (nextRefRect.x !== prevRefRect.x || nextRefRect.y !== prevRefRect.y || nextRefRect.width !== prevRefRect.width || nextRefRect.height !== prevRefRect.height)) {
+      update();
+    }
+    prevRefRect = nextRefRect;
+    frameId = requestAnimationFrame(frameLoop);
+  }
+  update();
+  return () => {
+    ancestors.forEach(ancestor => {
+      ancestorScroll && ancestor.removeEventListener('scroll', update);
+      ancestorResize && ancestor.removeEventListener('resize', update);
+    });
+    cleanupIo && cleanupIo();
+    resizeObserver && resizeObserver.disconnect();
+    resizeObserver = null;
+    if (animationFrame) {
+      cancelAnimationFrame(frameId);
+    }
+  };
+}
+
+/**
+ * Computes the `x` and `y` coordinates that will place the floating element
+ * next to a reference element when it is given a certain CSS positioning
+ * strategy.
+ */
+const floating_ui_dom_computePosition = (reference, floating, options) => {
+  // This caches the expensive `getClippingElementAncestors` function so that
+  // multiple lifecycle resets re-use the same result. It only lives for a
+  // single call. If other functions become expensive, we can add them as well.
+  const cache = new Map();
+  const mergedOptions = {
+    platform,
+    ...options
+  };
+  const platformWithCache = {
+    ...mergedOptions.platform,
+    _c: cache
+  };
+  return computePosition(reference, floating, {
+    ...mergedOptions,
+    platform: platformWithCache
+  });
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/src/ActiveOverlay.js
+var A=Object.defineProperty;var R=Object.getOwnPropertyDescriptor;var p=(s,a,t,e)=>{for(var i=e>1?void 0:e?R(a,t):a,o=s.length-1,n;o>=0;o--)(n=s[o])&&(i=(e?n(a,t,i):n(i))||i);return e&&i&&A(a,t,i),i};const P={initial:"idle",states:{idle:{on:{active:"active"}},active:{on:{hiding:"hiding",idle:"idle"}},hiding:{on:{dispose:"dispose"}},dispose:{on:{disposed:"disposed"}},disposed:{on:{}}}},T=(s,a)=>s?a&&P.states[s].on[a]||s:P.initial,U=s=>{var t;return(t={left:["right","bottom","top"],"left-start":["right-start","bottom","top"],"left-end":["right-end","bottom","top"],right:["left","bottom","top"],"right-start":["left-start","bottom","top"],"right-end":["left-end","bottom","top"],top:["bottom","left","right"],"top-start":["bottom-start","left","right"],"top-end":["bottom-end","left","right"],bottom:["top","left","right"],"bottom-start":["top-start","left","right"],"bottom-end":["top-end","left","right"]}[s])!=null?t:[s]},u=class extends Base/* SpectrumElement */.o{constructor(){super();this.contentAnimationPromise=Promise.resolve(!0);this.resolveContentAnimationPromise=()=>{};this._state=T();this.animating=!1;this.theme={};this.tabbingAway=!1;this.offset=6;this.skidding=0;this.interaction="hover";this.positionAnimationFrame=0;this.willNotifyClosed=!1;this.isConstrained=!1;this.updateOverlayPosition=()=>{if(this.interaction!=="modal"&&this.cleanup){this.dispatchEvent(new Event("close"));return}this.setOverlayPosition()};this.resetOverlayPosition=()=>{this.style.removeProperty("max-height"),this.style.removeProperty("height"),this.initialHeight=void 0,this.isConstrained=!1,this.offsetHeight,this.setOverlayPosition()};this.setOverlayPosition=async()=>{if(!this.placement||this.placement==="none")return;await(document.fonts?document.fonts.ready:Promise.resolve());function t(l){const r=window.devicePixelRatio||1;return Math.round(l*r)/r||-1e4}const e=8,i=100,o=this.virtualTrigger?flip({padding:e,fallbackPlacements:U(this.placement)}):flip({padding:e}),n=[offset({mainAxis:this.offset,crossAxis:this.skidding}),shift({padding:e}),o,size({padding:e,apply:({availableWidth:l,availableHeight:r,rects:{floating:E}})=>{const f=Math.max(i,Math.floor(r)),m=E.height;this.initialHeight=!this.isConstrained&&!this.virtualTrigger?m:this.initialHeight||m,this.isConstrained=m<this.initialHeight||f<=m;const g=this.isConstrained?`${f}px`:"";Object.assign(this.style,{maxWidth:`${Math.floor(l)}px`,maxHeight:g,height:g})}})];this.overlayContentTip&&n.push(arrow({element:this.overlayContentTip}));const{x:O,y:w,placement:d,middlewareData:v}=await floating_ui_dom_computePosition(this.virtualTrigger||this.trigger,this,{placement:this.placement,middleware:n,strategy:"fixed"});if(Object.assign(this.style,{top:"0px",left:"0px",transform:`translate(${t(O)}px, ${t(w)}px)`}),d!==this.getAttribute("actual-placement")&&(this.setAttribute("actual-placement",d),this.overlayContent.setAttribute("placement",d)),this.overlayContentTip&&v.arrow){const{x:l,y:r}=v.arrow;Object.assign(this.overlayContentTip.style,{left:l!=null?`${t(l)}px`:"",top:r!=null?`${t(r)}px`:"",right:"",bottom:""})}};this.handleInlineTriggerKeydown=t=>{const{code:e,shiftKey:i}=t;if(e==="Tab"){if(i){this.tabbingAway=!0,this.dispatchEvent(new Event("close"));return}t.stopPropagation(),t.preventDefault(),this.focus()}};this.stealOverlayContentPromise=Promise.resolve();this.stealOverlayContentPromise=new Promise(t=>this.stealOverlayContentResolver=t)}get state(){return this._state}set state(t){const e=T(this.state,t);e!==this.state&&(this._state=e,this.state==="active"||this.state==="hiding"?this.setAttribute("state",this.state):this.removeAttribute("state"))}async focus(){const t=(0,first_focusable_in/* firstFocusableIn */.i)(this);if(t){t.updateComplete&&await t.updateComplete;const e=this.getRootNode().activeElement;(e===this||!this.contains(e))&&t.focus()}else super.focus();this.removeAttribute("tabindex")}get hasTheme(){return!!this.theme.color||!!this.theme.scale||!!this.theme.lang}static get styles(){return[active_overlay_css]}get hasModalRoot(){return!!this._modalRoot}feature(){this.contains(document.activeElement)||(this.tabIndex=-1);const t=parentOverlayOf(this.trigger);t&&t.slot==="open"&&(this._modalRoot=t._modalRoot||t),(this.interaction==="modal"||this._modalRoot)&&(this.slot="open",this.interaction==="modal"&&this.setAttribute("aria-modal","true"),this._modalRoot&&(t==null||t.feature()))}obscure(t){if(this.slot&&t==="modal"){if(this.removeAttribute("slot"),this.removeAttribute("aria-modal"),this.interaction!=="modal"){const e=parentOverlayOf(this.trigger);return this._modalRoot=e==null?void 0:e.obscure(t),this._modalRoot}return this}}async willUpdate(){this.hasUpdated||!this.overlayContent||!this.trigger||(this.stealOverlayContent(this.overlayContent),this.state="active",this.feature(),this.placement&&this.placement!=="none"&&(await this.updateOverlayPosition(),document.addEventListener("sp-update-overlays",this.resetOverlayPosition)),this.placement&&this.placement!=="none"&&(this.contentAnimationPromise=this.applyContentAnimation("sp-overlay-fade-in")))}async openCallback(t){await this.updateComplete,this.receivesFocus&&await this.focus(),await t(),this.trigger.dispatchEvent(new CustomEvent("sp-opened",{bubbles:!0,composed:!0,cancelable:!0,detail:{interaction:this.interaction}}))}open(t){this.extractDetail(t)}extractDetail(t){this.overlayContent=t.content,this.overlayContentTip=t.contentTip,this.trigger=t.trigger,this.virtualTrigger=t.virtualTrigger,this.placement=t.placement,this.offset=t.offset,this.skidding=t.skidding||0,this.interaction=t.interaction,this.theme=t.theme,this.receivesFocus=t.receivesFocus,this.root=t.root}dispose(){this.state==="dispose"&&(this.timeout&&(clearTimeout(this.timeout),delete this.timeout),this.trigger.removeEventListener("keydown",this.handleInlineTriggerKeydown),this.returnOverlayContent(),this.state="disposed",this.willNotifyClosed&&(this.overlayContent.dispatchEvent(new Event("sp-overlay-closed")),this.willNotifyClosed=!1),this.cleanup&&this.cleanup())}stealOverlayContent(t){this.originalPlacement=t.getAttribute("placement"),this.restoreContent=(0,reparent_children/* reparentChildren */.G)([t],this,{position:"beforeend",prepareCallback:e=>{const i=e.slot,o=e.placement;return e.removeAttribute("slot"),n=>{n.slot=i,n.placement=o}}}),this.stealOverlayContentResolver()}returnOverlayContent(){if(!this.restoreContent)return;const[t]=this.restoreContent();this.restoreContent=void 0,this.willNotifyClosed=!0,this.originalPlacement&&(t.setAttribute("placement",this.originalPlacement),delete this.originalPlacement)}async placeOverlay(){!this.placement||this.placement==="none"||(this.cleanup=autoUpdate(this.virtualTrigger||this.trigger,this,this.updateOverlayPosition,{elementResize:!1}))}async hide(t=!0){this.state==="active"&&(this.state="hiding",t&&await this.applyContentAnimation("sp-overlay-fade-out"),this.state="dispose")}schedulePositionUpdate(){cancelAnimationFrame(this.positionAnimationFrame),this.positionAnimationFrame=requestAnimationFrame(()=>{this.cleanup?this.updateOverlayPosition():this.placeOverlay()})}onSlotChange(){this.schedulePositionUpdate()}applyContentAnimation(t){return this.placement==="none"?Promise.resolve(!0):(this.resolveContentAnimationPromise(),new Promise(e=>{this.resolveContentAnimationPromise=()=>{e(!1)};const i=this.shadowRoot.querySelector("#contents"),o=n=>{t===n.animationName&&(i.removeEventListener("animationend",o),i.removeEventListener("animationcancel",o),this.animating=!1,e(n.type==="animationcancel"))};i.addEventListener("animationend",o),i.addEventListener("animationcancel",o),i.style.animationName=t,this.animating=!0}))}renderTheme(t){const{color:e,scale:i,lang:o,theme:n}=this.theme;return (0,lit/* html */.dy)`
             <sp-theme
-                theme=${(0,s.o)(r)}
-                color=${(0,s.o)(e)}
-                scale=${(0,s.o)(n)}
-                lang=${(0,s.o)(i)}
+                theme=${(0,if_defined/* ifDefined */.o)(n)}
+                color=${(0,if_defined/* ifDefined */.o)(e)}
+                scale=${(0,if_defined/* ifDefined */.o)(i)}
+                lang=${(0,if_defined/* ifDefined */.o)(o)}
                 part="theme"
             >
                 ${t}
             </sp-theme>
-        `}render(){const t=o.dy`
+        `}render(){const t=(0,lit/* html */.dy)`
             <div id="contents">
                 <slot @slotchange=${this.onSlotChange}></slot>
             </div>
-        `;return this.hasTheme?this.renderTheme(t):t}static create(t){const e=new wt;return t.content&&e.open(t),e}async getUpdateComplete(){const t=[super.getUpdateComplete(),this.stealOverlayContentPromise];t.push(this.contentAnimationPromise),void 0!==this.overlayContent.updateComplete&&t.push(this.overlayContent.updateComplete);const[e]=await Promise.all(t);return e}disconnectedCallback(){document.removeEventListener("sp-update-overlays",this.resetOverlayPosition),super.disconnectedCallback()}};let Ct=wt;vt([(0,r.Cb)()],Ct.prototype,"_state",2),vt([(0,r.Cb)({reflect:!0,type:Boolean})],Ct.prototype,"animating",2),vt([(0,r.Cb)({reflect:!0})],Ct.prototype,"placement",2),vt([(0,r.Cb)({attribute:!1})],Ct.prototype,"theme",2),vt([(0,r.Cb)({attribute:!1})],Ct.prototype,"receivesFocus",2);class xt{constructor(t={}){this.warmUpDelay=1e3,this.coolDownDelay=1e3,this.isWarm=!1,this.timeout=0,Object.assign(this,t)}async openTimer(t){if(this.cancelCooldownTimer(),!this.component||t!==this.component)return this.component&&(this.close(this.component),this.cancelCooldownTimer()),this.component=t,!this.isWarm&&(this.promise=new Promise((t=>{this.resolve=t,this.timeout=window.setTimeout((()=>{this.resolve&&(this.resolve(!1),this.isWarm=!0)}),this.warmUpDelay)})),this.promise);if(this.promise)return this.promise;throw new Error("Inconsistent state")}close(t){this.component&&this.component===t&&(this.resetCooldownTimer(),this.timeout>0&&(clearTimeout(this.timeout),this.timeout=0),this.resolve&&(this.resolve(!0),delete this.resolve),delete this.promise,delete this.component)}resetCooldownTimer(){this.isWarm&&(this.cooldownTimeout&&window.clearTimeout(this.cooldownTimeout),this.cooldownTimeout=window.setTimeout((()=>{this.isWarm=!1,delete this.cooldownTimeout}),this.coolDownDelay))}cancelCooldownTimer(){this.cooldownTimeout&&window.clearTimeout(this.cooldownTimeout),delete this.cooldownTimeout}}(0,n(1200).N)("active-overlay",Ct);function Tt(){return new Promise((t=>requestAnimationFrame((()=>t()))))}const Ot=class{constructor(t,e,n){this.isOpen=!1,this.owner=t,this.overlayElement=n,this.interaction=e}static async open(t,e,n,i){const o=new Ot(t,e,n);return await o.open(i),()=>{o.close()}}static update(){const t=new CustomEvent("sp-update-overlays",{bubbles:!0,composed:!0,cancelable:!0});document.dispatchEvent(t)}async open({abortPromise:t,delayed:e,offset:n=0,placement:i="top",receivesFocus:o,notImmediatelyClosable:s,virtualTrigger:r,root:a}){if(this.isOpen)return!0;void 0===e&&(e=this.overlayElement.hasAttribute("delayed"));const l={color:void 0,scale:void 0,lang:void 0,theme:void 0},c=new CustomEvent("sp-query-theme",{bubbles:!0,composed:!0,detail:l,cancelable:!0});this.owner.dispatchEvent(c);const h={},d=new CustomEvent("sp-overlay-query",{bubbles:!0,composed:!0,detail:h,cancelable:!0});return this.overlayElement.dispatchEvent(d),await Ot.overlayStack.openOverlay({abortPromise:t,content:this.overlayElement,contentTip:h.overlayContentTipElement,delayed:e,offset:n,placement:i,trigger:this.owner,interaction:this.interaction,theme:l,receivesFocus:o,root:a,notImmediatelyClosable:s,virtualTrigger:r,...h}),this.isOpen=!0,!0}close(){Ot.overlayStack.closeOverlay(this.overlayElement)}};let Et=Ot;Et.overlayStack=new class{constructor(){this.overlays=[],this.preventMouseRootClose=!1,this.root=document.body,this.handlingResize=!1,this.overlayTimer=new xt,this.canTabTrap=!0,this.trappingInited=!1,this._eventsAreBound=!1,this._bodyMarginsApplied=!1,this.forwardContextmenuEvent=async t=>{var e;const n=this.overlays[this.overlays.length-1];!this.trappingInited||"modal"!==n.interaction||t.target!==this.overlayHolder||(t.stopPropagation(),t.preventDefault(),await this.closeTopOverlay(),null==(e=((t,e)=>{let n=document.elementFromPoint(t,e);for(;null!=n&&n.shadowRoot;){const i=n.shadowRoot.elementFromPoint(t,e);if(!i||i===n)break;n=i}return n})(t.clientX,t.clientY))||e.dispatchEvent(new MouseEvent("contextmenu",t)))},this.handleOverlayClose=t=>{const{root:e}=t;e&&this.closeOverlaysForRoot(e)},this.handleMouseCapture=t=>{const e=this.topOverlay;if(t.target&&e&&e.overlayContent&&!function(t){return!!(t.metaKey||t.altKey||t.ctrlKey||t.shiftKey)}(t)&&function(t){return 0===t.button}(t)){if(t.target instanceof Node){if(t.composedPath().indexOf(e.overlayContent)>=0)return void(this.preventMouseRootClose=!0);this.preventMouseRootClose=!1}}else this.preventMouseRootClose=!0},this._doesNotCloseOnFirstClick=!1,this.handleMouse=t=>{var e;if(this._doesNotCloseOnFirstClick)return void(this._doesNotCloseOnFirstClick=!1);if(this.preventMouseRootClose||t.defaultPrevented)return;const n=[];let i=this.overlays.length;for(;i&&0===n.length;){i-=1;const e=this.overlays[i],o=t.composedPath();(!o.includes(e.trigger)||"hover"!==e.interaction)&&!o.includes(e.overlayContent)&&n.push(e)}let o=null==(e=this.topOverlay)?void 0:e.root,s=h(o);for(;o&&s;)n.push(s),s=h(o),o=null==s?void 0:s.root;s&&n.push(s),n.forEach((t=>this.hideAndCloseOverlay(t)))},this.handleKeydown=t=>{"Escape"===t.code&&this.closeTopOverlay()},this.handleResize=()=>{this.handlingResize||(this.handlingResize=!0,requestAnimationFrame((async()=>{const t=this.overlays.map((t=>t.updateOverlayPosition()));await Promise.all(t),this.handlingResize=!1})))},this.initTabTrapping()}initTabTrapping(){if("loading"===document.readyState)return void document.addEventListener("readystatechange",(()=>{this.initTabTrapping()}),{once:!0});if(this.trappingInited)return;if(this.document.body.shadowRoot)return void(this.canTabTrap=!1);if(this.document.body.attachShadow({mode:"open"}),!this.document.body.shadowRoot)return;this.trappingInited=!0;const t=this.document.body.shadowRoot;t.innerHTML='\n            <style>\n            :host {\n                position: relative;\n            }\n            #actual {\n                position: relative;\n                height: calc(100% - var(--swc-body-margins-block, 0px));\n                z-index: 0;\n                min-height: calc(100vh - var(--swc-body-margins-block, 0px));\n                min-height: calc(100dvh - var(--swc-body-margins-block, 0px));\n            }\n            #holder {\n                display: none;\n                align-items: center;\n                justify-content: center;\n                flex-flow: column;\n                width: 100%;\n                height: 100%;\n                position: absolute;\n                top: 0;\n                left: 0;\n            }\n            [name="open"]::slotted(*) {\n                pointer-events: all;\n            }\n            #actual[aria-hidden] + #holder {\n                display: flex;\n            }\n            </style>\n            <div id="actual"><slot></slot></div>\n            <div id="holder"><slot name="open"></slot></div>\n        ',this.tabTrapper=t.querySelector("#actual"),this.overlayHolder=t.querySelector("#holder"),this.tabTrapper.attachShadow({mode:"open"}),this.tabTrapper.shadowRoot&&(this.tabTrapper.shadowRoot.innerHTML="<slot></slot>"),this.overlayHolder.addEventListener("contextmenu",this.forwardContextmenuEvent,!0),requestAnimationFrame((()=>{this.applyBodyMargins(),new ResizeObserver((()=>{this.applyBodyMargins()})).observe(document.body)}))}applyBodyMargins(){const{marginLeft:t,marginRight:e,marginTop:n,marginBottom:i}=getComputedStyle(document.body),o=0===parseFloat(t)&&0===parseFloat(e)&&0===parseFloat(n)&&0===parseFloat(i);o&&!this._bodyMarginsApplied||(this.tabTrapper.style.setProperty("--swc-body-margins-inline",`calc(${t} + ${e})`),this.tabTrapper.style.setProperty("--swc-body-margins-block",`calc(${n} + ${i})`),this._bodyMarginsApplied=!o)}startTabTrapping(){this.initTabTrapping(),this.canTabTrap&&(this.tabTrapper.tabIndex=-1,this.tabTrapper.setAttribute("aria-hidden","true"))}stopTabTrapping(){!this.canTabTrap||!this.trappingInited||(this.tabTrapper.removeAttribute("tabindex"),this.tabTrapper.removeAttribute("aria-hidden"))}get document(){return this.root.ownerDocument||document}get topOverlay(){return this.overlays.slice(-1)[0]}findOverlayForContent(t){for(const e of this.overlays)if(t===e.overlayContent)return e}addEventListeners(){this._eventsAreBound||(this._eventsAreBound=!0,this.document.addEventListener("click",this.handleMouseCapture,!0),this.document.addEventListener("click",this.handleMouse),this.document.addEventListener("keydown",this.handleKeydown),this.document.addEventListener("sp-overlay-close",this.handleOverlayClose),window.addEventListener("resize",this.handleResize))}isClickOverlayActiveForTrigger(t){return this.overlays.some((e=>t===e.trigger&&"click"===e.interaction))}async openOverlay(t){if(this.addEventListeners(),this.findOverlayForContent(t.content))return!1;t.notImmediatelyClosable&&(this._doesNotCloseOnFirstClick=!0),"modal"===t.interaction&&this.startTabTrapping();const e=t.content,{trigger:n}=t;if(e.overlayWillOpenCallback&&e.overlayWillOpenCallback({trigger:n}),t.delayed){const i=[this.overlayTimer.openTimer(t.content)];t.abortPromise&&i.push(t.abortPromise);const o=await Promise.race(i);if(o)return e.overlayOpenCancelledCallback&&e.overlayOpenCancelledCallback({trigger:n}),o}if(t.root&&this.closeOverlaysForRoot(t.root),"click"===t.interaction)this.closeAllHoverOverlays();else if("hover"===t.interaction&&this.isClickOverlayActiveForTrigger(t.trigger))return!0;const i=Ct.create(t);this.overlays.length&&this.overlays[this.overlays.length-1].obscure(i.interaction),document.body.appendChild(i),await Tt(),this.overlays.push(i),await i.updateComplete,this.addOverlayEventListeners(i),void 0!==e.open&&(await Tt(),e.open=!0);let o=()=>{};if(e.overlayOpenCallback){const{trigger:t}=i,{overlayOpenCallback:n}=e;o=async()=>await n({trigger:t})}return await i.openCallback(o),!1}addOverlayEventListeners(t){switch(t.addEventListener("close",(()=>{this.hideAndCloseOverlay(t,!0)})),t.interaction){case"replace":this.addReplaceOverlayEventListeners(t);break;case"inline":this.addInlineOverlayEventListeners(t)}}addReplaceOverlayEventListeners(t){t.addEventListener("keydown",(e=>{const{code:n}=e;"Tab"===n&&(e.stopPropagation(),this.closeOverlay(t.overlayContent),t.tabbingAway=!0,t.trigger.focus(),t.trigger.dispatchEvent(new KeyboardEvent("keydown",e)))}))}addInlineOverlayEventListeners(t){t.trigger.addEventListener("keydown",t.handleInlineTriggerKeydown),t.addEventListener("keydown",(e=>{const{code:n,shiftKey:i}=e;if("Tab"!==n)return;if(t.tabbingAway=!0,i){const e=document.createElement("span");return e.tabIndex=-1,t.trigger.hasAttribute("slot")&&(e.slot=t.trigger.slot),t.trigger.insertAdjacentElement("afterend",e),e.focus(),void e.remove()}e.stopPropagation();const o=t.trigger;void 0!==o.open&&(o.open=!1),this.closeOverlay(t.overlayContent),t.trigger.focus()}))}closeOverlay(t){this.overlayTimer.close(t),requestAnimationFrame((()=>{const e=this.findOverlayForContent(t),n=[e];n.push(...d(e,this.overlays)),n.forEach((t=>this.hideAndCloseOverlay(t)))}))}closeAllHoverOverlays(){for(const t of this.overlays)"hover"===t.interaction&&this.hideAndCloseOverlay(t,!1)}closeOverlaysForRoot(t){const e=[];for(const n of this.overlays)n.root&&n.root===t&&(e.push(n),e.push(...d(n,this.overlays)));e.forEach((t=>this.hideAndCloseOverlay(t,!0,!0)))}async manageFocusAfterCloseWhenOverlaysRemain(t,e){const n=this.overlays[this.overlays.length-1];if(n.feature(),"modal"===n.interaction||n.hasModalRoot){if(t)return;await(e||n).focus()}else this.stopTabTrapping()}manageFocusAfterCloseWhenLastOverlay(t){this.stopTabTrapping();const e="modal"===t.interaction,n="auto"===t.receivesFocus,i="replace"===t.interaction,o="inline"===t.interaction,s=(i||o)&&!t.tabbingAway;if(t.tabbingAway=!1,!e&&!n&&!s)return;const r=t.overlayContent.getRootNode().activeElement;let a,l;(e||t.overlayContent.contains(r)||(a=t.trigger.getRootNode(),l=a.activeElement,a.contains(l))||a.host&&a.host===l)&&t.trigger.focus()}async hideAndCloseOverlay(t,e,n){if(!t)return;const i=t.overlayContent;if(void 0!==i.overlayWillCloseCallback){const{trigger:e}=t;if(i.overlayWillCloseCallback({trigger:e}))return}if(await t.hide(e),void 0!==i.open&&(i.open=!1),i.overlayCloseCallback){const{trigger:e}=t;await i.overlayCloseCallback({trigger:e})}if("dispose"!=t.state)return;const o=this.overlays.indexOf(t);o>=0&&this.overlays.splice(o,1),this.overlays.length?await this.manageFocusAfterCloseWhenOverlaysRemain(n||"hover"===t.interaction,t.trigger):this.manageFocusAfterCloseWhenLastOverlay(t),await t.updateComplete,t.remove(),t.dispose(),t.trigger.dispatchEvent(new CustomEvent("sp-closed",{bubbles:!0,composed:!0,cancelable:!0,detail:{interaction:t.interaction}}))}closeTopOverlay(){return this.hideAndCloseOverlay(this.topOverlay,!0)}}}}]);
+        `;return this.hasTheme?this.renderTheme(t):t}static create(t){const e=new u;return t.content&&e.open(t),e}async getUpdateComplete(){const t=[super.getUpdateComplete(),this.stealOverlayContentPromise];t.push(this.contentAnimationPromise),typeof this.overlayContent.updateComplete!="undefined"&&t.push(this.overlayContent.updateComplete);const[e]=await Promise.all(t);return e}disconnectedCallback(){document.removeEventListener("sp-update-overlays",this.resetOverlayPosition),super.disconnectedCallback()}};let ActiveOverlay=u;p([(0,decorators/* property */.Cb)()],ActiveOverlay.prototype,"_state",2),p([(0,decorators/* property */.Cb)({reflect:!0,type:Boolean})],ActiveOverlay.prototype,"animating",2),p([(0,decorators/* property */.Cb)({reflect:!0})],ActiveOverlay.prototype,"placement",2),p([(0,decorators/* property */.Cb)({attribute:!1})],ActiveOverlay.prototype,"theme",2),p([(0,decorators/* property */.Cb)({attribute:!1})],ActiveOverlay.prototype,"receivesFocus",2);
+//# sourceMappingURL=ActiveOverlay.js.map
+
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/src/overlay-timer.js
+const t=1e3,s=1e3;class OverlayTimer{constructor(e={}){this.warmUpDelay=1e3;this.coolDownDelay=1e3;this.isWarm=!1;this.timeout=0;Object.assign(this,e)}async openTimer(e){if(this.cancelCooldownTimer(),!this.component||e!==this.component)return this.component&&(this.close(this.component),this.cancelCooldownTimer()),this.component=e,this.isWarm?!1:(this.promise=new Promise(o=>{this.resolve=o,this.timeout=window.setTimeout(()=>{this.resolve&&(this.resolve(!1),this.isWarm=!0)},this.warmUpDelay)}),this.promise);if(this.promise)return this.promise;throw new Error("Inconsistent state")}close(e){this.component&&this.component===e&&(this.resetCooldownTimer(),this.timeout>0&&(clearTimeout(this.timeout),this.timeout=0),this.resolve&&(this.resolve(!0),delete this.resolve),delete this.promise,delete this.component)}resetCooldownTimer(){this.isWarm&&(this.cooldownTimeout&&window.clearTimeout(this.cooldownTimeout),this.cooldownTimeout=window.setTimeout(()=>{this.isWarm=!1,delete this.cooldownTimeout},this.coolDownDelay))}cancelCooldownTimer(){this.cooldownTimeout&&window.clearTimeout(this.cooldownTimeout),delete this.cooldownTimeout}}
+//# sourceMappingURL=overlay-timer.js.map
+
+// EXTERNAL MODULE: ./node_modules/@spectrum-web-components/base/src/define-element.js
+var define_element = __webpack_require__(1200);
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/active-overlay.js
+(0,define_element/* defineElement */.N)("active-overlay",ActiveOverlay);
+//# sourceMappingURL=active-overlay.js.map
+
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/shared/src/get-deep-element-from-point.js
+const getDeepElementFromPoint=(o,t)=>{let e=document.elementFromPoint(o,t);for(;e!=null&&e.shadowRoot;){const n=e.shadowRoot.elementFromPoint(o,t);if(!n||n===e)break;e=n}return e};
+//# sourceMappingURL=get-deep-element-from-point.js.map
+
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/src/overlay-stack.js
+function C(s){return s.button===0}function O(s){return!!(s.metaKey||s.altKey||s.ctrlKey||s.shiftKey)}function h(){return new Promise(s=>requestAnimationFrame(()=>s()))}class OverlayStack{constructor(){this.overlays=[];this.preventMouseRootClose=!1;this.root=document.body;this.handlingResize=!1;this.overlayTimer=new OverlayTimer;this.canTabTrap=!0;this.trappingInited=!1;this._eventsAreBound=!1;this._bodyMarginsApplied=!1;this.forwardContextmenuEvent=async e=>{var o;const t=this.overlays[this.overlays.length-1];!this.trappingInited||t.interaction!=="modal"||e.target!==this.overlayHolder||(e.stopPropagation(),e.preventDefault(),await this.closeTopOverlay(),(o=getDeepElementFromPoint(e.clientX,e.clientY))==null||o.dispatchEvent(new MouseEvent("contextmenu",e)))};this.handleOverlayClose=e=>{const{root:t}=e;t&&this.closeOverlaysForRoot(t)};this.handleMouseCapture=e=>{const t=this.topOverlay;if(!e.target||!t||!t.overlayContent||O(e)||!C(e)){this.preventMouseRootClose=!0;return}if(e.target instanceof Node){if(e.composedPath().indexOf(t.overlayContent)>=0){this.preventMouseRootClose=!0;return}this.preventMouseRootClose=!1}};this._doesNotCloseOnFirstClick=!1;this.handleMouse=e=>{var n;if(this._doesNotCloseOnFirstClick){this._doesNotCloseOnFirstClick=!1;return}if(this.preventMouseRootClose||e.defaultPrevented)return;const t=[];let o=this.overlays.length;for(;o&&t.length===0;){o-=1;const a=this.overlays[o],l=e.composedPath();(!l.includes(a.trigger)||a.interaction!=="hover")&&!l.includes(a.overlayContent)&&t.push(a)}let r=(n=this.topOverlay)==null?void 0:n.root,i=parentOverlayOf(r);for(;r&&i;)t.push(i),i=parentOverlayOf(r),r=i==null?void 0:i.root;i&&t.push(i),t.forEach(a=>this.hideAndCloseOverlay(a))};this.handleKeydown=e=>{e.code==="Escape"&&this.closeTopOverlay()};this.handleResize=()=>{this.handlingResize||(this.handlingResize=!0,requestAnimationFrame(async()=>{const e=this.overlays.map(t=>t.updateOverlayPosition());await Promise.all(e),this.handlingResize=!1}))};this.initTabTrapping()}initTabTrapping(){if(document.readyState==="loading"){document.addEventListener("readystatechange",()=>{this.initTabTrapping()},{once:!0});return}if(this.trappingInited)return;if(this.document.body.shadowRoot){this.canTabTrap=!1;return}if(this.document.body.attachShadow({mode:"open"}),!this.document.body.shadowRoot)return;this.trappingInited=!0;const e=this.document.body.shadowRoot;e.innerHTML=`
+            <style>
+            :host {
+                position: relative;
+            }
+            #actual {
+                position: relative;
+                height: calc(100% - var(--swc-body-margins-block, 0px));
+                z-index: 0;
+                min-height: calc(100vh - var(--swc-body-margins-block, 0px));
+                min-height: calc(100dvh - var(--swc-body-margins-block, 0px));
+            }
+            #holder {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            [name="open"]::slotted(*) {
+                pointer-events: all;
+            }
+            #actual[aria-hidden] + #holder {
+                display: flex;
+            }
+            </style>
+            <div id="actual"><slot></slot></div>
+            <div id="holder"><slot name="open"></slot></div>
+        `,this.tabTrapper=e.querySelector("#actual"),this.overlayHolder=e.querySelector("#holder"),this.tabTrapper.attachShadow({mode:"open"}),this.tabTrapper.shadowRoot&&(this.tabTrapper.shadowRoot.innerHTML="<slot></slot>"),this.overlayHolder.addEventListener("contextmenu",this.forwardContextmenuEvent,!0),requestAnimationFrame(()=>{this.applyBodyMargins(),new ResizeObserver(()=>{this.applyBodyMargins()}).observe(document.body)})}applyBodyMargins(){const{marginLeft:e,marginRight:t,marginTop:o,marginBottom:r}=getComputedStyle(document.body),i=parseFloat(e)===0&&parseFloat(t)===0&&parseFloat(o)===0&&parseFloat(r)===0;i&&!this._bodyMarginsApplied||(this.tabTrapper.style.setProperty("--swc-body-margins-inline",`calc(${e} + ${t})`),this.tabTrapper.style.setProperty("--swc-body-margins-block",`calc(${o} + ${r})`),this._bodyMarginsApplied=!i)}startTabTrapping(){this.initTabTrapping(),this.canTabTrap&&(this.tabTrapper.tabIndex=-1,this.tabTrapper.setAttribute("aria-hidden","true"))}stopTabTrapping(){!this.canTabTrap||!this.trappingInited||(this.tabTrapper.removeAttribute("tabindex"),this.tabTrapper.removeAttribute("aria-hidden"))}get document(){return this.root.ownerDocument||document}get topOverlay(){return this.overlays.slice(-1)[0]}findOverlayForContent(e){for(const t of this.overlays)if(e===t.overlayContent)return t}addEventListeners(){this._eventsAreBound||(this._eventsAreBound=!0,this.document.addEventListener("click",this.handleMouseCapture,!0),this.document.addEventListener("click",this.handleMouse),this.document.addEventListener("keydown",this.handleKeydown),this.document.addEventListener("sp-overlay-close",this.handleOverlayClose),window.addEventListener("resize",this.handleResize))}isClickOverlayActiveForTrigger(e){return this.overlays.some(t=>e===t.trigger&&t.interaction==="click")}async openOverlay(e){if(this.addEventListeners(),this.findOverlayForContent(e.content))return!1;e.notImmediatelyClosable&&(this._doesNotCloseOnFirstClick=!0),e.interaction==="modal"&&this.startTabTrapping();const t=e.content,{trigger:o}=e;if(t.overlayWillOpenCallback&&t.overlayWillOpenCallback({trigger:o}),e.delayed){const a=[this.overlayTimer.openTimer(e.content)];e.abortPromise&&a.push(e.abortPromise);const l=await Promise.race(a);if(l)return t.overlayOpenCancelledCallback&&t.overlayOpenCancelledCallback({trigger:o}),l}if(e.root&&this.closeOverlaysForRoot(e.root),e.interaction==="click")this.closeAllHoverOverlays();else if(e.interaction==="hover"&&this.isClickOverlayActiveForTrigger(e.trigger))return!0;const r=ActiveOverlay.create(e);this.overlays.length&&this.overlays[this.overlays.length-1].obscure(r.interaction),document.body.appendChild(r),await h(),this.overlays.push(r),await r.updateComplete,this.addOverlayEventListeners(r),typeof t.open!="undefined"&&(await h(),t.open=!0);let i=()=>{};if(t.overlayOpenCallback){const{trigger:n}=r,{overlayOpenCallback:a}=t;i=async()=>await a({trigger:n})}return await r.openCallback(i),!1}addOverlayEventListeners(e){switch(e.addEventListener("close",()=>{this.hideAndCloseOverlay(e,!0)}),e.interaction){case"replace":this.addReplaceOverlayEventListeners(e);break;case"inline":this.addInlineOverlayEventListeners(e);break}}addReplaceOverlayEventListeners(e){e.addEventListener("keydown",t=>{const{code:o}=t;o==="Tab"&&(t.stopPropagation(),this.closeOverlay(e.overlayContent),e.tabbingAway=!0,e.trigger.focus(),e.trigger.dispatchEvent(new KeyboardEvent("keydown",t)))})}addInlineOverlayEventListeners(e){e.trigger.addEventListener("keydown",e.handleInlineTriggerKeydown),e.addEventListener("keydown",t=>{const{code:o,shiftKey:r}=t;if(o!=="Tab")return;if(e.tabbingAway=!0,r){const n=document.createElement("span");n.tabIndex=-1,e.trigger.hasAttribute("slot")&&(n.slot=e.trigger.slot),e.trigger.insertAdjacentElement("afterend",n),n.focus(),n.remove();return}t.stopPropagation();const i=e.trigger;typeof i.open!="undefined"&&(i.open=!1),this.closeOverlay(e.overlayContent),e.trigger.focus()})}closeOverlay(e){this.overlayTimer.close(e),requestAnimationFrame(()=>{const t=this.findOverlayForContent(e),o=[t];o.push(...findOverlaysRootedInOverlay(t,this.overlays)),o.forEach(r=>this.hideAndCloseOverlay(r))})}closeAllHoverOverlays(){for(const e of this.overlays)e.interaction==="hover"&&this.hideAndCloseOverlay(e,!1)}closeOverlaysForRoot(e){const t=[];for(const o of this.overlays)o.root&&o.root===e&&(t.push(o),t.push(...findOverlaysRootedInOverlay(o,this.overlays)));t.forEach(o=>this.hideAndCloseOverlay(o,!0,!0))}async manageFocusAfterCloseWhenOverlaysRemain(e,t){const o=this.overlays[this.overlays.length-1];if(o.feature(),o.interaction==="modal"||o.hasModalRoot){if(e)return;await(t||o).focus()}else this.stopTabTrapping()}manageFocusAfterCloseWhenLastOverlay(e){this.stopTabTrapping();const t=e.interaction==="modal",o=e.receivesFocus==="auto",r=e.interaction==="replace",i=e.interaction==="inline",n=(r||i)&&!e.tabbingAway;if(e.tabbingAway=!1,!t&&!o&&!n)return;const l=e.overlayContent.getRootNode().activeElement;let d,c;const u=()=>e.overlayContent.contains(l),y=()=>(d=e.trigger.getRootNode(),c=d.activeElement,d.contains(c)),m=()=>d.host&&d.host===c;(t||u()||y()||m())&&e.trigger.focus()}async hideAndCloseOverlay(e,t,o){if(!e)return;const r=e.overlayContent;if(typeof r.overlayWillCloseCallback!="undefined"){const{trigger:n}=e;if(r.overlayWillCloseCallback({trigger:n}))return}if(await e.hide(t),typeof r.open!="undefined"&&(r.open=!1),r.overlayCloseCallback){const{trigger:n}=e;await r.overlayCloseCallback({trigger:n})}if(e.state!="dispose")return;const i=this.overlays.indexOf(e);i>=0&&this.overlays.splice(i,1),this.overlays.length?await this.manageFocusAfterCloseWhenOverlaysRemain(o||e.interaction==="hover",e.trigger):this.manageFocusAfterCloseWhenLastOverlay(e),await e.updateComplete,e.remove(),e.dispose(),e.trigger.dispatchEvent(new CustomEvent("sp-closed",{bubbles:!0,composed:!0,cancelable:!0,detail:{interaction:e.interaction}}))}closeTopOverlay(){return this.hideAndCloseOverlay(this.topOverlay,!0)}}
+//# sourceMappingURL=overlay-stack.js.map
+
+;// CONCATENATED MODULE: ./node_modules/@spectrum-web-components/overlay/src/overlay.js
+const n=class{constructor(e,t,r){this.isOpen=!1;this.owner=e,this.overlayElement=r,this.interaction=t}static async open(e,t,r,o){const a=new n(e,t,r);return await a.open(o),()=>{a.close()}}static update(){const e=new CustomEvent("sp-update-overlays",{bubbles:!0,composed:!0,cancelable:!0});document.dispatchEvent(e)}async open({abortPromise:e,delayed:t,offset:r=0,placement:o="top",receivesFocus:a,notImmediatelyClosable:l,virtualTrigger:c,root:u}){if(this.isOpen)return!0;t===void 0&&(t=this.overlayElement.hasAttribute("delayed"));const s={color:void 0,scale:void 0,lang:void 0,theme:void 0},p=new CustomEvent("sp-query-theme",{bubbles:!0,composed:!0,detail:s,cancelable:!0});this.owner.dispatchEvent(p);const i={},m=new CustomEvent("sp-overlay-query",{bubbles:!0,composed:!0,detail:i,cancelable:!0});return this.overlayElement.dispatchEvent(m),await n.overlayStack.openOverlay({abortPromise:e,content:this.overlayElement,contentTip:i.overlayContentTipElement,delayed:t,offset:r,placement:o,trigger:this.owner,interaction:this.interaction,theme:s,receivesFocus:a,root:u,notImmediatelyClosable:l,virtualTrigger:c,...i}),this.isOpen=!0,!0}close(){n.overlayStack.closeOverlay(this.overlayElement)}};let Overlay=n;Overlay.overlayStack=new OverlayStack;
+//# sourceMappingURL=overlay.js.map
+
+
+/***/ })
+
+}]);
 //# sourceMappingURL=238.bundle.js.map

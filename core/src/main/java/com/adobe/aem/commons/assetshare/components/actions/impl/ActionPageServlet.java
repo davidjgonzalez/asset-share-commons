@@ -44,6 +44,7 @@ import java.util.Arrays;
                 "sling.servlet.methods=POST",
                 "sling.servlet.resourceTypes=cq:Page",
                 "sling.servlet.selectors=partial",
+                "sling.servlet.selectors=fragment",
                 "sling.servlet.extensions=html"
         }
 )
