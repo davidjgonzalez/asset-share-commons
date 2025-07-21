@@ -57,7 +57,12 @@ public class AiSearchRenderCondition extends SlingSafeMethodsServlet {
 
     public static boolean isAiSearchEnabled() {
         String inferenceEnabledStr = System.getProperty("oak.query.InferenceEnabled");
+
+        log.debug("Checking if AI Search is enabled. System property 'oak.query.InferenceEnabled' = {}", inferenceEnabledStr);
+
         boolean inferenceEnabled = inferenceEnabledStr != null && Boolean.parseBoolean(inferenceEnabledStr) == Boolean.TRUE;
+
+        log.debug("AI Search is enabled: {}", inferenceEnabled);
         return inferenceEnabled;
     }
 

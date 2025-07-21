@@ -67,6 +67,9 @@ public class AiFulltextPredicateEvaluator implements PredicateEvaluator {
 
         if (AiSearchRenderCondition.isAiSearchEnabled() && !StringUtils.isBlank(value)) {
             value = AI_SEARCH_TOKEN.concat(value);
+        } else {
+            log.error("isAiSearchEnabled() " + AiSearchRenderCondition.isAiSearchEnabled());
+            log.error("Search value: " + value);
         }
 
         predicate.set(FulltextPredicateEvaluator.FULLTEXT, value);
