@@ -44,7 +44,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                             name="./aiSearch"
-                                            fieldDescription="Enable AI search for full-text search. Your AEM as a Cloud Service program must be enabled for AI Search for this work."
+                                            fieldDescription="Enable AI search for full-text search."
                                             text="Enable AI Search"
                                             value="{Boolean}true"
                                             uncheckedValue="{Boolean}false">
