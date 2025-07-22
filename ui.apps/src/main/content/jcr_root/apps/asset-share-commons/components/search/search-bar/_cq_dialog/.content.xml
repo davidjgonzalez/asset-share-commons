@@ -46,10 +46,11 @@
                                             name="./aiSearch"
                                             fieldDescription="Enable AI search for full-text search. Your AEM as a Cloud Service program must be enabled for AI Search for this work."
                                             text="Enable AI Search"
-                                            value="true">
+                                            value="{Boolean}true"
+                                            uncheckedValue="{Boolean}false">
                                         <granite:rendercondition
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="asset-share-commons/authoring/renderconditions/ai-search2"/>
+                                                sling:resourceType="asset-share-commons/authoring/renderconditions/ai-search"/>
                                     </ai-search>
                                     <field-type
                                         jcr:primaryType="nt:unstructured"
