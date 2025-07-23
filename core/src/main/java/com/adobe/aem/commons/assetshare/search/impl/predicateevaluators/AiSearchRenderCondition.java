@@ -68,7 +68,7 @@ public class AiSearchRenderCondition extends SlingSafeMethodsServlet {
 
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(isAiSearchEnabled()));
+        request.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(!isAiSearchEnabled()));
     }
 }
 
